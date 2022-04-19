@@ -15,47 +15,37 @@ class OnboardingView extends GetView<OnboardingController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: IntroductionScreen(
+        rtl: true,
         skipStyle: TextButton.styleFrom(primary: kPrimaryColor),
         doneStyle: TextButton.styleFrom(primary: kPrimaryColor),
         nextStyle: TextButton.styleFrom(primary: kPrimaryColor),
         pages: [
           PageViewModel(
-            titleWidget: const DefaultText(
-              'خطط',
-            ),
-            bodyWidget: const DefaultText(
-              'الوصف',
-            ),
+            titleWidget: const DefaultText('خطط',
+                fontSize: 20, fontWeight: FontWeight.bold),
+            bodyWidget: const DefaultText('الوصف', fontSize: 12),
             image: buildImage('assets/images/plan.png'),
             decoration: getPageDecoration(),
           ),
           PageViewModel(
-            titleWidget: const DefaultText(
-              'اختر وجهنك',
-            ),
-            bodyWidget: const DefaultText(
-              'الوصف',
-            ),
+            titleWidget: const DefaultText('اختر وجهنك',
+                fontSize: 20, fontWeight: FontWeight.bold),
+            bodyWidget: const DefaultText('الوصف', fontSize: 12),
             image: buildImage('assets/images/shoosedistination.png'),
             decoration: getPageDecoration(),
           ),
           PageViewModel(
-            titleWidget: const DefaultText(
-              'احجز',
-            ),
-            bodyWidget: const DefaultText(
-              'الوصف',
-            ),
+            titleWidget: const DefaultText('احجز',
+                fontSize: 20, fontWeight: FontWeight.bold),
+            bodyWidget: const DefaultText('الوصف', fontSize: 12),
             image: buildImage('assets/images/book.png'),
             decoration: getPageDecoration(),
           ),
           PageViewModel(
-            titleWidget: const DefaultText(
-              'اعد حقائبك',
-            ),
-            bodyWidget: const DefaultText(
-              ' ,  هيا بنا , ابدأ الرحلة',
-            ),
+            titleWidget: const DefaultText('اعد حقائبك',
+                fontSize: 20, fontWeight: FontWeight.bold),
+            bodyWidget:
+                const DefaultText(' ,  هيا بنا , ابدأ الرحلة', fontSize: 12),
             footer: RoundedButton(
               text: 'ابدا رحلتك',
               press: () => Get.to(
@@ -77,7 +67,7 @@ class OnboardingView extends GetView<OnboardingController> {
         ),
         onSkip: () => Get.to(WelcomeView()),
         next: const Icon(
-          PhosphorIcons.caret_right_bold,
+          PhosphorIcons.caret_left_bold,
           color: Colors.black,
         ),
         dotsDecorator: getDotDecoration(),
@@ -87,7 +77,7 @@ class OnboardingView extends GetView<OnboardingController> {
   }
 
   Widget buildImage(String path) =>
-      Center(child: Image.asset(path, width: 350));
+      Center(child: Image.asset(path, width: 700));
 
   DotsDecorator getDotDecoration() => DotsDecorator(
         color: kPrimaryLightColor,
@@ -100,9 +90,6 @@ class OnboardingView extends GetView<OnboardingController> {
       );
 
   PageDecoration getPageDecoration() => const PageDecoration(
-        titleTextStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        bodyTextStyle: TextStyle(fontSize: 12),
-        imagePadding: EdgeInsets.all(24),
-        pageColor: Colors.white,
+        imagePadding: EdgeInsets.only(top: 100),
       );
 }
