@@ -48,7 +48,7 @@ class OnboardingView extends GetView<OnboardingController> {
                 const DefaultText(' ,  هيا بنا , ابدأ الرحلة', fontSize: 12),
             footer: RoundedButton(
               text: 'ابدا رحلتك',
-              press: () => Get.to(
+              press: () => Get.to(()=>
                 WelcomeView(),
               ),
             ),
@@ -60,12 +60,12 @@ class OnboardingView extends GetView<OnboardingController> {
           'انتهى',
           fontWeight: FontWeight.w500,
         ),
-        onDone: () => Get.to(WelcomeView()),
+        onDone: () => Get.to(()=>WelcomeView()),
         showSkipButton: true,
         skip: const DefaultText(
           'تخطي',
         ),
-        onSkip: () => Get.to(WelcomeView()),
+        onSkip: () => Get.to(()=>WelcomeView()),
         next: const Icon(
           PhosphorIcons.caret_left_bold,
           color: Colors.black,

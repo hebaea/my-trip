@@ -34,7 +34,7 @@ class Body extends StatelessWidget {
             RoundedButton(
               text: "تسجيل الدخول",
               press: () {
-                Get.to(LoginView());
+                Get.to(()=>LoginView());
               },
             ),
             RoundedButton(
@@ -42,7 +42,7 @@ class Body extends StatelessWidget {
               color: kPrimaryLightColor,
               textColor: Colors.black,
               press: () {
-                Get.to(RegisterView());
+                Get.to(()=>RegisterView());
               },
             ),
           ],

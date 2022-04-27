@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_trip/app/core/theme/constants.dart';
+import 'package:my_trip/app/global_widgets/default_text.dart';
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
   final bool login;
@@ -18,12 +19,12 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: press,
-          child: Text(
+          child: DefaultText(
             login ? "تسجيل حساب جديد" : "تسجيل الدخول",
-            style: const TextStyle(
+
               color: kPrimaryColor,
               fontWeight: FontWeight.bold,
-            ),
+
           ),
         ),
         const SizedBox(
