@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_trip/app/core/theme/constants.dart';
+import 'package:my_trip/app/global_widgets/default_text.dart';
 
 class RoundedButton extends StatelessWidget {
   final String text;
   final void Function()? press;
   final Color color, textColor;
 
-   RoundedButton({
+  const RoundedButton({
     Key? key,
     required this.text,
     required this.press,
@@ -18,10 +20,10 @@ class RoundedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      width: size.width * 0.8,
+      margin: EdgeInsets.symmetric(vertical: 10.h),
+      width: size.width * 0.8.w,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(29),
+        borderRadius: BorderRadius.circular(29.r),
         child: newElevatedButton(),
       ),
     );
@@ -29,16 +31,16 @@ class RoundedButton extends StatelessWidget {
 
   Widget newElevatedButton() {
     return ElevatedButton(
-      child: Text(
+      child: DefaultText(
         text,
-        style: TextStyle(color: textColor,fontFamily: 'Cairo'),
+        color: textColor,
       ),
       onPressed: press,
       style: ElevatedButton.styleFrom(
           primary: color,
-          padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+          padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 20.h),
           textStyle: TextStyle(
-              color: textColor, fontSize: 14, fontWeight: FontWeight.w500)),
+              color: textColor, fontSize: 14.sp, fontWeight: FontWeight.w500)),
     );
   }
 }

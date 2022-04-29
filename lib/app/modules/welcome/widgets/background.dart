@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Background extends StatelessWidget {
   final Widget child;
@@ -15,13 +16,13 @@ class Background extends StatelessWidget {
       width: double.infinity,
       child: Stack(
         alignment: Alignment.center,
-        children: <Widget>[
+        children: [
           Positioned(
             top: 0,
             left: 0,
             child: Image.asset(
               "assets/images/main_top.png",
-              width: size.width * 0.3,
+              width: size.width * 0.3.w,
             ),
           ),
           Positioned(
@@ -29,7 +30,7 @@ class Background extends StatelessWidget {
             left: 0,
             child: Image.asset(
               "assets/images/main_bottom.png",
-              width: size.width * 0.2,
+              width: size.width * 0.2.w,
             ),
           ),
           child,
