@@ -8,8 +8,6 @@ import '../modules/onboarding/bindings/onboarding_binding.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
-import '../modules/splash/bindings/splash_binding.dart';
-import '../modules/splash/views/splash_view.dart';
 import '../modules/welcome/bindings/welcome_binding.dart';
 import '../modules/welcome/views/welcome_view.dart';
 
@@ -22,7 +20,6 @@ class AppPages {
   // static const INITIAL = Routes.WELCOME;
   static const INITIAL = Routes.ONBOARDING;
 
-
   static final routes = [
     GetPage(
       name: _Paths.HOME,
@@ -33,11 +30,6 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => LoginView(),
       binding: LoginBinding(),
-    ),
-    GetPage(
-      name: _Paths.SPLASH,
-      page: () => SplashView(),
-      binding: SplashBinding(),
     ),
     GetPage(
       name: _Paths.ONBOARDING,

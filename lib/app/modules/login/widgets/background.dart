@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Background extends StatelessWidget {
   final Widget child;
@@ -10,7 +11,7 @@ class Background extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: size.height,
       child: Stack(
@@ -21,7 +22,7 @@ class Background extends StatelessWidget {
             left: 0,
             child: Image.asset(
               "assets/images/main_top.png",
-              width: size.width * 0.35,
+              width: size.width * 0.35.w,
             ),
           ),
           Positioned(
@@ -29,7 +30,7 @@ class Background extends StatelessWidget {
             right: 0,
             child: Image.asset(
               "assets/images/login_bottom.png",
-              width: size.width * 0.4,
+              width: size.width * 0.4.w,
             ),
           ),
           child,

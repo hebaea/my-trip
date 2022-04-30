@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/constants.dart';
@@ -46,10 +47,13 @@ class OnboardingView extends GetView<OnboardingController> {
                 fontSize: 20, fontWeight: FontWeight.bold),
             bodyWidget:
                 const DefaultText(' ,  هيا بنا , ابدأ الرحلة', fontSize: 12),
-            footer: RoundedButton(
-              text: 'ابدا رحلتك',
-              press: () => Get.to(()=>
-                WelcomeView(),
+            footer: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: RoundedButton(
+                text: 'ابدا رحلتك',
+                press: () => Get.to(
+                  () => const WelcomeView(),
+                ),
               ),
             ),
             image: buildImage('assets/images/letsgo.png'),
@@ -60,12 +64,12 @@ class OnboardingView extends GetView<OnboardingController> {
           'انتهى',
           fontWeight: FontWeight.w500,
         ),
-        onDone: () => Get.to(()=>WelcomeView()),
+        onDone: () => Get.to(() => const WelcomeView()),
         showSkipButton: true,
         skip: const DefaultText(
           'تخطي',
         ),
-        onSkip: () => Get.to(()=>WelcomeView()),
+        onSkip: () => Get.to(() => const WelcomeView()),
         next: const Icon(
           PhosphorIcons.caret_left_bold,
           color: Colors.black,
@@ -77,15 +81,15 @@ class OnboardingView extends GetView<OnboardingController> {
   }
 
   Widget buildImage(String path) =>
-      Center(child: Image.asset(path, width: 700));
+      Center(child: Image.asset(path, width: 700.w));
 
   DotsDecorator getDotDecoration() => DotsDecorator(
         color: kPrimaryLightColor,
         activeColor: kPrimaryColor,
         size: const Size(10, 10),
-        activeSize: const Size(20, 10),
+        activeSize: const Size(18, 10),
         activeShape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(24.r),
         ),
       );
 

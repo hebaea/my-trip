@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:my_trip/app/global_widgets/primary_button.dart';
-import 'package:my_trip/app/modules/register/views/register_view.dart';
-
-import '../../../core/theme/theme.dart';
 import '../controllers/login_controller.dart';
 import '../widgets/body.dart';
 
 class LoginView extends GetView<LoginController> {
+  const LoginView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Body(),
     );
   }
