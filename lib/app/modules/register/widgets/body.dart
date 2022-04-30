@@ -9,6 +9,7 @@ import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
 import 'package:my_trip/app/global_widgets/rounded_password_field.dart';
+import 'package:my_trip/app/modules/home/views/home_view.dart';
 import 'package:my_trip/app/modules/login/views/login_view.dart';
 import 'package:my_trip/app/modules/register/widgets/background.dart';
 
@@ -55,7 +56,9 @@ class Body extends StatelessWidget {
               ),
               RoundedButton(
                 text: "التسجيل",
-                press: () {},
+                press: () {
+                  Get.to(() => HomeView());
+                },
               ),
               SizedBox(height: size.height * 0.03.h),
               AlreadyHaveAnAccountCheck(

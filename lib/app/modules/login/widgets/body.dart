@@ -9,6 +9,7 @@ import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
 import 'package:my_trip/app/global_widgets/rounded_password_field.dart';
+import 'package:my_trip/app/modules/home/views/home_view.dart';
 import 'package:my_trip/app/modules/register/views/register_view.dart';
 
 import 'background.dart';
@@ -32,8 +33,8 @@ class Body extends StatelessWidget {
               const DefaultText("تسجيل الدخول", fontWeight: FontWeight.bold),
               SizedBox(height: size.height * 0.03.h),
               SizedBox(
-                width: 250.w,
-                height: 250.h,
+                width: 200.w,
+                height: 200.h,
                 child: SvgPicture.asset(
                   "assets/images/login.svg",
                   height: size.height * 0.35.h,
@@ -51,7 +52,9 @@ class Body extends StatelessWidget {
               ),
               RoundedButton(
                 text: "تسجيل الدخول",
-                press: () {},
+                press: () {
+                  Get.to(() => HomeView());
+                },
               ),
               SizedBox(height: size.height * 0.03.h),
               AlreadyHaveAnAccountCheck(
