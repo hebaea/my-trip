@@ -38,7 +38,7 @@ class DashboardView extends StatelessWidget {
           type: BottomNavigationBarType.fixed,
           items: [
             _bottomNavigationBarItem(
-                icon: const Icon(PhosphorIcons.house), label: 'Explore'),
+                icon: const Icon(PhosphorIcons.house), label: 'explore'.tr),
             _bottomNavigationBarItem(
                 icon: const Icon(PhosphorIcons.heart), label: 'Favorites'),
             _bottomNavigationBarItem(
