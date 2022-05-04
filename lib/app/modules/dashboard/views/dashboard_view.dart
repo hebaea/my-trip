@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
-import 'package:my_trip/app/core/theme/constants.dart';
+import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/modules/chats/views/chats_view.dart';
 import 'package:my_trip/app/modules/favorites/views/favorites_view.dart';
 import 'package:my_trip/app/modules/home/views/home_view.dart';
@@ -24,17 +24,17 @@ class DashboardView extends StatelessWidget {
               FavoritesView(),
               ReservationsView(),
               ChatsView(),
-              ProfileView(),
+              const ProfileView(),
             ],
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          unselectedItemColor: kPrimaryColor,
-          selectedItemColor: kPrimaryColor,
+          unselectedItemColor:AppThemeColors.grayPrimary300,
+          selectedItemColor: AppThemeColors.primaryColor,
           onTap: controller.changeTabIndex,
           currentIndex: controller.tabIndex,
           showSelectedLabels: true,
-          showUnselectedLabels: false,
+          showUnselectedLabels: true,
           type: BottomNavigationBarType.fixed,
           items: [
             _bottomNavigationBarItem(

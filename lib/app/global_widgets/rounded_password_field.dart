@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
-import 'package:my_trip/app/core/theme/constants.dart';
+import 'package:my_trip/app/core/theme/color_theme.dart';
 
 import 'text_field_container.dart';
 
@@ -17,16 +17,16 @@ class RoundedPasswordField extends StatelessWidget {
       child: TextField(
         obscureText: true,
         onChanged: onChanged,
-        cursorColor: kPrimaryColor,
+        cursorColor: AppThemeColors.primaryColor,
         decoration: const InputDecoration(
           hintText: "كلمة المرور",
           icon: Icon(
             PhosphorIcons.lock,
-            color: kPrimaryColor,
+            color:AppThemeColors.primaryColor,
           ),
           suffixIcon: Icon(
             PhosphorIcons.eye,
-            color: kPrimaryColor,
+            color: AppThemeColors.primaryColor,
           ),
           border: InputBorder.none,
         ),

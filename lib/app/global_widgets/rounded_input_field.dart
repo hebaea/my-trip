@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_trip/app/core/theme/constants.dart';
+import 'package:my_trip/app/core/theme/color_theme.dart';
 
 import 'text_field_container.dart';
 
@@ -20,7 +20,7 @@ class RoundedInputField extends StatelessWidget {
     return TextFieldContainer(
       child: TextFormField(
         onChanged: onChanged,
-        cursorColor: kPrimaryColor,
+        cursorColor: AppThemeColors.primaryColor,
         decoration: InputDecoration(
           icon: icon,
           hintText: hintText,

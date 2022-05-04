@@ -3,7 +3,7 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:get/get.dart';
-import 'package:my_trip/app/core/theme/constants.dart';
+import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/modules/welcome/views/welcome_view.dart';
@@ -17,9 +17,9 @@ class OnboardingView extends GetView<OnboardingController> {
     return SafeArea(
       child: IntroductionScreen(
         rtl: true,
-        skipStyle: TextButton.styleFrom(primary: kPrimaryColor),
-        doneStyle: TextButton.styleFrom(primary: kPrimaryColor),
-        nextStyle: TextButton.styleFrom(primary: kPrimaryColor),
+        skipStyle: TextButton.styleFrom(primary: AppThemeColors.primaryColor),
+        doneStyle: TextButton.styleFrom(primary: AppThemeColors.primaryColor),
+        nextStyle: TextButton.styleFrom(primary: AppThemeColors.primaryColor),
         pages: [
           PageViewModel(
             titleWidget: const DefaultText('خطط',
@@ -84,8 +84,8 @@ class OnboardingView extends GetView<OnboardingController> {
       Center(child: Image.asset(path, width: 700.w));
 
   DotsDecorator getDotDecoration() => DotsDecorator(
-        color: kPrimaryLightColor,
-        activeColor: kPrimaryColor,
+        color: AppThemeColors.primaryLightColor,
+        activeColor: AppThemeColors.primaryColor,
         size: const Size(10, 10),
         activeSize: const Size(18, 10),
         activeShape: RoundedRectangleBorder(

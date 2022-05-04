@@ -3,7 +3,7 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:my_trip/app/core/theme/constants.dart';
+import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/already_have_an_account_acheck.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
@@ -43,11 +43,11 @@ class Body extends StatelessWidget {
               RoundedInputField(
                 hintText: "الاسم و اللقب",
                 onChanged: (value) {},
-                icon: const Icon(PhosphorIcons.user, color: kPrimaryColor),
+                icon: const Icon(PhosphorIcons.user, color: AppThemeColors.primaryColor),
               ),
               RoundedInputField(
                 icon: const Icon(PhosphorIcons.envelope_simple,
-                    color: kPrimaryColor),
+                    color: AppThemeColors.primaryColor),
                 hintText: "البريد الالكتروني",
                 onChanged: (value) {},
               ),

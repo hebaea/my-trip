@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_trip/app/core/theme/constants.dart';
+import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
+import 'package:my_trip/app/core/theme/color_theme.dart';
 
 class RoundedButton extends StatelessWidget {
   final String text;
@@ -12,7 +13,7 @@ class RoundedButton extends StatelessWidget {
     Key? key,
     required this.text,
     required this.press,
-    this.color = kPrimaryColor,
+    this.color = AppThemeColors.primaryColor,
     this.textColor = Colors.white,
   }) : super(key: key);
 
