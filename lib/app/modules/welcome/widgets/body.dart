@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:my_trip/app/core/theme/constants.dart';
+import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/modules/login/views/login_view.dart';
@@ -46,7 +46,7 @@ class Body extends StatelessWidget {
               ),
               RoundedButton(
                 text: "تسجيل حساب جديد",
-                color: kPrimaryLightColor,
+                color: AppThemeColors.primaryLightColor,
                 textColor: Colors.black,
                 press: () {
                   Get.to(() => RegisterView());

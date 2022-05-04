@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_trip/app/core/theme/constants.dart';
+import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
@@ -22,7 +22,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
           onTap: press,
           child: DefaultText(
             login ? "تسجيل حساب جديد" : "تسجيل الدخول",
-            color: kPrimaryColor,
+            color: AppThemeColors.primaryColor,
             fontWeight: FontWeight.bold,
           ),
         ),

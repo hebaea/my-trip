@@ -9,6 +9,11 @@ abstract class Routes {
   static const ONBOARDING = _Paths.ONBOARDING;
   static const REGISTER = _Paths.REGISTER;
   static const WELCOME = _Paths.WELCOME;
+  static const PROFILE = _Paths.PROFILE;
+  static const CHATS = _Paths.CHATS;
+  static const RESERVATIONS = _Paths.RESERVATIONS;
+  static const FAVORITES = _Paths.FAVORITES;
+  static const DASHBOARD = _Paths.DASHBOARD;
 }
 
 abstract class _Paths {
@@ -19,4 +24,9 @@ abstract class _Paths {
   static const ONBOARDING = '/onboarding';
   static const REGISTER = '/register';
   static const WELCOME = '/welcome';
+  static const PROFILE = '/profile';
+  static const CHATS = '/chats';
+  static const RESERVATIONS = '/reservations';
+  static const FAVORITES = '/favorites';
+  static const DASHBOARD = '/dashboard';
 }

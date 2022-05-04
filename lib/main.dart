@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
-import 'package:my_trip/app/core/theme/constants.dart';
-
+import 'package:my_trip/locale/locale.dart';
+import 'package:my_trip/locale/locale_controller.dart';
 import 'app/routes/app_pages.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  await GetStorage.init();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(MyLocaleController());
     return ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
@@ -29,6 +34,8 @@ class MyApp extends StatelessWidget {
               ),
               textTheme: TextTheme(bodyText2: TextStyle(fontSize: 30.sp)),
             ),
+            locale: controller.initialLang,
+            translations: MyLocale(),
             initialRoute: AppPages.INITIAL,
             getPages: AppPages.routes,
           );

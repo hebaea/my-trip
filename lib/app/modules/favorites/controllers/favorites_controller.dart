@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
-  //TODO: Implement ReservationsController
+class FavoritesController extends GetxController {
+  //TODO: Implement FavoritesController
 
   final count = 0.obs;
   @override

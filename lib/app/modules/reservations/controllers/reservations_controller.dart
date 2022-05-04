@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
+class ReservationsController extends GetxController {
   //TODO: Implement ReservationsController
 
   final count = 0.obs;
