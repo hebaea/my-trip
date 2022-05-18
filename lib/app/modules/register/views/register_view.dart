@@ -79,10 +79,17 @@ class RegisterView extends GetView<RegisterController> {
                   RoundedButton(
                     text: "التسجيل",
                     press: () {
-                      // controller.createAccountPressed();
+                      controller.doRegister();
                     },
                   ),
                   SizedBox(height: size.height * 0.03.h),
+                  Obx(
+                    () => controller.isLoading.value == true
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : const Text(''),
+                  ),
                   AlreadyHaveAnAccountCheck(
                     login: false,
                     press: () {

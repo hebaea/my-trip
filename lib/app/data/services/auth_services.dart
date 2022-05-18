@@ -53,7 +53,7 @@ class AuthServices {
       body: jsonEncode(
           <String, String>{"name": name, "email": email, "password": password}),
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       var stringObject = response.body;
       var user = userFromJson(stringObject);
       return user;
