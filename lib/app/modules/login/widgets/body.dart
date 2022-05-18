@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,7 +10,7 @@ import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
 import 'package:my_trip/app/global_widgets/rounded_password_field.dart';
-import 'package:my_trip/app/modules/home/views/home_view.dart';
+import 'package:my_trip/app/modules/login/controllers/login_controller.dart';
 import 'package:my_trip/app/modules/register/views/register_view.dart';
 
 import 'background.dart';
@@ -21,6 +22,8 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LoginController controller = Get.find();
+
     Size size = MediaQuery.of(context).size;
     return Background(
       child: SingleChildScrollView(
@@ -42,6 +45,7 @@ class Body extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.03.h),
               RoundedInputField(
+                keyboardType: TextInputType.emailAddress,
                 hintText: "البريد الالكتروني",
                 onChanged: (value) {},
                 icon: const Icon(PhosphorIcons.envelope_simple,
@@ -53,13 +57,13 @@ class Body extends StatelessWidget {
               RoundedButton(
                 text: "تسجيل الدخول",
                 press: () {
-                  Get.to(() => HomeView());
+                  // controller.loginPressed();
                 },
               ),
               SizedBox(height: size.height * 0.03.h),
               AlreadyHaveAnAccountCheck(
                 press: () {
-                  Get.to(() => const RegisterView());
+                  Get.to(() =>  RegisterView());
                 },
               ),
               SizedBox(height: size.height * 0.03.h),

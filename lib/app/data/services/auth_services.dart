@@ -1,7 +1,5 @@
-import 'dart:convert';
-
-//use dio
-
+// import 'dart:convert';
+// import 'package:my_trip/app/data/services/globals.dart';
 // import 'package:http/http.dart' as http;
 //
 // class AuthServices {
@@ -39,3 +37,41 @@ import 'dart:convert';
 //     return response;
 //   }
 // }
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+import 'package:my_trip/app/data/model/user_model.dart';
+
+class AuthServices {
+  static String baseApi = "http://127.0.0.1:8000/api/";
+  static var client = http.Client();
+
+  static register({required name, required email, required password}) async {
+    var response = await client.post(
+      Uri.parse("$baseApi/register"),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(
+          <String, String>{"name": name, "email": email, "password": password}),
+    );
+    if (response.statusCode == 200) {
+      var stringObject = response.body;
+      var user = userFromJson(stringObject);
+      return user;
+    } else {
+      return null;
+    }
+  }
+
+  static login({required email, password}) async {
+    var response = await client.post(
+      Uri.parse("$baseApi/login"),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(<String, String>{"email": email, "password": password}),
+    );
+    if (response.statusCode == 200) {
+      var stringObject = response.body;
+      var user = userFromJson(stringObject);
+      return user;
+    }
+  }
+}

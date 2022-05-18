@@ -1,19 +1,101 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:my_trip/app/core/theme/theme.dart';
-import 'package:my_trip/app/global_widgets/primary_button.dart';
-
+import 'package:my_trip/app/core/theme/color_theme.dart';
+import 'package:my_trip/app/global_widgets/already_have_an_account_acheck.dart';
+import 'package:my_trip/app/global_widgets/default_text.dart';
+import 'package:my_trip/app/global_widgets/rounded_button.dart';
+import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
+import 'package:my_trip/app/global_widgets/rounded_password_field.dart';
+import 'package:my_trip/app/modules/login/views/login_view.dart';
+import 'package:my_trip/app/modules/register/widgets/background.dart';
 import '../controllers/register_controller.dart';
-import '../widgets/body.dart';
 
 class RegisterView extends GetView<RegisterController> {
   const RegisterView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Body(),
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      body: Background(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Form(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              key: controller.registerFormKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: size.height * 0.03.h),
+                  const DefaultText(
+                    "تسجيل حساب جديد",
+                    fontWeight: FontWeight.bold,
+                  ),
+                  SizedBox(height: size.height * 0.03.h),
+                  SizedBox(
+                    height: 250.h,
+                    width: 250.w,
+                    child: SvgPicture.asset(
+                      "assets/images/register.svg",
+                      height: size.height * 0.35.h,
+                    ),
+                  ),
+                  RoundedInputField(
+                    hintText: "الاسم و اللقب",
+                    controller: controller.nameController,
+                    onChanged: (value) {},
+                    icon: const Icon(PhosphorIcons.user,
+                        color: AppThemeColors.primaryColor),
+                    // controller: name,
+                  ),
+                  RoundedInputField(
+                    icon: const Icon(PhosphorIcons.envelope_simple,
+                        color: AppThemeColors.primaryColor),
+                    controller: controller.emailController,
+                    hintText: "البريد الالكتروني",
+                    validator: (v) {
+                      return controller.validateEmail(v!);
+                    },
+                    onSaved: (v) {
+                      controller.email = v!;
+                    },
+                    onChanged: (value) {},
+                  ),
+                  RoundedPasswordField(
+                    onChanged: (value) {},
+                    validator: (v) {
+                      return controller.validatePassword(v!);
+                    },
+                    onSaved: (v) {
+                      controller.password = v!;
+                    },
+                    controller: controller.passwordController,
+                  ),
+                  RoundedButton(
+                    text: "التسجيل",
+                    press: () {
+                      // controller.createAccountPressed();
+                    },
+                  ),
+                  SizedBox(height: size.height * 0.03.h),
+                  AlreadyHaveAnAccountCheck(
+                    login: false,
+                    press: () {
+                      Get.to(() => const LoginView());
+                    },
+                  ),
+                  SizedBox(height: size.height * 0.03.h),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
