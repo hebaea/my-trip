@@ -1,15 +1,90 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:my_trip/app/core/theme/color_theme.dart';
+import 'package:my_trip/app/global_widgets/already_have_an_account_acheck.dart';
+import 'package:my_trip/app/global_widgets/default_text.dart';
+import 'package:my_trip/app/global_widgets/rounded_button.dart';
+import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
+import 'package:my_trip/app/global_widgets/rounded_password_field.dart';
+import 'package:my_trip/app/modules/login/widgets/background.dart';
+import 'package:my_trip/app/modules/register/views/register_view.dart';
 import '../controllers/login_controller.dart';
-import '../widgets/body.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Body(),
+    Size size = MediaQuery.of(context).size;
+
+    return Scaffold(
+      body: Background(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Form(
+              key: controller.loginFormKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: size.height * 0.03.h),
+                  const DefaultText("تسجيل الدخول",
+                      fontWeight: FontWeight.bold),
+                  SizedBox(height: size.height * 0.03.h),
+                  SizedBox(
+                    width: 200.w,
+                    height: 200.h,
+                    child: SvgPicture.asset(
+                      "assets/images/login.svg",
+                      height: size.height * 0.35.h,
+                    ),
+                  ),
+                  SizedBox(height: size.height * 0.03.h),
+                  RoundedInputField(
+                    keyboardType: TextInputType.emailAddress,
+                    hintText: "البريد الالكتروني",
+                    onChanged: (value) {},
+                    controller: controller.emailController,
+                    validator: (v) {
+                      return controller.validateEmail(v!);
+                    },
+                    onSaved: (v) {},
+                    icon: const Icon(PhosphorIcons.envelope_simple,
+                        color: AppThemeColors.primaryColor),
+                  ),
+                  RoundedPasswordField(
+                    controller: controller.passwordController,
+                    onChanged: (value) {},
+                  ),
+                  RoundedButton(
+                    text: "تسجيل الدخول",
+                    press: () {
+                      controller.doLogin();
+                    },
+                  ),
+                  SizedBox(height: size.height * 0.03.h),
+                  Obx(
+                    () => controller.isLoading.value == true
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : const Text(''),
+                  ),
+                  AlreadyHaveAnAccountCheck(
+                    press: () {
+                      Get.to(() => RegisterView());
+                    },
+                  ),
+                  SizedBox(height: size.height * 0.03.h),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

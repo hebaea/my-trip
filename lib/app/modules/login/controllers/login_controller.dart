@@ -1,18 +1,20 @@
-import 'dart:convert';
-
+import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 import 'package:my_trip/app/data/services/auth_services.dart';
-import 'package:my_trip/app/modules/home/views/home_view.dart';
+import 'package:my_trip/app/modules/dashboard/views/dashboard_view.dart';
 
 class LoginController extends GetxController {
-  // final _email = '';
-  // final _password = '';
-
-  final count = 0.obs;
+  var isLoading = false.obs;
+  final loginFormKey = GlobalKey<FormState>();
+  late TextEditingController emailController, passwordController;
+  String email = '', password = '';
+  final storage = const FlutterSecureStorage();
 
   @override
   void onInit() {
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
     super.onInit();
   }
 
@@ -22,21 +24,47 @@ class LoginController extends GetxController {
   }
 
   @override
-  void onClose() {}
+  void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
-  // loginPressed() async {
-  //   if (_email.isNotEmpty && _password.isNotEmpty) {
-  //     http.Response response = await AuthServices.login(_email, _password);
-  //     Map responseMap = jsonDecode(response.body);
-  //     if (response.statusCode == 200) {
-  //       Get.to(const HomeView());
-  //     } else {
-  //       //errorSnackBar(context, responseMap.values.first);
-  //       print(responseMap.values.first);
-  //     }
-  //   } else {
-  //     //errorSnackBar(context, );
-  //     print('enter all required fields');
-  //   }
-  // }
+  String? validateEmail(String value) {
+    if (!GetUtils.isEmail(value)) {
+      return "this is wrong email";
+    } else {
+      return null;
+    }
+  }
+
+  String? validatePassword(String value) {
+    if (value.length < 6) {
+      return "short password";
+    } else {
+      return null;
+    }
+  }
+
+  doLogin() async {
+    bool isValidate = loginFormKey.currentState!.validate();
+    if (isValidate) {
+      isLoading(true);
+      try {
+        var data = AuthServices.login(
+            email: emailController.text, password: passwordController.text);
+        if (data != null) {
+          await storage.write(key: "name", value: data.user.name);
+          await storage.write(key: "token", value: data.token);
+          loginFormKey.currentState!.save();
+          Get.to(const DashboardView()); // use routes!!!!!
+
+        } else {
+          Get.snackbar("login", "problem in login");
+        }
+      } finally {
+        isLoading(false);
+      }
+    }
+  }
 }
