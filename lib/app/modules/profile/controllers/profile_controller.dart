@@ -1,11 +1,16 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+import 'package:my_trip/app/routes/app_pages.dart';
 
 class ProfileController extends GetxController {
-  //TODO: Implement ProfileController
+//auth controller
+  var storage = const FlutterSecureStorage();
+  var name = ''.obs;
+  var token = '';
 
-  final count = 0.obs;
   @override
   void onInit() {
+    authData();
     super.onInit();
   }
 
@@ -16,5 +21,18 @@ class ProfileController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+
+  authData() async {
+    name.value = (await storage.read(key: "name"))!;
+    token = (await storage.read(key: "token"))!;
+  }
+
+  bool isAuth() {
+    return token.isNotEmpty;
+  }
+
+  doLogout() async {
+    await storage.deleteAll();
+    Get.to(Routes.LOGIN);
+  }
 }
