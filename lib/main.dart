@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
-import 'package:my_trip/app/modules/register/controllers/register_controller.dart';
 import 'package:my_trip/locale/locale.dart';
 import 'package:my_trip/locale/locale_controller.dart';
 import 'app/routes/app_pages.dart';
