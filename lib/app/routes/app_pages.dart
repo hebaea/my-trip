@@ -33,6 +33,7 @@ class AppPages {
 
   // static const INITIAL = Routes.WELCOME;
   static const INITIAL = Routes.ONBOARDING;
+  //change initial page
 
   static final routes = [
     GetPage(
