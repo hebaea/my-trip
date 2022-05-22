@@ -30,6 +30,12 @@ class ProfileView extends GetView<ProfileController> {
               },
               text: 'english'.tr,
             ),
+            RoundedButton(
+              press: () {
+                controller.doLogout();
+              },
+              text: 'تسجيل الخروج',
+            ),
           ],
         ));
   }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
-import 'package:my_trip/app/core/theme/color_theme.dart';
 
 class RoundedButton extends StatelessWidget {
   final String text;

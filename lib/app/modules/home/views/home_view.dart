@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
-import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
 import 'package:my_trip/app/modules/home/controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
