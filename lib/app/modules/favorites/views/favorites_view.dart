@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
-
 import '../controllers/favorites_controller.dart';
 
 class FavoritesView extends GetView<FavoritesController> {
@@ -20,8 +18,17 @@ class FavoritesView extends GetView<FavoritesController> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(PhosphorIcons.heart_fill,
-                size: 150.sp, color: AppThemeColors.primaryColor),
+            // Icon(PhosphorIcons.heart_fill,
+            //     size: 150.sp, color: AppThemeColors.primaryColor),
+            SvgPicture.asset(
+              "assets/images/empty_favorite.svg",
+              height: 100.h,
+              width: 109.w,
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+
             DefaultText(
               "قائمة المفضلة فارغة",
               fontSize: 16.sp,
