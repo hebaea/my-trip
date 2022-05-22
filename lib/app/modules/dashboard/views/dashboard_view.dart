@@ -29,7 +29,7 @@ class DashboardView extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          unselectedItemColor:AppThemeColors.grayPrimary300,
+          unselectedItemColor: AppThemeColors.grayPrimary300,
           selectedItemColor: AppThemeColors.primaryColor,
           onTap: controller.changeTabIndex,
           currentIndex: controller.tabIndex,
@@ -40,14 +40,13 @@ class DashboardView extends StatelessWidget {
             _bottomNavigationBarItem(
                 icon: const Icon(PhosphorIcons.house), label: 'explore'.tr),
             _bottomNavigationBarItem(
-                icon: const Icon(PhosphorIcons.heart), label: 'Favorites'),
+                icon: const Icon(PhosphorIcons.heart), label: 'المفضلة'),
             _bottomNavigationBarItem(
-                icon: const Icon(PhosphorIcons.suitcase),
-                label: 'Reservations'),
+                icon: const Icon(PhosphorIcons.suitcase), label: 'حجوزاتي'),
             _bottomNavigationBarItem(
-                icon: const Icon(PhosphorIcons.chats), label: 'Chats'),
+                icon: const Icon(PhosphorIcons.chats), label: 'الدردشات'),
             _bottomNavigationBarItem(
-                icon: const Icon(PhosphorIcons.user), label: 'Profile'),
+                icon: const Icon(PhosphorIcons.user), label: 'حسابي'),
           ],
         ),
       );
