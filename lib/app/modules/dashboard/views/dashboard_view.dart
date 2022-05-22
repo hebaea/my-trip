@@ -44,7 +44,7 @@ class DashboardView extends StatelessWidget {
             _bottomNavigationBarItem(
                 icon: const Icon(PhosphorIcons.suitcase), label: 'حجوزاتي'),
             _bottomNavigationBarItem(
-                icon: const Icon(PhosphorIcons.chats), label: 'Chats'),
+                icon: const Icon(PhosphorIcons.chats), label: 'الدردشات'),
             _bottomNavigationBarItem(
                 icon: const Icon(PhosphorIcons.user), label: 'حسابي'),
           ],

@@ -18,8 +18,6 @@ class FavoritesView extends GetView<FavoritesController> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Icon(PhosphorIcons.heart_fill,
-            //     size: 150.sp, color: AppThemeColors.primaryColor),
             SvgPicture.asset(
               "assets/images/empty_favorite.svg",
               height: 100.h,
@@ -28,7 +26,6 @@ class FavoritesView extends GetView<FavoritesController> {
             SizedBox(
               height: 20.h,
             ),
-
             DefaultText(
               "قائمة المفضلة فارغة",
               fontSize: 16.sp,
