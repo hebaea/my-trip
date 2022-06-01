@@ -17,13 +17,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(MyLocaleController());
+    // final controller = Get.put(MyLocaleController());
     return ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (_) {
           return GetMaterialApp(
+            builder: (context, child) {
+              return Directionality(
+                textDirection: TextDirection.rtl,
+                child: child!,
+              );
+            },
             debugShowCheckedModeBanner: false,
             useInheritedMediaQuery: true,
             title: "my trip",
@@ -34,8 +40,8 @@ class MyApp extends StatelessWidget {
               ),
               textTheme: TextTheme(bodyText2: TextStyle(fontSize: 30.sp)),
             ),
-            locale: controller.initialLang,
-            translations: MyLocale(),
+            // locale: controller.initialLang,
+            // translations: MyLocale(),
             initialRoute: AppPages.INITIAL,
             getPages: AppPages.routes,
           );

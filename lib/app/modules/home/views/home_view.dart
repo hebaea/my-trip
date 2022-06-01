@@ -12,154 +12,165 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // builder: (context, child) {
+      //   return Directionality(
+      //     textDirection: TextDirection.rtl,
+      //     child: child!,
+      //   );
+      // },
       home: DefaultTabController(
         length: 5,
         child: Scaffold(
-          body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 15, left: 40, right: 25),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      DefaultText(
-                        "Discover",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                      ),
-                      DefaultText(
-                        "New Destination",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                        height: 1,
-                      ),
-                    ],
+          body: Directionality(
+            textDirection: TextDirection.rtl,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 15, left: 40, right: 25),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        DefaultText(
+                          "Discover",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                        ),
+                        DefaultText(
+                          "New Destination",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          height: 1,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 30, top: 22, right: 40),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: SizedBox(
-                          width: 260,
-                          height: 44,
-                          child: TextField(
-                            decoration: InputDecoration(
-                              filled: true,
-                              focusColor: AppThemeColors.primaryColor,
-                              fillColor: Colors.white54,
-                              hoverColor: AppThemeColors.primaryColor,
-                              prefixIcon: const Icon(
-                                PhosphorIcons.magnifying_glass,
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 30, top: 22, right: 40),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(0),
+                          child: SizedBox(
+                            width: 260,
+                            height: 44,
+                            child: TextField(
+                              decoration: InputDecoration(
+                                filled: true,
+                                focusColor: AppThemeColors.primaryColor,
+                                fillColor: Colors.white54,
+                                hoverColor: AppThemeColors.primaryColor,
+                                prefixIcon: const Icon(
+                                  PhosphorIcons.magnifying_glass,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                                labelText: 'Search Places',
                               ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              labelText: 'Search Places',
                             ),
+                            // RoundedInputField(
+                            //   onChanged: (String value) {},
+                            //   hintText: 'Search Places',
+                            //   icon: Icon(PhosphorIcons.magnifying_glass),
+                            // ),
                           ),
-                          // RoundedInputField(
-                          //   onChanged: (String value) {},
-                          //   hintText: 'Search Places',
-                          //   icon: Icon(PhosphorIcons.magnifying_glass),
-                          // ),
                         ),
-                      ),
-                      Container(
-                        height: 48,
-                        width: 48,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppThemeColors.primaryColor),
-                        child: const Icon(
-                          PhosphorIcons.funnel_simple,
-                          size: 32.0,
-                          color: AppThemeColors.primaryPureWhite,
+                        Container(
+                          height: 48,
+                          width: 48,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppThemeColors.primaryColor),
+                          child: const Icon(
+                            PhosphorIcons.funnel_simple,
+                            size: 32.0,
+                            color: AppThemeColors.primaryPureWhite,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        DefaultText(
+                          "Popular Destinations",
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
-                      )
-                    ],
+                        DefaultText(
+                          "All",
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: AppThemeColors.grayPrimary300,
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      DefaultText(
-                        "Popular Destinations",
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      DefaultText(
-                        "All",
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: AppThemeColors.grayPrimary300,
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 150,
-                  width: double.infinity,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      addsItem(context, "assets/1.webp", "alwedan hotel",
-                          'tripoli , aldahra'),
-                      addsItem(context, "assets/2.webp", "alsafwa hotel",
-                          'benghazi , bla bla'),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
-                  child: Row(
-                    children: const [
-                      DefaultText(
-                        "Where are you going?",
-                        // "Cities",
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      // DefaultText(
-                      //   "Where are you going?",
-                      //   fontSize: 20,
-                      //   fontWeight: FontWeight.bold,
-                      //   color: Colors.black45,
-                      // )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 20,
-                  ),
-                  child: SizedBox(
-                    height: 230,
+                  SizedBox(
+                    height: 150,
                     width: double.infinity,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
-                        cityItem(context, "assets/detailsimage.jpg", "Tripoli",
-                            'bla , bla'),
-                        cityItem(context, "assets/tallimage2.jpg", "Benghazi",
-                            'bla bla'),
-                        cityItem(context, "assets/detailsimage.jpg", "Misurata",
-                            'bla , bla'),
+                        addsItem(context, "assets/1.webp", "alwedan hotel",
+                            'tripoli , aldahra'),
+                        addsItem(context, "assets/2.webp", "alsafwa hotel",
+                            'benghazi , bla bla'),
                       ],
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    child: Row(
+                      children: const [
+                        DefaultText(
+                          "Where are you going?",
+                          // "Cities",
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        // DefaultText(
+                        //   "Where are you going?",
+                        //   fontSize: 20,
+                        //   fontWeight: FontWeight.bold,
+                        //   color: Colors.black45,
+                        // )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 20,
+                    ),
+                    child: SizedBox(
+                      height: 230,
+                      width: double.infinity,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          cityItem(context, "assets/detailsimage.jpg",
+                              "Tripoli", 'bla , bla'),
+                          cityItem(context, "assets/tallimage2.jpg", "Benghazi",
+                              'bla bla'),
+                          cityItem(context, "assets/detailsimage.jpg",
+                              "Misurata", 'bla , bla'),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
