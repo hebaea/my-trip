@@ -19,12 +19,12 @@ class DashboardView extends StatelessWidget {
         body: SafeArea(
           child: IndexedStack(
             index: controller.tabIndex,
-            children: [
-              const HomeView(),
+            children: const [
+              HomeView(),
               FavoritesView(),
               ReservationsView(),
               ChatsView(),
-              const ProfileView(),
+              ProfileView(),
             ],
           ),
         ),
@@ -38,7 +38,7 @@ class DashboardView extends StatelessWidget {
           type: BottomNavigationBarType.fixed,
           items: [
             _bottomNavigationBarItem(
-                icon: const Icon(PhosphorIcons.house), label: 'explore'.tr),
+                icon: const Icon(PhosphorIcons.house), label: 'اكتشف'),
             _bottomNavigationBarItem(
                 icon: const Icon(PhosphorIcons.heart), label: 'المفضلة'),
             _bottomNavigationBarItem(
