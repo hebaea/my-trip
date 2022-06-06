@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_trip/app/data/services/auth_services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:my_trip/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:my_trip/app/routes/app_pages.dart';
 
 class RegisterController extends GetxController {
   var isLoading = false.obs;
@@ -63,7 +63,7 @@ class RegisterController extends GetxController {
           await storage.write(key: "name", value: data.user.name);
           await storage.write(key: "token", value: data.token);
           registerFormKey.currentState!.save();
-          Get.to(const DashboardView()); // use routes!!!!!
+          Get.toNamed(Routes.DASHBOARD); // use routes!!!!!
 
         } else {
           Get.snackbar("register", "problem in register");
