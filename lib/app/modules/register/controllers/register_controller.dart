@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_trip/app/data/model/user_model.dart';
 import 'package:my_trip/app/data/services/auth_services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
@@ -7,6 +8,8 @@ import 'package:my_trip/app/routes/app_pages.dart';
 class RegisterController extends GetxController {
   var isLoading = false.obs;
   final registerFormKey = GlobalKey<FormState>();
+
+  // GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
   late TextEditingController nameController,
       emailController,
       passwordController;
@@ -55,16 +58,21 @@ class RegisterController extends GetxController {
     if (isValidate) {
       isLoading(true);
       try {
-        var data = AuthServices.register(
+        UserModel? data = await AuthServices.register(
             name: nameController.text,
             email: emailController.text,
             password: passwordController.text);
         if (data != null) {
+          print("---------- data ----------------------");
+
+          print(data.toString());
           await storage.write(key: "name", value: data.user.name);
           await storage.write(key: "token", value: data.token);
           registerFormKey.currentState!.save();
-          Get.toNamed(Routes.DASHBOARD); // use routes!!!!!
-
+          print("storage------------------------------");
+          String? name = await storage.read(key: "name");
+          print(name);
+          Get.toNamed(Routes.DASHBOARD);
         } else {
           Get.snackbar("register", "problem in register");
         }

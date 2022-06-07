@@ -33,6 +33,6 @@ class ProfileController extends GetxController {
 
   doLogout() async {
     await storage.deleteAll();
-    Get.to(Routes.LOGIN);
+    Get.toNamed(Routes.LOGIN);
   }
 }

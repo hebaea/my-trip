@@ -10,7 +10,6 @@ import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
 import 'package:my_trip/app/global_widgets/rounded_password_field.dart';
 import 'package:my_trip/app/modules/login/widgets/background.dart';
-import 'package:my_trip/app/modules/register/views/register_view.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
@@ -89,6 +88,7 @@ class LoginView extends GetView<LoginController> {
     );
   }
 }
+
 // return Scaffold(
 //   resizeToAvoidBottomInset: false,
 //   backgroundColor: Colors.white,
