@@ -42,7 +42,7 @@ class Body extends StatelessWidget {
               RoundedButton(
                 text: "تسجيل الدخول",
                 press: () {
-                  Get.to(() => const LoginView());
+                  Get.toNamed(Routes.LOGIN);
                 },
               ),
               RoundedButton(
