@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 
 import 'package:get/get.dart';
 
@@ -37,23 +38,26 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                     children: [
                       ElevatedButton(
                         onPressed: () => Navigator.of(context).pop(),
-                        child:
-                            const Icon(Icons.arrow_back, color: Colors.white),
+                        child: const Icon(
+                          PhosphorIcons.arrow_right,
+                        ),
                         style: ElevatedButton.styleFrom(
                           shape: const CircleBorder(),
                           padding: const EdgeInsets.all(2),
-                          primary: Colors.teal, // <-- Button color
-                          onPrimary: Colors.white, // <-- Splash color
+                          // primary: Colors.teal, // <-- Button color
+                          // onPrimary: Colors.white, // <-- Splash color
                         ),
                       ),
                       ElevatedButton(
                         onPressed: () {},
-                        child: const Icon(Icons.bookmark, color: Colors.white),
+                        child: const Icon(
+                          PhosphorIcons.heart_fill,
+                        ),
                         style: ElevatedButton.styleFrom(
                           shape: const CircleBorder(),
 
-                          primary: Colors.teal, // <-- Button color
-                          onPrimary: Colors.teal, // <-- Splash color
+                          // primary: Colors.teal, // <-- Button color
+                          // onPrimary: Colors.teal, // <-- Splash color
                         ),
                       ),
                     ],
@@ -128,9 +132,9 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                           onPressed: () {},
                           child: const Text('All Reviews'),
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.teal, // background
-                            onPrimary: Colors.white, // foreground
-                          ),
+                              // primary: Colors.teal, // background
+                              // onPrimary: Colors.white, // foreground
+                              ),
                         )
                       ],
                     ),
@@ -145,9 +149,10 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                                 TextSpan(
                                   text: '\$959',
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: width * 0.06,
-                                      color: Colors.teal),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: width * 0.06,
+                                    // color: Colors.teal
+                                  ),
                                 ),
                                 TextSpan(
                                   text: ' /30 Days',
@@ -166,7 +171,7 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                                   child: Icon(
                                     Icons.favorite,
                                     size: width * 0.04,
-                                    color: Colors.teal,
+                                    // color: Colors.teal,
                                   ),
                                 ),
                                 TextSpan(
