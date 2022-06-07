@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
+import 'package:my_trip/app/global_widgets/default_text.dart';
+import '../../../core/theme/color_theme.dart';
 
 class DestinationListTile extends StatelessWidget {
   const DestinationListTile({
@@ -20,7 +23,7 @@ class DestinationListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => ontap(),
-      child: Container(
+      child: SizedBox(
         height: height * 0.2,
         child: Row(
           children: [
@@ -37,61 +40,41 @@ class DestinationListTile extends StatelessWidget {
                       isAntiAlias: true)),
             )),
             Expanded(
-                flex: 2,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        text,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: width * 0.045,
-                            fontWeight: FontWeight.w800),
-                        textAlign: TextAlign.left,
-                      ),
-                      SizedBox(height: width * 0.02),
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            WidgetSpan(
-                              child: Icon(
-                                Icons.location_on,
-                                size: width * 0.04,
-                                color: Colors.grey,
-                              ),
+              flex: 2,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    DefaultText(
+                      text,
+                      color: Colors.black,
+                      fontSize: width * 0.045,
+                      fontWeight: FontWeight.w800,
+                    ),
+                    SizedBox(height: width * 0.02),
+                    RichText(
+                      text: const TextSpan(
+                        children: [
+                          WidgetSpan(
+                            child: Icon(
+                              PhosphorIcons.map_pin,
+                              color: AppThemeColors.grayPrimary300,
                             ),
-                            TextSpan(
-                                text: "Province No 1, Nepal",
-                                style: TextStyle(
-                                    fontSize: width * 0.04,
-                                    color: Colors.grey)),
-                          ],
-                        ),
+                          ),
+                          WidgetSpan(
+                              child: DefaultText(
+                            'الظهرة , طرابلس',
+                            color: AppThemeColors.grayPrimary400,
+                          ))
+                        ],
                       ),
-                      SizedBox(height: width * 0.04),
-                      Text.rich(
-                        TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: '\$959',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: width * 0.06,
-                                  color: Colors.teal),
-                            ),
-                            TextSpan(
-                                text: ' /30 Days',
-                                style: TextStyle(
-                                    fontSize: width * 0.035,
-                                    color: Colors.grey))
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ))
+                    ),
+                    SizedBox(height: width * 0.04),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),

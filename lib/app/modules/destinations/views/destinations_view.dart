@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_trip/app/modules/destinations/widgets/destination_list_tile.dart';
-import 'package:my_trip/app/routes/app_pages.dart';
+import 'package:my_trip/app/core/theme/color_theme.dart';
+import 'package:my_trip/app/global_widgets/default_text.dart';
+import 'package:my_trip/app/modules/destinations/widgets/distinations.dart';
 import '../controllers/destinations_controller.dart';
 
 class DestinationsView extends GetView<DestinationsController> {
@@ -9,128 +11,44 @@ class DestinationsView extends GetView<DestinationsController> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
-          backgroundColor: Colors.white,
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(width * 0.04),
-                  child: Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'FAVORITE',
-                          style: TextStyle(
-                              color: Colors.black, fontSize: width * 0.035),
-                          textAlign: TextAlign.start,
-                        ),
-                      ),
-                      SizedBox(height: width * 0.01),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'That you save',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: width * 0.06,
-                              fontWeight: FontWeight.w800),
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                    ],
+        backgroundColor: Colors.white,
+        body: DefaultTabController(
+          length: 4,
+          child: Column(
+            children: const [
+              TabBar(
+                indicatorColor: AppThemeColors.primaryColor,
+                labelColor: AppThemeColors.primaryColor,
+                unselectedLabelColor: AppThemeColors.grayPrimary400,
+                tabs: [
+                  Tab(
+                    child: DefaultText('الكل', fontSize: 14),
                   ),
+                  Tab(
+                    child: DefaultText('فنادق', fontSize: 14),
+                  ),
+                  Tab(
+                    child: DefaultText('شقق', fontSize: 14),
+                  ),
+                  Tab(
+                    child: DefaultText('منتجعات', fontSize: 14),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    Distinations(),
+                    Distinations(),
+                    Distinations(),
+                    Distinations(),
+                  ],
                 ),
-                SizedBox(height: width * 0.02),
-                Container(
-                  padding: EdgeInsets.only(left: width * 0.04),
-                  child: Column(
-                    children: [
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            _favouriteTypes(
-                                width, "Tour", Colors.teal, Colors.white),
-                            SizedBox(width: width * 0.04),
-                            _favouriteTypes(width, "Destination",
-                                Colors.grey.shade300, Colors.grey),
-                            SizedBox(width: width * 0.04),
-                            _favouriteTypes(width, "Hotel",
-                                Colors.grey.shade300, Colors.grey),
-                            SizedBox(width: width * 0.04),
-                            _favouriteTypes(width, "Activities",
-                                Colors.grey.shade300, Colors.grey),
-                            SizedBox(width: width * 0.04),
-                            _favouriteTypes(width, "Restaurant",
-                                Colors.grey.shade300, Colors.grey),
-                            SizedBox(width: width * 0.04),
-                            _favouriteTypes(width, "Lodging",
-                                Colors.grey.shade300, Colors.grey),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(height: width * 0.1),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-                  child: Column(
-                    children: [
-                      DestinationListTile(
-                          ontap: () => Get.toNamed(Routes.DESTINATION_DETAILS),
-                          height: height,
-                          width: width,
-                          image: "assets/images/favorite1.jpeg",
-                          text: "Highest Mountain in the world"),
-                      SizedBox(height: width * 0.04),
-                      DestinationListTile(
-                          ontap: () => Get.toNamed(Routes.DESTINATION_DETAILS),
-                          height: height,
-                          width: width,
-                          image: "assets/images/favorite2.jpeg",
-                          text: "Middle of Beautiful Lake Tour"),
-                      SizedBox(height: width * 0.04),
-                      DestinationListTile(
-                          ontap: () => Get.toNamed(Routes.DESTINATION_DETAILS),
-                          height: height,
-                          width: width,
-                          image: "assets/images/favorite3.jpeg",
-                          text: "Charming Underwater Park"),
-                      SizedBox(height: width * 0.04),
-                      DestinationListTile(
-                          ontap: () => Get.toNamed(Routes.DESTINATION_DETAILS),
-                          height: height,
-                          width: width,
-                          image: "assets/images/favorite4.jpeg",
-                          text: "Charming Sunset Dots"),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          )),
-    );
-  }
-
-  Container _favouriteTypes(
-      double width, String text, Color bgcolor, Color textColor) {
-    return Container(
-      height: width * 0.08,
-      width: width * 0.35,
-      decoration: BoxDecoration(
-          color: bgcolor, borderRadius: BorderRadius.circular(20)),
-      padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-      child: Center(
-        child: Text(
-          text,
-          style: TextStyle(color: textColor, fontSize: width * 0.04),
-          textAlign: TextAlign.start,
+              ),
+            ],
+          ),
         ),
       ),
     );
