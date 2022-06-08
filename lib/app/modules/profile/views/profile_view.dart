@@ -10,10 +10,6 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     // MyLocaleController langController = Get.find();
     return Scaffold(
-        appBar: AppBar(
-          title: Text('ProfileView'),
-          centerTitle: true,
-        ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

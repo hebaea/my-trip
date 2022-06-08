@@ -8,6 +8,7 @@ import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
 import 'package:my_trip/app/modules/home/controllers/home_controller.dart';
 import 'package:my_trip/app/modules/home/widgets/ads_item.dart';
 import 'package:my_trip/app/modules/home/widgets/city_item.dart';
+import 'package:my_trip/app/routes/app_pages.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -86,11 +87,16 @@ class HomeView extends GetView<HomeController> {
                     fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
                   ),
-                  DefaultText(
-                    "الكل",
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                    color: AppThemeColors.grayPrimary300,
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(Routes.DESTINATIONS);
+                    },
+                    child: DefaultText(
+                      "الكل",
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.bold,
+                      color: AppThemeColors.grayPrimary300,
+                    ),
                   )
                 ],
               ),

@@ -14,6 +14,8 @@ abstract class Routes {
   static const RESERVATIONS = _Paths.RESERVATIONS;
   static const FAVORITES = _Paths.FAVORITES;
   static const DASHBOARD = _Paths.DASHBOARD;
+  static const DESTINATIONS = _Paths.DESTINATIONS;
+  static const DESTINATION_DETAILS = _Paths.DESTINATION_DETAILS;
 }
 
 abstract class _Paths {
@@ -29,4 +31,6 @@ abstract class _Paths {
   static const RESERVATIONS = '/reservations';
   static const FAVORITES = '/favorites';
   static const DASHBOARD = '/dashboard';
+  static const DESTINATIONS = '/destinations';
+  static const DESTINATION_DETAILS = '/destination-details';
 }

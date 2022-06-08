@@ -4,6 +4,10 @@ import '../modules/chats/bindings/chats_binding.dart';
 import '../modules/chats/views/chats_view.dart';
 import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
+import '../modules/destination_details/bindings/destination_details_binding.dart';
+import '../modules/destination_details/views/destination_details_view.dart';
+import '../modules/destinations/bindings/destinations_binding.dart';
+import '../modules/destinations/views/destinations_view.dart';
 import '../modules/favorites/bindings/favorites_binding.dart';
 import '../modules/favorites/views/favorites_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -90,6 +94,16 @@ class AppPages {
       name: _Paths.SPLASH,
       page: () => SplashView(),
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: _Paths.DESTINATIONS,
+      page: () => DestinationsView(),
+      binding: DestinationsBinding(),
+    ),
+    GetPage(
+      name: _Paths.DESTINATION_DETAILS,
+      page: () => DestinationDetailsView(),
+      binding: DestinationDetailsBinding(),
     ),
   ];
 }
