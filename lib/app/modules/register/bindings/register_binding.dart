@@ -6,7 +6,7 @@ import '../controllers/register_controller.dart';
 class RegisterBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => RegisterController());
+    Get.lazyPut(() => RegisterController(), fenix: true);
     Get.put(
         ProfileController()); // auth controller for logout ( register login and home )
   }

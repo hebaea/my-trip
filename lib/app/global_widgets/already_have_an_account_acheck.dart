@@ -18,6 +18,12 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        DefaultText(
+          login ? "هل انت مستخدم جديد ؟" : "هل لديك حساب من قبل ؟",
+        ),
+        SizedBox(
+          width: 15.w,
+        ),
         GestureDetector(
           onTap: press,
           child: DefaultText(
@@ -25,12 +31,6 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
             color: AppThemeColors.primaryColor,
             fontWeight: FontWeight.bold,
           ),
-        ),
-        SizedBox(
-          width: 15.w,
-        ),
-        DefaultText(
-          login ? "هل انت مستخدم جديد ؟" : "هل لديك حساب من قبل ؟",
         ),
       ],
     );

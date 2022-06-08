@@ -8,16 +8,15 @@ class UserModel {
 
   UserModel({required this.user, required this.token});
 
-  factory UserModel.toObject(Map<String, dynamic> json) =>
-      UserModel(
-        user: User.toObject(json['user']),
+  factory UserModel.toObject(Map<String, dynamic> json) => UserModel(
+        user: User.toObject(json['guests']),
         token: json['token'],
       );
 
   Map<String, dynamic> toJson() => {
-    "user" : user.toJson(),
-    "token" : token,
-  };
+        "guests": user.toJson(),
+        "token": token,
+      };
 }
 
 class User {
@@ -27,13 +26,12 @@ class User {
 
   User({required this.id, required this.name, required this.email});
 
-  factory User.toObject(Map<String, dynamic> json) =>
-      User(id: json['id'], name: json['name'], email: json['email']);
+  factory User.toObject(Map<String, dynamic> json) => User(
+      id: json['guest_id'], name: json['guest_name'], email: json['guest_email']);
 
   Map<String, dynamic> toJson() => {
-    "id" : id,
-    "name" : name,
-    "email" : email,
-  };
-
+        "guest_id": id,
+        "guest_name": name,
+        "guest_email": email,
+      };
 }

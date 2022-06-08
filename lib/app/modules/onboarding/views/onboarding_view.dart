@@ -7,6 +7,7 @@ import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/modules/welcome/views/welcome_view.dart';
+import 'package:my_trip/app/routes/app_pages.dart';
 import '../controllers/onboarding_controller.dart';
 
 class OnboardingView extends GetView<OnboardingController> {
@@ -64,14 +65,14 @@ class OnboardingView extends GetView<OnboardingController> {
           'انتهى',
           fontWeight: FontWeight.w500,
         ),
-        onDone: () => Get.to(() => const WelcomeView()),
+        onDone: () => Get.toNamed(Routes.WELCOME),
         showSkipButton: true,
         skip: const DefaultText(
           'تخطي',
         ),
-        onSkip: () => Get.to(() => const WelcomeView()),
+        onSkip: () => Get.toNamed(Routes.WELCOME),
         next: const Icon(
-          PhosphorIcons.caret_left_bold,
+          PhosphorIcons.caret_right_bold,
           color: Colors.black,
         ),
         dotsDecorator: getDotDecoration(),

@@ -7,6 +7,7 @@ import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/modules/login/views/login_view.dart';
 import 'package:my_trip/app/modules/register/views/register_view.dart';
+import 'package:my_trip/app/routes/app_pages.dart';
 
 import 'background.dart';
 
@@ -41,7 +42,7 @@ class Body extends StatelessWidget {
               RoundedButton(
                 text: "تسجيل الدخول",
                 press: () {
-                  Get.to(() => const LoginView());
+                  Get.toNamed(Routes.LOGIN);
                 },
               ),
               RoundedButton(
@@ -49,7 +50,7 @@ class Body extends StatelessWidget {
                 color: AppThemeColors.primaryLightColor,
                 textColor: Colors.black,
                 press: () {
-                  Get.to(() => RegisterView());
+                  Get.toNamed(Routes.REGISTER);
                 },
               ),
             ],
