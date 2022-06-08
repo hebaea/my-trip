@@ -13,6 +13,7 @@ class DestinationsView extends GetView<DestinationsController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(),
         backgroundColor: Colors.white,
         body: DefaultTabController(
           length: 4,
