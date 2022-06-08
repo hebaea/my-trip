@@ -54,19 +54,22 @@ class DestinationListTile extends StatelessWidget {
                     ),
                     SizedBox(height: width * 0.02),
                     RichText(
-                      text: const TextSpan(
+                      text: TextSpan(
                         children: [
                           WidgetSpan(
                             child: Icon(
                               PhosphorIcons.map_pin,
+                              size: width * 0.04,
                               color: AppThemeColors.grayPrimary300,
                             ),
                           ),
-                          WidgetSpan(
-                              child: DefaultText(
-                            'الظهرة , طرابلس',
-                            color: AppThemeColors.grayPrimary400,
-                          ))
+                          const WidgetSpan(
+                            child: DefaultText(
+                              'الظهرة , طرابلس',
+                              height: 1,
+                              color: AppThemeColors.grayPrimary400,
+                            ),
+                          )
                         ],
                       ),
                     ),
