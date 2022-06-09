@@ -7,6 +7,7 @@ import 'package:my_trip/app/routes/app_pages.dart';
 
 class RegisterController extends GetxController {
   var isLoading = false.obs;
+  var isPasswordHidden = true.obs;
   final registerFormKey = GlobalKey<FormState>();
 
   // GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
@@ -72,7 +73,7 @@ class RegisterController extends GetxController {
           print("storage------------------------------");
           String? name = await storage.read(key: "name");
           print(name);
-            Get.toNamed(Routes.DASHBOARD);
+          Get.toNamed(Routes.DASHBOARD);
           // Get.off(Routes.DASHBOARD);
           // Get.offAll(Routes.DASHBOARD);
         } else {

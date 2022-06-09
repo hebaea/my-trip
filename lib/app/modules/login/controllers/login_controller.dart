@@ -7,6 +7,7 @@ import 'package:my_trip/app/routes/app_pages.dart';
 
 class LoginController extends GetxController {
   var isLoading = false.obs;
+  var isPasswordHidden = true.obs;
   final loginFormKey = GlobalKey<FormState>();
 
   // GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();

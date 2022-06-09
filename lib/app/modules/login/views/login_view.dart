@@ -55,9 +55,16 @@ class LoginView extends GetView<LoginController> {
                     icon: const Icon(PhosphorIcons.envelope_simple,
                         color: AppThemeColors.primaryColor),
                   ),
-                  RoundedPasswordField(
-                    controller: controller.passwordController,
-                    onChanged: (value) {},
+                  Obx(
+                    () => RoundedPasswordField(
+                      controller: controller.passwordController,
+                      onChanged: (value) {},
+                      obscureText: controller.isPasswordHidden.value,
+                      onTap: () {
+                        controller.isPasswordHidden.value =
+                            !controller.isPasswordHidden.value;
+                      },
+                    ),
                   ),
                   RoundedButton(
                     text: "تسجيل الدخول",

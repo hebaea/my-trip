@@ -11,6 +11,7 @@ import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
 import 'package:my_trip/app/global_widgets/rounded_password_field.dart';
 import 'package:my_trip/app/modules/login/views/login_view.dart';
 import 'package:my_trip/app/modules/register/widgets/background.dart';
+import 'package:my_trip/app/routes/app_pages.dart';
 import '../controllers/register_controller.dart';
 
 class RegisterView extends GetView<RegisterController> {
@@ -65,15 +66,22 @@ class RegisterView extends GetView<RegisterController> {
                     },
                     onChanged: (value) {},
                   ),
-                  RoundedPasswordField(
-                    onChanged: (value) {},
-                    validator: (v) {
-                      return controller.validatePassword(v!);
-                    },
-                    onSaved: (v) {
-                      controller.password = v!;
-                    },
-                    controller: controller.passwordController,
+                  Obx(
+                    () => RoundedPasswordField(
+                      onChanged: (value) {},
+                      validator: (v) {
+                        return controller.validatePassword(v!);
+                      },
+                      onSaved: (v) {
+                        controller.password = v!;
+                      },
+                      controller: controller.passwordController,
+                      obscureText: controller.isPasswordHidden.value,
+                      onTap: () {
+                        controller.isPasswordHidden.value =
+                            !controller.isPasswordHidden.value;
+                      },
+                    ),
                   ),
                   RoundedButton(
                     text: "التسجيل",
@@ -92,7 +100,8 @@ class RegisterView extends GetView<RegisterController> {
                   AlreadyHaveAnAccountCheck(
                     login: false,
                     press: () {
-                      Get.to(() => const LoginView());
+                      // Get.toNamed(Routes.LOGIN);
+                      Get.offAllNamed(Routes.LOGIN);
                     },
                   ),
                   SizedBox(height: size.height * 0.03.h),
