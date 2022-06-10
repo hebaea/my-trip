@@ -7,6 +7,7 @@ import 'package:my_trip/app/routes/app_pages.dart';
 
 class RegisterController extends GetxController {
   var isLoading = false.obs;
+  var isPasswordHidden = true.obs;
   final registerFormKey = GlobalKey<FormState>();
 
   // GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
@@ -37,21 +38,21 @@ class RegisterController extends GetxController {
     super.dispose();
   }
 
-  String? validateEmail(String value) {
-    if (!GetUtils.isEmail(value)) {
-      return "this is wrong email";
-    } else {
-      return null;
-    }
-  }
+  // String? validateEmail(String value) {
+  //   if (!GetUtils.isEmail(value)) {
+  //     return "this is wrong email";
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
-  String? validatePassword(String value) {
-    if (value.length < 6) {
-      return "short password";
-    } else {
-      return null;
-    }
-  }
+  // String? validatePassword(String value) {
+  //   if (value.length < 6) {
+  //     return "short password";
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   doRegister() async {
     bool isValidate = registerFormKey.currentState!.validate();
@@ -66,13 +67,13 @@ class RegisterController extends GetxController {
           print("---------- data ----------------------");
 
           print(data.toString());
-          await storage.write(key: "name", value: data.user.name);
+          await storage.write(key: "name", value: data.guestName);
           await storage.write(key: "token", value: data.token);
           registerFormKey.currentState!.save();
           print("storage------------------------------");
           String? name = await storage.read(key: "name");
           print(name);
-            Get.toNamed(Routes.DASHBOARD);
+          Get.toNamed(Routes.DASHBOARD);
           // Get.off(Routes.DASHBOARD);
           // Get.offAll(Routes.DASHBOARD);
         } else {

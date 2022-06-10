@@ -15,162 +15,165 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 15.h,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 12),
-              child: DefaultText(
-                "اكتشف",
-                fontWeight: FontWeight.bold,
-                fontSize: 30.sp,
+    return Scaffold(
+      body: Directionality(
+        textDirection: TextDirection.rtl,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 15.h,
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 12),
-              child: DefaultText(
-                "وجهات جديدة",
-                fontWeight: FontWeight.bold,
-                fontSize: 30.sp,
-                height: 1,
+              Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: DefaultText(
+                  "إكتشف",
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.sp,
+                ),
               ),
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  RoundedInputField(
-                    onChanged: (String value) {},
-                    hintText: 'ابحث عن مكان',
-                    icon: Icon(
-                      PhosphorIcons.magnifying_glass,
-                      size: 20.sp,
-                      color: AppThemeColors.primaryColor,
+              Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: DefaultText(
+                  "وجهات جديدة",
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.sp,
+                  height: 1,
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 6),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    RoundedInputField(
+                      onChanged: (String value) {},
+                       hintText: 'ابحث عن مكان',
+                      icon: Icon(
+                        PhosphorIcons.magnifying_glass,
+                        size: 20.sp,
+                        color: AppThemeColors.primaryColor,
+                      ),
                     ),
-                  ),
-                  Container(
-                    height: 48.h,
-                    width: 48.w,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppThemeColors.primaryColor),
-                    child: Icon(
-                      PhosphorIcons.funnel_simple,
-                      size: 32.sp,
-                      color: AppThemeColors.primaryPureWhite,
-                    ),
-                  )
-                ],
+                    Container(
+                      height: 48.h,
+                      width: 48.w,
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppThemeColors.primaryColor),
+                      child: Icon(
+                        PhosphorIcons.funnel_simple,
+                        size: 32.sp,
+                        color: AppThemeColors.primaryPureWhite,
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  DefaultText(
-                    "الوجهات المميزة",
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed(Routes.DESTINATIONS);
-                    },
-                    child: DefaultText(
-                      "الكل",
+              SizedBox(
+                height: 10.h,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    DefaultText(
+                      "الوجهات المميزة",
                       fontSize: 20.sp,
                       fontWeight: FontWeight.bold,
-                      color: AppThemeColors.grayPrimary300,
                     ),
-                  )
-                ],
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(Routes.DESTINATIONS);
+                      },
+                      child: DefaultText(
+                        "الكل",
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.bold,
+                        color: AppThemeColors.grayPrimary300,
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            SizedBox(
-              height: 150,
-              width: double.infinity,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  AdsItem(
-                    context: context,
-                    link: "assets/2.webp",
-                    location: "بنغازي , درنة",
-                    place: "فندق الصفوة",
-                  ),
-                  AdsItem(
-                    link: "assets/1.webp",
-                    context: context,
-                    place: "فندق الودان",
-                    location: 'طرابلس , الظهرة',
-                  )
-                ],
+              SizedBox(
+                height: 20.h,
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 12),
-              child: Row(
-                children: [
-                  DefaultText(
-                    "إلى أين تريد أن تذهب؟",
-                    // "Cities",
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ],
+              SizedBox(
+                height: 150,
+                width: double.infinity,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    AdsItem(
+                      context: context,
+                      link: "assets/2.webp",
+                      location: "بنغازي , درنة",
+                      place: "فندق الصفوة",
+                    ),
+                    AdsItem(
+                      link: "assets/1.webp",
+                      context: context,
+                      place: "فندق الودان",
+                      location: 'طرابلس , الظهرة',
+                    )
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            SizedBox(
-              height: 230,
-              width: double.infinity,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  CityItem(
-                    context: context,
-                    link: "assets/detailsimage.jpg",
-                    location: "بلا , بلا",
-                    place: "مصراتة",
-                  ),
-                  CityItem(
-                    context: context,
-                    link: "assets/tallimage2.jpg",
-                    place: "بنغازي",
-                    location: "بلا , بلا",
-                  ),
-                  CityItem(
-                    context: context,
-                    link: "assets/detailsimage.jpg",
-                    location: "بلا , بلا",
-                    place: "طرابلس",
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: Row(
+                  children: [
+                    DefaultText(
+                      "إلى أين تريد أن تذهب؟",
+                      // "Cities",
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              SizedBox(
+                height: 20.h,
+              ),
+              SizedBox(
+                height: 230,
+                width: double.infinity,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    CityItem(
+                      context: context,
+                      link: "assets/detailsimage.jpg",
+                      location: "بلا , بلا",
+                      place: "مصراتة",
+                    ),
+                    CityItem(
+                      context: context,
+                      link: "assets/tallimage2.jpg",
+                      place: "بنغازي",
+                      location: "بلا , بلا",
+                    ),
+                    CityItem(
+                      context: context,
+                      link: "assets/detailsimage.jpg",
+                      location: "بلا , بلا",
+                      place: "طرابلس",
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
+
     );
   }
 }

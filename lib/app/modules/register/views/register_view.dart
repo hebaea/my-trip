@@ -11,6 +11,7 @@ import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
 import 'package:my_trip/app/global_widgets/rounded_password_field.dart';
 import 'package:my_trip/app/modules/login/views/login_view.dart';
 import 'package:my_trip/app/modules/register/widgets/background.dart';
+import 'package:my_trip/app/routes/app_pages.dart';
 import '../controllers/register_controller.dart';
 
 class RegisterView extends GetView<RegisterController> {
@@ -47,6 +48,21 @@ class RegisterView extends GetView<RegisterController> {
                   RoundedInputField(
                     hintText: "الاسم و اللقب",
                     controller: controller.nameController,
+                    keyboardType: TextInputType.name,
+                    validator: (value) {
+                      RegExp regex = RegExp(r'^.{3,}$');
+                      if (value!.isEmpty) {
+                        return ("First Name cannot be Empty");
+                      }
+                      if (!regex.hasMatch(value)) {
+                        return ("Enter Valid name(Min. 3 Character)");
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      controller.nameController.text = value!;
+                    },
+
                     onChanged: (value) {},
                     icon: const Icon(PhosphorIcons.user,
                         color: AppThemeColors.primaryColor),
@@ -57,23 +73,39 @@ class RegisterView extends GetView<RegisterController> {
                         color: AppThemeColors.primaryColor),
                     controller: controller.emailController,
                     hintText: "البريد الالكتروني",
-                    validator: (v) {
-                      return controller.validateEmail(v!);
+                    validator: (value) {
+                      // return controller.validateEmail(v!);
+                      if (value!.isEmpty) {
+                        return ("Please Enter Your Email");
+                      }
+                      // reg expression for email validation
+                      if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                          .hasMatch(value)) {
+                        return ("Please Enter a valid email");
+                      }
+                      return null;
                     },
                     onSaved: (v) {
                       controller.email = v!;
                     },
                     onChanged: (value) {},
                   ),
-                  RoundedPasswordField(
-                    onChanged: (value) {},
-                    validator: (v) {
-                      return controller.validatePassword(v!);
-                    },
-                    onSaved: (v) {
-                      controller.password = v!;
-                    },
-                    controller: controller.passwordController,
+                  Obx(
+                    () => RoundedPasswordField(
+                      onChanged: (value) {},
+                      validator: (v) {
+                        // return controller.validatePassword(v!);
+                      },
+                      onSaved: (v) {
+                        controller.password = v!;
+                      },
+                      controller: controller.passwordController,
+                      obscureText: controller.isPasswordHidden.value,
+                      onTap: () {
+                        controller.isPasswordHidden.value =
+                            !controller.isPasswordHidden.value;
+                      },
+                    ),
                   ),
                   RoundedButton(
                     text: "التسجيل",
@@ -89,10 +121,12 @@ class RegisterView extends GetView<RegisterController> {
                           )
                         : const Text(''),
                   ),
+                  SizedBox(height: size.height * 0.03.h),
                   AlreadyHaveAnAccountCheck(
                     login: false,
                     press: () {
-                      Get.to(() => const LoginView());
+                      // Get.toNamed(Routes.LOGIN);
+                      Get.offAllNamed(Routes.LOGIN);
                     },
                   ),
                   SizedBox(height: size.height * 0.03.h),
