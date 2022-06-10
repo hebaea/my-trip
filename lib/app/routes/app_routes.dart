@@ -16,6 +16,7 @@ abstract class Routes {
   static const DASHBOARD = _Paths.DASHBOARD;
   static const DESTINATIONS = _Paths.DESTINATIONS;
   static const DESTINATION_DETAILS = _Paths.DESTINATION_DETAILS;
+  static const CHANGE_PASSWORD = _Paths.CHANGE_PASSWORD;
 }
 
 abstract class _Paths {
@@ -33,4 +34,5 @@ abstract class _Paths {
   static const DASHBOARD = '/dashboard';
   static const DESTINATIONS = '/destinations';
   static const DESTINATION_DETAILS = '/destination-details';
+  static const CHANGE_PASSWORD = '/change-password';
 }
