@@ -3,6 +3,7 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
+import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import '../controllers/destination_details_controller.dart';
 
 class DestinationDetailsView extends GetView<DestinationDetailsController> {
@@ -100,9 +101,15 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                       children: [
                         SizedBox(width: width * 0.02),
                         DefaultText('التقييم',
+                            height: 1,
                             color: AppThemeColors.grayPrimary400,
                             fontSize: width * 0.04),
                         SizedBox(width: width * 0.04),
+                        Icon(
+                          PhosphorIcons.star_fill,
+                          color: AppThemeColors.primaryColor,
+                          size: width * 0.04,
+                        ),
                       ],
                     ),
                     Row(
@@ -145,10 +152,7 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                       height: width * 0.02,
                     ),
                     SizedBox(height: width * 0.04),
-                    DefaultText('Related Destinations',
-                        fontSize: width * 0.06,
-                        fontWeight: FontWeight.w800,
-                        color: Colors.black),
+                    RoundedButton(text: 'إحجز', press: () {}),
                     SizedBox(height: width * 0.02),
                   ],
                 ),

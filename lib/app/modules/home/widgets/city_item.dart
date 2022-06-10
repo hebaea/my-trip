@@ -7,9 +7,15 @@ class CityItem extends StatelessWidget {
   final BuildContext? context;
   final String? link;
   final String? place;
-  final String? location;
 
-  const CityItem({Key? key, this.location, this.context, this.place, this.link})
+  // final String? location;
+
+  const CityItem(
+      {Key? key,
+      // this.location,
+      this.context,
+      this.place,
+      this.link})
       : super(key: key);
 
   @override
@@ -59,13 +65,13 @@ class CityItem extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.only(right: 15.w, bottom: 20.h),
-                      child: DefaultText(
-                        location!,
-                        height: 1,
-                        color: AppThemeColors.primaryPureWhite,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w300,
-                      ),
+                      // child: DefaultText(
+                      //   location,
+                      //   height: 1,
+                      //   color: AppThemeColors.primaryPureWhite,
+                      //   fontSize: 16.sp,
+                      //   fontWeight: FontWeight.w300,
+                      // ),
                     ),
                   ],
                 ),

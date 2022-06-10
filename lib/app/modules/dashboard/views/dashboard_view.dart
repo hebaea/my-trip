@@ -8,6 +8,7 @@ import 'package:my_trip/app/modules/favorites/views/favorites_view.dart';
 import 'package:my_trip/app/modules/home/views/home_view.dart';
 import 'package:my_trip/app/modules/profile/views/profile_view.dart';
 import 'package:my_trip/app/modules/reservations/views/reservations_view.dart';
+import 'package:my_trip/app/routes/app_pages.dart';
 import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends StatelessWidget {
@@ -68,14 +69,16 @@ class DashboardView extends StatelessWidget {
                 accountEmail: Text('hebaelosta98@gmail.com'),
                 accountName: Text('Heba Elosta'),
               ),
-              ListTile(
-                leading: const Icon(
-                  PhosphorIcons.user,
-                  color: AppThemeColors.grayPrimary500,
-                ),
-                title: DefaultText('بيانات حسابي'),
-                onTap: () {},
-              ),
+              // ListTile(
+              //   leading: const Icon(
+              //     PhosphorIcons.user,
+              //     color: AppThemeColors.grayPrimary500,
+              //   ),
+              //   title: DefaultText('بيانات حسابي'),
+              //   onTap: () {
+              //     Get.toNamed(Routes.PROFILE);
+              //   },
+              // ),
               ListTile(
                 leading: const Icon(
                   PhosphorIcons.article,
