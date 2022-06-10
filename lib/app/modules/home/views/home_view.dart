@@ -53,7 +53,7 @@ class HomeView extends GetView<HomeController> {
                   children: [
                     RoundedInputField(
                       onChanged: (String value) {},
-                       hintText: 'ابحث عن مكان',
+                      hintText: 'ابحث عن مكان',
                       icon: Icon(
                         PhosphorIcons.magnifying_glass,
                         size: 20.sp,
@@ -151,19 +151,19 @@ class HomeView extends GetView<HomeController> {
                     CityItem(
                       context: context,
                       link: "assets/detailsimage.jpg",
-                      location: "بلا , بلا",
+                      // location: "بلا , بلا",
                       place: "مصراتة",
                     ),
                     CityItem(
                       context: context,
                       link: "assets/tallimage2.jpg",
                       place: "بنغازي",
-                      location: "بلا , بلا",
+                      // location: "بلا , بلا",
                     ),
                     CityItem(
                       context: context,
                       link: "assets/detailsimage.jpg",
-                      location: "بلا , بلا",
+                      // location: "بلا , بلا",
                       place: "طرابلس",
                     ),
                   ],
@@ -173,7 +173,6 @@ class HomeView extends GetView<HomeController> {
           ),
         ),
       ),
-
     );
   }
 }
