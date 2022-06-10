@@ -48,6 +48,21 @@ class RegisterView extends GetView<RegisterController> {
                   RoundedInputField(
                     hintText: "الاسم و اللقب",
                     controller: controller.nameController,
+                    keyboardType: TextInputType.name,
+                    validator: (value) {
+                      RegExp regex = RegExp(r'^.{3,}$');
+                      if (value!.isEmpty) {
+                        return ("First Name cannot be Empty");
+                      }
+                      if (!regex.hasMatch(value)) {
+                        return ("Enter Valid name(Min. 3 Character)");
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      controller.nameController.text = value!;
+                    },
+
                     onChanged: (value) {},
                     icon: const Icon(PhosphorIcons.user,
                         color: AppThemeColors.primaryColor),
@@ -58,8 +73,17 @@ class RegisterView extends GetView<RegisterController> {
                         color: AppThemeColors.primaryColor),
                     controller: controller.emailController,
                     hintText: "البريد الالكتروني",
-                    validator: (v) {
-                      return controller.validateEmail(v!);
+                    validator: (value) {
+                      // return controller.validateEmail(v!);
+                      if (value!.isEmpty) {
+                        return ("Please Enter Your Email");
+                      }
+                      // reg expression for email validation
+                      if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                          .hasMatch(value)) {
+                        return ("Please Enter a valid email");
+                      }
+                      return null;
                     },
                     onSaved: (v) {
                       controller.email = v!;
@@ -70,7 +94,7 @@ class RegisterView extends GetView<RegisterController> {
                     () => RoundedPasswordField(
                       onChanged: (value) {},
                       validator: (v) {
-                        return controller.validatePassword(v!);
+                        // return controller.validatePassword(v!);
                       },
                       onSaved: (v) {
                         controller.password = v!;
@@ -97,6 +121,7 @@ class RegisterView extends GetView<RegisterController> {
                           )
                         : const Text(''),
                   ),
+                  SizedBox(height: size.height * 0.03.h),
                   AlreadyHaveAnAccountCheck(
                     login: false,
                     press: () {

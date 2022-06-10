@@ -53,7 +53,7 @@ class HomeView extends GetView<HomeController> {
                   children: [
                     RoundedInputField(
                       onChanged: (String value) {},
-                      hintText: 'ابحث عن مكان',
+                       hintText: 'ابحث عن مكان',
                       icon: Icon(
                         PhosphorIcons.magnifying_glass,
                         size: 20.sp,

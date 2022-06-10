@@ -38,21 +38,21 @@ class RegisterController extends GetxController {
     super.dispose();
   }
 
-  String? validateEmail(String value) {
-    if (!GetUtils.isEmail(value)) {
-      return "this is wrong email";
-    } else {
-      return null;
-    }
-  }
+  // String? validateEmail(String value) {
+  //   if (!GetUtils.isEmail(value)) {
+  //     return "this is wrong email";
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
-  String? validatePassword(String value) {
-    if (value.length < 6) {
-      return "short password";
-    } else {
-      return null;
-    }
-  }
+  // String? validatePassword(String value) {
+  //   if (value.length < 6) {
+  //     return "short password";
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   doRegister() async {
     bool isValidate = registerFormKey.currentState!.validate();
@@ -67,7 +67,7 @@ class RegisterController extends GetxController {
           print("---------- data ----------------------");
 
           print(data.toString());
-          await storage.write(key: "name", value: data.user.name);
+          await storage.write(key: "name", value: data.guestName);
           await storage.write(key: "token", value: data.token);
           registerFormKey.currentState!.save();
           print("storage------------------------------");

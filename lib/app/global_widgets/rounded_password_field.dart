@@ -20,15 +20,25 @@ class RoundedPasswordField extends StatelessWidget {
       this.validator,
       this.onSaved,
       this.suffix,
-      required this.obscureText, required this.onTap})
+      required this.obscureText,
+      required this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextFormField(
-        validator: (v) {},
-        onSaved: (v) {},
+        textInputAction: TextInputAction.done,
+        validator: (value) {
+          RegExp regex = RegExp(r'^.{6,}$');
+          if (value!.isEmpty) {
+            return ("Password is required for login");
+          }
+          if (!regex.hasMatch(value)) {
+            return ("Enter Valid Password (Min. 6 Character) ");
+          }
+        },
+        onSaved: onSaved,
         controller: controller,
         obscureText: obscureText,
         onChanged: onChanged,
@@ -41,7 +51,7 @@ class RoundedPasswordField extends StatelessWidget {
           ),
           border: InputBorder.none,
           suffixIcon: InkWell(
-            child: Icon(
+            child: const Icon(
               PhosphorIcons.eye,
               color: AppThemeColors.primaryColor,
             ),

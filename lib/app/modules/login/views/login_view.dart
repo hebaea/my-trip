@@ -48,10 +48,22 @@ class LoginView extends GetView<LoginController> {
                     hintText: "البريد الالكتروني",
                     onChanged: (value) {},
                     controller: controller.emailController,
-                    validator: (v) {
-                      return controller.validateEmail(v!);
+                    validator: (value) {
+                      // return controller.validateEmail(v!);
+                      if (value!.isEmpty) {
+                        return ("Please Enter Your Email");
+                      }
+                      // reg expression for email validation
+                      if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                          .hasMatch(value)) {
+                        return ("Please Enter a valid email");
+                      }
+                      return null;
                     },
-                    onSaved: (v) {},
+                    onSaved: (v) {
+                      controller.emailController.text =
+                          v!; // GETTING the value of edit text
+                    },
                     icon: const Icon(PhosphorIcons.envelope_simple,
                         color: AppThemeColors.primaryColor),
                   ),
@@ -60,6 +72,9 @@ class LoginView extends GetView<LoginController> {
                       controller: controller.passwordController,
                       onChanged: (value) {},
                       obscureText: controller.isPasswordHidden.value,
+                      onSaved: (value) {
+                        controller.passwordController.text = value!;
+                      },
                       onTap: () {
                         controller.isPasswordHidden.value =
                             !controller.isPasswordHidden.value;
@@ -80,6 +95,8 @@ class LoginView extends GetView<LoginController> {
                           )
                         : const Text(''),
                   ),
+                  SizedBox(height: size.height * 0.03.h),
+
                   AlreadyHaveAnAccountCheck(
                     press: () {
                       Get.toNamed(Routes.REGISTER);

@@ -35,21 +35,21 @@ class LoginController extends GetxController {
     super.dispose();
   }
 
-  String? validateEmail(String value) {
-    if (!GetUtils.isEmail(value)) {
-      return "this is wrong email";
-    } else {
-      return null;
-    }
-  }
+  // String? validateEmail(String value) {
+  //   if (!GetUtils.isEmail(value)) {
+  //     return "this is wrong email";
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
-  String? validatePassword(String value) {
-    if (value.length < 6) {
-      return "short password";
-    } else {
-      return null;
-    }
-  }
+  // String? validatePassword(String value) {
+  //   if (value.length < 6) {
+  //     return "short password";
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   doLogin() async {
     bool isValidate = loginFormKey.currentState!.validate();
@@ -63,14 +63,15 @@ class LoginController extends GetxController {
 
           print(data.toString());
 
-          await storage.write(key: "name", value: data.user.name);
+          await storage.write(key: "name", value: data.guestName);
           await storage.write(key: "token", value: data.token);
           loginFormKey.currentState!.save();
           print("storage------------------------------");
           String? name = await storage.read(key: "name");
           print(name);
 
-          Get.toNamed(Routes.DASHBOARD);
+          // Get.toNamed(Routes.DASHBOARD);
+          Get.offAllNamed(Routes.DASHBOARD);
         } else {
           Get.snackbar("login", "problem in login");
         }
