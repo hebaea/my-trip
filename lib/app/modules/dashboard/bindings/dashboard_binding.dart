@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:my_trip/app/modules/home/controllers/home_controller.dart';
 
 import '../controllers/dashboard_controller.dart';
 
@@ -8,5 +9,6 @@ class DashboardBinding extends Bindings {
     Get.lazyPut<DashboardController>(
       () => DashboardController(),
     );
+    Get.lazyPut(() => HomeController(), fenix: true);
   }
 }

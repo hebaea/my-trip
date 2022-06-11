@@ -145,30 +145,45 @@ class HomeView extends GetView<HomeController> {
               SizedBox(
                 height: 230,
                 width: double.infinity,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    CityItem(
-                      context: context,
-                      link: "assets/detailsimage.jpg",
-                      // location: "بلا , بلا",
-                      place: "مصراتة",
-                    ),
-                    CityItem(
-                      context: context,
-                      link: "assets/tallimage2.jpg",
-                      place: "بنغازي",
-                      // location: "بلا , بلا",
-                    ),
-                    CityItem(
-                      context: context,
-                      link: "assets/detailsimage.jpg",
-                      // location: "بلا , بلا",
-                      place: "طرابلس",
-                    ),
-                  ],
+                child: ListView.builder(
+                  itemBuilder: (ctx, i) {
+                    String name = "";
+                    // name = controller.cityList!.data![i].cityName!;
+
+                    name = controller.cityList!.city![i].cityName!;
+
+                    return CityItem(
+                        context: context,
+                        link: "assets/detailsimage.jpg",
+                        // location: "بلا , بلا",
+                        place: name);
+                  },
+
+                  itemCount: controller.cityList!.city?.length ?? 0,
+                  //   scrollDirection: Axis.horizontal,
+                  //   children: [
+                  //     CityItem(
+                  //       context: context,
+                  //       link: "assets/detailsimage.jpg",
+                  //       // location: "بلا , بلا",
+                  //       place: "مصراتة",
+                  //     ),
+                  //     CityItem(
+                  //       context: context,
+                  //       link: "assets/tallimage2.jpg",
+                  //       place: "بنغازي",
+                  //       // location: "بلا , بلا",
+                  //     ),
+                  //     CityItem(
+                  //       context: context,
+                  //       link: "assets/detailsimage.jpg",
+                  //       // location: "بلا , بلا",
+                  //       place: "طرابلس",
+                  //     ),
+                  //   ],
+                  // ),
                 ),
-              ),
+              )
             ],
           ),
         ),

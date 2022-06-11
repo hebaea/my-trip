@@ -43,7 +43,7 @@ import 'package:http/http.dart' as http;
 import 'package:my_trip/app/data/model/user_model.dart';
 
 class AuthServices {
-  static String baseApi = "http://192.168.1.133:8000/api"; //
+  static String baseApi = "https://mytrip.justhost.ly/api";
   static var client = http.Client();
 
   static Future<UserModel?> register(
