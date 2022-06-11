@@ -22,11 +22,11 @@ class UserModel {
   // sending data to our server
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['guest_id'] = this.guestId;
-    data['guest_email'] = this.guestEmail;
-    data['guest_name'] = this.guestName;
-    data['token'] = this.token;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['guest_id'] = guestId;
+    data['guest_email'] = guestEmail;
+    data['guest_name'] = guestName;
+    data['token'] = token;
     return data;
   }
 }

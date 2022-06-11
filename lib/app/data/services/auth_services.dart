@@ -44,4 +44,41 @@ class AuthServices {
       return null;
     }
   }
+
+  static Future<UserModel?> fetchUserNameAndEmail() async {
+    final response = await http.get(
+      Uri.parse('$baseApi/guest_show/{guest_id}'),
+    );
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      return UserModel.fromJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load album');
+    }
+  }
+
+  static Future<UserModel?> update({required name, required email}) async {
+    var response = await client.post(
+      Uri.parse("$baseApi/guest_update/{guest_id}"),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(<String, String>{
+        "guest_name": name,
+        "guest_email": email,
+      }),
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print("-------------------here -----------------------------");
+      print(response.body.toString());
+      var stringObject = response.body;
+      var user = userFromJson(stringObject);
+      return user;
+    } else {
+      print("-------------------else -----------------------------");
+      return null;
+    }
+  }
 }
