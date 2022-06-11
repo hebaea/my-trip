@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
@@ -22,14 +23,13 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
               SizedBox(
                 height: 10.h,
               ),
-              CircleAvatar(
-                radius: 50.0.r,
-                backgroundColor: AppThemeColors.primaryColor,
-                child: Icon(
-                  PhosphorIcons.lock,
-                  color: AppThemeColors.primaryPureWhite,
-                  size: 30,
-                ),
+              SvgPicture.asset(
+                "assets/images/change_password.svg",
+                height: 110.h,
+                width: 120.w,
+              ),
+              SizedBox(
+                height: 20.h,
               ),
               RoundedInputField(
                   hintText: 'كلمة المرور القديمة',
