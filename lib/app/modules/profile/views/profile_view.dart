@@ -47,7 +47,7 @@ class ProfileView extends GetView<ProfileController> {
                 ),
               ),
               RoundedInputField(
-                  hintText: '',
+                  hintText: 'الاسم',
                   controller: controller.nameController,
                   icon: const Icon(PhosphorIcons.user,
                       color: AppThemeColors.primaryColor),
@@ -66,6 +66,7 @@ class ProfileView extends GetView<ProfileController> {
                   },
                   onChanged: (v) {}),
               RoundedInputField(
+                  hintText: 'البريد الالكتروني',
                   controller: controller.emailController,
                   validator: (value) {
                     // return controller.validateEmail(v!);
@@ -79,10 +80,9 @@ class ProfileView extends GetView<ProfileController> {
                     }
                     return null;
                   },
-                  onSaved: (v) {
-                    controller.email.value = v!;
+                  onSaved: (value) {
+                    controller.emailController.text = value!;
                   },
-                  hintText: "",
                   icon: const Icon(PhosphorIcons.envelope_simple,
                       color: AppThemeColors.primaryColor),
                   onChanged: (v) {}),

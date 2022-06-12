@@ -20,20 +20,16 @@ class ProfileController extends GetxController {
   String? id = '';
 
   @override
-  void onInit() async {
-    name.value = (await storage.read(key: "name"))!;
-    id = await storage.read(key: "id");
-
-    authData();
+  void onInit() {
+    nameController = TextEditingController();
     emailController = TextEditingController();
+    getNameAndEmail();
+    authData();
     super.onInit();
   }
 
   @override
   void onReady() {
-    nameController = TextEditingController();
-
-    nameController.text = name.value;
     super.onReady();
   }
 
@@ -57,6 +53,15 @@ class ProfileController extends GetxController {
     await storage.deleteAll();
     // Get.toNamed(Routes.LOGIN);
     Get.offAndToNamed(Routes.LOGIN);
+  }
+
+  getNameAndEmail() async {
+    name.value = (await storage.read(key: "name"))!;
+    email.value = (await storage.read(key: "email"))!;
+
+    id = await storage.read(key: "id");
+    nameController.text = name.value;
+    emailController.text = email.value;
   }
 
   updateProfileNameAndEmail() async {

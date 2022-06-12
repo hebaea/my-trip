@@ -61,24 +61,24 @@ class AuthServices {
     }
   }
 
-  static Future<UserModel?> update({required name, required email, required id }) async {
+  static Future<UserModel?> update(
+      {required name, required email, required id}) async {
     var response = await client.post(
-      Uri.parse("$baseApi/guest_update/${id}"),
+      Uri.parse("$baseApi/guest_update/$id"),
       headers: {'Content-Type': 'application/json'},
-
       body: jsonEncode(<String, String>{
         "guest_name": name,
         "guest_email": email,
       }),
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print("-------------------here -----------------------------");
+      // print("-------------------here -----------------------------");
       print(response.body.toString());
       var stringObject = response.body;
       var user = userFromJson(stringObject);
       return user;
     } else {
-      print("-------------------else -----------------------------");
+      // print("-------------------else -----------------------------");
       return null;
     }
   }
