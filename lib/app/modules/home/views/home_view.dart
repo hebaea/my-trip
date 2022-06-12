@@ -15,6 +15,10 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    print("----- list --------");
+
+    print(controller.cityList?.city);
+    print(controller.cityList!.city[1].obs);
     return Scaffold(
       body: Directionality(
         textDirection: TextDirection.rtl,
@@ -159,7 +163,7 @@ class HomeView extends GetView<HomeController> {
                         place: name);
                   },
 
-                  itemCount: controller.cityList!.city?.length ?? 0,
+                  itemCount: 0,
                   //   scrollDirection: Axis.horizontal,
                   //   children: [
                   //     CityItem(

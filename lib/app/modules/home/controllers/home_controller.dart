@@ -9,12 +9,15 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    getCityInformationFromApi();
     super.onInit();
   }
 
   @override
-  void onReady() {
+  void onReady() async{
+    await getCityInformationFromApi();
+
+    print ("----------------i am hrrrrrrrrr---------------");
+
     super.onReady();
   }
 
@@ -24,13 +27,17 @@ class HomeController extends GetxController {
   getCityInformationFromApi() async {
     http.Response response = await http.get(
         Uri.tryParse("https://mytrip.justhost.ly/api/city_index")!,
-        headers: {'Content-Type': 'application/json'});
+        headers: {'Content-Type': 'application/json'}); // todo add loading state
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       print("-------------------here -----------------------------");
       print(response.body.toString());
       var result = jsonDecode(response.body);
       cityList = CityModel.fromJson(result);
+      print("-------------------cityList -----------------------------");
+
+      print(cityList.toString());
+
     } else {
       print("-------------------else -----------------------------");
       return null;
