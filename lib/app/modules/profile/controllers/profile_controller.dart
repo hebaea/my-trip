@@ -17,18 +17,23 @@ class ProfileController extends GetxController {
   var name = ''.obs;
   var email = ''.obs;
   var token = '';
+  String? id = '';
 
   @override
-  void onInit() {
-    AuthServices.fetchUserNameAndEmail();
+  void onInit() async {
+    name.value = (await storage.read(key: "name"))!;
+    id = await storage.read(key: "id");
+
     authData();
-    nameController = TextEditingController();
     emailController = TextEditingController();
     super.onInit();
   }
 
   @override
   void onReady() {
+    nameController = TextEditingController();
+
+    nameController.text = name.value;
     super.onReady();
   }
 
@@ -62,6 +67,7 @@ class ProfileController extends GetxController {
         UserModel? data = await AuthServices.update(
           name: nameController.text,
           email: emailController.text,
+          id: id,
         );
         if (data != null) {
           print("---------- data ----------------------");
@@ -73,6 +79,7 @@ class ProfileController extends GetxController {
           print("storage------------------------------");
           String? name = await storage.read(key: "name");
           String? email = await storage.read(key: "email");
+
           print(email);
           print(name);
           // Get.toNamed(Routes.DASHBOARD);

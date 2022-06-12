@@ -61,10 +61,11 @@ class AuthServices {
     }
   }
 
-  static Future<UserModel?> update({required name, required email}) async {
+  static Future<UserModel?> update({required name, required email, required id }) async {
     var response = await client.post(
-      Uri.parse("$baseApi/guest_update/{guest_id}"),
+      Uri.parse("$baseApi/guest_update/${id}"),
       headers: {'Content-Type': 'application/json'},
+
       body: jsonEncode(<String, String>{
         "guest_name": name,
         "guest_email": email,
