@@ -164,11 +164,22 @@ class HomeView extends GetView<HomeController> {
                               name = "";
                             }
 
+                            int id = 0;
+                            try {
+                              id = controller.cityList!.city[i].cityId!;
+                            } catch (e) {
+                              id = 0;
+                            }
+
                             return CityItem(
-                                context: context,
-                                link: "assets/detailsimage.jpg",
-                                // location: "بلا , بلا",
-                                place: name);
+                              context: context,
+                              link: "assets/detailsimage.jpg",
+                              // location: "بلا , بلا",
+                              place: name,
+                              onTap: () {
+                                controller.getCityDestinations(id);
+                              },
+                            );
                           },
                           itemCount: controller.cityList!.city.length,
                         ),

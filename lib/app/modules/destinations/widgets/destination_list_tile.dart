@@ -4,20 +4,22 @@ import 'package:my_trip/app/global_widgets/default_text.dart';
 import '../../../core/theme/color_theme.dart';
 
 class DestinationListTile extends StatelessWidget {
-  const DestinationListTile({
-    Key? key,
-    required this.height,
-    required this.width,
-    required this.image,
-    required this.text,
-    required this.ontap,
-  }) : super(key: key);
+  const DestinationListTile(
+      {Key? key,
+      required this.height,
+      required this.width,
+      required this.image,
+      required this.text,
+      required this.ontap,
+      required this.address})
+      : super(key: key);
 
   final double height;
   final double width;
   final String text;
   final String image;
   final Function ontap;
+  final String address;
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +65,9 @@ class DestinationListTile extends StatelessWidget {
                               color: AppThemeColors.grayPrimary300,
                             ),
                           ),
-                          const WidgetSpan(
+                          WidgetSpan(
                             child: DefaultText(
-                              'الظهرة , طرابلس',
+                              address,
                               height: 1,
                               color: AppThemeColors.grayPrimary400,
                             ),

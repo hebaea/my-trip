@@ -19,7 +19,7 @@ class DestinationsView extends GetView<DestinationsController> {
           length: 4,
           child: Column(
             children:  [
-              TabBar(
+              const TabBar(
                 indicatorColor: AppThemeColors.primaryColor,
                 labelColor: AppThemeColors.primaryColor,
                 unselectedLabelColor: AppThemeColors.grayPrimary400,

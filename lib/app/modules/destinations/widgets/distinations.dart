@@ -27,23 +27,31 @@ class Distinations extends GetView<DestinationsController> {
                 itemBuilder: (ctx, i) {
                   String name = "";
                   try {
-                    name = controller
-                        .destinationList!.destianation![i].destinationAddress!;
+                    name =
+                        controller.destinationList!.destianation![i].ownerName!;
                   } catch (e) {
                     name = "";
+                  }
+                  String address = "";
+                  try {
+                    address = controller
+                        .destinationList!.destianation![i].destinationAddress!;
+                  } catch (e) {
+                    address = "";
                   }
 
                   return Column(
                     children: [
                       SizedBox(height: 20.h),
                       DestinationListTile(
-                          ontap: () => Get.toNamed(Routes.DESTINATION_DETAILS),
-                          height: height,
-                          width: width,
-                          image: "assets/images/destination1.jpeg",
-                          text: name
-                          // "اسم المكان "
-                          ),
+                        ontap: () => Get.toNamed(Routes.DESTINATION_DETAILS),
+                        height: height,
+                        width: width,
+                        image: "assets/images/destination1.jpeg",
+                        text: name,
+                        address: address,
+                        // "اسم المكان "
+                      ),
                       // SizedBox(height: width * 0.04),
                     ],
                   );
