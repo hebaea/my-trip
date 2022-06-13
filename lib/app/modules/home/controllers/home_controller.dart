@@ -11,7 +11,6 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     getCityInformationFromApi();
-    print("----------------i am hrrrrrrrrr---------------");
 
     super.onInit();
   }
@@ -31,16 +30,11 @@ class HomeController extends GetxController {
           Uri.tryParse("https://mytrip.justhost.ly/api/city_index")!,
           headers: {
             'Content-Type': 'application/json'
-          }); // todo add loading state
+          });
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        print("-------------------here -----------------------------");
-        print(response.body.toString());
         var result = jsonDecode(response.body);
         cityList = CityModel.fromJson(result);
-        print("-------------------cityList -----------------------------");
-
-        print(cityList.toString());
       } else {
         //error
         print("-------------------else -----------------------------");
