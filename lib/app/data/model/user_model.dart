@@ -7,8 +7,14 @@ class UserModel {
   String? guestEmail;
   String? guestName;
   String? token;
+  String? password;
 
-  UserModel({this.guestId, this.guestEmail, this.guestName, this.token});
+  UserModel(
+      {this.guestId,
+      this.guestEmail,
+      this.guestName,
+      this.token,
+      this.password});
 
   // receiving data from server
 
@@ -17,6 +23,7 @@ class UserModel {
     guestEmail = json['guest_email'];
     guestName = json['guest_name'];
     token = json['token'];
+    password = json['guest_password'];
   }
 
   // sending data to our server
@@ -27,6 +34,7 @@ class UserModel {
     data['guest_email'] = guestEmail;
     data['guest_name'] = guestName;
     data['token'] = token;
+    data['guest_password'] = password;
     return data;
   }
 }

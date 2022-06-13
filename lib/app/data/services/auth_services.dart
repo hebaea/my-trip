@@ -82,4 +82,24 @@ class AuthServices {
       return null;
     }
   }
+
+  static Future<UserModel?> updatePassword(
+      {required password, required id}) async {
+    var response = await client.post(
+      Uri.parse("$baseApi/guest_change_password/$id"),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(<String, String>{
+        "guest_password": password,
+      }),
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print("-------------------password----------------------------");
+      print(response.body.toString());
+      var stringObject = response.body;
+      var user = userFromJson(stringObject);
+      return user;
+    } else {
+      return null;
+    }
+  }
 }
