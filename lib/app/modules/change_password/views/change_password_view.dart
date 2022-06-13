@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
@@ -16,36 +17,49 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
       appBar: AppBar(),
       body: Center(
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 10.h,
-              ),
-              CircleAvatar(
-                radius: 50.0.r,
-                backgroundColor: AppThemeColors.primaryColor,
-                child: Icon(
-                  PhosphorIcons.lock,
-                  color: AppThemeColors.primaryPureWhite,
-                  size: 30,
+          child: Form(
+            key: controller.passwordFormKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 10.h,
                 ),
-              ),
-              RoundedInputField(
-                  hintText: 'كلمة المرور القديمة',
-                  icon: Icon(PhosphorIcons.lock,
-                      color: AppThemeColors.primaryColor),
-                  onChanged: (v) {}),
-              RoundedInputField(
-                  hintText: 'كلمة المرور الجديدة',
-                  icon: Icon(PhosphorIcons.lock,
-                      color: AppThemeColors.primaryColor),
-                  onChanged: (v) {}),
-              RoundedButton(
-                text: 'حفظ',
-                press: () {},
-              ),
-            ],
+                SvgPicture.asset(
+                  "assets/images/change_password.svg",
+                  height: 110.h,
+                  width: 120.w,
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                RoundedInputField(
+                    controller: controller.passwordController,
+                    hintText: 'كلمة المرور الجديدة',
+                    onSaved: (value) {
+                      controller.passwordController.text = value!;
+                    },
+                    icon: const Icon(PhosphorIcons.lock,
+                        color: AppThemeColors.primaryColor),
+                    onChanged: (v) {}),
+                RoundedButton(
+                  text: 'حفظ',
+                  press: () {
+                    controller.updatePassword();
+                  },
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Obx(
+                  () => controller.isLoading.value == true
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : const Text(''),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -7,8 +7,14 @@ class UserModel {
   String? guestEmail;
   String? guestName;
   String? token;
+  String? password;
 
-  UserModel({this.guestId, this.guestEmail, this.guestName, this.token});
+  UserModel(
+      {this.guestId,
+      this.guestEmail,
+      this.guestName,
+      this.token,
+      this.password});
 
   // receiving data from server
 
@@ -17,16 +23,18 @@ class UserModel {
     guestEmail = json['guest_email'];
     guestName = json['guest_name'];
     token = json['token'];
+    password = json['guest_password'];
   }
 
   // sending data to our server
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['guest_id'] = this.guestId;
-    data['guest_email'] = this.guestEmail;
-    data['guest_name'] = this.guestName;
-    data['token'] = this.token;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['guest_id'] = guestId;
+    data['guest_email'] = guestEmail;
+    data['guest_name'] = guestName;
+    data['token'] = token;
+    data['guest_password'] = password;
     return data;
   }
 }

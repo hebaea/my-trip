@@ -68,9 +68,12 @@ class RegisterController extends GetxController {
 
           print(data.toString());
           await storage.write(key: "name", value: data.guestName);
+          await storage.write(key: "email", value: data.guestEmail);
+
           await storage.write(key: "token", value: data.token);
+          await storage.write(key: "id", value: data.guestId.toString());
           registerFormKey.currentState!.save();
-          print("storage------------------------------");
+          print("------------------storage------------------------------");
           String? name = await storage.read(key: "name");
           print(name);
           Get.toNamed(Routes.DASHBOARD);

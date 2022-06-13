@@ -9,7 +9,6 @@ import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
 import 'package:my_trip/app/global_widgets/rounded_password_field.dart';
-import 'package:my_trip/app/modules/login/views/login_view.dart';
 import 'package:my_trip/app/modules/register/widgets/background.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
 import '../controllers/register_controller.dart';
