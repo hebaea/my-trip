@@ -7,6 +7,7 @@ class CityItem extends StatelessWidget {
   final BuildContext? context;
   final String? link;
   final String? place;
+  final Function()? onTap;
 
   // final String? location;
 
@@ -15,13 +16,14 @@ class CityItem extends StatelessWidget {
       // this.location,
       this.context,
       this.place,
-      this.link})
+      this.link,
+      required this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 12.w),
         child: SizedBox(

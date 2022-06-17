@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:my_trip/app/modules/destinations/controllers/destinations_controller.dart';
 import 'package:my_trip/app/modules/destinations/widgets/destination_list_tile.dart';
 
 import '../../../routes/app_pages.dart';
 
-class Distinations extends StatelessWidget {
-  const Distinations({Key? key}) : super(key: key);
+class Distinations extends GetView<DestinationsController> {
+  Distinations({Key? key}) : super(key: key);
+  @override
+  final controller = Get.find<DestinationsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -15,39 +18,46 @@ class Distinations extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 20.h),
-            DestinationListTile(
-                ontap: () => Get.toNamed(Routes.DESTINATION_DETAILS),
-                height: height,
-                width: width,
-                image: "assets/images/destination1.jpeg",
-                text: "اسم المكان "),
-            SizedBox(height: width * 0.04),
-            DestinationListTile(
-                ontap: () => Get.toNamed(Routes.DESTINATION_DETAILS),
-                height: height,
-                width: width,
-                image: "assets/images/destination2.jpeg",
-                text: "فندق الودان"),
-            SizedBox(height: width * 0.04),
-            DestinationListTile(
-                ontap: () => Get.toNamed(Routes.DESTINATION_DETAILS),
-                height: height,
-                width: width,
-                image: "assets/images/destination3.jpeg",
-                text: "فندق الصفوة"),
-            SizedBox(height: width * 0.04),
-            DestinationListTile(
-                ontap: () => Get.toNamed(Routes.DESTINATION_DETAILS),
-                height: height,
-                width: width,
-                image: "assets/images/destination4.jpeg",
-                text: "منتجع سياحي القويعة"),
-          ],
-        ),
+      child: Obx(
+        () => controller.isDataLoading.value
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : ListView.builder(
+                itemBuilder: (ctx, i) {
+                  String name = "";
+                  try {
+                    name =
+                        controller.destinationList!.destianation![i].ownerName!;
+                  } catch (e) {
+                    name = "";
+                  }
+                  String address = "";
+                  try {
+                    address = controller
+                        .destinationList!.destianation![i].destinationAddress!;
+                  } catch (e) {
+                    address = "";
+                  }
+
+                  return Column(
+                    children: [
+                      SizedBox(height: 20.h),
+                      DestinationListTile(
+                        ontap: () => Get.toNamed(Routes.DESTINATION_DETAILS),
+                        height: height,
+                        width: width,
+                        image: "assets/images/destination1.jpeg",
+                        text: name,
+                        address: address,
+                        // "اسم المكان "
+                      ),
+                      // SizedBox(height: width * 0.04),
+                    ],
+                  );
+                },
+                itemCount: controller.destinationList!.destianation!.length,
+              ),
       ),
     );
   }
