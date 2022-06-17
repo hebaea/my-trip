@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -7,23 +9,33 @@ import 'package:my_trip/app/data/services/auth_services.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
 
 class LoginController extends GetxController {
+  late TextEditingController emailController, passwordController;
+
   var isLoading = false.obs;
   var isPasswordHidden = true.obs;
   final loginFormKey = GlobalKey<FormState>();
 
   // GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
-  late TextEditingController emailController, passwordController;
-  String email = '', password = '';
+  // String email = '', password = '';
 
   // final storage = const FlutterSecureStorage();
   final storage = GetStorage();
 
   @override
   void onInit() {
+    checkUser();
+
     emailController = TextEditingController();
     passwordController = TextEditingController();
     super.onInit();
+  }
+
+  checkUser() async {
+    var token = storage.read("token");
+    if (token != null) {
+      Get.offAllNamed(Routes.DASHBOARD);
+    }
   }
 
   @override
@@ -72,8 +84,6 @@ class LoginController extends GetxController {
           print("storage------------------------------");
           String? name = await storage.read("name");
           print(name);
-
-          // Get.toNamed(Routes.DASHBOARD);
           Get.offAllNamed(Routes.DASHBOARD);
         } else {
           customSnackbar("تسجيل الدخول", "مشكلة في تسجيل الدخول", "error");

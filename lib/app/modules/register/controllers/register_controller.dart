@@ -15,7 +15,7 @@ class RegisterController extends GetxController {
   var isPasswordHidden = true.obs;
   final registerFormKey = GlobalKey<FormState>();
 
-  String name = '', email = '', password = '';
+  // String name = '', email = '', password = '';
 
   // final storage = const FlutterSecureStorage();
   final storage = GetStorage();
@@ -74,14 +74,14 @@ class RegisterController extends GetxController {
           await storage.write("email", data.guestEmail);
 
           await storage.write("token", data.token);
-          await storage.write("id", data.guestId.toString());
+          await storage.write("id", data.guestId);
           registerFormKey.currentState!.save();
           print("------------------storage------------------------------");
           String? name = await storage.read("name");
           print(name);
-          Get.toNamed(Routes.DASHBOARD);
-          // Get.off(Routes.DASHBOARD);
-          // Get.offAll(Routes.DASHBOARD);
+          // Get.toNamed(Routes.DASHBOARD);
+          //  Get.off(Routes.DASHBOARD);
+          Get.offAll(Routes.DASHBOARD); //login
         } else {
           // Get.snackbar("register", "problem in register");
           customSnackbar(

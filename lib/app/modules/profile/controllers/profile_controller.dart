@@ -42,8 +42,8 @@ class ProfileController extends GetxController {
   }
 
   authData() async {
-    name.value = (await storage.read( "name"))!;
-    token = (await storage.read( "token"))!;
+    name.value = (await storage.read("name"))!;
+    token = (await storage.read("token"))!;
   }
 
   bool isAuth() {
@@ -54,6 +54,7 @@ class ProfileController extends GetxController {
     // storage.delete(key: key);
     // await storage.deleteAll();
     // Get.toNamed(Routes.LOGIN);
+    await storage.remove("token");
     Get.offAndToNamed(Routes.LOGIN);
   }
 
@@ -80,12 +81,12 @@ class ProfileController extends GetxController {
           print("---------- data ----------------------");
 
           print(data.toString());
-          await storage.write("name",  data.guestName);
-          await storage.write( "email",  data.guestEmail);
+          await storage.write("name", data.guestName);
+          await storage.write("email", data.guestEmail);
           profileFormKey.currentState!.save();
           print("storage------------------------------");
-          String? name = await storage.read( "name");
-          String? email = await storage.read( "email");
+          String? name = await storage.read("name");
+          String? email = await storage.read("email");
 
           print(email);
           print(name);

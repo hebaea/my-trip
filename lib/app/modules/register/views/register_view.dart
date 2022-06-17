@@ -85,7 +85,7 @@ class RegisterView extends GetView<RegisterController> {
                       return null;
                     },
                     onSaved: (v) {
-                      controller.email = v!;
+                      controller.emailController.text = v!;
                     },
                     onChanged: (value) {},
                   ),
@@ -96,7 +96,7 @@ class RegisterView extends GetView<RegisterController> {
                         // return controller.validatePassword(v!);
                       },
                       onSaved: (v) {
-                        controller.password = v!;
+                        controller.passwordController.text = v!;
                       },
                       controller: controller.passwordController,
                       obscureText: controller.isPasswordHidden.value,
