@@ -35,10 +35,11 @@ class AppPages {
   AppPages._();
 
   // static const INITIAL = Routes.HOME;
-   static const INITIAL = Routes.DASHBOARD;
+  //  static const INITIAL = Routes.DASHBOARD;
+  static const INITIAL = Routes.WELCOME;
 
   // static const INITIAL = Routes.WELCOME;
-  // static const INITIAL = Routes.ONBOARDING;
+  //  static const INITIAL = Routes.ONBOARDING;
 
   //change initial page
 
@@ -53,11 +54,11 @@ class AppPages {
       page: () => LoginView(),
       binding: LoginBinding(),
     ),
-    GetPage(
-      name: _Paths.ONBOARDING,
-      page: () => OnboardingView(),
-      binding: OnboardingBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.ONBOARDING,
+    //   page: () => OnboardingView(),
+    //   binding: OnboardingBinding(),
+    // ),
     GetPage(
       name: _Paths.REGISTER,
       page: () => RegisterView(),

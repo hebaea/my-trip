@@ -25,7 +25,7 @@ class RegisterView extends GetView<RegisterController> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Form(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
+              // autovalidateMode: AutovalidateMode.onUserInteraction,
               key: controller.registerFormKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -51,10 +51,10 @@ class RegisterView extends GetView<RegisterController> {
                     validator: (value) {
                       RegExp regex = RegExp(r'^.{3,}$');
                       if (value!.isEmpty) {
-                        return ("First Name cannot be Empty");
+                        return ("الإسم لا يمكن أن يكون فارغ");
                       }
                       if (!regex.hasMatch(value)) {
-                        return ("Enter Valid name(Min. 3 Character)");
+                        return ("أدخل إسم صالح (علي الأقل 3 أحرف)");
                       }
                       return null;
                     },
@@ -75,12 +75,12 @@ class RegisterView extends GetView<RegisterController> {
                     validator: (value) {
                       // return controller.validateEmail(v!);
                       if (value!.isEmpty) {
-                        return ("Please Enter Your Email");
+                        return ("رجاءً قم بإدخال بريدك الإلكتروني");
                       }
                       // reg expression for email validation
                       if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                           .hasMatch(value)) {
-                        return ("Please Enter a valid email");
+                        return ("رجاءً قم بإدخال بريد إلكتروني صحيح");
                       }
                       return null;
                     },

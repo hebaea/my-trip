@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:my_trip/app/data/model/user_model.dart';
 import 'package:my_trip/app/data/services/auth_services.dart';
 
@@ -8,7 +8,9 @@ class ChangePasswordController extends GetxController {
   var isLoading = false.obs;
   final passwordFormKey = GlobalKey<FormState>();
   late Future<UserModel?> userModel;
-  var storage = const FlutterSecureStorage();
+  // var storage = const FlutterSecureStorage();
+  final storage = GetStorage();
+
 
   late TextEditingController passwordController;
   var password = '';
@@ -59,6 +61,6 @@ class ChangePasswordController extends GetxController {
   }
 
   getId() async {
-    id = await storage.read(key: "id");
+    id = await storage.read("id");
   }
 }

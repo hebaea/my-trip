@@ -3,6 +3,7 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
+import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
@@ -71,12 +72,14 @@ class ProfileView extends GetView<ProfileController> {
                   validator: (value) {
                     // return controller.validateEmail(v!);
                     if (value!.isEmpty) {
-                      return ("Please Enter Your Email");
+                      return ("رجاءً قم بإدخال بريدك الإلكتروني");
                     }
                     // reg expression for email validation
                     if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                         .hasMatch(value)) {
-                      return ("Please Enter a valid email");
+                      return ("رجاءً قم بإدخال بريد إلكتروني صحيح");
+
+
                     }
                     return null;
                   },
