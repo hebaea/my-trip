@@ -47,6 +47,7 @@ class ProfileController extends GetxController {
   }
 
   bool isAuth() {
+    print(token);
     return token.isNotEmpty;
   }
 
