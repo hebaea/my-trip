@@ -7,7 +7,7 @@ class CityServices {
   static String baseApi = "https://mytrip.justhost.ly/api";
   static var client = http.Client();
 
-  static Future<Destianation?> showCityDestinations({required id}) async {
+  static Future<Destination?> showCityDestinations({required id}) async {
     var response = await client.get(
       Uri.parse("$baseApi/city_show_details/$id"),
       headers: {'Content-Type': 'application/json'},
@@ -17,7 +17,7 @@ class CityServices {
       print(response.body.toString());
       // If the server did return a 200 OK response,
       // then parse the JSON.
-      return Destianation.fromJson(jsonDecode(response.body));
+      return Destination.fromJson(jsonDecode(response.body));
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.

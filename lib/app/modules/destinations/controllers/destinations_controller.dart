@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:my_trip/app/core/utils/baseurl.dart';
 import 'package:my_trip/app/data/model/destination_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -32,7 +33,7 @@ class DestinationsController extends GetxController {
     try {
       isDataLoading(true);
       http.Response response = await http.get(
-          Uri.tryParse("https://mytrip.justhost.ly/api/destination_index")!,
+          Uri.tryParse("$baseUrl/destination_index")!,
           headers: {'Content-Type': 'application/json'});
 
       if (response.statusCode == 200 || response.statusCode == 201) {

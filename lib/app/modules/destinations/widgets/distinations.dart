@@ -28,14 +28,14 @@ class Distinations extends GetView<DestinationsController> {
                   String name = "";
                   try {
                     name =
-                        controller.destinationList!.destianation![i].ownerName!;
+                        controller.destinationList!.destination![i].ownerName!;
                   } catch (e) {
                     name = "";
                   }
                   String address = "";
                   try {
                     address = controller
-                        .destinationList!.destianation![i].destinationAddress!;
+                        .destinationList!.destination![i].destinationAddress!;
                   } catch (e) {
                     address = "";
                   }
@@ -56,7 +56,7 @@ class Distinations extends GetView<DestinationsController> {
                     ],
                   );
                 },
-                itemCount: controller.destinationList!.destianation!.length,
+                itemCount: controller.destinationList!.destination!.length,
               ),
       ),
     );

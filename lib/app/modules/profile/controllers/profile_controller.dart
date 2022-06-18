@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:my_trip/app/core/utils/custom_snackbar.dart';
 import 'package:my_trip/app/data/model/user_model.dart';
 import 'package:my_trip/app/data/services/auth_services.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
@@ -42,8 +43,8 @@ class ProfileController extends GetxController {
   }
 
   authData() async {
-    name.value = (await storage.read("name"))!;
-    token = (await storage.read("token"))!;
+    name.value = await storage.read("name");
+    token = await storage.read("token");
   }
 
   bool isAuth() {
@@ -60,10 +61,10 @@ class ProfileController extends GetxController {
   }
 
   getNameAndEmail() async {
-    name.value = (await storage.read("name"))!;
-    email.value = (await storage.read("email"))!;
+    name.value = await storage.read("name");
+    email.value = await storage.read("email");
 
-    id = await storage.read("id");
+    id = await storage.read("id").toString();
     nameController.text = name.value;
     emailController.text = email.value;
   }
@@ -94,9 +95,12 @@ class ProfileController extends GetxController {
           // Get.toNamed(Routes.DASHBOARD);
           // Get.off(Routes.DASHBOARD);
           // Get.offAll(Routes.DASHBOARD);
-          Get.snackbar("update profile", "successfully");
+          //  Get.snackbar("update profile", "successfully");
+          customSnackbar(
+              "تعديل بيانات الحساب", "تم تعديل بيانات الحساب بنجاح", "success");
         } else {
-          Get.snackbar("update profile", "problem in update profile");
+          customSnackbar(
+              "تعديل بيانات الحساب", "مشكلة في تعديل بيانات الحساب", "error");
         }
       } finally {
         isLoading(false);

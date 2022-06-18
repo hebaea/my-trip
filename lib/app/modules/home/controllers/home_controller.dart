@@ -52,7 +52,7 @@ class HomeController extends GetxController {
     try {
       isDataLoading(true);
 
-      Destianation? data = await CityServices.showCityDestinations(
+      Destination? data = await CityServices.showCityDestinations(
         id: id,
       );
       if (data != null) {

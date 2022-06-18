@@ -79,9 +79,9 @@ class RegisterController extends GetxController {
           print("------------------storage------------------------------");
           String? name = await storage.read("name");
           print(name);
-          // Get.toNamed(Routes.DASHBOARD);
+          Get.toNamed(Routes.DASHBOARD);
           //  Get.off(Routes.DASHBOARD);
-          Get.offAll(Routes.DASHBOARD); //login
+          // Get.offAll(Routes.DASHBOARD); //login
         } else {
           // Get.snackbar("register", "problem in register");
           customSnackbar(

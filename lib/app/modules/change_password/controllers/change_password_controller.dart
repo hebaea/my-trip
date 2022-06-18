@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:my_trip/app/core/utils/custom_snackbar.dart';
 import 'package:my_trip/app/data/model/user_model.dart';
 import 'package:my_trip/app/data/services/auth_services.dart';
 
@@ -8,9 +9,9 @@ class ChangePasswordController extends GetxController {
   var isLoading = false.obs;
   final passwordFormKey = GlobalKey<FormState>();
   late Future<UserModel?> userModel;
+
   // var storage = const FlutterSecureStorage();
   final storage = GetStorage();
-
 
   late TextEditingController passwordController;
   var password = '';
@@ -50,9 +51,11 @@ class ChangePasswordController extends GetxController {
           // Get.toNamed(Routes.DASHBOARD);
           // Get.off(Routes.DASHBOARD);
           // Get.offAll(Routes.DASHBOARD);
-          Get.snackbar("update password", "successfully");
+          customSnackbar(
+              "تعديل كلمة المرور", "تم تعديل كلمة المرور بنجاح", "success");
         } else {
-          Get.snackbar("update password", "problem in update password");
+          customSnackbar(
+              "تعديل كلمة المرور", "مشكلة في تعديل كلمة المرور", "error");
         }
       } finally {
         isLoading(false);
