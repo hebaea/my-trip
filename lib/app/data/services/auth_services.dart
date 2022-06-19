@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:my_trip/app/core/utils/baseurl.dart';
+import 'package:my_trip/app/core/utils/custom_snackbar.dart';
 import 'package:my_trip/app/data/model/user_model.dart';
 
 class AuthServices {
@@ -59,14 +60,18 @@ class AuthServices {
       }),
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
-      // print("-------------------here -----------------------------");
+      print(
+          "-------------------here --update profile----------------------------");
       print(response.body.toString());
-      var stringObject = response.body;
-      var user = userFromJson(stringObject);
-      return user;
+      // var stringObject = response.body;
+      // var user = userFromJson(stringObject);
+      // return user;
+      return customSnackbar(
+          "تعديل بيانات الحساب", "تم تعديل بيانات الحساب بنجاح", "success");
     } else {
-      // print("-------------------else -----------------------------");
-      return null;
+      print("-------------------else -----------------------------");
+      return customSnackbar(
+          "تعديل بيانات الحساب", "مشكلة في تعديل بيانات الحساب", "error");
     }
   }
 

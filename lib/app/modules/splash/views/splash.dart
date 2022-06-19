@@ -16,12 +16,11 @@ class _SplashState extends State<Splash> {
 
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 3), () {
       if (authController.isAuth()) {
-        Get.to(Routes.DASHBOARD);
-      }else{
-        Get.to(Routes.LOGIN);
-
+        Get.offAllNamed(Routes.DASHBOARD);
+      } else {
+        Get.offAllNamed(Routes.WELCOME);
       }
     });
     super.initState();
@@ -31,16 +30,15 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: AppThemeColors.primaryPureWhite,
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: const Center(
-          child: Text(
-            'SplashView is working',
-            style: TextStyle(fontSize: 20),
-          ),
-        ),
-      ),
+          color: AppThemeColors.primaryPureWhite,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: Center(
+            child: SizedBox(
+                width: 100,
+                height: 100,
+                child: Image.asset("assets/images/logo.png")),
+          )),
     );
   }
 }

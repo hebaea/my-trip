@@ -39,7 +39,7 @@ class AppPages {
   // static const INITIAL = Routes.WELCOME;
 
   // static const INITIAL = Routes.WELCOME;
-  static const INITIAL = Routes.ONBOARDING; // use splash screen instead
+  static const INITIAL = Routes.SPLASH; // use splash screen instead
 
   //change initial page
 

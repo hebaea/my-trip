@@ -1,7 +1,7 @@
-flutter_native_splash :
-  image: assets/images/logo.png
-  android: true
-  ios: true
-  color: "ffffff"
-  fullscreen: true
-  android_gravity: center
+#flutter_native_splash :
+#  image: assets/images/logo.png
+#  android: true
+#  ios: true
+#  color: "ffffff"
+#  fullscreen: true
+#  android_gravity: center
