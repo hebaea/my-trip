@@ -8,6 +8,6 @@ customSnackbar(title, message, type) {
       backgroundColor:
           type == "error" ? AppThemeColors.error500 : AppThemeColors.success500,
       colorText: AppThemeColors.primaryPureWhite,
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(10));
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10));
 }

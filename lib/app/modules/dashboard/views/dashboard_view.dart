@@ -52,62 +52,62 @@ class DashboardView extends StatelessWidget {
                 icon: const Icon(PhosphorIcons.user), label: 'حسابي'),
           ],
         ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              const UserAccountsDrawerHeader(
-                decoration: BoxDecoration(color: AppThemeColors.grayPrimary400),
-                currentAccountPicture: CircleAvatar(
-                  radius: 50.0,
-                  backgroundColor: Colors.white,
-                  child: Icon(
-                    PhosphorIcons.user,
-                    color: AppThemeColors.grayPrimary500,
-                  ),
-                ),
-                accountEmail: Text('hebaelosta98@gmail.com'),
-                accountName: Text('Heba Elosta'),
-              ),
-              // ListTile(
-              //   leading: const Icon(
-              //     PhosphorIcons.user,
-              //     color: AppThemeColors.grayPrimary500,
-              //   ),
-              //   title: DefaultText('بيانات حسابي'),
-              //   onTap: () {
-              //     Get.toNamed(Routes.PROFILE);
-              //   },
-              // ),
-              ListTile(
-                leading: const Icon(
-                  PhosphorIcons.article,
-                  color: AppThemeColors.grayPrimary500,
-                ),
-                title: const DefaultText('الاحكام و الشروط'),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: const Icon(
-                  PhosphorIcons.info,
-                  color: AppThemeColors.grayPrimary500,
-                ),
-                title: const DefaultText(
-                  'معلومات عنا',
-                ),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: const Icon(
-                  PhosphorIcons.sign_out,
-                  color: AppThemeColors.grayPrimary500,
-                ),
-                title: const DefaultText('تسجيل الخروج'),
-                onTap: () {},
-              ),
-            ],
-          ),
-        ),
+        // drawer: Drawer(
+        //   child: ListView(
+        //     padding: EdgeInsets.zero,
+        //     children: [
+        //       const UserAccountsDrawerHeader(
+        //         decoration: BoxDecoration(color: AppThemeColors.grayPrimary400),
+        //         currentAccountPicture: CircleAvatar(
+        //           radius: 50.0,
+        //           backgroundColor: Colors.white,
+        //           child: Icon(
+        //             PhosphorIcons.user,
+        //             color: AppThemeColors.grayPrimary500,
+        //           ),
+        //         ),
+        //         accountEmail: Text('hebaelosta98@gmail.com'),
+        //         accountName: Text('Heba Elosta'),
+        //       ),
+        //       // ListTile(
+        //       //   leading: const Icon(
+        //       //     PhosphorIcons.user,
+        //       //     color: AppThemeColors.grayPrimary500,
+        //       //   ),
+        //       //   title: DefaultText('بيانات حسابي'),
+        //       //   onTap: () {
+        //       //     Get.toNamed(Routes.PROFILE);
+        //       //   },
+        //       // ),
+        //       ListTile(
+        //         leading: const Icon(
+        //           PhosphorIcons.article,
+        //           color: AppThemeColors.grayPrimary500,
+        //         ),
+        //         title: const DefaultText('الاحكام و الشروط'),
+        //         onTap: () {},
+        //       ),
+        //       ListTile(
+        //         leading: const Icon(
+        //           PhosphorIcons.info,
+        //           color: AppThemeColors.grayPrimary500,
+        //         ),
+        //         title: const DefaultText(
+        //           'معلومات عنا',
+        //         ),
+        //         onTap: () {},
+        //       ),
+        //       ListTile(
+        //         leading: const Icon(
+        //           PhosphorIcons.sign_out,
+        //           color: AppThemeColors.grayPrimary500,
+        //         ),
+        //         title: const DefaultText('تسجيل الخروج'),
+        //         onTap: () {},
+        //       ),
+        //     ],
+        //   ),
+        // ),
       );
     });
   }

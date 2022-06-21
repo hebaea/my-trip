@@ -10,8 +10,6 @@ class DestinationsController extends GetxController {
   DestinationModel? destinationList;
   var isDataLoading = false.obs;
 
-  final count = 0.obs;
-
   @override
   void onInit() {
     getDestinationInformationFromApi();
@@ -26,8 +24,6 @@ class DestinationsController extends GetxController {
 
   @override
   void onClose() {}
-
-  void increment() => count.value++;
 
   getDestinationInformationFromApi() async {
     try {

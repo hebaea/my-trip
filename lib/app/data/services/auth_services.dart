@@ -4,8 +4,9 @@ import 'package:my_trip/app/core/utils/baseurl.dart';
 import 'package:my_trip/app/core/utils/custom_snackbar.dart';
 import 'package:my_trip/app/data/model/user_model.dart';
 
+import '../model/email_validation.dart';
+
 class AuthServices {
-  // static String baseApi = "https://mytrip.justhost.ly/api";
   static var client = http.Client();
 
   static Future<UserModel?> register(
@@ -13,7 +14,7 @@ class AuthServices {
     var response = await client.post(
       Uri.parse("$baseUrl/guest_register"),
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(<String, String>{
+      body: jsonEncode(<dynamic, dynamic>{
         "guest_name": name,
         "guest_email": email,
         "guest_password": password
@@ -27,8 +28,16 @@ class AuthServices {
       var stringObject = response.body;
       var user = userFromJson(stringObject);
       return user;
+    } else if (response.statusCode == 400) {
+      print(
+          "-------------------else --emailValidation---------------------------");
+
+      GuestEmailValidation? emailValidation;
+      var result = jsonDecode(response.body);
+      emailValidation = GuestEmailValidation.fromJson(result);
+      print(result);
+      return customSnackbar("title", result.toString(), "error");
     } else {
-      print("-------------------else -----------------------------");
       return null;
     }
   }
@@ -60,16 +69,9 @@ class AuthServices {
       }),
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print(
-          "-------------------here --update profile----------------------------");
-      print(response.body.toString());
-      // var stringObject = response.body;
-      // var user = userFromJson(stringObject);
-      // return user;
       return customSnackbar(
           "تعديل بيانات الحساب", "تم تعديل بيانات الحساب بنجاح", "success");
     } else {
-      print("-------------------else -----------------------------");
       return customSnackbar(
           "تعديل بيانات الحساب", "مشكلة في تعديل بيانات الحساب", "error");
     }
@@ -85,13 +87,11 @@ class AuthServices {
       }),
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print("-------------------password----------------------------");
-      print(response.body.toString());
-      var stringObject = response.body;
-      var user = userFromJson(stringObject);
-      return user;
+      return customSnackbar(
+          "تعديل كلمة المرور", "تم تعديل كلمة المرور بنجاح", "success");
     } else {
-      return null;
+      return customSnackbar(
+          "تعديل كلمة المرور", "مشكلة في تعديل كلمة المرور", "error");
     }
   }
 }
