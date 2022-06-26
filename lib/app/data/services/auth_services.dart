@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:my_trip/app/core/utils/baseurl.dart';
 import 'package:my_trip/app/core/utils/custom_snackbar.dart';
+import 'package:my_trip/app/data/model/message_from_backend.dart';
 import 'package:my_trip/app/data/model/user_model.dart';
 
 import '../model/email_validation.dart';
@@ -21,23 +22,18 @@ class AuthServices {
       }),
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print("-------------------here -----------------------------");
-      print(response.body.toString());
-      var res = await json.decode(response.body);
-      print(res);
+      // print(response.body.toString());
+      // var res = await json.decode(response.body);
+      // print(res);
       var stringObject = response.body;
       var user = userFromJson(stringObject);
       return user;
     } else if (response.statusCode == 400) {
-      print(
-          "-------------------else --emailValidation-------register--------------------");
-
       GuestEmailValidation? emailValidation;
       var result = jsonDecode(response.body);
       emailValidation = GuestEmailValidation.fromJson(result);
-      print(emailValidation.guestEmail?.first);
-      print("=============++++++++++++=");
-      return customSnackbar("title", result.toString(), "error");
+      return customSnackbar(
+          "تسجيل حساب جديد", emailValidation.guestEmail?.first, "error");
     } else {
       return null;
     }
@@ -55,15 +51,11 @@ class AuthServices {
       var user = userFromJson(stringObject);
       return user;
     } else if (response.statusCode == 400) {
-      print(
-          "-------------------else --emailValidation-----login----------------------");
-
-      GuestEmailValidation? emailValidation;
+      MessageFromBackend? messageFromBackend;
       var result = jsonDecode(response.body);
-      emailValidation = GuestEmailValidation.fromJson(result);
-      print(emailValidation.guestEmail?.first);
-      print("=============++++++++++++=");
-      return customSnackbar("title", result.toString(), "error");
+      messageFromBackend = MessageFromBackend.fromJson(result);
+      return customSnackbar(
+          "تسجيل الدخول", messageFromBackend.message, "error");
     } else {
       return null;
     }
