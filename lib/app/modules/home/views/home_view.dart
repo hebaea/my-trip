@@ -5,20 +5,18 @@ import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
+import 'package:my_trip/app/modules/city_destinations/controllers/city_destinations_controller.dart';
 import 'package:my_trip/app/modules/home/controllers/home_controller.dart';
 import 'package:my_trip/app/modules/home/widgets/ads_item.dart';
 import 'package:my_trip/app/modules/home/widgets/city_item.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
+  final cityController = Get.find<CityDestinationsController>();
 
   @override
   Widget build(BuildContext context) {
-    // print("----- list --------");
-    //
-    // print(controller.cityList?.city);
-    // print(controller.cityList!.city[1].obs);
     return Scaffold(
       body: Directionality(
         textDirection: TextDirection.rtl,
@@ -177,7 +175,7 @@ class HomeView extends GetView<HomeController> {
                               // location: "بلا , بلا",
                               place: name,
                               onTap: () {
-                                controller.getCityDestinations(id);
+                                cityController.getCityDestinations(id);
                               },
                             );
                           },

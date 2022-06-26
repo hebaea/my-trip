@@ -81,13 +81,12 @@ class AuthServices {
     print("------------------- res ${result} ---------------------- ");
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print(response.toString());
-
       return customSnackbar(
           "تعديل بيانات الحساب", "تم تعديل بيانات الحساب بنجاح", "success");
     } else {
       print("=======================================im here");
-      print(response.toString());
+      print("------------------- res ${result} ---------------------- ");
+
       return customSnackbar(
           "تعديل بيانات الحساب", "مشكلة في تعديل بيانات الحساب", "error");
     }

@@ -1,11 +1,8 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_trip/app/core/utils/baseurl.dart';
 import 'package:my_trip/app/data/model/city_model.dart';
-import 'package:my_trip/app/data/model/destination_model.dart';
-import 'package:my_trip/app/data/services/city_services.dart';
-import 'package:my_trip/app/routes/app_pages.dart';
 
 class HomeController extends GetxController {
   CityModel? cityList;
@@ -13,7 +10,7 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    getCityInformationFromApi();
+    getCities();
 
     super.onInit();
   }
@@ -26,11 +23,11 @@ class HomeController extends GetxController {
   @override
   void onClose() {}
 
-  getCityInformationFromApi() async {
+  getCities() async {
     try {
       isDataLoading(true);
       http.Response response = await http.get(
-          Uri.tryParse("https://mytrip.justhost.ly/api/city_index")!,
+          Uri.tryParse("$baseUrl/city_index")!,
           headers: {'Content-Type': 'application/json'});
 
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -43,25 +40,6 @@ class HomeController extends GetxController {
       }
     } catch (e) {
       print('error while getting data $e');
-    } finally {
-      isDataLoading(false);
-    }
-  }
-
-  getCityDestinations(int id) async {
-    try {
-      isDataLoading(true);
-
-      Destination? data = await CityServices.showCityDestinations(
-        id: id,
-      );
-      if (data != null) {
-        print("---------- data ----------------------");
-        Get.toNamed(Routes.DESTINATIONS);
-        print(data.toString());
-      } else {
-        print("---------- else ----------------------");
-      }
     } finally {
       isDataLoading(false);
     }

@@ -71,6 +71,7 @@ class RegisterView extends GetView<RegisterController> {
                     icon: const Icon(PhosphorIcons.envelope_simple,
                         color: AppThemeColors.primaryColor),
                     controller: controller.emailController,
+                    keyboardType: TextInputType.emailAddress,
                     hintText: "البريد الالكتروني",
                     validator: (value) {
                       // return controller.validateEmail(v!);
