@@ -1,10 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:my_trip/app/core/utils/custom_snackbar.dart';
-import 'package:my_trip/app/data/model/email_validation.dart';
 import 'package:my_trip/app/data/model/user_model.dart';
 import 'package:my_trip/app/data/services/auth_services.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
@@ -18,9 +14,6 @@ class RegisterController extends GetxController {
   var isPasswordHidden = true.obs;
   final registerFormKey = GlobalKey<FormState>();
 
-  // String name = '', email = '', password = '';
-
-  // final storage = const FlutterSecureStorage();
   final storage = GetStorage();
 
   @override
@@ -43,22 +36,6 @@ class RegisterController extends GetxController {
     passwordController.dispose();
     super.dispose();
   }
-
-  // String? validateEmail(String value) {
-  //   if (!GetUtils.isEmail(value)) {
-  //     return "this is wrong email";
-  //   } else {
-  //     return null;
-  //   }
-  // }
-
-  // String? validatePassword(String value) {
-  //   if (value.length < 6) {
-  //     return "short password";
-  //   } else {
-  //     return null;
-  //   }
-  // }
 
   doRegister() async {
     bool isValidate = registerFormKey.currentState!.validate();
@@ -85,8 +62,6 @@ class RegisterController extends GetxController {
           print(name);
           print(token);
           Get.offAllNamed(Routes.DASHBOARD);
-          //  Get.off(Routes.DASHBOARD);
-          // Get.offAll(Routes.DASHBOARD); //login
         } else {
           // customSnackbar(
           //     "تسجيل حساب جديد", "مشكلة في تسجيل حساب جديد", "error");

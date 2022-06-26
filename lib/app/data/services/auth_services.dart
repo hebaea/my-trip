@@ -30,12 +30,13 @@ class AuthServices {
       return user;
     } else if (response.statusCode == 400) {
       print(
-          "-------------------else --emailValidation---------------------------");
+          "-------------------else --emailValidation-------register--------------------");
 
       GuestEmailValidation? emailValidation;
       var result = jsonDecode(response.body);
       emailValidation = GuestEmailValidation.fromJson(result);
-      print(result);
+      print(emailValidation.guestEmail?.first);
+      print("=============++++++++++++=");
       return customSnackbar("title", result.toString(), "error");
     } else {
       return null;
@@ -53,6 +54,16 @@ class AuthServices {
       var stringObject = response.body;
       var user = userFromJson(stringObject);
       return user;
+    } else if (response.statusCode == 400) {
+      print(
+          "-------------------else --emailValidation-----login----------------------");
+
+      GuestEmailValidation? emailValidation;
+      var result = jsonDecode(response.body);
+      emailValidation = GuestEmailValidation.fromJson(result);
+      print(emailValidation.guestEmail?.first);
+      print("=============++++++++++++=");
+      return customSnackbar("title", result.toString(), "error");
     } else {
       return null;
     }
@@ -62,16 +73,29 @@ class AuthServices {
       {required name, required email, required id}) async {
     var response = await client.post(
       Uri.parse("$baseUrl/guest_update/$id"),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': "application/json"
+      },
       body: jsonEncode(<String, String>{
         "guest_name": name,
         "guest_email": email,
       }),
     );
+
+    var result = await json.decode(json.encode(response.body));
+    print(
+        "------------------- state ${response.statusCode} ---------------------- ");
+    print("------------------- res ${result} ---------------------- ");
+
     if (response.statusCode == 200 || response.statusCode == 201) {
+      print(response.toString());
+
       return customSnackbar(
           "تعديل بيانات الحساب", "تم تعديل بيانات الحساب بنجاح", "success");
     } else {
+      print("=======================================im here");
+      print(response.toString());
       return customSnackbar(
           "تعديل بيانات الحساب", "مشكلة في تعديل بيانات الحساب", "error");
     }
@@ -86,6 +110,12 @@ class AuthServices {
         "guest_password": password,
       }),
     );
+
+    var result = await json.decode(json.encode(response.body));
+    print(
+        "------------------- state ${response.statusCode} ---------------------- ");
+    print("------------------- res ${result} ---------------------- ");
+
     if (response.statusCode == 200 || response.statusCode == 201) {
       return customSnackbar(
           "تعديل كلمة المرور", "تم تعديل كلمة المرور بنجاح", "success");

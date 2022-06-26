@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -15,11 +13,6 @@ class LoginController extends GetxController {
   var isPasswordHidden = true.obs;
   final loginFormKey = GlobalKey<FormState>();
 
-  // GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
-
-  // String email = '', password = '';
-
-  // final storage = const FlutterSecureStorage();
   final storage = GetStorage();
 
   @override
@@ -50,22 +43,6 @@ class LoginController extends GetxController {
     super.dispose();
   }
 
-  // String? validateEmail(String value) {
-  //   if (!GetUtils.isEmail(value)) {
-  //     return "this is wrong email";
-  //   } else {
-  //     return null;
-  //   }
-  // }
-
-  // String? validatePassword(String value) {
-  //   if (value.length < 6) {
-  //     return "short password";
-  //   } else {
-  //     return null;
-  //   }
-  // }
-
   doLogin() async {
     bool isValidate = loginFormKey.currentState!.validate();
     if (isValidate) {
@@ -80,13 +57,16 @@ class LoginController extends GetxController {
 
           await storage.write("name", data.guestName);
           await storage.write("token", data.token);
-          loginFormKey.currentState!.save();
+          await storage.write("email", data.guestEmail);
+          await storage.write("id", data.guestId);
+
+          // loginFormKey.currentState!.save();
           print("storage------------------------------");
           String? name = await storage.read("name");
           print(name);
           Get.offAllNamed(Routes.DASHBOARD);
         } else {
-          customSnackbar("تسجيل الدخول", "مشكلة في تسجيل الدخول", "error");
+          // customSnackbar("تسجيل الدخول", "مشكلة في تسجيل الدخول", "error");
         }
       } finally {
         isLoading(false);

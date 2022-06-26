@@ -5,6 +5,8 @@ class GuestEmailValidation {
 
   GuestEmailValidation.fromJson(Map<String, dynamic> json) {
     guestEmail = json['guest_email'].cast<String>();
+    print("gest eamil ===== ${guestEmail?.first}");
+
   }
 
   Map<String, dynamic> toJson() {
