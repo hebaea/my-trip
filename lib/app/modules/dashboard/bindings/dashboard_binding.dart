@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:my_trip/app/modules/apartments/controllers/apartments_controller.dart';
 import 'package:my_trip/app/modules/city_destinations/controllers/city_destinations_controller.dart';
 import 'package:my_trip/app/modules/destinations/controllers/destinations_controller.dart';
 
@@ -20,5 +21,6 @@ class DashboardBinding extends Bindings {
     Get.lazyPut(() => CityDestinationsController(), fenix: true);
     Get.lazyPut(() => DestinationsController(), fenix: true);
     Get.lazyPut(() => ResortsController(), fenix: true);
+    Get.lazyPut(() => ApartmentsController(), fenix: true);
   }
 }
