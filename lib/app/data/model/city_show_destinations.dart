@@ -1,27 +1,27 @@
-class DestinationModel {
-  List<Destination>? destination;
+class CityShowDestinations {
+  List<Destianation>? destianation;
 
-  DestinationModel({this.destination});
+  CityShowDestinations({this.destianation});
 
-  DestinationModel.fromJson(Map<String, dynamic> json) {
-    if (json['destination'] != null) {
-      destination = <Destination>[];
-      json['destination'].forEach((v) {
-        destination!.add(Destination.fromJson(v));
+  CityShowDestinations.fromJson(Map<String, dynamic> json) {
+    if (json['destianation'] != null) {
+      destianation = <Destianation>[];
+      json['destianation'].forEach((v) {
+        destianation!.add(Destianation.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if (destination != null) {
-      data['destination'] = destination!.map((v) => v.toJson()).toList();
+    if (destianation != null) {
+      data['destianation'] = destianation!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class Destination {
+class Destianation {
   int? destinationId;
   String? ownerName;
   int? hostId;
@@ -33,7 +33,7 @@ class Destination {
   String? destinationEvaluation;
   bool? destinationFavorite;
 
-  Destination({
+  Destianation({
     this.destinationId,
     this.ownerName,
     this.hostId,
@@ -46,7 +46,7 @@ class Destination {
     this.destinationFavorite,
   });
 
-  Destination.fromJson(Map<String, dynamic> json) {
+  Destianation.fromJson(Map<String, dynamic> json) {
     destinationId = json['destination_id'];
     ownerName = json['owner_name'];
     hostId = json['host_id'];

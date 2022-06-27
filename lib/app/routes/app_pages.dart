@@ -4,6 +4,8 @@ import '../modules/change_password/bindings/change_password_binding.dart';
 import '../modules/change_password/views/change_password_view.dart';
 import '../modules/chats/bindings/chats_binding.dart';
 import '../modules/chats/views/chats_view.dart';
+import '../modules/city_destinations/bindings/city_destinations_binding.dart';
+import '../modules/city_destinations/views/city_destinations_view.dart';
 import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
 import '../modules/destination_details/bindings/destination_details_binding.dart';
@@ -35,10 +37,11 @@ class AppPages {
   AppPages._();
 
   // static const INITIAL = Routes.HOME;
-   static const INITIAL = Routes.DASHBOARD;
+  //  static const INITIAL = Routes.DASHBOARD;
+  // static const INITIAL = Routes.WELCOME;
 
   // static const INITIAL = Routes.WELCOME;
-  // static const INITIAL = Routes.ONBOARDING;
+  static const INITIAL = Routes.SPLASH; // use splash screen instead
 
   //change initial page
 
@@ -112,6 +115,11 @@ class AppPages {
       name: _Paths.CHANGE_PASSWORD,
       page: () => ChangePasswordView(),
       binding: ChangePasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.CITY_DESTINATIONS,
+      page: () => CityDestinationsView(),
+      binding: CityDestinationsBinding(),
     ),
   ];
 }

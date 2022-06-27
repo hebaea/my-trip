@@ -32,10 +32,10 @@ class RoundedPasswordField extends StatelessWidget {
         validator: (value) {
           RegExp regex = RegExp(r'^.{6,}$');
           if (value!.isEmpty) {
-            return ("Password is required for login");
+            return ("كلمة المرور مطلوبة");
           }
           if (!regex.hasMatch(value)) {
-            return ("Enter Valid Password (Min. 6 Character) ");
+            return ("قم بإدخال كلمة مرور صحيحة (علي الأقل 6 أحرف)");
           }
         },
         onSaved: onSaved,

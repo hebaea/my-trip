@@ -51,12 +51,15 @@ class LoginView extends GetView<LoginController> {
                     validator: (value) {
                       // return controller.validateEmail(v!);
                       if (value!.isEmpty) {
-                        return ("Please Enter Your Email");
+
+                        return ("رجاءً قم بإدخال بريدك الإلكتروني");
+
                       }
                       // reg expression for email validation
                       if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                           .hasMatch(value)) {
-                        return ("Please Enter a valid email");
+                        return ("رجاءً قم بإدخال بريد إلكتروني صحيح");
+
                       }
                       return null;
                     },

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/modules/chats/views/chats_view.dart';
+import 'package:my_trip/app/modules/city_destinations/controllers/city_destinations_controller.dart';
 import 'package:my_trip/app/modules/favorites/views/favorites_view.dart';
 import 'package:my_trip/app/modules/home/views/home_view.dart';
 import 'package:my_trip/app/modules/profile/views/profile_view.dart';
@@ -12,7 +13,8 @@ import 'package:my_trip/app/routes/app_pages.dart';
 import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends StatelessWidget {
-  const DashboardView({Key? key}) : super(key: key);
+   DashboardView({Key? key}) : super(key: key);
+  final cityController = Get.find<CityDestinationsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class DashboardView extends StatelessWidget {
         body: SafeArea(
           child: IndexedStack(
             index: controller.tabIndex,
-            children: const [
+            children:  [
               HomeView(),
               FavoritesView(),
               ReservationsView(),
@@ -52,62 +54,62 @@ class DashboardView extends StatelessWidget {
                 icon: const Icon(PhosphorIcons.user), label: 'حسابي'),
           ],
         ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              const UserAccountsDrawerHeader(
-                decoration: BoxDecoration(color: AppThemeColors.grayPrimary400),
-                currentAccountPicture: CircleAvatar(
-                  radius: 50.0,
-                  backgroundColor: Colors.white,
-                  child: Icon(
-                    PhosphorIcons.user,
-                    color: AppThemeColors.grayPrimary500,
-                  ),
-                ),
-                accountEmail: Text('hebaelosta98@gmail.com'),
-                accountName: Text('Heba Elosta'),
-              ),
-              // ListTile(
-              //   leading: const Icon(
-              //     PhosphorIcons.user,
-              //     color: AppThemeColors.grayPrimary500,
-              //   ),
-              //   title: DefaultText('بيانات حسابي'),
-              //   onTap: () {
-              //     Get.toNamed(Routes.PROFILE);
-              //   },
-              // ),
-              ListTile(
-                leading: const Icon(
-                  PhosphorIcons.article,
-                  color: AppThemeColors.grayPrimary500,
-                ),
-                title: const DefaultText('الاحكام و الشروط'),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: const Icon(
-                  PhosphorIcons.info,
-                  color: AppThemeColors.grayPrimary500,
-                ),
-                title: const DefaultText(
-                  'معلومات عنا',
-                ),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: const Icon(
-                  PhosphorIcons.sign_out,
-                  color: AppThemeColors.grayPrimary500,
-                ),
-                title: const DefaultText('تسجيل الخروج'),
-                onTap: () {},
-              ),
-            ],
-          ),
-        ),
+        // drawer: Drawer(
+        //   child: ListView(
+        //     padding: EdgeInsets.zero,
+        //     children: [
+        //       const UserAccountsDrawerHeader(
+        //         decoration: BoxDecoration(color: AppThemeColors.grayPrimary400),
+        //         currentAccountPicture: CircleAvatar(
+        //           radius: 50.0,
+        //           backgroundColor: Colors.white,
+        //           child: Icon(
+        //             PhosphorIcons.user,
+        //             color: AppThemeColors.grayPrimary500,
+        //           ),
+        //         ),
+        //         accountEmail: Text('hebaelosta98@gmail.com'),
+        //         accountName: Text('Heba Elosta'),
+        //       ),
+        //       // ListTile(
+        //       //   leading: const Icon(
+        //       //     PhosphorIcons.user,
+        //       //     color: AppThemeColors.grayPrimary500,
+        //       //   ),
+        //       //   title: DefaultText('بيانات حسابي'),
+        //       //   onTap: () {
+        //       //     Get.toNamed(Routes.PROFILE);
+        //       //   },
+        //       // ),
+        //       ListTile(
+        //         leading: const Icon(
+        //           PhosphorIcons.article,
+        //           color: AppThemeColors.grayPrimary500,
+        //         ),
+        //         title: const DefaultText('الاحكام و الشروط'),
+        //         onTap: () {},
+        //       ),
+        //       ListTile(
+        //         leading: const Icon(
+        //           PhosphorIcons.info,
+        //           color: AppThemeColors.grayPrimary500,
+        //         ),
+        //         title: const DefaultText(
+        //           'معلومات عنا',
+        //         ),
+        //         onTap: () {},
+        //       ),
+        //       ListTile(
+        //         leading: const Icon(
+        //           PhosphorIcons.sign_out,
+        //           color: AppThemeColors.grayPrimary500,
+        //         ),
+        //         title: const DefaultText('تسجيل الخروج'),
+        //         onTap: () {},
+        //       ),
+        //     ],
+        //   ),
+        // ),
       );
     });
   }

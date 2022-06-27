@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:my_trip/app/data/model/user_model.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:my_trip/app/data/services/auth_services.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
 
 class ProfileController extends GetxController {
   var isLoading = false.obs;
   final profileFormKey = GlobalKey<FormState>();
-  late Future<UserModel?> userModel;
 
-  late TextEditingController nameController, emailController;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
-//auth controller
-  var storage = const FlutterSecureStorage();
+  final storage = GetStorage();
   var name = ''.obs;
   var email = ''.obs;
   var token = '';
@@ -21,8 +19,6 @@ class ProfileController extends GetxController {
 
   @override
   void onInit() {
-    nameController = TextEditingController();
-    emailController = TextEditingController();
     getNameAndEmail();
     authData();
     super.onInit();
@@ -33,16 +29,9 @@ class ProfileController extends GetxController {
     super.onReady();
   }
 
-  @override
-  void onClose() {
-    nameController.dispose();
-    emailController.dispose();
-    super.dispose();
-  }
-
   authData() async {
-    name.value = (await storage.read(key: "name"))!;
-    token = (await storage.read(key: "token"))!;
+    name.value = await storage.read("name");
+    token = await storage.read("token");
   }
 
   bool isAuth() {
@@ -50,54 +39,31 @@ class ProfileController extends GetxController {
   }
 
   doLogout() async {
-    // storage.delete(key: key);
-    await storage.deleteAll();
-    // Get.toNamed(Routes.LOGIN);
+    await storage.erase();
     Get.offAndToNamed(Routes.LOGIN);
   }
 
   getNameAndEmail() async {
-    name.value = (await storage.read(key: "name"))!;
-    email.value = (await storage.read(key: "email"))!;
+    name.value = await storage.read("name");
+    email.value = await storage.read("email");
 
-    id = await storage.read(key: "id");
+    id = storage.read("id").toString();
     nameController.text = name.value;
     emailController.text = email.value;
   }
 
   updateProfileNameAndEmail() async {
-    bool isValidate = profileFormKey.currentState!.validate();
-    if (isValidate) {
-      isLoading(true);
-      try {
-        UserModel? data = await AuthServices.update(
-          name: nameController.text,
-          email: emailController.text,
-          id: id,
-        );
-        if (data != null) {
-          print("---------- data ----------------------");
-
-          print(data.toString());
-          await storage.write(key: "name", value: data.guestName);
-          await storage.write(key: "email", value: data.guestEmail);
-          profileFormKey.currentState!.save();
-          print("storage------------------------------");
-          String? name = await storage.read(key: "name");
-          String? email = await storage.read(key: "email");
-
-          print(email);
-          print(name);
-          // Get.toNamed(Routes.DASHBOARD);
-          // Get.off(Routes.DASHBOARD);
-          // Get.offAll(Routes.DASHBOARD);
-          Get.snackbar("update profile", "successfully");
-        } else {
-          Get.snackbar("update profile", "problem in update profile");
-        }
-      } finally {
-        isLoading(false);
-      }
+    isLoading(true);
+    try {
+      await AuthServices.update(
+        name: nameController.text,
+        email: emailController.text,
+        id: id,
+      );
+      await storage.write("name", nameController.text);
+      await storage.write("email", emailController.text);
+    } finally {
+      isLoading(false);
     }
   }
 }

@@ -3,6 +3,7 @@ part of 'app_pages.dart';
 
 abstract class Routes {
   Routes._();
+
   static const HOME = _Paths.HOME;
   static const LOGIN = _Paths.LOGIN;
   static const SPLASH = _Paths.SPLASH;
@@ -17,10 +18,12 @@ abstract class Routes {
   static const DESTINATIONS = _Paths.DESTINATIONS;
   static const DESTINATION_DETAILS = _Paths.DESTINATION_DETAILS;
   static const CHANGE_PASSWORD = _Paths.CHANGE_PASSWORD;
+  static const CITY_DESTINATIONS = _Paths.CITY_DESTINATIONS;
 }
 
 abstract class _Paths {
   _Paths._();
+
   static const HOME = '/home';
   static const LOGIN = '/login';
   static const SPLASH = '/splash';
@@ -35,4 +38,5 @@ abstract class _Paths {
   static const DESTINATIONS = '/destinations';
   static const DESTINATION_DETAILS = '/destination-details';
   static const CHANGE_PASSWORD = '/change-password';
+  static const CITY_DESTINATIONS = '/city-destinations';
 }
