@@ -9,6 +9,7 @@ import 'package:my_trip/app/modules/city_destinations/controllers/city_destinati
 import 'package:my_trip/app/modules/destinations/controllers/destinations_controller.dart';
 import 'package:my_trip/app/modules/home/controllers/home_controller.dart';
 import 'package:my_trip/app/modules/home/widgets/ads_item.dart';
+import 'package:my_trip/app/modules/home/widgets/category_card.dart';
 import 'package:my_trip/app/modules/home/widgets/city_item.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
 
@@ -184,7 +185,55 @@ class HomeView extends GetView<HomeController> {
                           itemCount: controller.cityList!.city.length,
                         ),
                 ),
-              )
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: Row(
+                  children: [
+                    DefaultText(
+                      "التصنيفات",
+                      // "Cities",
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    CategoryCard(
+                      image: "assets/images/africa.jpg",
+                      text: "الكل",
+                      onTap: () {
+
+                      },
+                    ),
+                    CategoryCard(
+                      image: "assets/images/australia.jpg",
+                      text: "فنادق",
+                      onTap: () {},
+                    ),
+                    CategoryCard(
+                      image: "assets/images/africa.jpg",
+                      text: "شقق",
+                      onTap: () {},
+                    ),
+                    CategoryCard(
+                      image: "assets/images/africa.jpg",
+                      text: "منتجعات",
+                      onTap: () {},
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
             ],
           ),
         ),

@@ -13,7 +13,7 @@ class DestinationsController extends GetxController {
 
   @override
   void onInit() {
-    getDestinationsFromApi();
+    // getDestinationsFromApi();
 
     super.onInit();
   }
