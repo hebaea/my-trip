@@ -19,6 +19,9 @@ abstract class Routes {
   static const DESTINATION_DETAILS = _Paths.DESTINATION_DETAILS;
   static const CHANGE_PASSWORD = _Paths.CHANGE_PASSWORD;
   static const CITY_DESTINATIONS = _Paths.CITY_DESTINATIONS;
+  static const HOTELS = _Paths.HOTELS;
+  static const APARTMENTS = _Paths.APARTMENTS;
+  static const RESORTS = _Paths.RESORTS;
 }
 
 abstract class _Paths {
@@ -39,4 +42,7 @@ abstract class _Paths {
   static const DESTINATION_DETAILS = '/destination-details';
   static const CHANGE_PASSWORD = '/change-password';
   static const CITY_DESTINATIONS = '/city-destinations';
+  static const HOTELS = '/hotels';
+  static const APARTMENTS = '/apartments';
+  static const RESORTS = '/resorts';
 }

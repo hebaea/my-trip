@@ -5,9 +5,8 @@ import 'package:my_trip/app/modules/destination_details/controllers/destination_
 import 'package:my_trip/app/modules/destinations/controllers/destinations_controller.dart';
 import 'package:my_trip/app/modules/destinations/widgets/destination_list_tile.dart';
 
-
-class Distinations extends GetView<DestinationsController> {
-  Distinations({Key? key}) : super(key: key);
+class Destinations extends GetView<DestinationsController> {
+  Destinations({Key? key}) : super(key: key);
 
   @override
   final controller = Get.find<DestinationsController>();
