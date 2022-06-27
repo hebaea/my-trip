@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:my_trip/app/modules/destination_details/controllers/destination_details_controller.dart';
 import 'package:my_trip/app/modules/destinations/controllers/destinations_controller.dart';
 import 'package:my_trip/app/modules/destinations/widgets/destination_list_tile.dart';
 
-import '../../../routes/app_pages.dart';
 
 class Distinations extends GetView<DestinationsController> {
   Distinations({Key? key}) : super(key: key);
+
   @override
   final controller = Get.find<DestinationsController>();
+  final destinationDetailsController = Get.find<DestinationDetailsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +41,23 @@ class Distinations extends GetView<DestinationsController> {
                   } catch (e) {
                     address = "";
                   }
+                  int? id = 0;
+                  try {
+                    // id = destinationDetailsController.destinationList[i];
+                    id = controller
+                        .destinationList!.destination![i].destinationId;
+                  } catch (e) {
+                    id = 0;
+                  }
 
                   return Column(
                     children: [
                       SizedBox(height: 20.h),
                       DestinationListTile(
-                        ontap: () => Get.toNamed(Routes.DESTINATION_DETAILS),
+                        ontap: () {
+                          destinationDetailsController
+                              .getDestinationDetails(id!);
+                        },
                         height: height,
                         width: width,
                         image: "assets/images/destination1.jpeg",

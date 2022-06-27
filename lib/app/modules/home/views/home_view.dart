@@ -6,6 +6,7 @@ import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
 import 'package:my_trip/app/modules/city_destinations/controllers/city_destinations_controller.dart';
+import 'package:my_trip/app/modules/destinations/controllers/destinations_controller.dart';
 import 'package:my_trip/app/modules/home/controllers/home_controller.dart';
 import 'package:my_trip/app/modules/home/widgets/ads_item.dart';
 import 'package:my_trip/app/modules/home/widgets/city_item.dart';
@@ -14,6 +15,7 @@ import 'package:my_trip/app/routes/app_pages.dart';
 class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
   final cityController = Get.find<CityDestinationsController>();
+  final destinationsController = Get.find<DestinationsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +94,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Get.toNamed(Routes.DESTINATIONS);
+                        destinationsController.getDestinationsFromApi();
                       },
                       child: DefaultText(
                         "الكل",

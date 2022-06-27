@@ -1,9 +1,7 @@
 import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/utils/baseurl.dart';
 import 'package:my_trip/app/data/model/city_show_destinations.dart';
-import 'package:my_trip/app/data/services/city_services.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
 import 'package:http/http.dart' as http;
 
