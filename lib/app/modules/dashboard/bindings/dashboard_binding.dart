@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:my_trip/app/modules/apartments/controllers/apartments_controller.dart';
 import 'package:my_trip/app/modules/city_destinations/controllers/city_destinations_controller.dart';
 import 'package:my_trip/app/modules/destinations/controllers/destinations_controller.dart';
+import 'package:my_trip/app/modules/hotels/controllers/hotels_controller.dart';
 
 import 'package:my_trip/app/modules/profile/controllers/profile_controller.dart';
 
@@ -22,5 +23,6 @@ class DashboardBinding extends Bindings {
     Get.lazyPut(() => DestinationsController(), fenix: true);
     Get.lazyPut(() => ResortsController(), fenix: true);
     Get.lazyPut(() => ApartmentsController(), fenix: true);
+    Get.lazyPut(() => HotelsController(), fenix: true);
   }
 }

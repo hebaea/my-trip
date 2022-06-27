@@ -12,6 +12,7 @@ import 'package:my_trip/app/modules/home/controllers/home_controller.dart';
 import 'package:my_trip/app/modules/home/widgets/ads_item.dart';
 import 'package:my_trip/app/modules/home/widgets/category_card.dart';
 import 'package:my_trip/app/modules/home/widgets/city_item.dart';
+import 'package:my_trip/app/modules/hotels/controllers/hotels_controller.dart';
 import 'package:my_trip/app/modules/resorts/controllers/resorts_controller.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
 
@@ -21,6 +22,7 @@ class HomeView extends GetView<HomeController> {
   final destinationsController = Get.find<DestinationsController>();
   final resortsController = Get.find<ResortsController>();
   final apartmentsController = Get.find<ApartmentsController>();
+  final hotelsController = Get.find<HotelsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -215,10 +217,18 @@ class HomeView extends GetView<HomeController> {
                       text: "الكل",
                       onTap: () {},
                     ),
-                    CategoryCard(
-                      image: "assets/images/australia.jpg",
-                      text: "فنادق",
-                      onTap: () {},
+                    Obx(
+                      () => controller.isDataLoading.value
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : CategoryCard(
+                              image: "assets/images/australia.jpg",
+                              text: "فنادق",
+                              onTap: () {
+                                hotelsController.getHotelsFromApi(3);
+                              },
+                            ),
                     ),
                     Obx(() => controller.isDataLoading.value
                         ? const Center(

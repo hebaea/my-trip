@@ -1,9 +1,15 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
+import 'package:my_trip/app/core/utils/baseurl.dart';
+import 'package:my_trip/app/data/model/category_destinations.dart';
+import 'package:http/http.dart' as http;
+import 'package:my_trip/app/routes/app_pages.dart';
 
 class HotelsController extends GetxController {
-  //TODO: Implement HotelsController
+  CategoryDestinations? destinationList;
+  var isDataLoading = false.obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -16,5 +22,27 @@ class HotelsController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+
+  getHotelsFromApi(int id) async {
+    try {
+      isDataLoading(true);
+      http.Response response = await http.get(
+          Uri.tryParse("$baseUrl/category_show_details/$id")!,
+          headers: {'Content-Type': 'application/json'});
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        var result = jsonDecode(response.body);
+        destinationList = CategoryDestinations.fromJson(result);
+        Get.toNamed(Routes.HOTELS);
+      } else {
+        //error
+        print("-------------------else -----------------------------");
+        return null;
+      }
+    } catch (e) {
+      print('error while getting data $e');
+    } finally {
+      isDataLoading(false);
+    }
+  }
 }
