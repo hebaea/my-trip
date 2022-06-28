@@ -81,14 +81,17 @@ class AuthServices {
     print("------------------- res ${result} ---------------------- ");
 
     if (response.statusCode == 200 || response.statusCode == 201) {
+      MessageFromBackend? messageFromBackend;
+      var result = jsonDecode(response.body);
+      messageFromBackend = MessageFromBackend.fromJson(result);
       return customSnackbar(
-          "تعديل بيانات الحساب", "تم تعديل بيانات الحساب بنجاح", "success");
+          "تعديل بيانات الحساب", messageFromBackend.message, "success");
     } else {
-      print("=======================================im here");
-      print("------------------- res ${result} ---------------------- ");
-
+      MessageFromBackend? messageFromBackend;
+      var result = jsonDecode(response.body);
+      messageFromBackend = MessageFromBackend.fromJson(result);
       return customSnackbar(
-          "تعديل بيانات الحساب", "مشكلة في تعديل بيانات الحساب", "error");
+          "تعديل بيانات الحساب", messageFromBackend.message, "error");
     }
   }
 

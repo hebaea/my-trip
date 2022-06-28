@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/modules/destinations/widgets/destination_list_tile.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
@@ -17,7 +18,13 @@ class ApartmentsView extends GetView<ApartmentsController> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: const DefaultText(
+            'شقق',
+            color: AppThemeColors.primaryPureWhite,
+          ),
+          centerTitle: true,
+        ),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: width * 0.04),
           child: controller.destinationList?.destianation == null

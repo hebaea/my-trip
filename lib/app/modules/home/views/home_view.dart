@@ -215,7 +215,9 @@ class HomeView extends GetView<HomeController> {
                     CategoryCard(
                       image: "assets/images/africa.jpg",
                       text: "الكل",
-                      onTap: () {},
+                      onTap: () {
+                        destinationsController.getDestinationsFromApi();
+                      },
                     ),
                     Obx(
                       () => controller.isDataLoading.value
