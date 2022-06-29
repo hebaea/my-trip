@@ -18,13 +18,13 @@ class HotelsView extends GetView<HotelsController> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-        appBar: AppBar(
-          title: const DefaultText(
-            'فنادق',
-            color: AppThemeColors.primaryPureWhite,
-          ),
-          centerTitle: true,
-        ),
+        // appBar: AppBar(
+        //   title: const DefaultText(
+        //     'فنادق',
+        //     color: AppThemeColors.primaryPureWhite,
+        //   ),
+        //   centerTitle: true,
+        // ),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: width * 0.04),
           child: controller.destinationList?.destianation == null
