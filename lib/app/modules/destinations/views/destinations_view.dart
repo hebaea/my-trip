@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
+import 'package:my_trip/app/modules/apartments/views/apartments_view.dart';
 import 'package:my_trip/app/modules/destinations/widgets/distinations.dart';
+import 'package:my_trip/app/modules/hotels/views/hotels_view.dart';
+import 'package:my_trip/app/modules/resorts/views/resorts_view.dart';
 import '../controllers/destinations_controller.dart';
 
 class DestinationsView extends GetView<DestinationsController> {
@@ -18,7 +21,7 @@ class DestinationsView extends GetView<DestinationsController> {
         body: DefaultTabController(
           length: 4,
           child: Column(
-            children:  [
+            children: [
               const TabBar(
                 indicatorColor: AppThemeColors.primaryColor,
                 labelColor: AppThemeColors.primaryColor,
@@ -41,10 +44,10 @@ class DestinationsView extends GetView<DestinationsController> {
               Expanded(
                 child: TabBarView(
                   children: [
-                    Distinations(),
-                    Distinations(),
-                    Distinations(),
-                    Distinations(),
+                    Destinations(),
+                    HotelsView(),
+                    ApartmentsView(),
+                    ResortsView(),
                   ],
                 ),
               ),

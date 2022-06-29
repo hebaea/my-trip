@@ -13,7 +13,7 @@ import 'package:my_trip/app/routes/app_pages.dart';
 import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends StatelessWidget {
-   DashboardView({Key? key}) : super(key: key);
+  DashboardView({Key? key}) : super(key: key);
   final cityController = Get.find<CityDestinationsController>();
 
   @override
@@ -24,7 +24,7 @@ class DashboardView extends StatelessWidget {
         body: SafeArea(
           child: IndexedStack(
             index: controller.tabIndex,
-            children:  [
+            children: [
               HomeView(),
               FavoritesView(),
               ReservationsView(),

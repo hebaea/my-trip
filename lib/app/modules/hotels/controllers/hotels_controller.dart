@@ -1,12 +1,13 @@
 import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/utils/baseurl.dart';
-import 'package:my_trip/app/data/model/city_show_destinations.dart';
-import 'package:my_trip/app/routes/app_pages.dart';
+import 'package:my_trip/app/data/model/category_destinations.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_trip/app/routes/app_pages.dart';
 
-class CityDestinationsController extends GetxController {
-  CityShowDestinations? destinationList;
+class HotelsController extends GetxController {
+  CategoryDestinations? destinationList;
   var isDataLoading = false.obs;
 
   @override
@@ -22,16 +23,17 @@ class CityDestinationsController extends GetxController {
   @override
   void onClose() {}
 
-  getCityDestinations(int id) async {
+  getHotelsFromApi(int id) async {
     try {
       isDataLoading(true);
       http.Response response = await http.get(
-          Uri.tryParse("$baseUrl/city_show_details/$id")!,
+          Uri.tryParse("$baseUrl/category_show_details/$id")!,
           headers: {'Content-Type': 'application/json'});
+
       if (response.statusCode == 200 || response.statusCode == 201) {
         var result = jsonDecode(response.body);
-        destinationList = CityShowDestinations.fromJson(result);
-        Get.toNamed(Routes.CITY_DESTINATIONS);
+        destinationList = CategoryDestinations.fromJson(result);
+        Get.toNamed(Routes.HOTELS);
       } else {
         //error
         print("-------------------else -----------------------------");
