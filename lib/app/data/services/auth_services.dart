@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:my_trip/app/core/utils/baseurl.dart';
 import 'package:my_trip/app/core/utils/custom_snackbar.dart';
 import 'package:my_trip/app/data/model/message_from_backend.dart';
+import 'package:my_trip/app/data/model/update_validaion.dart';
 import 'package:my_trip/app/data/model/user_model.dart';
 
 import '../model/email_validation.dart';
@@ -72,7 +73,7 @@ class AuthServices {
       }),
     );
 
-    var result = await json.decode(json.encode(response.body));
+    var result = await json.decode(response.body);
     print(
         "------------------- state ${response.statusCode} ---------------------- ");
     print("------------------- res ${result} ---------------------- ");
@@ -83,6 +84,14 @@ class AuthServices {
       messageFromBackend = MessageFromBackend.fromJson(result);
       return customSnackbar(
           "تعديل بيانات الحساب", messageFromBackend.message, "success");
+    } else if (response.statusCode == 400) {
+      UpdateValidation? updateValidation;
+      var result = jsonDecode(response.body);
+      updateValidation = UpdateValidation.fromJson(result);
+      return customSnackbar(
+          "تعديل بيانات الحساب",
+          " ${updateValidation.guestName?.first} \n  ${updateValidation.guestEmail?.first} ",
+          "error");
     } else {
       MessageFromBackend? messageFromBackend;
       var result = jsonDecode(response.body);

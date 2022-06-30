@@ -56,7 +56,7 @@ class ResortsView extends GetView<ResortsController> {
                             SizedBox(height: 20.h),
                             DestinationListTile(
                               ontap: () =>
-                                  Get.toNamed(Routes.DESTINATION_DETAILS),
+                                  Get.toNamed(Routes.DESTINATION_DETAILS), //TODO
                               height: height,
                               width: width,
                               image: "assets/images/destination1.jpeg",

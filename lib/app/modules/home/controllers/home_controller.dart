@@ -2,15 +2,18 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_trip/app/core/utils/baseurl.dart';
+import 'package:my_trip/app/data/model/ads_model.dart';
 import 'package:my_trip/app/data/model/city_model.dart';
 
 class HomeController extends GetxController {
   CityModel? cityList;
   var isDataLoading = false.obs;
+  AdsModel? adsList;
 
   @override
   void onInit() {
     getCities();
+    getAds();
 
     super.onInit();
   }
@@ -33,6 +36,28 @@ class HomeController extends GetxController {
       if (response.statusCode == 200 || response.statusCode == 201) {
         var result = jsonDecode(response.body);
         cityList = CityModel.fromJson(result);
+      } else {
+        //error
+        print("-------------------else -----------------------------");
+        return null;
+      }
+    } catch (e) {
+      print('error while getting data $e');
+    } finally {
+      isDataLoading(false);
+    }
+  }
+
+  getAds() async {
+    try {
+      isDataLoading(true);
+      http.Response response = await http.get(
+          Uri.tryParse("$baseUrl/ads_index")!,
+          headers: {'Content-Type': 'application/json'});
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        var result = jsonDecode(response.body);
+        adsList = AdsModel.fromJson(result);
       } else {
         //error
         print("-------------------else -----------------------------");

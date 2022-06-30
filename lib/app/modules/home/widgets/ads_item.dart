@@ -5,12 +5,18 @@ import 'package:my_trip/app/global_widgets/default_text.dart';
 
 class AdsItem extends StatelessWidget {
   final String? link;
-  final String? place;
-  final String? location;
-  final BuildContext? context;
 
-  const AdsItem({Key? key, this.link, this.place, this.context, this.location})
-      : super(key: key);
+  // final String? place;
+  // final String? location;
+   final BuildContext? context;
+
+  const AdsItem({
+    Key? key,
+    this.link,
+    // this.place,
+     this.context,
+    // this.location
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,23 +56,23 @@ class AdsItem extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.only(left: 15.w, bottom: 5.h),
-                        child: DefaultText(
-                          place!,
-                          height: 1,
-                          color: AppThemeColors.primaryPureWhite,
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        // child: DefaultText(
+                        //   place!,
+                        //   height: 1,
+                        //   color: AppThemeColors.primaryPureWhite,
+                        //   fontSize: 24.sp,
+                        //   fontWeight: FontWeight.bold,
+                        // ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: 15.w, bottom: 20.h),
-                        child: DefaultText(
-                          location!,
-                          height: 1,
-                          color: AppThemeColors.primaryPureWhite,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w300,
-                        ),
+                        // child: DefaultText(
+                        //   location!,
+                        //   height: 1,
+                        //   color: AppThemeColors.primaryPureWhite,
+                        //   fontSize: 16,
+                        //   fontWeight: FontWeight.w300,
+                        // ),
                       ),
                     ],
                   ),

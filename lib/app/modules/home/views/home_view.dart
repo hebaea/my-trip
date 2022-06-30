@@ -119,22 +119,35 @@ class HomeView extends GetView<HomeController> {
               SizedBox(
                 height: 150,
                 width: double.infinity,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    AdsItem(
-                      context: context,
-                      link: "assets/2.webp",
-                      location: "بنغازي , درنة",
-                      place: "فندق الصفوة",
-                    ),
-                    AdsItem(
-                      link: "assets/1.webp",
-                      context: context,
-                      place: "فندق الودان",
-                      location: 'طرابلس , الظهرة',
-                    )
-                  ],
+                child: Obx(
+                  () => controller.isDataLoading.value
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (ctx, i) {
+                            String img = "";
+                            try {
+                              img = controller.adsList!.ads![i].adsImg!;
+                            } catch (e) {
+                              img = "";
+                            }
+                            return AdsItem(
+                              context: context,
+                              link: img,
+                              // location: "بنغازي , درنة",
+                              // place: "فندق الصفوة",
+                            );
+                            // AdsItem(
+                            //   link: "assets/1.webp",
+                            //   context: context,
+                            //   place: "فندق الودان",
+                            //   location: 'طرابلس , الظهرة',
+                            // )
+                          },
+                          itemCount: controller.cityList!.city.length,
+                        ),
                 ),
               ),
               Padding(

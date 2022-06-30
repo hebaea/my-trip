@@ -57,6 +57,7 @@ class ApartmentsView extends GetView<ApartmentsController> {
                             DestinationListTile(
                               ontap: () =>
                                   Get.toNamed(Routes.DESTINATION_DETAILS),
+                              //TODO
                               height: height,
                               width: width,
                               image: "assets/images/destination1.jpeg",
