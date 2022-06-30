@@ -5,23 +5,25 @@ import 'package:my_trip/app/global_widgets/default_text.dart';
 
 class AdsItem extends StatelessWidget {
   final String? link;
+  final Function()? onTap;
 
   // final String? place;
   // final String? location;
-   final BuildContext? context;
+  final BuildContext? context;
 
   const AdsItem({
     Key? key,
     this.link,
     // this.place,
-     this.context,
+    this.context,
+    required this.onTap,
     // this.location
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 12.w),
         child: SizedBox(
