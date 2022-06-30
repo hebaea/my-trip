@@ -75,12 +75,13 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                                         .destinationDetails?.destinationId,
                                   );
                                 },
-                                child: controller.isFavorite.value
+                                child: controller.isFavorite.value == true
                                     ? Icon(
                                         PhosphorIcons.heart_fill,
+                                        color: AppThemeColors.error500,
                                       )
                                     : Icon(
-                                        PhosphorIcons.heart,
+                                        PhosphorIcons.heart_fill,
                                       ),
                                 style: ElevatedButton.styleFrom(
                                   shape: const CircleBorder(),

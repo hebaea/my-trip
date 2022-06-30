@@ -1,18 +1,41 @@
 class FavoriteShow {
+  List<Destination>? destination;
+
+  FavoriteShow({this.destination});
+
+  FavoriteShow.fromJson(Map<String, dynamic> json) {
+    if (json['destination'] != null) {
+      destination = <Destination>[];
+      json['destination'].forEach((v) {
+        destination!.add(Destination.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (destination != null) {
+      data['destination'] = destination!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Destination {
   int? destinationId;
   int? categoryId;
   String? destinationAddress;
   String? destinationImg;
   String? destinationEvaluation;
 
-  FavoriteShow(
+  Destination(
       {this.destinationId,
       this.categoryId,
       this.destinationAddress,
       this.destinationImg,
       this.destinationEvaluation});
 
-  FavoriteShow.fromJson(Map<String, dynamic> json) {
+  Destination.fromJson(Map<String, dynamic> json) {
     destinationId = json['destination_id'];
     categoryId = json['category_id'];
     destinationAddress = json['destination_address'];

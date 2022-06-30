@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:my_trip/app/core/utils/baseurl.dart';
@@ -45,7 +44,8 @@ class DestinationDetailsController extends GetxController {
         var result = jsonDecode(response.body);
         destinationDetails = DestinationDetails.fromJson(result);
         Get.toNamed(Routes.DESTINATION_DETAILS);
-      } else {
+      }
+      {
         return null;
       }
     } catch (e) {
@@ -86,6 +86,11 @@ class DestinationDetailsController extends GetxController {
       var result = jsonDecode(response.body);
       messageFromBackend = MessageFromBackend.fromJson(result);
       return customSnackbar("المفضلة", messageFromBackend.message, "success");
+    } else if (response.statusCode == 400) {
+      MessageFromBackend? messageFromBackend;
+      var result = jsonDecode(response.body);
+      messageFromBackend = MessageFromBackend.fromJson(result);
+      return customSnackbar("المفضلة", messageFromBackend.message, "error");
     } else {
       FavoriteValidation? favoriteValidation;
       var result = jsonDecode(response.body);
@@ -99,17 +104,27 @@ class DestinationDetailsController extends GetxController {
 
   makeFavorite(int? guestId, int? destinationId) async {
     print(" ================ $guestId and $destinationId");
+
     isDataLoading(true);
+
     try {
+      isFavorite(true);
+
       await favorite(guestId: guestId, destinationId: destinationId);
       print(
-          "im here -------------------------------------------------------------------------");
-
-      isFavorite(true);
+          "im here ------------------in favorite-------------------------------------------------------");
+      print("isFavorite:");
       print(isFavorite);
+      print("isFavorite.value:");
+      print(isFavorite.value);
 
       await storage.write("isFavorite", isFavorite.value);
+      var fav = storage.read("isFavorite");
+      print("fav : ");
+      print(fav);
     } catch (e) {
+      print(">>>>>>>>>>>>>>>>>>>>>>>>");
+      print('error >>>>>>>>>>>> $e');
     } finally {
       isDataLoading(false);
     }

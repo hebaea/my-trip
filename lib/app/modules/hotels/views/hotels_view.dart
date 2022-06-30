@@ -27,7 +27,7 @@ class HotelsView extends GetView<HotelsController> {
         // ),
         body: Container(
       padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-      child: controller.destinationList?.destianation == null
+      child: controller.destinationList?.destination == null
           ? const Center(child: DefaultText('لا يوجد وجهات بعد'))
           : Obx(
               () => controller.isDataLoading.value
@@ -39,13 +39,13 @@ class HotelsView extends GetView<HotelsController> {
                         String name = "";
                         try {
                           name = controller
-                              .destinationList!.destianation![i].ownerName!;
+                              .destinationList!.destination![i].ownerName!;
                         } catch (e) {
                           name = "";
                         }
                         String address = "";
                         try {
-                          address = controller.destinationList!.destianation![i]
+                          address = controller.destinationList!.destination![i]
                               .destinationAddress!;
                         } catch (e) {
                           address = "";
@@ -69,7 +69,7 @@ class HotelsView extends GetView<HotelsController> {
                         );
                       },
                       itemCount:
-                          controller.destinationList!.destianation!.length,
+                          controller.destinationList!.destination!.length,
                     ),
             ),
     ));

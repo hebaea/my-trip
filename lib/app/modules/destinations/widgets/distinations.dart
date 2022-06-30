@@ -18,67 +18,68 @@ class Destinations extends GetView<DestinationsController> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-        // appBar: AppBar(
-        //   title: const DefaultText(
-        //     'كل الوجهات ',
-        //     color: AppThemeColors.primaryPureWhite,
-        //   ),
-        //   centerTitle: true,
-        // ),
-        body: Container(
-      padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-      child: Obx(
-        () => controller.isDataLoading.value
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : ListView.builder(
-                itemBuilder: (ctx, i) {
-                  String name = "";
-                  try {
-                    name =
-                        controller.destinationList!.destination![i].ownerName!;
-                  } catch (e) {
-                    name = "";
-                  }
-                  String address = "";
-                  try {
-                    address = controller
-                        .destinationList!.destination![i].destinationAddress!;
-                  } catch (e) {
-                    address = "";
-                  }
-                  int? id = 0;
-                  try {
-                    // id = destinationDetailsController.destinationList[i];
-                    id = controller
-                        .destinationList!.destination![i].destinationId;
-                  } catch (e) {
-                    id = 0;
-                  }
+      // appBar: AppBar(
+      //   title: const DefaultText(
+      //     'كل الوجهات ',
+      //     color: AppThemeColors.primaryPureWhite,
+      //   ),
+      //   centerTitle: true,
+      // ),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+        child: Obx(
+          () => controller.isDataLoading.value
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : ListView.builder(
+                  itemBuilder: (ctx, i) {
+                    String name = "";
+                    try {
+                      name = controller
+                          .destinationList!.destination![i].ownerName!;
+                    } catch (e) {
+                      name = "";
+                    }
+                    String address = "";
+                    try {
+                      address = controller
+                          .destinationList!.destination![i].destinationAddress!;
+                    } catch (e) {
+                      address = "";
+                    }
+                    int? id = 0;
+                    try {
+                      // id = destinationDetailsController.destinationList[i];
+                      id = controller
+                          .destinationList!.destination![i].destinationId;
+                    } catch (e) {
+                      id = 0;
+                    }
 
-                  return Column(
-                    children: [
-                      SizedBox(height: 20.h),
-                      DestinationListTile(
-                        ontap: () {
-                          destinationDetailsController
-                              .getDestinationDetails(id!);
-                        },
-                        height: height,
-                        width: width,
-                        image: "assets/images/destination1.jpeg",
-                        text: name,
-                        address: address,
-                        // "اسم المكان "
-                      ),
-                      // SizedBox(height: width * 0.04),
-                    ],
-                  );
-                },
-                itemCount: controller.destinationList!.destination!.length,
-              ),
+                    return Column(
+                      children: [
+                        SizedBox(height: 20.h),
+                        DestinationListTile(
+                          ontap: () {
+                            destinationDetailsController
+                                .getDestinationDetails(id!);
+                          },
+                          height: height,
+                          width: width,
+                          image: "assets/images/destination1.jpeg",
+                          text: name,
+                          address: address,
+                          // "اسم المكان "
+                        ),
+                        // SizedBox(height: width * 0.04),
+                      ],
+                    );
+                  },
+                  itemCount: controller.destinationList!.destination!.length,
+                ),
+        ),
       ),
-    ));
+    );
   }
 }
