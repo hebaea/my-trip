@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/data/model/destination_details.dart';
+import 'package:my_trip/app/data/model/destination_model.dart';
+import 'package:my_trip/app/data/model/user_model.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import '../controllers/destination_details_controller.dart';
@@ -10,6 +13,8 @@ import '../controllers/destination_details_controller.dart';
 class DestinationDetailsView extends GetView<DestinationDetailsController> {
   DestinationDetailsView({Key? key}) : super(key: key);
   DestinationDetails? destinationDetails;
+  Destination? destination;
+  UserModel? user;
 
   @override
   Widget build(BuildContext context) {
@@ -49,14 +54,38 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                           padding: const EdgeInsets.all(2),
                         ),
                       ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Icon(
-                          PhosphorIcons.heart_fill,
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          shape: const CircleBorder(),
-                        ),
+                      Obx(
+                        () => controller.isDataLoading.value
+                            ? const Center(child: CircularProgressIndicator())
+                            : ElevatedButton(
+                                onPressed: () {
+                                  final storage = GetStorage();
+
+                                  print(
+                                      "+++++++++++++++++++++++++++++++++++++++++++++");
+                                  print(
+                                      "this is destination id ${controller.destinationDetails?.destinationId}");
+
+                                  var guestId = storage.read('id');
+                                  print("this is guestId id ${guestId}");
+
+                                  controller.makeFavorite(
+                                    guestId,
+                                    controller
+                                        .destinationDetails?.destinationId,
+                                  );
+                                },
+                                child: controller.isFavorite.value
+                                    ? Icon(
+                                        PhosphorIcons.heart_fill,
+                                      )
+                                    : Icon(
+                                        PhosphorIcons.heart,
+                                      ),
+                                style: ElevatedButton.styleFrom(
+                                  shape: const CircleBorder(),
+                                ),
+                              ),
                       ),
                     ],
                   ),

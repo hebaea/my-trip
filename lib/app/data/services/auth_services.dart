@@ -22,9 +22,6 @@ class AuthServices {
       }),
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
-      // print(response.body.toString());
-      // var res = await json.decode(response.body);
-      // print(res);
       var stringObject = response.body;
       var user = userFromJson(stringObject);
       return user;
@@ -111,11 +108,17 @@ class AuthServices {
     print("------------------- res ${result} ---------------------- ");
 
     if (response.statusCode == 200 || response.statusCode == 201) {
+      MessageFromBackend? messageFromBackend;
+      var result = jsonDecode(response.body);
+      messageFromBackend = MessageFromBackend.fromJson(result);
       return customSnackbar(
-          "تعديل كلمة المرور", "تم تعديل كلمة المرور بنجاح", "success");
+          "تعديل كلمة المرور", messageFromBackend.message, "success");
     } else {
+      MessageFromBackend? messageFromBackend;
+      var result = jsonDecode(response.body);
+      messageFromBackend = MessageFromBackend.fromJson(result);
       return customSnackbar(
-          "تعديل كلمة المرور", "مشكلة في تعديل كلمة المرور", "error");
+          "تعديل كلمة المرور", messageFromBackend.message, "error");
     }
   }
 }

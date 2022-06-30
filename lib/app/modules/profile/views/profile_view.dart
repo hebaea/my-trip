@@ -3,7 +3,6 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
-import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
@@ -55,10 +54,10 @@ class ProfileView extends GetView<ProfileController> {
                   validator: (value) {
                     RegExp regex = RegExp(r'^.{3,}$');
                     if (value!.isEmpty) {
-                      return ("First Name cannot be Empty");
+                      return ("الإسم لا يمكن أن يكون فارغ");
                     }
                     if (!regex.hasMatch(value)) {
-                      return ("Enter Valid name(Min. 3 Character)");
+                      return ("أدخل إسم صالح (علي الأقل 3 أحرف)");
                     }
                     return null;
                   },
@@ -78,8 +77,6 @@ class ProfileView extends GetView<ProfileController> {
                     if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                         .hasMatch(value)) {
                       return ("رجاءً قم بإدخال بريد إلكتروني صحيح");
-
-
                     }
                     return null;
                   },

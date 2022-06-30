@@ -1,4 +1,5 @@
 class DestinationDetails {
+  int? destinationId;
   String? categoryName;
   String? cityName;
   String? hostEmail;
@@ -9,7 +10,8 @@ class DestinationDetails {
   bool? destinationFavorite;
 
   DestinationDetails(
-      {this.categoryName,
+      {this.destinationId,
+      this.categoryName,
       this.cityName,
       this.hostEmail,
       this.hostPhone,
@@ -19,6 +21,7 @@ class DestinationDetails {
       this.destinationFavorite});
 
   DestinationDetails.fromJson(Map<String, dynamic> json) {
+    destinationId = json['destination_id'];
     categoryName = json['category_name'];
     cityName = json['city_name'];
     hostEmail = json['host_email'];
@@ -31,6 +34,7 @@ class DestinationDetails {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['destination_id'] = destinationId;
     data['category_name'] = categoryName;
     data['city_name'] = cityName;
     data['host_email'] = hostEmail;

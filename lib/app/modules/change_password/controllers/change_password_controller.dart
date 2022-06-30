@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:my_trip/app/data/model/user_model.dart';
 import 'package:my_trip/app/data/services/auth_services.dart';
 
 class ChangePasswordController extends GetxController {
   var isLoading = false.obs;
   final passwordFormKey = GlobalKey<FormState>();
-  late Future<UserModel?> userModel;
 
   TextEditingController passwordController = TextEditingController();
 

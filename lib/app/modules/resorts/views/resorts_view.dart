@@ -28,7 +28,7 @@ class ResortsView extends GetView<ResortsController> {
         body: Container(
       padding: EdgeInsets.symmetric(horizontal: width * 0.04),
       child: controller.destinationList?.destianation == null
-          ? const Center(child: DefaultText('something went wrong'))
+          ? const Center(child: DefaultText('لا يوجد وجهات بعد'))
           : Obx(
               () => controller.isDataLoading.value
                   ? const Center(
