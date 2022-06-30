@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:my_trip/app/modules/destination_details/controllers/destination_details_controller.dart';
 import 'package:my_trip/app/modules/destinations/controllers/destinations_controller.dart';
 import 'package:my_trip/app/modules/destinations/widgets/destination_list_tile.dart';
@@ -56,14 +57,16 @@ class Destinations extends GetView<DestinationsController> {
                     } catch (e) {
                       id = 0;
                     }
+                    final storage = GetStorage();
+                    int guestId = storage.read("id");
 
                     return Column(
                       children: [
                         SizedBox(height: 20.h),
                         DestinationListTile(
                           ontap: () {
-                            destinationDetailsController
-                                .getDestinationDetails(id!);
+                            destinationDetailsController.getDestinationDetails(
+                                id!, guestId);
                           },
                           height: height,
                           width: width,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/modules/destination_details/controllers/destination_details_controller.dart';
@@ -50,6 +51,9 @@ class FavoritesView extends GetView<FavoritesController> {
                           } catch (e) {
                             id = 0;
                           }
+                          final storage = GetStorage();
+                          int guestId = storage.read("id");
+
 
                           return Column(
                             children: [
@@ -57,7 +61,7 @@ class FavoritesView extends GetView<FavoritesController> {
                               DestinationListTile(
                                 ontap: () {
                                   destinationDetailsController
-                                      .getDestinationDetails(id!);
+                                      .getDestinationDetails(id!,guestId);
                                 },
                                 height: height,
                                 width: width,

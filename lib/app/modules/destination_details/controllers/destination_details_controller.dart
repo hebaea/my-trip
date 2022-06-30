@@ -34,12 +34,16 @@ class DestinationDetailsController extends GetxController {
   @override
   void onClose() {}
 
-  getDestinationDetails(int id) async {
+  getDestinationDetails(int id, int guestId) async {
     try {
       isDataLoading(true);
       http.Response response = await http.get(
           Uri.tryParse("$baseUrl/destination_details/$id")!,
           headers: {'Content-Type': 'application/json'});
+      body:
+      jsonEncode(<dynamic, dynamic>{
+        "guest_id": guestId,
+      });
       if (response.statusCode == 200 || response.statusCode == 201) {
         var result = jsonDecode(response.body);
         destinationDetails = DestinationDetails.fromJson(result);
