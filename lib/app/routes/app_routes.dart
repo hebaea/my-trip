@@ -22,6 +22,9 @@ abstract class Routes {
   static const HOTELS = _Paths.HOTELS;
   static const APARTMENTS = _Paths.APARTMENTS;
   static const RESORTS = _Paths.RESORTS;
+  static const HOTEL_RESERVATION = _Paths.HOTEL_RESERVATION;
+  static const APPARTMENT_RESERVATION = _Paths.APPARTMENT_RESERVATION;
+  static const CHALETS_RESERVATION = _Paths.CHALETS_RESERVATION;
 }
 
 abstract class _Paths {
@@ -45,4 +48,7 @@ abstract class _Paths {
   static const HOTELS = '/hotels';
   static const APARTMENTS = '/apartments';
   static const RESORTS = '/resorts';
+  static const HOTEL_RESERVATION = '/hotel-reservation';
+  static const APPARTMENT_RESERVATION = '/appartment-reservation';
+  static const CHALETS_RESERVATION = '/chalets-reservation';
 }

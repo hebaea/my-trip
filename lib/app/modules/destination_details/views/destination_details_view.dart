@@ -8,6 +8,7 @@ import 'package:my_trip/app/data/model/destination_model.dart';
 import 'package:my_trip/app/data/model/user_model.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
+import 'package:my_trip/app/routes/app_pages.dart';
 import '../controllers/destination_details_controller.dart';
 
 class DestinationDetailsView extends GetView<DestinationDetailsController> {
@@ -206,7 +207,21 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                       height: width * 0.02,
                     ),
                     SizedBox(height: width * 0.04),
-                    RoundedButton(text: 'إحجز', press: () {}),
+                    RoundedButton(
+                        text: 'إحجز',
+                        press: () {
+                          switch (controller.destinationDetails?.categoryId) {
+                            case (1):
+                              Get.toNamed(Routes.HOTEL_RESERVATION);
+                              break;
+                            case (2):
+                              Get.toNamed(Routes.APPARTMENT_RESERVATION);
+                              break;
+                            case (3):
+                              Get.toNamed(Routes.CHALETS_RESERVATION);
+                              break;
+                          }
+                        }),
                     SizedBox(height: width * 0.02),
                   ],
                 ),
