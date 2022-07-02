@@ -17,7 +17,7 @@ class CityDestinationsView extends GetView<CityDestinationsController> {
         appBar: AppBar(),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-          child: controller.destinationList?.destianation == null
+          child: controller.destinationList?.destination == null
               ? const Center(child: DefaultText('لا وجهات لهذه المدينة'))
               : Obx(
                   () => controller.isDataLoading.value
@@ -29,14 +29,14 @@ class CityDestinationsView extends GetView<CityDestinationsController> {
                             String name = "";
                             try {
                               name = controller
-                                  .destinationList!.destianation![i].ownerName!;
+                                  .destinationList!.destination![i].ownerName!;
                             } catch (e) {
                               name = "";
                             }
                             String address = "";
                             try {
                               address = controller.destinationList!
-                                  .destianation![i].destinationAddress!;
+                                  .destination![i].destinationAddress!;
                             } catch (e) {
                               address = "";
                             }
@@ -46,7 +46,7 @@ class CityDestinationsView extends GetView<CityDestinationsController> {
                                 SizedBox(height: 20.h),
                                 DestinationListTile(
                                   ontap: () =>
-                                      Get.toNamed(Routes.DESTINATION_DETAILS),
+                                      Get.toNamed(Routes.DESTINATION_DETAILS), //TODO
                                   height: height,
                                   width: width,
                                   image: "assets/images/destination1.jpeg",
@@ -59,7 +59,7 @@ class CityDestinationsView extends GetView<CityDestinationsController> {
                             );
                           },
                           itemCount:
-                              controller.destinationList!.destianation!.length,
+                              controller.destinationList!.destination!.length,
                         ),
                 ),
         ));

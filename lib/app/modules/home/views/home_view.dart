@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
 import 'package:my_trip/app/modules/apartments/controllers/apartments_controller.dart';
 import 'package:my_trip/app/modules/city_destinations/controllers/city_destinations_controller.dart';
+import 'package:my_trip/app/modules/destination_details/controllers/destination_details_controller.dart';
 import 'package:my_trip/app/modules/destinations/controllers/destinations_controller.dart';
 import 'package:my_trip/app/modules/home/controllers/home_controller.dart';
 import 'package:my_trip/app/modules/home/widgets/ads_item.dart';
@@ -23,6 +25,7 @@ class HomeView extends GetView<HomeController> {
   final resortsController = Get.find<ResortsController>();
   final apartmentsController = Get.find<ApartmentsController>();
   final hotelsController = Get.find<HotelsController>();
+  final destinationDetailsController = Get.find<DestinationDetailsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -119,22 +122,49 @@ class HomeView extends GetView<HomeController> {
               SizedBox(
                 height: 150,
                 width: double.infinity,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    AdsItem(
-                      context: context,
-                      link: "assets/2.webp",
-                      location: "بنغازي , درنة",
-                      place: "فندق الصفوة",
-                    ),
-                    AdsItem(
-                      link: "assets/1.webp",
-                      context: context,
-                      place: "فندق الودان",
-                      location: 'طرابلس , الظهرة',
-                    )
-                  ],
+                child: Obx(
+                  () => controller.isDataLoading.value
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (ctx, i) {
+                            int? id = 0;
+                            try {
+                              // id = destinationDetailsController.destinationList[i];
+                              id = destinationsController.destinationList!
+                                  .destination![i].destinationId;
+                            } catch (e) {
+                              id = 0;
+                            }
+                            final storage = GetStorage();
+                            int guestId = storage.read("id");
+                            String img = "";
+                            try {
+                              img = controller.adsList!.ads![i].adsImg!;
+                            } catch (e) {
+                              img = "";
+                            }
+                            return AdsItem(
+                              context: context,
+                              link: img,
+                              onTap: () {
+                                destinationDetailsController
+                                    .getDestinationDetails(id!, guestId);
+                              },
+                              // location: "بنغازي , درنة",
+                              // place: "فندق الصفوة",
+                            );
+                            // AdsItem(
+                            //   link: "assets/1.webp",
+                            //   context: context,
+                            //   place: "فندق الودان",
+                            //   location: 'طرابلس , الظهرة',
+                            // )
+                          },
+                          itemCount: controller.adsList!.ads!.length,
+                        ),
                 ),
               ),
               Padding(

@@ -47,20 +47,11 @@ class RegisterController extends GetxController {
             email: emailController.text,
             password: passwordController.text);
         if (data != null) {
-          print("---------- data ----------------------");
-
-          print(data.toString());
           await storage.write("name", data.guestName);
           await storage.write("email", data.guestEmail);
           await storage.write("token", data.token);
           await storage.write("id", data.guestId);
           // registerFormKey.currentState!.save();
-          print("------------------storage------------------------------");
-          String? name = storage.read("name");
-          String? token = storage.read("token");
-
-          print(name);
-          print(token);
           Get.offAllNamed(Routes.DASHBOARD);
         } else {
           // customSnackbar(

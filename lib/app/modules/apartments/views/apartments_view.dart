@@ -27,8 +27,8 @@ class ApartmentsView extends GetView<ApartmentsController> {
         // ),
         body: Container(
       padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-      child: controller.destinationList?.destianation == null
-          ? const Center(child: DefaultText('something went wrong'))
+      child: controller.destinationList?.destination == null
+          ? const Center(child: DefaultText('لا يوجد وجهات بعد'))
           : Obx(
               () => controller.isDataLoading.value
                   ? const Center(
@@ -39,13 +39,13 @@ class ApartmentsView extends GetView<ApartmentsController> {
                         String name = "";
                         try {
                           name = controller
-                              .destinationList!.destianation![i].ownerName!;
+                              .destinationList!.destination![i].ownerName!;
                         } catch (e) {
                           name = "";
                         }
                         String address = "";
                         try {
-                          address = controller.destinationList!.destianation![i]
+                          address = controller.destinationList!.destination![i]
                               .destinationAddress!;
                         } catch (e) {
                           address = "";
@@ -57,6 +57,7 @@ class ApartmentsView extends GetView<ApartmentsController> {
                             DestinationListTile(
                               ontap: () =>
                                   Get.toNamed(Routes.DESTINATION_DETAILS),
+                              //TODO
                               height: height,
                               width: width,
                               image: "assets/images/destination1.jpeg",
@@ -69,7 +70,7 @@ class ApartmentsView extends GetView<ApartmentsController> {
                         );
                       },
                       itemCount:
-                          controller.destinationList!.destianation!.length,
+                          controller.destinationList!.destination!.length,
                     ),
             ),
     ));

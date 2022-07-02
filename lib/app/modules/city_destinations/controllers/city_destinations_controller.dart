@@ -31,7 +31,7 @@ class CityDestinationsController extends GetxController {
       if (response.statusCode == 200 || response.statusCode == 201) {
         var result = jsonDecode(response.body);
         destinationList = CityShowDestinations.fromJson(result);
-        Get.toNamed(Routes.CITY_DESTINATIONS);
+        // Get.toNamed(Routes.CITY_DESTINATIONS);
       } else {
         //error
         print("-------------------else -----------------------------");

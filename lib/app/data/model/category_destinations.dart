@@ -1,27 +1,27 @@
 class CategoryDestinations {
-  List<Destianation>? destianation;
+  List<Destination>? destination;
 
-  CategoryDestinations({this.destianation});
+  CategoryDestinations({this.destination});
 
   CategoryDestinations.fromJson(Map<String, dynamic> json) {
-    if (json['destianation'] != null) {
-      destianation = <Destianation>[];
-      json['destianation'].forEach((v) {
-        destianation!.add(Destianation.fromJson(v));
+    if (json['destination'] != null) {
+      destination = <Destination>[];
+      json['destination'].forEach((v) {
+        destination!.add(Destination.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if (this.destianation != null) {
-      data['destianation'] = this.destianation!.map((v) => v.toJson()).toList();
+    if (destination != null) {
+      data['destination'] = destination!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class Destianation {
+class Destination {
   int? destinationId;
   String? ownerName;
   int? hostId;
@@ -33,7 +33,7 @@ class Destianation {
   String? destinationEvaluation;
   bool? destinationFavorite;
 
-  Destianation({
+  Destination({
     this.destinationId,
     this.ownerName,
     this.hostId,
@@ -46,7 +46,7 @@ class Destianation {
     this.destinationFavorite,
   });
 
-  Destianation.fromJson(Map<String, dynamic> json) {
+  Destination.fromJson(Map<String, dynamic> json) {
     destinationId = json['destination_id'];
     ownerName = json['owner_name'];
     hostId = json['host_id'];

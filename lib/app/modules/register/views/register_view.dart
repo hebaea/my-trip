@@ -45,7 +45,7 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                   ),
                   RoundedInputField(
-                    hintText: "الاسم و اللقب",
+                    hintText: "الاسم",
                     controller: controller.nameController,
                     keyboardType: TextInputType.name,
                     validator: (value) {

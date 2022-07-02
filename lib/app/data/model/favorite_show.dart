@@ -1,9 +1,9 @@
-class CityShowDestinations {
+class FavoriteShow {
   List<Destination>? destination;
 
-  CityShowDestinations({this.destination});
+  FavoriteShow({this.destination});
 
-  CityShowDestinations.fromJson(Map<String, dynamic> json) {
+  FavoriteShow.fromJson(Map<String, dynamic> json) {
     if (json['destination'] != null) {
       destination = <Destination>[];
       json['destination'].forEach((v) {
@@ -23,54 +23,38 @@ class CityShowDestinations {
 
 class Destination {
   int? destinationId;
-  String? ownerName;
-  int? hostId;
+  String? destinationName;
+
   int? categoryId;
-  int? cityId;
   String? destinationAddress;
   String? destinationImg;
-  bool? destinationStauts;
   String? destinationEvaluation;
-  bool? destinationFavorite;
 
-  Destination({
-    this.destinationId,
-    this.ownerName,
-    this.hostId,
-    this.categoryId,
-    this.cityId,
-    this.destinationAddress,
-    this.destinationImg,
-    this.destinationStauts,
-    this.destinationEvaluation,
-    this.destinationFavorite,
-  });
+  Destination(
+      {this.destinationId,
+      this.destinationName,
+      this.categoryId,
+      this.destinationAddress,
+      this.destinationImg,
+      this.destinationEvaluation});
 
   Destination.fromJson(Map<String, dynamic> json) {
     destinationId = json['destination_id'];
-    ownerName = json['owner_name'];
-    hostId = json['host_id'];
+    destinationName = json['destination_name'];
     categoryId = json['category_id'];
-    cityId = json['city_id'];
     destinationAddress = json['destination_address'];
     destinationImg = json['destination_img'];
-    destinationStauts = json['destination_stauts'];
     destinationEvaluation = json['destination_evaluation'];
-    destinationFavorite = json['destination_favorite'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['destination_id'] = destinationId;
-    data['owner_name'] = ownerName;
-    data['host_id'] = hostId;
+    data['destination_name'] = destinationName;
     data['category_id'] = categoryId;
-    data['city_id'] = cityId;
     data['destination_address'] = destinationAddress;
     data['destination_img'] = destinationImg;
-    data['destination_stauts'] = destinationStauts;
     data['destination_evaluation'] = destinationEvaluation;
-    data['destination_favorite'] = destinationFavorite;
     return data;
   }
 }

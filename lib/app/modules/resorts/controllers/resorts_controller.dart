@@ -34,7 +34,7 @@ class ResortsController extends GetxController {
         var result = jsonDecode(response.body);
         destinationList = CategoryDestinations.fromJson(result);
         print("10*50");
-        print(destinationList?.destianation?.first.categoryId);
+        print(destinationList?.destination?.first.categoryId);
         Get.toNamed(Routes.RESORTS);
       } else {
         //error
