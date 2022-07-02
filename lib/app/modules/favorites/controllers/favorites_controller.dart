@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 
 class FavoritesController extends GetxController {
   FavoriteShow? favoriteList;
+
   var isDataLoading = false.obs;
   final storage = GetStorage();
 
@@ -28,6 +29,7 @@ class FavoritesController extends GetxController {
   void onClose() {}
 
   getUserFavorites(int id) async {
+    print("igot here in get user favorites ");
     try {
       isDataLoading(true);
       http.Response response = await http.get(

@@ -17,9 +17,11 @@ class FavoritesView extends GetView<FavoritesController> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
+    print("this is favorite list ");
+    print(controller.favoriteList?.destination);
+    // print(controller.favoriteList!.destination!.isNotEmpty);
     return Scaffold(
-      body: controller.favoriteList?.destination != null
+      body: controller.favoriteList!.destination != []
           ? Container(
               padding: EdgeInsets.symmetric(horizontal: width * 0.04),
               child: Obx(
@@ -31,8 +33,8 @@ class FavoritesView extends GetView<FavoritesController> {
                         itemBuilder: (ctx, i) {
                           String name = "";
                           try {
-                            name = controller.favoriteList!.destination![i]
-                                .destinationAddress!;
+                            name = controller
+                                .favoriteList!.destination![i].destinationName!;
                           } catch (e) {
                             name = "";
                           }
@@ -54,14 +56,13 @@ class FavoritesView extends GetView<FavoritesController> {
                           final storage = GetStorage();
                           int guestId = storage.read("id");
 
-
                           return Column(
                             children: [
                               SizedBox(height: 20.h),
                               DestinationListTile(
                                 ontap: () {
                                   destinationDetailsController
-                                      .getDestinationDetails(id!,guestId);
+                                      .getDestinationDetails(id!, guestId);
                                 },
                                 height: height,
                                 width: width,

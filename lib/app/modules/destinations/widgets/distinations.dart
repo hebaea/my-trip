@@ -38,7 +38,7 @@ class Destinations extends GetView<DestinationsController> {
                     String name = "";
                     try {
                       name = controller
-                          .destinationList!.destination![i].ownerName!;
+                          .destinationList!.destination![i].destinationName!;
                     } catch (e) {
                       name = "";
                     }

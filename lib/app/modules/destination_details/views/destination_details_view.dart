@@ -68,21 +68,34 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
 
                                   var guestId = storage.read('id');
                                   print("this is guestId id ${guestId}");
+                                  print(
+                                      "this is isFavorite  ${controller.destinationDetails!.isFavorite}");
 
-                                  controller.makeFavorite(
-                                    guestId,
-                                    controller
-                                        .destinationDetails?.destinationId,
-                                  );
+                                  if (controller
+                                          .destinationDetails!.isFavorite ==
+                                      0) {
+                                    controller.makeFavorite(
+                                      guestId,
+                                      controller
+                                          .destinationDetails?.destinationId,
+                                    );
+                                  } else {
+                                    controller.makeunFavorite(
+                                        guestId,
+                                        controller
+                                            .destinationDetails?.destinationId);
+                                  }
                                 },
-                                child: controller.isFavorite.value == true
-                                    ? Icon(
-                                        PhosphorIcons.heart_fill,
-                                        color: AppThemeColors.error500,
-                                      )
-                                    : Icon(
-                                        PhosphorIcons.heart_fill,
-                                      ),
+                                child:
+                                    controller.destinationDetails!.isFavorite ==
+                                            1
+                                        ? Icon(
+                                            PhosphorIcons.heart_fill,
+                                            color: AppThemeColors.error500,
+                                          )
+                                        : Icon(
+                                            PhosphorIcons.heart_fill,
+                                          ),
                                 style: ElevatedButton.styleFrom(
                                   shape: const CircleBorder(),
                                 ),
@@ -122,7 +135,7 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                     ),
                     SizedBox(height: width * 0.02),
                     DefaultText(
-                      'اسم المكان',
+                      '${controller.destinationDetails?.destinationName}',
                       color: Colors.black,
                       fontSize: width * 0.045,
                       fontWeight: FontWeight.w800,

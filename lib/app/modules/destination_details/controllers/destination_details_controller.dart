@@ -15,11 +15,13 @@ import 'package:my_trip/app/routes/app_pages.dart';
 class DestinationDetailsController extends GetxController {
   var isDataLoading = false.obs;
   DestinationDetails? destinationDetails;
-  Destination? destination;
-  UserModel? user;
+
+  // Destination? destination;
+  // UserModel? user;
   CreateFavorite? createFavorite;
-  var isFavorite = false.obs;
-  final storage = GetStorage();
+
+  // var isFavorite = false.obs;
+  // final storage = GetStorage();
 
   @override
   void onInit() {
@@ -38,12 +40,12 @@ class DestinationDetailsController extends GetxController {
     try {
       isDataLoading(true);
       http.Response response = await http.get(
-          Uri.tryParse("$baseUrl/destination_details/$id")!,
-          headers: {'Content-Type': 'application/json'});
-      body:
-      jsonEncode(<dynamic, dynamic>{
-        "guest_id": guestId,
-      });
+        Uri.parse("$baseUrl/destination_details/$guestId/$id"),
+        headers: {'Content-Type': 'application/json'},
+        // body: jsonEncode(<dynamic, int>{
+        //   "guest_id": guestId,
+        // }),
+      );
       if (response.statusCode == 200 || response.statusCode == 201) {
         var result = jsonDecode(response.body);
         destinationDetails = DestinationDetails.fromJson(result);
@@ -53,7 +55,7 @@ class DestinationDetailsController extends GetxController {
         return null;
       }
     } catch (e) {
-      print('error while getting data $e');
+      print('error while getting DESTINATION DETAILS DATA $e');
     } finally {
       isDataLoading(false);
     }
@@ -112,20 +114,93 @@ class DestinationDetailsController extends GetxController {
     isDataLoading(true);
 
     try {
-      isFavorite(true);
+      // isFavorite(true);
 
       await favorite(guestId: guestId, destinationId: destinationId);
       print(
           "im here ------------------in favorite-------------------------------------------------------");
-      print("isFavorite:");
-      print(isFavorite);
-      print("isFavorite.value:");
-      print(isFavorite.value);
+      // print("isFavorite:");
+      // print(isFavorite);
+      // print("isFavorite.value:");
+      // print(isFavorite.value);
+      //
+      // await storage.write("isFavorite", isFavorite.value);
+      // var fav = storage.read("isFavorite");
+      // print("fav : ");
+      // print(fav);
+    } catch (e) {
+      print(">>>>>>>>>>>>>>>>>>>>>>>>");
+      print('error >>>>>>>>>>>> $e');
+    } finally {
+      isDataLoading(false);
+    }
+  }
 
-      await storage.write("isFavorite", isFavorite.value);
-      var fav = storage.read("isFavorite");
-      print("fav : ");
-      print(fav);
+  static Future unfavorite({
+    required guestId,
+    required destinationId,
+  }) async {
+    print(" ================ in services $guestId and $destinationId");
+
+    var response = await client.post(
+      Uri.parse("$baseUrl/unfavorite"),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': "application/json"
+      },
+      body: jsonEncode(<dynamic, dynamic>{
+        "guest_id": guestId,
+        "destination_id": destinationId,
+      }),
+    );
+
+    print(
+        "------------------- state ${response.statusCode} ---------------------- ");
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print(
+          "im here -------------------------------------------------------------------------");
+
+      MessageFromBackend? messageFromBackend;
+      var result = jsonDecode(response.body);
+      messageFromBackend = MessageFromBackend.fromJson(result);
+      return customSnackbar("المفضلة", messageFromBackend.message, "success");
+    } else if (response.statusCode == 400) {
+      MessageFromBackend? messageFromBackend;
+      var result = jsonDecode(response.body);
+      messageFromBackend = MessageFromBackend.fromJson(result);
+      return customSnackbar("المفضلة", messageFromBackend.message, "error");
+    } else {
+      FavoriteValidation? favoriteValidation;
+      var result = jsonDecode(response.body);
+      favoriteValidation = FavoriteValidation.fromJson(result);
+      return customSnackbar(
+          "المفضلة",
+          "${favoriteValidation.destinationId?.first} \n ${favoriteValidation.guestId?.first}",
+          "error");
+    }
+  }
+
+  makeunFavorite(int? guestId, int? destinationId) async {
+    print(" ================ $guestId and $destinationId");
+
+    isDataLoading(true);
+
+    try {
+      // isFavorite(true);
+
+      await unfavorite(guestId: guestId, destinationId: destinationId);
+      print(
+          "im here ------------------in UNfavorite-------------------------------------------------------");
+      // print("isFavorite:");
+      // print(isFavorite);
+      // print("isFavorite.value:");
+      // print(isFavorite.value);
+      //
+      // await storage.write("isFavorite", isFavorite.value);
+      // var fav = storage.read("isFavorite");
+      // print("fav : ");
+      // print(fav);
     } catch (e) {
       print(">>>>>>>>>>>>>>>>>>>>>>>>");
       print('error >>>>>>>>>>>> $e');

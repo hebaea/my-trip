@@ -23,6 +23,8 @@ class FavoriteShow {
 
 class Destination {
   int? destinationId;
+  String? destinationName;
+
   int? categoryId;
   String? destinationAddress;
   String? destinationImg;
@@ -30,6 +32,7 @@ class Destination {
 
   Destination(
       {this.destinationId,
+      this.destinationName,
       this.categoryId,
       this.destinationAddress,
       this.destinationImg,
@@ -37,6 +40,7 @@ class Destination {
 
   Destination.fromJson(Map<String, dynamic> json) {
     destinationId = json['destination_id'];
+    destinationName = json['destination_name'];
     categoryId = json['category_id'];
     destinationAddress = json['destination_address'];
     destinationImg = json['destination_img'];
@@ -46,6 +50,7 @@ class Destination {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['destination_id'] = destinationId;
+    data['destination_name'] = destinationName;
     data['category_id'] = categoryId;
     data['destination_address'] = destinationAddress;
     data['destination_img'] = destinationImg;
