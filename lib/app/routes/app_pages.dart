@@ -154,9 +154,9 @@ class AppPages {
       binding: HotelReservationBinding(),
     ),
     GetPage(
-      name: _Paths.APPARTMENT_RESERVATION,
-      page: () => AppartmentReservationView(),
-      binding: AppartmentReservationBinding(),
+      name: _Paths.APARTMENT_RESERVATION,
+      page: () => ApartmentReservationView(),
+      binding: ApartmentReservationBinding(),
     ),
     GetPage(
       name: _Paths.CHALETS_RESERVATION,

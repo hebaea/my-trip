@@ -8,6 +8,7 @@ import 'package:my_trip/app/data/model/destination_model.dart';
 import 'package:my_trip/app/data/model/user_model.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
+import 'package:my_trip/app/modules/appartment_reservation/controllers/appartment_reservation_controller.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
 import '../controllers/destination_details_controller.dart';
 
@@ -16,11 +17,15 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
   DestinationDetails? destinationDetails;
   Destination? destination;
   UserModel? user;
+  final apartmentReservationController =
+      Get.find<ApartmentReservationController>();
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    int? destinationId = controller.destinationDetails?.destinationId;
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -215,7 +220,9 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                               Get.toNamed(Routes.HOTEL_RESERVATION);
                               break;
                             case (2):
-                              Get.toNamed(Routes.APPARTMENT_RESERVATION);
+                              apartmentReservationController
+                                  .reservationShowApartment(
+                                      destinationId: destinationId);
                               break;
                             case (3):
                               Get.toNamed(Routes.CHALETS_RESERVATION);
