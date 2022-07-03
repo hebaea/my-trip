@@ -2,20 +2,30 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:my_trip/app/core/utils/baseurl.dart';
+import 'package:my_trip/app/core/utils/custom_snackbar.dart';
 import 'package:my_trip/app/data/model/appartment_reservation.dart';
+import 'package:my_trip/app/data/model/message_from_backend.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
 
 class ApartmentReservationController extends GetxController {
   static var client = http.Client();
   ApartmentReservation? apartmentReservation;
   var isDataLoading = false.obs;
+  var checkBool = false.obs;
+  final storage = GetStorage();
   var dateRange = DateTimeRange(
     start: DateTime.now(),
     end: DateTime(
         DateTime.now().year, DateTime.now().month, DateTime.now().day + 6),
   ).obs;
+
+  changeVal(value) {
+    value = !value;
+  }
 
   @override
   void onInit() {
@@ -104,4 +114,59 @@ class ApartmentReservationController extends GetxController {
 //   }
 //   return false;
 // }
+  Future makeApartmentReservation({required destinationId}) async {
+    try {
+      isDataLoading(true);
+
+      String guestId = storage.read("id");
+      String checkInDate =
+          DateFormat("dd-MM-yyyy").format(dateRange.value.start);
+      String checkOutDate =
+          DateFormat("dd-MM-yyyy").format(dateRange.value.end);
+
+      //TODO send services
+
+      var apartmentPrice =
+          apartmentReservation?.apartment?.first.apartmentPrice;
+      var apartmentId = apartmentReservation?.apartment?.first.apartmentId;
+
+      //TODO SELECTED SERVICE ID AND SELECTED SERVICE PRICE
+      var bodyData = <String, dynamic>{};
+      bodyData['guest_id'] = guestId;
+      bodyData['Checkin_date'] = checkInDate;
+      bodyData['Checkout_date'] = checkOutDate;
+      bodyData['apartment_price'] = apartmentPrice;
+      bodyData['apartment_id'] = apartmentId;
+
+      var response = await client.post(
+        Uri.parse("$baseUrl/reservation_create/$destinationId"),
+        headers: {
+          'Accept': "application/json",
+        },
+        body: bodyData,
+      );
+
+      var result = await json.decode(response.body);
+      print(
+          "------------------- state ${response.statusCode} ---------------------- ");
+      print("------------------- res ${result} ---------------------- ");
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        // customSnackbar("الحجز", result, "success");
+        // apartmentReservation = ApartmentReservation.fromJson(result);
+        // Get.toNamed(Routes.APARTMENT_RESERVATION);
+        MessageFromBackend? messageFromBackend;
+        var result = jsonDecode(response.body);
+        messageFromBackend = MessageFromBackend.fromJson(result);
+        return customSnackbar("الحجز", messageFromBackend.message, "success");
+      }
+      {
+        return null;
+      }
+    } catch (e) {
+      print('error while makeApartmentReservation $e');
+    } finally {
+      isDataLoading(false);
+    }
+  }
 }

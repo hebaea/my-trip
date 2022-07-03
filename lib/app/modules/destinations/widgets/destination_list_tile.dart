@@ -35,8 +35,8 @@ class DestinationListTile extends StatelessWidget {
                   color: Colors.black,
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                      image: AssetImage(
-                        image,
+                      image: NetworkImage(
+                        'https://mytrip.justhost.ly/$image',
                       ),
                       fit: BoxFit.cover,
                       isAntiAlias: true)),

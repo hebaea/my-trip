@@ -33,9 +33,10 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
             children: [
               Container(
                 height: height / 2,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/images/travel-details.jpg"),
+                    image: NetworkImage(
+                        'https://mytrip.justhost.ly/${controller.destinationDetails?.destinationImg}'),
                     // <-- BACKGROUND IMAGE
                     fit: BoxFit.cover,
                   ),
