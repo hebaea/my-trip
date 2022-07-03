@@ -37,7 +37,9 @@ class AdsItem extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.r),
                     image: DecorationImage(
-                        image: AssetImage((link!)), fit: BoxFit.cover)),
+                        image:
+                            NetworkImage(('https://mytrip.justhost.ly/$link')),
+                        fit: BoxFit.cover)),
               ),
               Container(
                 width: 350.w,

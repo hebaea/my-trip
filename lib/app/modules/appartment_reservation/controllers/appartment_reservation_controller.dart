@@ -72,7 +72,7 @@ class ApartmentReservationController extends GetxController {
     }
   }
 
-  choooseDateRangePicker() async {
+  chooseDateRangePicker() async {
     DateTimeRange? pickedDate = await showDateRangePicker(
       context: Get.context!,
       initialDateRange: dateRange.value,

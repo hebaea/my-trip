@@ -72,7 +72,7 @@ class ChaletsReservationController extends GetxController {
     }
   }
 
-  choooseDateRangePicker() async {
+  chooseDateRangePicker() async {
     DateTimeRange? pickedDate = await showDateRangePicker(
       context: Get.context!,
       initialDateRange: dateRange.value,
@@ -129,7 +129,7 @@ class ChaletsReservationController extends GetxController {
         return null;
       }
     } catch (e) {
-      print('error while makeApartmentReservation $e');
+      print('error while makeChaletReservation $e');
     } finally {
       isDataLoading(false);
     }

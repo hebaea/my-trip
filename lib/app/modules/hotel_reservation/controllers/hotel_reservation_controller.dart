@@ -65,13 +65,13 @@ class HotelReservationController extends GetxController {
         return null;
       }
     } catch (e) {
-      print('error while getting reservationShowApartment $e');
+      print('error while getting reservationShowHotel $e');
     } finally {
       isDataLoading(false);
     }
   }
 
-  choooseDateRangePicker() async {
+  chooseDateRangePicker() async {
     DateTimeRange? pickedDate = await showDateRangePicker(
       context: Get.context!,
       initialDateRange: dateRange.value,
@@ -128,7 +128,7 @@ class HotelReservationController extends GetxController {
         return null;
       }
     } catch (e) {
-      print('error while makeApartmentReservation $e');
+      print('error while makeHotelReservation $e');
     } finally {
       isDataLoading(false);
     }

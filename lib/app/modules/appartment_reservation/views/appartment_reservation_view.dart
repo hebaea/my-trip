@@ -83,7 +83,7 @@ class ApartmentReservationView extends GetView<ApartmentReservationController> {
           SizedBox(height: 20.h),
           RoundedButton(
             press: () {
-              controller.choooseDateRangePicker();
+              controller.chooseDateRangePicker();
             },
             text: 'إختر تاريخ الحجز',
           ),

@@ -40,7 +40,7 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                     // <-- BACKGROUND IMAGE
                     fit: BoxFit.cover,
                   ),
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     bottomRight: Radius.circular(80),
                   ),
                 ),
