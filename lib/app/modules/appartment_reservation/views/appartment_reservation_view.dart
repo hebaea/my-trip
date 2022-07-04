@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
+import 'package:my_trip/app/data/model/appartment_reservation.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/modules/destination_details/controllers/destination_details_controller.dart';
@@ -100,9 +102,27 @@ class ApartmentReservationView extends GetView<ApartmentReservationController> {
               ? const CircularProgressIndicator()
               : RoundedButton(
                   press: () {
+                    String checkInDate = DateFormat("dd-MM-yyyy")
+                        .format(controller.dateRange.value.start);
+                    String checkOutDate = DateFormat("dd-MM-yyyy")
+                        .format(controller.dateRange.value.end);
+
+                    final storage = GetStorage();
+
+                    int guestId = storage.read("id");
+
+                    print(
+                        "--------------- Here Pressed ----------------------");
+                    print(guestId);
                     controller.makeApartmentReservation(
                         destinationId: destinationDetailsController
-                            .destinationDetails?.destinationId);
+                            .destinationDetails?.destinationId,
+                        guestId: guestId,
+                        checkInDate: checkInDate,
+                        apartmentPrice: controller.apartmentReservation
+                            ?.apartment?.first.apartmentPrice
+                            ?.toDouble(),
+                        checkOutDate: checkOutDate);
                   },
                   text: 'إتمام عملية الحجز',
                 ))

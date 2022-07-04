@@ -114,36 +114,56 @@ class ApartmentReservationController extends GetxController {
 //   }
 //   return false;
 // }
-  Future makeApartmentReservation({required destinationId}) async {
+  Future<MessageFromBackend?> makeApartmentReservation(
+      {required destinationId,
+      required guestId,
+      required checkInDate,
+      required checkOutDate,
+      required apartmentPrice,
+      services}) async {
     try {
       isDataLoading(true);
+      print("================== d  = ${destinationId} ================");
 
-      String guestId = storage.read("id");
-      String checkInDate =
-          DateFormat("dd-MM-yyyy").format(dateRange.value.start);
-      String checkOutDate =
-          DateFormat("dd-MM-yyyy").format(dateRange.value.end);
-
-      //TODO send services
-
-      var apartmentPrice =
-          apartmentReservation?.apartment?.first.apartmentPrice;
-      var apartmentId = apartmentReservation?.apartment?.first.apartmentId;
-
+      // int de = destinationId as int;
+      // int guestId = storage.read("id");
+      // String checkInDate =
+      //     DateFormat("dd-MM-yyyy").format(dateRange.value.start);
+      // String checkOutDate =
+      //     DateFormat("dd-MM-yyyy").format(dateRange.value.end);
+      //
+      // double? apartmentPrice =
+      //     apartmentReservation?.apartment?.first.apartmentPrice?.toDouble();
+      // int apartmentId =
+      //     apartmentReservation?.apartment?.first.apartmentId as int;
+      List<Services>? services;
+      services = [];
       //TODO SELECTED SERVICE ID AND SELECTED SERVICE PRICE
-      var bodyData = <String, dynamic>{};
-      bodyData['guest_id'] = guestId;
-      bodyData['Checkin_date'] = checkInDate;
-      bodyData['Checkout_date'] = checkOutDate;
-      bodyData['apartment_price'] = apartmentPrice;
-      bodyData['apartment_id'] = apartmentId;
-
+      // var bodyData = <String, dynamic>{};
+      // bodyData['guest_id'] = '${guestId}';
+      // bodyData['Checkin_date'] = '${checkInDate}';
+      // bodyData['Checkout_date'] = '${checkOutDate}';
+      // bodyData['apartment_price'] = '${apartmentPrice}';
+      // bodyData['apartment_id'] = '${apartmentId}';
+      // bodyData['services'] = 'services';
+      print('+++++++++++++++++++++++++++++++++++');
+      print(guestId);
+      // print(bodyData);
       var response = await client.post(
         Uri.parse("$baseUrl/reservation_create/$destinationId"),
         headers: {
           'Accept': "application/json",
         },
-        body: bodyData,
+        body: jsonEncode(<String, dynamic>{
+          "guest_id": guestId,
+          "Checkin_date": checkInDate,
+          "Checkout_date": checkOutDate,
+          "apartment_price": apartmentPrice,
+          // "apartment_id": apartmentId,
+          "services": services,
+        }),
+
+        // bodyData
       );
 
       var result = await json.decode(response.body);
@@ -159,9 +179,6 @@ class ApartmentReservationController extends GetxController {
         var result = jsonDecode(response.body);
         messageFromBackend = MessageFromBackend.fromJson(result);
         return customSnackbar("الحجز", messageFromBackend.message, "success");
-      }
-      {
-        return null;
       }
     } catch (e) {
       print('error while makeApartmentReservation $e');

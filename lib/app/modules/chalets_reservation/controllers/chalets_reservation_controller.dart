@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -44,9 +43,9 @@ class ChaletsReservationController extends GetxController {
     try {
       isDataLoading(true);
 
-      var response = await client.post(
+      var response = await http.post(
         Uri.parse("$baseUrl/reservation_show/$destinationId"),
-        headers: {
+        headers: <String, String>{
           'Accept': "application/json",
           // 'Content-Type': 'application/x-www-form-urlencoded'
         },
@@ -87,11 +86,12 @@ class ChaletsReservationController extends GetxController {
     }
   }
 
-  Future makeChaletReservation({required destinationId}) async {
+  Future<MessageFromBackend?> makeChaletReservation(
+      {required int? destinationId}) async {
     try {
       isDataLoading(true);
 
-      String guestId = storage.read("id");
+      int guestId = storage.read("id");
       String checkInDate =
           DateFormat("dd-MM-yyyy").format(dateRange.value.start);
       String checkOutDate =
@@ -101,17 +101,25 @@ class ChaletsReservationController extends GetxController {
       //TODO send rooms
 
       //TODO SELECTED SERVICE ID AND SELECTED SERVICE PRICE
-      var bodyData = <String, dynamic>{};
-      bodyData['guest_id'] = guestId;
-      bodyData['Checkin_date'] = checkInDate;
-      bodyData['Checkout_date'] = checkOutDate;
+      //TODO SELECTED chalets ID AND chalets SERVICE PRICE
 
-      var response = await client.post(
+      List<Services>? services;
+      services = [];
+      List<Chalets>? chalets;
+      chalets = [];
+      final response = await http.post(
         Uri.parse("$baseUrl/reservation_create/$destinationId"),
-        headers: {
+        headers: <String, String>{
           'Accept': "application/json",
         },
-        body: bodyData,
+        body: jsonEncode(<String, dynamic>{
+          "guest_id": guestId,
+          "Checkin_date": checkInDate,
+          "Checkout_date": checkOutDate,
+          "services": services,
+          "chalets": chalets
+        }),
+        // bodyData,
       );
 
       var result = await json.decode(response.body);
@@ -124,14 +132,14 @@ class ChaletsReservationController extends GetxController {
         var result = jsonDecode(response.body);
         messageFromBackend = MessageFromBackend.fromJson(result);
         return customSnackbar("الحجز", messageFromBackend.message, "success");
-      }
-      {
-        return null;
+      } else {
+        throw Exception('Failed to create customSnackbar.');
       }
     } catch (e) {
       print('error while makeChaletReservation $e');
     } finally {
       isDataLoading(false);
     }
+    return null;
   }
 }

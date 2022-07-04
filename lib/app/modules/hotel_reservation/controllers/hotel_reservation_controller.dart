@@ -86,7 +86,8 @@ class HotelReservationController extends GetxController {
     }
   }
 
-  Future makeHotelReservation({required destinationId}) async {
+  Future<MessageFromBackend?> makeHotelReservation(
+      {required destinationId}) async {
     try {
       isDataLoading(true);
 
@@ -100,17 +101,26 @@ class HotelReservationController extends GetxController {
       //TODO send rooms
 
       //TODO SELECTED SERVICE ID AND SELECTED SERVICE PRICE
-      var bodyData = <String, dynamic>{};
-      bodyData['guest_id'] = guestId;
-      bodyData['Checkin_date'] = checkInDate;
-      bodyData['Checkout_date'] = checkOutDate;
+      //TODO SELECTED rooms ID AND SELECTED rooms PRICE
+
+      List<Services>? services;
+      services = [];
+      List<Rooms>? rooms;
+      rooms = [];
 
       var response = await client.post(
         Uri.parse("$baseUrl/reservation_create/$destinationId"),
         headers: {
           'Accept': "application/json",
         },
-        body: bodyData,
+        body: jsonEncode(<String, dynamic>{
+          "guest_id": guestId,
+          "Checkin_date": checkInDate,
+          "Checkout_date": checkOutDate,
+          "services": services,
+          "rooms": rooms
+        }),
+        // bodyData,
       );
 
       var result = await json.decode(response.body);
@@ -123,9 +133,6 @@ class HotelReservationController extends GetxController {
         var result = jsonDecode(response.body);
         messageFromBackend = MessageFromBackend.fromJson(result);
         return customSnackbar("الحجز", messageFromBackend.message, "success");
-      }
-      {
-        return null;
       }
     } catch (e) {
       print('error while makeHotelReservation $e');
