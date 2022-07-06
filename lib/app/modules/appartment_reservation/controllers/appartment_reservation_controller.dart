@@ -48,6 +48,8 @@ class ApartmentReservationController extends GetxController {
         Uri.parse("$baseUrl/reservation_show/$destinationId"),
         headers: {
           'Accept': "application/json",
+          'Content-Type': 'application/json'
+
           // 'Content-Type': 'application/x-www-form-urlencoded'
         },
       );

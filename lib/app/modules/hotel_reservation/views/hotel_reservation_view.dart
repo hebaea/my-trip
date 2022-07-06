@@ -19,7 +19,7 @@ class HotelReservationView extends GetView<HotelReservationController> {
     return Scaffold(
       appBar: AppBar(
         title: const DefaultText(
-          'حجز شقة',
+          'حجز فندق',
           color: AppThemeColors.primaryPureWhite,
         ),
         centerTitle: true,
@@ -77,7 +77,7 @@ class HotelReservationView extends GetView<HotelReservationController> {
                   ],
                 );
               },
-              itemCount: controller.hotelReservation!.services!.length,
+              itemCount: controller.hotelReservation?.services!.length,
             ),
           ),
           SizedBox(height: 20.h),

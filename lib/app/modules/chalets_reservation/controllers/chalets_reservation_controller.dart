@@ -47,6 +47,8 @@ class ChaletsReservationController extends GetxController {
         Uri.parse("$baseUrl/reservation_show/$destinationId"),
         headers: <String, String>{
           'Accept': "application/json",
+          'Content-Type': 'application/json'
+
           // 'Content-Type': 'application/x-www-form-urlencoded'
         },
       );

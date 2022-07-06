@@ -15,7 +15,10 @@ class AuthServices {
       {required name, required email, required password}) async {
     var response = await client.post(
       Uri.parse("$baseUrl/guest_register"),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': "application/json",
+      },
       body: jsonEncode(<dynamic, dynamic>{
         "guest_name": name,
         "guest_email": email,

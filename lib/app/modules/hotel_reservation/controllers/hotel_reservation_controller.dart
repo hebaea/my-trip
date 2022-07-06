@@ -91,7 +91,7 @@ class HotelReservationController extends GetxController {
     try {
       isDataLoading(true);
 
-      String guestId = storage.read("id");
+      int guestId = storage.read("id");
       String checkInDate =
           DateFormat("dd-MM-yyyy").format(dateRange.value.start);
       String checkOutDate =
@@ -108,10 +108,22 @@ class HotelReservationController extends GetxController {
       List<Rooms>? rooms;
       rooms = [];
 
+      var a = jsonEncode(<String, dynamic>{
+        "guest_id": guestId,
+        "Checkin_date": checkInDate,
+        "Checkout_date": checkOutDate,
+        "services": services,
+        "rooms": rooms
+      });
+
+      print("---------------- here --- ${a}");
+      print("---------------- destinationId --- ${destinationId}");
+
       var response = await client.post(
         Uri.parse("$baseUrl/reservation_create/$destinationId"),
         headers: {
           'Accept': "application/json",
+          'Content-Type': 'application/json'
         },
         body: jsonEncode(<String, dynamic>{
           "guest_id": guestId,

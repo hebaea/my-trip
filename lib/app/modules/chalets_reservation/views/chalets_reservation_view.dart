@@ -19,7 +19,7 @@ class ChaletsReservationView extends GetView<ChaletsReservationController> {
     return Scaffold(
       appBar: AppBar(
         title: const DefaultText(
-          'حجز شقة',
+          'حجز شاليه',
           color: AppThemeColors.primaryPureWhite,
         ),
         centerTitle: true,
@@ -76,7 +76,7 @@ class ChaletsReservationView extends GetView<ChaletsReservationController> {
                   ],
                 );
               },
-              itemCount: controller.chaletReservation!.services!.length,
+              itemCount: controller.chaletReservation?.services!.length,
             ),
           ),
           SizedBox(height: 20.h),
