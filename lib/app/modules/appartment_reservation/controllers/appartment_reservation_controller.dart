@@ -47,8 +47,8 @@ class ApartmentReservationController extends GetxController {
       var response = await client.post(
         Uri.parse("$baseUrl/reservation_show/$destinationId"),
         headers: {
-          'Accept': "application/json",
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': "application/json"
 
           // 'Content-Type': 'application/x-www-form-urlencoded'
         },
@@ -155,6 +155,8 @@ class ApartmentReservationController extends GetxController {
         Uri.parse("$baseUrl/reservation_create/$destinationId"),
         headers: {
           'Accept': "application/json",
+          'Content-Type': 'application/json',
+
         },
         body: jsonEncode(<String, dynamic>{
           "guest_id": guestId,
