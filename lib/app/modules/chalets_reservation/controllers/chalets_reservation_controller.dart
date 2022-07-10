@@ -1,13 +1,16 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/core/utils/baseurl.dart';
 import 'package:my_trip/app/core/utils/custom_snackbar.dart';
 import 'package:my_trip/app/data/model/chalet_reservation.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_trip/app/data/model/message_from_backend.dart';
+import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
 
 class ChaletsReservationController extends GetxController {
@@ -86,6 +89,54 @@ class ChaletsReservationController extends GetxController {
     if (pickedDate != null && pickedDate != dateRange.value) {
       dateRange.value = pickedDate;
     }
+  }
+
+  chooseServices() async {
+    Get.bottomSheet(
+      Container(
+        color: AppThemeColors.primaryPureWhite,
+        child: ListView.builder(
+          itemBuilder: (ctx, i) {
+            String serviceName = "";
+            try {
+              serviceName = chaletReservation!.services![i].serviceName!;
+            } catch (e) {
+              serviceName = "";
+            }
+            int servicePrice = 0;
+            try {
+              servicePrice = chaletReservation!.services![i].servicePrice!;
+            } catch (e) {
+              servicePrice = 0;
+            }
+            return Column(
+              children: [
+                SizedBox(height: 20.h),
+                Obx(
+                  () => CheckboxListTile(
+                    title: DefaultText('اسم الخدمة : $serviceName'),
+                    subtitle: DefaultText('سعر الخدمة : $servicePrice'),
+                    activeColor: AppThemeColors.primaryColor,
+                    value: checkBool.value,
+                    onChanged: (value) {
+                      checkBool.value = !checkBool.value;
+                      print(checkBool.value);
+                      //TODO WHY VALUE CHANGE FOR ALL
+                    },
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Divider(),
+                ),
+                // SizedBox(height: 20.h),
+              ],
+            );
+          },
+          itemCount: chaletReservation?.services!.length,
+        ),
+      ),
+    );
   }
 
   Future<MessageFromBackend?> makeChaletReservation(

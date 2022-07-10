@@ -21,7 +21,7 @@ class FavoritesView extends GetView<FavoritesController> {
     print(controller.favoriteList?.destination);
     // print(controller.favoriteList!.destination!.isNotEmpty);
     return Scaffold(
-      body: controller.favoriteList!.destination != []
+      body: controller.favoriteList?.destination != []
           ? Container(
               padding: EdgeInsets.symmetric(horizontal: width * 0.04),
               child: Obx(

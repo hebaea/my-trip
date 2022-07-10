@@ -163,7 +163,7 @@ class HomeView extends GetView<HomeController> {
                             //   location: 'طرابلس , الظهرة',
                             // )
                           },
-                          itemCount: controller.adsList!.ads!.length,
+                          itemCount: controller.adsList?.ads!.length,
                         ),
                 ),
               ),

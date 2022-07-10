@@ -48,8 +48,6 @@ class HotelReservationController extends GetxController {
         headers: {
           'Accept': "application/json",
           'Content-Type': 'application/json',
-
-          // 'Content-Type': 'application/x-www-form-urlencoded'
         },
       );
 

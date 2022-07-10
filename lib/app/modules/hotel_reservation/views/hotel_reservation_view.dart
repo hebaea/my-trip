@@ -30,6 +30,57 @@ class HotelReservationView extends GetView<HotelReservationController> {
             height: 200,
             child: ListView.builder(
               itemBuilder: (ctx, i) {
+                String roomType = "";
+                try {
+                  roomType = controller.hotelReservation!.rooms![i].roomType!;
+                } catch (e) {
+                  roomType = "";
+                }
+                int roomPrice = 0;
+                try {
+                  roomPrice = controller.hotelReservation!.rooms![i].roomPrice!;
+                } catch (e) {
+                  roomPrice = 0;
+                }
+
+                return Column(
+                  children: [
+                    SizedBox(height: 20.h),
+
+                    SizedBox(height: 20.h),
+
+                    const DefaultText('الغرف المتوفرة :'),
+                    SizedBox(height: 20.h),
+
+                    Obx(
+                      () => CheckboxListTile(
+                        title: DefaultText('نوع الغرفة : $roomType'),
+                        subtitle: DefaultText('سعر الغرفة : $roomPrice'),
+                        activeColor: AppThemeColors.primaryColor,
+                        value: controller.checkBool.value,
+                        onChanged: (value) {
+                          controller.checkBool.value =
+                              !controller.checkBool.value;
+                          print(controller.checkBool.value);
+                          //TODO WHY VALUE CHANGE FOR ALL
+                        },
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Divider(),
+                    ),
+                    // SizedBox(height: 20.h),
+                  ],
+                );
+              },
+              itemCount: controller.hotelReservation?.rooms!.length,
+            ),
+          ),
+          SizedBox(
+            height: 200,
+            child: ListView.builder(
+              itemBuilder: (ctx, i) {
                 String serviceName = "";
                 try {
                   serviceName =
@@ -44,17 +95,17 @@ class HotelReservationView extends GetView<HotelReservationController> {
                 } catch (e) {
                   servicePrice = 0;
                 }
+
                 return Column(
                   children: [
                     SizedBox(height: 20.h),
 
-                    DefaultText(
-                        'سعر الغرفة : ${controller.hotelReservation?.rooms?.first.roomPrice}'),
+                    // DefaultText('سعر الغرفة : $roomPrice'),
                     SizedBox(height: 20.h),
 
                     const DefaultText('الخدمات المتوفرة :'),
                     SizedBox(height: 20.h),
-
+// TODO check if services is null ?
                     Obx(
                       () => CheckboxListTile(
                         title: DefaultText('اسم الخدمة : $serviceName'),
@@ -111,3 +162,4 @@ class HotelReservationView extends GetView<HotelReservationController> {
     );
   }
 }
+//TODO make select services in deffrient screen with new button

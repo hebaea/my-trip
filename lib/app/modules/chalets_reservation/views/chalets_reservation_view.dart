@@ -24,88 +24,91 @@ class ChaletsReservationView extends GetView<ChaletsReservationController> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 200,
-            child: ListView.builder(
-              itemBuilder: (ctx, i) {
-                String serviceName = "";
-                try {
-                  serviceName =
-                      controller.chaletReservation!.services![i].serviceName!;
-                } catch (e) {
-                  serviceName = "";
-                }
-                int servicePrice = 0;
-                try {
-                  servicePrice =
-                      controller.chaletReservation!.services![i].servicePrice!;
-                } catch (e) {
-                  servicePrice = 0;
-                }
-                return Column(
-                  children: [
-                    SizedBox(height: 20.h),
-
-                    DefaultText('سعر الغرفة : ${controller.chaletReservation}'),
-                    SizedBox(height: 20.h),
-
-                    const DefaultText('الخدمات المتوفرة :'),
-                    SizedBox(height: 20.h),
-
-                    Obx(
-                      () => CheckboxListTile(
-                        title: DefaultText('اسم الخدمة : $serviceName'),
-                        subtitle: DefaultText('سعر الخدمة : $servicePrice'),
-                        activeColor: AppThemeColors.primaryColor,
-                        value: controller.checkBool.value,
-                        onChanged: (value) {
-                          controller.checkBool.value =
-                              !controller.checkBool.value;
-                          print(controller.checkBool.value);
-                          //TODO WHY VALUE CHANGE FOR ALL
-                        },
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 20.h),
+            const DefaultText('الشاليهات المتوفرة :'),
+            SizedBox(
+              height: 500,
+              child: ListView.builder(
+                itemBuilder: (ctx, i) {
+                  String chaletLocation = "";
+                  try {
+                    chaletLocation = controller
+                        .chaletReservation!.chalets![i].chaletLocation!;
+                  } catch (e) {
+                    chaletLocation = "";
+                  }
+                  int chaletPrice = 0;
+                  try {
+                    chaletPrice =
+                        controller.chaletReservation!.chalets![i].chaletPrice!;
+                  } catch (e) {
+                    chaletPrice = 0;
+                  }
+                  return Column(
+                    children: [
+                      Obx(
+                        () => CheckboxListTile(
+                          title: DefaultText('موقع الشاليه : $chaletLocation'),
+                          subtitle: DefaultText('سعر الشاليه : $chaletPrice'),
+                          activeColor: AppThemeColors.primaryColor,
+                          value: controller.checkBool.value,
+                          onChanged: (value) {
+                            controller.checkBool.value =
+                                !controller.checkBool.value;
+                            print(controller.checkBool.value);
+                            //TODO WHY VALUE CHANGE FOR ALL
+                          },
+                        ),
                       ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Divider(),
-                    ),
-                    // SizedBox(height: 20.h),
-                  ],
-                );
-              },
-              itemCount: controller.chaletReservation?.services!.length,
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Divider(),
+                      ),
+                      // SizedBox(height: 20.h),
+                    ],
+                  );
+                },
+                itemCount: controller.chaletReservation?.chalets!.length,
+              ),
             ),
-          ),
-          SizedBox(height: 20.h),
-          RoundedButton(
-            press: () {
-              controller.chooseDateRangePicker();
-            },
-            text: 'إختر تاريخ الحجز',
-          ),
-          SizedBox(height: 20.h),
-          Obx(() => DefaultText(
-                'تاريخ بداية الحجز : ${DateFormat("dd-MM-yyyy").format(controller.dateRange.value.start)}',
-              )),
-          SizedBox(height: 20.h),
-          Obx(() => DefaultText(
-                'تاريخ نهاية الحجز : ${DateFormat("dd-MM-yyyy").format(controller.dateRange.value.end)}',
-              )),
-          SizedBox(height: 20.h),
-          Obx(() => controller.isDataLoading.value
-              ? const CircularProgressIndicator()
-              : RoundedButton(
-                  press: () {
-                    controller.makeChaletReservation(
-                        destinationId: destinationDetailsController
-                            .destinationDetails?.destinationId);
-                  },
-                  text: 'إتمام عملية الحجز',
-                ))
-        ],
+            SizedBox(height: 20.h),
+            RoundedButton(
+              press: () {
+                controller.chooseServices();
+              },
+              text: 'اختر الخدمات',
+            ),
+            SizedBox(height: 20.h),
+            RoundedButton(
+              press: () {
+                controller.chooseDateRangePicker();
+              },
+              text: 'إختر تاريخ الحجز',
+            ),
+            SizedBox(height: 20.h),
+            Obx(() => DefaultText(
+                  'تاريخ بداية الحجز : ${DateFormat("dd-MM-yyyy").format(controller.dateRange.value.start)}',
+                )),
+            SizedBox(height: 20.h),
+            Obx(() => DefaultText(
+                  'تاريخ نهاية الحجز : ${DateFormat("dd-MM-yyyy").format(controller.dateRange.value.end)}',
+                )),
+            SizedBox(height: 20.h),
+            Obx(() => controller.isDataLoading.value
+                ? const CircularProgressIndicator()
+                : RoundedButton(
+                    press: () {
+                      controller.makeChaletReservation(
+                          destinationId: destinationDetailsController
+                              .destinationDetails?.destinationId);
+                    },
+                    text: 'إتمام عملية الحجز',
+                  ))
+          ],
+        ),
       ),
     );
   }
