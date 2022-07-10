@@ -65,27 +65,27 @@ class HomeView extends GetView<HomeController> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    RoundedInputField(
-                      onChanged: (String value) {},
-                      hintText: 'ابحث عن مكان',
-                      icon: Icon(
-                        PhosphorIcons.magnifying_glass,
-                        size: 20.sp,
-                        color: AppThemeColors.primaryColor,
-                      ),
-                    ),
-                    Container(
-                      height: 48.h,
-                      width: 48.w,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppThemeColors.primaryColor),
-                      child: Icon(
-                        PhosphorIcons.funnel_simple,
-                        size: 32.sp,
-                        color: AppThemeColors.primaryPureWhite,
-                      ),
-                    )
+                    // RoundedInputField(
+                    //   onChanged: (String value) {},
+                    //   hintText: 'ابحث عن مكان',
+                    //   icon: Icon(
+                    //     PhosphorIcons.magnifying_glass,
+                    //     size: 20.sp,
+                    //     color: AppThemeColors.primaryColor,
+                    //   ),
+                    // ),
+                    // Container(
+                    //   height: 48.h,
+                    //   width: 48.w,
+                    //   decoration: const BoxDecoration(
+                    //       shape: BoxShape.circle,
+                    //       color: AppThemeColors.primaryColor),
+                    //   child: Icon(
+                    //     PhosphorIcons.funnel_simple,
+                    //     size: 32.sp,
+                    //     color: AppThemeColors.primaryPureWhite,
+                    //   ),
+                    // )
                   ],
                 ),
               ),
@@ -98,7 +98,7 @@ class HomeView extends GetView<HomeController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     DefaultText(
-                      "الوجهات المميزة",
+                      "", // الوجهات المميزة
                       fontSize: 20.sp,
                       fontWeight: FontWeight.bold,
                     ),
@@ -218,7 +218,7 @@ class HomeView extends GetView<HomeController> {
                               },
                             );
                           },
-                          itemCount: controller.cityList!.city.length,
+                          itemCount: controller.cityList?.city.length,
                         ),
                 ),
               ),
@@ -258,7 +258,7 @@ class HomeView extends GetView<HomeController> {
                               image: "assets/images/australia.jpg",
                               text: "فنادق",
                               onTap: () {
-                                hotelsController.getHotelsFromApi(3);
+                                hotelsController.getHotelsFromApi(1);
                               },
                             ),
                     ),
@@ -282,7 +282,7 @@ class HomeView extends GetView<HomeController> {
                               image: "assets/images/africa.jpg",
                               text: "منتجعات",
                               onTap: () {
-                                resortsController.getResortsFromApi(1);
+                                resortsController.getResortsFromApi(3);
                               },
                             ),
                     )

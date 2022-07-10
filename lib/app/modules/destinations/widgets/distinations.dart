@@ -80,7 +80,7 @@ class Destinations extends GetView<DestinationsController> {
                       ],
                     );
                   },
-                  itemCount: controller.destinationList!.destination!.length,
+                  itemCount: controller.destinationList?.destination?.length,
                 ),
         ),
       ),

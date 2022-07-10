@@ -164,6 +164,7 @@ class ChaletsReservationController extends GetxController {
         Uri.parse("$baseUrl/reservation_create/$destinationId"),
         headers: <String, String>{
           'Accept': "application/json",
+          'Content-Type': 'application/json'
         },
         body: jsonEncode(<String, dynamic>{
           "guest_id": guestId,

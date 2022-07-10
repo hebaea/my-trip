@@ -37,13 +37,14 @@ class DestinationsController extends GetxController {
         var result = jsonDecode(response.body);
         destinationList = DestinationModel.fromJson(result);
         Get.toNamed(Routes.DESTINATIONS);
+        print(result);
       } else {
         //error
         print("-------------------else -----------------------------");
         return null;
       }
     } catch (e) {
-      print('error while getting data $e');
+      print('error while getting all destinations $e');
     } finally {
       isDataLoading(false);
     }

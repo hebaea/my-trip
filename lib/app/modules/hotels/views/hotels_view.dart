@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
+import 'package:my_trip/app/modules/destination_details/controllers/destination_details_controller.dart';
+import 'package:my_trip/app/modules/destinations/controllers/destinations_controller.dart';
 import 'package:my_trip/app/modules/destinations/widgets/destination_list_tile.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
 
 import '../controllers/hotels_controller.dart';
 
 class HotelsView extends GetView<HotelsController> {
-  const HotelsView({Key? key}) : super(key: key);
+  HotelsView({Key? key}) : super(key: key);
+  final destinationDetailsController = Get.find<DestinationDetailsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -50,17 +54,28 @@ class HotelsView extends GetView<HotelsController> {
                         } catch (e) {
                           address = "";
                         }
+                        int? id = 0;
+                        try {
+                          id = controller
+                              .destinationList!.destination![i].destinationId;
+                        } catch (e) {
+                          id = 0;
+                        }
 
+                        final storage = GetStorage();
+                        int guestId = storage.read("id");
                         return Column(
                           children: [
                             SizedBox(height: 20.h),
                             DestinationListTile(
-                              ontap: () =>
-                                  Get.toNamed(Routes.DESTINATION_DETAILS),
-                              //TODO
+                              ontap: () {
+                                destinationDetailsController
+                                    .getDestinationDetails(id!, guestId);
+                              },
                               height: height,
                               width: width,
-                              image: "${controller.destinationList!.destination![i].destinationImg}",
+                              image:
+                                  "${controller.destinationList?.destination![i].destinationImg}",
                               text: name,
                               address: address,
                               // "اسم المكان "
@@ -70,7 +85,7 @@ class HotelsView extends GetView<HotelsController> {
                         );
                       },
                       itemCount:
-                          controller.destinationList!.destination!.length,
+                          controller.destinationList?.destination?.length,
                     ),
             ),
     ));

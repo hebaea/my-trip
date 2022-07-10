@@ -9,7 +9,8 @@ import 'package:my_trip/app/data/model/user_model.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/modules/appartment_reservation/controllers/appartment_reservation_controller.dart';
-import 'package:my_trip/app/routes/app_pages.dart';
+import 'package:my_trip/app/modules/chalets_reservation/controllers/chalets_reservation_controller.dart';
+import 'package:my_trip/app/modules/hotel_reservation/controllers/hotel_reservation_controller.dart';
 import '../controllers/destination_details_controller.dart';
 
 class DestinationDetailsView extends GetView<DestinationDetailsController> {
@@ -19,6 +20,8 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
   UserModel? user;
   final apartmentReservationController =
       Get.find<ApartmentReservationController>();
+  final hotelReservationController = Get.find<HotelReservationController>();
+  final chaletsReservationController = Get.find<ChaletsReservationController>();
 
   @override
   Widget build(BuildContext context) {
@@ -218,7 +221,8 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                         press: () {
                           switch (controller.destinationDetails?.categoryId) {
                             case (1):
-                              Get.toNamed(Routes.HOTEL_RESERVATION);
+                              hotelReservationController.reservationShowHotel(
+                                  destinationId: destinationId);
                               break;
                             case (2):
                               apartmentReservationController
@@ -226,7 +230,9 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                                       destinationId: destinationId);
                               break;
                             case (3):
-                              Get.toNamed(Routes.CHALETS_RESERVATION);
+                              chaletsReservationController
+                                  .reservationShowChalet(
+                                      destinationId: destinationId);
                               break;
                           }
                         }),

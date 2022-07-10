@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/modules/destination_details/controllers/destination_details_controller.dart';
-
 import '../controllers/chalets_reservation_controller.dart';
 
 class ChaletsReservationView extends GetView<ChaletsReservationController> {
@@ -30,7 +28,7 @@ class ChaletsReservationView extends GetView<ChaletsReservationController> {
             SizedBox(height: 20.h),
             const DefaultText('الشاليهات المتوفرة :'),
             SizedBox(
-              height: 500,
+              height: 300,
               child: ListView.builder(
                 itemBuilder: (ctx, i) {
                   String chaletLocation = "";
@@ -47,11 +45,19 @@ class ChaletsReservationView extends GetView<ChaletsReservationController> {
                   } catch (e) {
                     chaletPrice = 0;
                   }
+                  String numberPeople = "";
+                  try {
+                    numberPeople = controller
+                        .chaletReservation!.chalets![i].numberOfPeople!;
+                  } catch (e) {
+                    numberPeople = "";
+                  }
                   return Column(
                     children: [
                       Obx(
                         () => CheckboxListTile(
-                          title: DefaultText('موقع الشاليه : $chaletLocation'),
+                          title: DefaultText(
+                              'موقع الشاليه : $chaletLocation  \n عدد الأشخاص $numberPeople'),
                           subtitle: DefaultText('سعر الشاليه : $chaletPrice'),
                           activeColor: AppThemeColors.primaryColor,
                           value: controller.checkBool.value,
@@ -67,7 +73,6 @@ class ChaletsReservationView extends GetView<ChaletsReservationController> {
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: Divider(),
                       ),
-                      // SizedBox(height: 20.h),
                     ],
                   );
                 },
@@ -102,8 +107,9 @@ class ChaletsReservationView extends GetView<ChaletsReservationController> {
                 : RoundedButton(
                     press: () {
                       controller.makeChaletReservation(
-                          destinationId: destinationDetailsController
-                              .destinationDetails?.destinationId);
+                        destinationId: destinationDetailsController
+                            .destinationDetails?.destinationId,
+                      );
                     },
                     text: 'إتمام عملية الحجز',
                   ))

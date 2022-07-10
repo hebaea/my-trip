@@ -42,9 +42,7 @@ class DestinationDetailsController extends GetxController {
       http.Response response = await http.get(
         Uri.parse("$baseUrl/destination_details/$guestId/$id"),
         headers: {'Content-Type': 'application/json'},
-        // body: jsonEncode(<dynamic, int>{
-        //   "guest_id": guestId,
-        // }),
+
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         var result = jsonDecode(response.body);
