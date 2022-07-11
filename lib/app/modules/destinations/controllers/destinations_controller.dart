@@ -30,7 +30,7 @@ class DestinationsController extends GetxController {
     try {
       isDataLoading(true);
       http.Response response = await http.get(
-          Uri.tryParse("$baseUrl/destination_index")!,
+          Uri.parse("$baseUrl/destination_index"),
           headers: {'Content-Type': 'application/json'});
 
       if (response.statusCode == 200 || response.statusCode == 201) {

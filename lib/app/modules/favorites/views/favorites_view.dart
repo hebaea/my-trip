@@ -66,7 +66,8 @@ class FavoritesView extends GetView<FavoritesController> {
                                 },
                                 height: height,
                                 width: width,
-                                image: "assets/images/destination1.jpeg",
+                                image:
+                                    "${controller.favoriteList?.destination![i].destinationImg}",
                                 text: name,
                                 address: address,
                                 // "اسم المكان "

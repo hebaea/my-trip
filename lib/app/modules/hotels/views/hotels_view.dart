@@ -71,6 +71,7 @@ class HotelsView extends GetView<HotelsController> {
                               ontap: () {
                                 destinationDetailsController
                                     .getDestinationDetails(id!, guestId);
+
                               },
                               height: height,
                               width: width,

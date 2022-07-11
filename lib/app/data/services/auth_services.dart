@@ -114,7 +114,7 @@ class AuthServices {
       }),
     );
 
-    var result = await json.decode(json.encode(response.body));
+    var result = await json.decode(response.body);
     print(
         "------------------- state ${response.statusCode} ---------------------- ");
     print("------------------- res ${result} ---------------------- ");
@@ -123,6 +123,7 @@ class AuthServices {
       MessageFromBackend? messageFromBackend;
       var result = jsonDecode(response.body);
       messageFromBackend = MessageFromBackend.fromJson(result);
+
       return customSnackbar(
           "تعديل كلمة المرور", messageFromBackend.message, "success");
     } else {

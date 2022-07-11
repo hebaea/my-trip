@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
-import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
 import 'package:my_trip/app/modules/apartments/controllers/apartments_controller.dart';
 import 'package:my_trip/app/modules/city_destinations/controllers/city_destinations_controller.dart';
 import 'package:my_trip/app/modules/destination_details/controllers/destination_details_controller.dart';
@@ -16,7 +14,6 @@ import 'package:my_trip/app/modules/home/widgets/category_card.dart';
 import 'package:my_trip/app/modules/home/widgets/city_item.dart';
 import 'package:my_trip/app/modules/hotels/controllers/hotels_controller.dart';
 import 'package:my_trip/app/modules/resorts/controllers/resorts_controller.dart';
-import 'package:my_trip/app/routes/app_pages.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
@@ -64,7 +61,7 @@ class HomeView extends GetView<HomeController> {
                 padding: const EdgeInsets.symmetric(horizontal: 6),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: const [
                     // RoundedInputField(
                     //   onChanged: (String value) {},
                     //   hintText: 'ابحث عن مكان',
@@ -86,6 +83,73 @@ class HomeView extends GetView<HomeController> {
                     //     color: AppThemeColors.primaryPureWhite,
                     //   ),
                     // )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: Row(
+                  children: [
+                    DefaultText(
+                      "التصنيفات",
+                      // "Cities",
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    CategoryCard(
+                      image: "assets/images/africa.jpg",
+                      text: "الكل",
+                      onTap: () {
+                        destinationsController.getDestinationsFromApi();
+                      },
+                    ),
+                    Obx(
+                      () => controller.isDataLoading.value
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : CategoryCard(
+                              image: "assets/images/australia.jpg",
+                              text: "فنادق",
+                              onTap: () {
+                                hotelsController.getHotelsFromApi(1);
+                              },
+                            ),
+                    ),
+                    Obx(() => controller.isDataLoading.value
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : CategoryCard(
+                            image: "assets/images/africa.jpg",
+                            text: "شقق",
+                            onTap: () {
+                              apartmentsController.getApartmentsFromApi(2);
+                            },
+                          )),
+                    Obx(
+                      () => controller.isDataLoading.value
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : CategoryCard(
+                              image: "assets/images/africa.jpg",
+                              text: "منتجعات",
+                              onTap: () {
+                                resortsController.getResortsFromApi(3);
+                              },
+                            ),
+                    )
                   ],
                 ),
               ),
@@ -220,73 +284,6 @@ class HomeView extends GetView<HomeController> {
                           },
                           itemCount: controller.cityList?.city.length,
                         ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 12),
-                child: Row(
-                  children: [
-                    DefaultText(
-                      "التصنيفات",
-                      // "Cities",
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    CategoryCard(
-                      image: "assets/images/africa.jpg",
-                      text: "الكل",
-                      onTap: () {
-                        destinationsController.getDestinationsFromApi();
-                      },
-                    ),
-                    Obx(
-                      () => controller.isDataLoading.value
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : CategoryCard(
-                              image: "assets/images/australia.jpg",
-                              text: "فنادق",
-                              onTap: () {
-                                hotelsController.getHotelsFromApi(1);
-                              },
-                            ),
-                    ),
-                    Obx(() => controller.isDataLoading.value
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : CategoryCard(
-                            image: "assets/images/africa.jpg",
-                            text: "شقق",
-                            onTap: () {
-                              apartmentsController.getApartmentsFromApi(2);
-                            },
-                          )),
-                    Obx(
-                      () => controller.isDataLoading.value
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : CategoryCard(
-                              image: "assets/images/africa.jpg",
-                              text: "منتجعات",
-                              onTap: () {
-                                resortsController.getResortsFromApi(3);
-                              },
-                            ),
-                    )
-                  ],
                 ),
               ),
               SizedBox(
