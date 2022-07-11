@@ -56,12 +56,12 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                     children: [
                       ElevatedButton(
                         onPressed: () => Get.back(),
-                        child: const Icon(
-                          PhosphorIcons.arrow_right,
-                        ),
                         style: ElevatedButton.styleFrom(
                           shape: const CircleBorder(),
                           padding: const EdgeInsets.all(2),
+                        ),
+                        child: const Icon(
+                          PhosphorIcons.arrow_right,
                         ),
                       ),
                       Obx(
@@ -77,7 +77,7 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                                       "this is destination id ${controller.destinationDetails?.destinationId}");
 
                                   var guestId = storage.read('id');
-                                  print("this is guestId id ${guestId}");
+                                  print("this is guestId id $guestId");
                                   print(
                                       "this is isFavorite  ${controller.destinationDetails!.isFavorite}");
 
@@ -96,19 +96,19 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                                             .destinationDetails?.destinationId);
                                   }
                                 },
-                                child:
-                                    controller.destinationDetails!.isFavorite ==
-                                            1
-                                        ? Icon(
-                                            PhosphorIcons.heart_fill,
-                                            color: AppThemeColors.error500,
-                                          )
-                                        : Icon(
-                                            PhosphorIcons.heart_fill,
-                                          ),
                                 style: ElevatedButton.styleFrom(
                                   shape: const CircleBorder(),
                                 ),
+                                child:
+                                    controller.destinationDetails!.isFavorite ==
+                                            1
+                                        ? const Icon(
+                                            PhosphorIcons.heart_fill,
+                                            color: AppThemeColors.error500,
+                                          )
+                                        : const Icon(
+                                            PhosphorIcons.heart_fill,
+                                          ),
                               ),
                       ),
                     ],
@@ -181,7 +181,7 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                         SizedBox(width: width * 0.04),
                         ElevatedButton(
                           onPressed: () {
-                            // Get.toNamed();
+                            // Get.defaultDialog(title:'تقييم' );
                           },
                           child: const DefaultText(
                             'تواصل',
