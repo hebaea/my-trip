@@ -93,7 +93,7 @@ class AuthServices {
       updateValidation = UpdateValidation.fromJson(result);
       return customSnackbar(
           "تعديل بيانات الحساب",
-          " ${updateValidation.guestName?.first} \n  ${updateValidation.guestEmail?.first} ",
+          " ${updateValidation.guestName?.first ?? ''} \n  ${updateValidation.guestEmail?.first ?? ''} ",
           "error");
     } else {
       MessageFromBackend? messageFromBackend;

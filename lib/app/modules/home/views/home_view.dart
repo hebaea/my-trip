@@ -107,7 +107,7 @@ class HomeView extends GetView<HomeController> {
                 child: Row(
                   children: [
                     CategoryCard(
-                      image: "assets/images/africa.jpg",
+                      image: "assets/images/all.jpg",
                       text: "الكل",
                       onTap: () {
                         destinationsController.getDestinationsFromApi();
@@ -119,7 +119,7 @@ class HomeView extends GetView<HomeController> {
                               child: CircularProgressIndicator(),
                             )
                           : CategoryCard(
-                              image: "assets/images/australia.jpg",
+                              image: "assets/images/hotels.jpg",
                               text: "فنادق",
                               onTap: () {
                                 hotelsController.getHotelsFromApi(1);
@@ -131,7 +131,7 @@ class HomeView extends GetView<HomeController> {
                             child: CircularProgressIndicator(),
                           )
                         : CategoryCard(
-                            image: "assets/images/africa.jpg",
+                            image: "assets/images/apartments.jpg",
                             text: "شقق",
                             onTap: () {
                               apartmentsController.getApartmentsFromApi(2);
@@ -143,7 +143,7 @@ class HomeView extends GetView<HomeController> {
                               child: CircularProgressIndicator(),
                             )
                           : CategoryCard(
-                              image: "assets/images/africa.jpg",
+                              image: "assets/images/resorts.jpg",
                               text: "منتجعات",
                               onTap: () {
                                 resortsController.getResortsFromApi(3);
@@ -274,7 +274,7 @@ class HomeView extends GetView<HomeController> {
 
                             return CityItem(
                               context: context,
-                              link: "assets/detailsimage.jpg",
+                              link: "assets/cities.jpg",
                               // location: "بلا , بلا",
                               place: name,
                               onTap: () {
