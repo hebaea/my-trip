@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/modules/destination_details/controllers/destination_details_controller.dart';
+import '../../../data/model/hotel_reservation.dart';
 import '../controllers/hotel_reservation_controller.dart';
 
 class HotelReservationView extends GetView<HotelReservationController> {
@@ -52,11 +54,33 @@ class HotelReservationView extends GetView<HotelReservationController> {
                           title: DefaultText('نوع الغرفة : $roomType'),
                           subtitle: DefaultText('سعر الغرفة : $roomPrice'),
                           activeColor: AppThemeColors.primaryColor,
-                          value: controller.checkBool.value,
+                          // value: controller.checkBool.value,
+                          value: controller.rooms.contains(i),
                           onChanged: (value) {
-                            controller.checkBool.value =
-                                !controller.checkBool.value;
-                            print(controller.checkBool.value);
+                            if (value != null && value == true) {
+                              controller.rooms.add(i);
+                              var rooms = Rooms(
+                                  roomId: controller
+                                      .hotelReservation!.rooms![i].roomId,
+                                  roomType: controller
+                                      .hotelReservation!.rooms![i].roomType,
+                                  roomPrice: controller
+                                      .hotelReservation!.rooms![i].roomPrice);
+                              controller.selectedRooms.add(rooms);
+                            } else {
+                              controller.rooms.remove(i);
+                              var rooms = Rooms(
+                                  roomId: controller
+                                      .hotelReservation!.rooms![i].roomId,
+                                  roomType: controller
+                                      .hotelReservation!.rooms![i].roomType,
+                                  roomPrice: controller
+                                      .hotelReservation!.rooms![i].roomPrice);
+                              controller.selectedRooms.remove(rooms);
+                            }
+                            // controller.checkBool.value =
+                            //     !controller.checkBool.value;
+                            // print(controller.checkBool.value);
                             //TODO WHY VALUE CHANGE FOR ALL
                           },
                         ),
@@ -76,6 +100,7 @@ class HotelReservationView extends GetView<HotelReservationController> {
             SizedBox(
               height: 250,
               child: ListView.builder(
+                itemCount: controller.hotelReservation?.services?.length,
                 itemBuilder: (ctx, i) {
                   String serviceName = "";
                   try {
@@ -117,7 +142,6 @@ class HotelReservationView extends GetView<HotelReservationController> {
                     ],
                   );
                 },
-                itemCount: controller.hotelReservation?.services?.length,
               ),
             ),
             SizedBox(height: 20.h),

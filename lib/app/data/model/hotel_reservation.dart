@@ -36,7 +36,8 @@ class Rooms {
   String? roomType;
   int? roomPrice;
 
-  Rooms({this.roomId, this.roomType, this.roomPrice});
+  Rooms(
+      {required this.roomId, required this.roomType, required this.roomPrice});
 
   Rooms.fromJson(Map<String, dynamic> json) {
     roomId = json['room_id'];
@@ -58,7 +59,10 @@ class Services {
   String? serviceName;
   int? servicePrice;
 
-  Services({this.serviceId, this.serviceName, this.servicePrice});
+  Services(
+      {required this.serviceId,
+      required this.serviceName,
+      required this.servicePrice});
 
   Services.fromJson(Map<String, dynamic> json) {
     serviceId = json['service_id'];

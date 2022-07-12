@@ -15,6 +15,8 @@ class HotelReservationController extends GetxController {
   HotelReservation? hotelReservation;
   var isDataLoading = false.obs;
   var checkBool = false.obs;
+  final Set rooms = Set().obs;
+  var selectedRooms = <Rooms>[].obs;
   final storage = GetStorage();
   var dateRange = DateTimeRange(
     start: DateTime.now(),
@@ -107,13 +109,17 @@ class HotelReservationController extends GetxController {
       services = [];
       List<Rooms>? rooms;
       rooms = [];
+      selectedRooms.forEach((element) {
+        print("----- selectedServices prise = ${element.roomPrice} ");
+        print("----- selectedServices name  = ${element.roomType} ");
+      });
 
       var a = jsonEncode(<String, dynamic>{
         "guest_id": guestId,
         "Checkin_date": checkInDate,
         "Checkout_date": checkOutDate,
         "services": services,
-        "rooms": rooms
+        "rooms": selectedRooms
       });
 
       print("---------------- here --- ${a}");
