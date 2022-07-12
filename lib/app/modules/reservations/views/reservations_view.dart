@@ -57,86 +57,99 @@ class ReservationsView extends GetView<ReservationsController> {
                             status = '';
                           }
 
-                          return Card(
-                              child: Column(children: [
-                            // SizedBox(
-                            //   height: 20.h,
-                            // ),
-                            // DefaultText(
-                            //     'تاريخ بداية الحجز : $checkinDate'),
-                            // SizedBox(
-                            //   height: 20.h,
-                            // ),
-                            // DefaultText(
-                            //     ' تاريخ نهاية الحجز : $checkoutDate'),
-                            // SizedBox(
-                            //   height: 20.h,
-                            // ),
-                            // DefaultText(' حالة الحجز : $status'),
-                            // SizedBox(
-                            //   height: 20.h,
-                            // ),
-                            // DefaultText(' المجموع : $total'),
-                            // SizedBox(
-                            //   height: 20.h,
-                            // ),
-                            ListTile(
-                              // leading:
+                          return Column(
+                            children: [
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              Card(
+                                  color: AppThemeColors.primaryLightColor,
+                                  child: Column(children: [
+                                    SizedBox(
+                                      height: 20.h,
+                                    ),
+                                    // DefaultText(
+                                    //     'تاريخ بداية الحجز : $checkinDate'),
+                                    // SizedBox(
+                                    //   height: 20.h,
+                                    // ),
+                                    // DefaultText(
+                                    //     ' تاريخ نهاية الحجز : $checkoutDate'),
+                                    // SizedBox(
+                                    //   height: 20.h,
+                                    // ),
+                                    // DefaultText(' حالة الحجز : $status'),
+                                    // SizedBox(
+                                    //   height: 20.h,
+                                    // ),
+                                    // DefaultText(' المجموع : $total'),
+                                    // SizedBox(
+                                    //   height: 20.h,
+                                    // ),
+                                    ListTile(
+                                      // leading:
 
-                              title: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  DefaultText(
-                                      'تاريخ بداية الحجز : $checkinDate'),
-                                  DefaultText(
-                                      ' تاريخ نهاية الحجز : $checkoutDate'),
-                                ],
-                              ),
-                              subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  DefaultText(' حالة الحجز : $status'),
-                                  DefaultText(' المجموع : $total'),
-                                ],
-                              ),
-                              // trailing:
-                              // InkWell(
-                              //   child: const Icon(
-                              //     PhosphorIcons.trash,
-                              //     color: AppThemeColors.error500,
-                              //     size: 30,
-                              //   ),
-                              //   onTap: () {
-                              //
-                              //   },
-                              // ),
-                            ),
-                            ButtonBar(
-                              children: [
-                                ElevatedButton(
-                                  child: const DefaultText(
-                                    'حذف',
-                                    color: AppThemeColors.primaryPureWhite,
-                                  ),
-                                  onPressed: () {
-                                    controller.makeDeleteReservation(controller
-                                        .guestReservationList!
-                                        .reservations![i]
-                                        .reservationId);
-                                  },
-                                ),
-                                ElevatedButton(
-                                  child: const DefaultText(
-                                    'تفاصيل',
-                                    color: AppThemeColors.primaryPureWhite,
-                                  ),
-                                  onPressed: () {
-                                    controller.getDetails();
-                                  },
-                                ),
-                              ],
-                            ),
-                          ]));
+                                      title: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          DefaultText(
+                                              'تاريخ بداية الحجز : $checkinDate'),
+                                          DefaultText(
+                                              ' تاريخ نهاية الحجز : $checkoutDate'),
+                                        ],
+                                      ),
+                                      subtitle: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          DefaultText(' حالة الحجز : $status'),
+                                          DefaultText(' المجموع : $total'),
+                                        ],
+                                      ),
+                                      // trailing:
+                                      // InkWell(
+                                      //   child: const Icon(
+                                      //     PhosphorIcons.trash,
+                                      //     color: AppThemeColors.error500,
+                                      //     size: 30,
+                                      //   ),
+                                      //   onTap: () {
+                                      //
+                                      //   },
+                                      // ),
+                                    ),
+                                    ButtonBar(
+                                      children: [
+                                        ElevatedButton(
+                                          child: const DefaultText(
+                                            'حذف',
+                                            color:
+                                                AppThemeColors.primaryPureWhite,
+                                          ),
+                                          onPressed: () {
+                                            controller.makeDeleteReservation(
+                                                controller
+                                                    .guestReservationList!
+                                                    .reservations![i]
+                                                    .reservationId);
+                                          },
+                                        ),
+                                        ElevatedButton(
+                                          child: const DefaultText(
+                                            'تفاصيل',
+                                            color:
+                                                AppThemeColors.primaryPureWhite,
+                                          ),
+                                          onPressed: () {
+                                            controller.getDetails();
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ])),
+                            ],
+                          );
                         },
                         itemCount: controller
                             .guestReservationList?.reservations?.length,
