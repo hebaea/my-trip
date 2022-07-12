@@ -106,13 +106,6 @@ class HomeView extends GetView<HomeController> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    CategoryCard(
-                      image: "assets/images/all.jpg",
-                      text: "الكل",
-                      onTap: () {
-                        destinationsController.getDestinationsFromApi();
-                      },
-                    ),
                     Obx(
                       () => controller.isDataLoading.value
                           ? const Center(
@@ -149,7 +142,14 @@ class HomeView extends GetView<HomeController> {
                                 resortsController.getResortsFromApi(3);
                               },
                             ),
-                    )
+                    ),
+                    CategoryCard(
+                      image: "assets/images/all.jpg",
+                      text: "الكل",
+                      onTap: () {
+                        destinationsController.getDestinationsFromApi();
+                      },
+                    ),
                   ],
                 ),
               ),

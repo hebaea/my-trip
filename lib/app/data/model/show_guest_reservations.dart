@@ -1,4 +1,27 @@
-class ReservationShowGuest {
+class ReservationShow {
+  List<Reservations>? reservations;
+
+  ReservationShow({this.reservations});
+
+  ReservationShow.fromJson(Map<String, dynamic> json) {
+    if (json['reservations'] != null) {
+      reservations = <Reservations>[];
+      json['reservations'].forEach((v) {
+        reservations!.add(Reservations.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (reservations != null) {
+      data['reservations'] = reservations!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Reservations {
   int? reservationId;
   int? guestId;
   int? destinationId;
@@ -7,7 +30,7 @@ class ReservationShowGuest {
   String? status;
   int? total;
 
-  ReservationShowGuest(
+  Reservations(
       {this.reservationId,
       this.guestId,
       this.destinationId,
@@ -16,7 +39,7 @@ class ReservationShowGuest {
       this.status,
       this.total});
 
-  ReservationShowGuest.fromJson(Map<String, dynamic> json) {
+  Reservations.fromJson(Map<String, dynamic> json) {
     reservationId = json['reservation_id'];
     guestId = json['guest_id'];
     destinationId = json['destination_id'];
