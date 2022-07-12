@@ -14,9 +14,14 @@ class HotelReservationController extends GetxController {
   static var client = http.Client();
   HotelReservation? hotelReservation;
   var isDataLoading = false.obs;
-  var checkBool = false.obs;
-  final Set rooms = Set().obs;
+
+  // final Set rooms = Set().obs;
+  final Set rooms = <dynamic>{}.obs;
+  final Set services = <dynamic>{}.obs;
+
   var selectedRooms = <Rooms>[].obs;
+  var selectedServices = <Services>[].obs;
+
   final storage = GetStorage();
   var dateRange = DateTimeRange(
     start: DateTime.now(),
@@ -99,26 +104,24 @@ class HotelReservationController extends GetxController {
       String checkOutDate =
           DateFormat("dd-MM-yyyy").format(dateRange.value.end);
 
-      //TODO send services
-      //TODO send rooms
-
-      //TODO SELECTED SERVICE ID AND SELECTED SERVICE PRICE
-      //TODO SELECTED rooms ID AND SELECTED rooms PRICE
-
-      List<Services>? services;
-      services = [];
-      List<Rooms>? rooms;
-      rooms = [];
+      // List<Services>? services;
+      // services = [];
+      // List<Rooms>? rooms;
+      // rooms = [];
       selectedRooms.forEach((element) {
-        print("----- selectedServices prise = ${element.roomPrice} ");
-        print("----- selectedServices name  = ${element.roomType} ");
+        print("----- selectedRooms price = ${element.roomPrice} ");
+        print("----- selectedRooms id  = ${element.roomId} ");
+      });
+      selectedServices.forEach((element) {
+        print("----- selectedServices price = ${element.servicePrice} ");
+        print("----- selectedServices id  = ${element.serviceId} ");
       });
 
       var a = jsonEncode(<String, dynamic>{
         "guest_id": guestId,
         "Checkin_date": checkInDate,
         "Checkout_date": checkOutDate,
-        "services": services,
+        "services": selectedServices,
         "rooms": selectedRooms
       });
 
@@ -135,8 +138,8 @@ class HotelReservationController extends GetxController {
           "guest_id": guestId,
           "Checkin_date": checkInDate,
           "Checkout_date": checkOutDate,
-          "services": services,
-          "rooms": rooms
+          "services": selectedServices,
+          "rooms": selectedRooms
         }),
         // bodyData,
       );

@@ -72,16 +72,12 @@ class HotelReservationView extends GetView<HotelReservationController> {
                               var rooms = Rooms(
                                   roomId: controller
                                       .hotelReservation!.rooms![i].roomId,
-                                  roomType: controller
-                                      .hotelReservation!.rooms![i].roomType,
                                   roomPrice: controller
-                                      .hotelReservation!.rooms![i].roomPrice);
+                                      .hotelReservation!.rooms![i].roomPrice,
+                                  roomType: controller
+                                      .hotelReservation!.rooms![i].roomType);
                               controller.selectedRooms.remove(rooms);
                             }
-                            // controller.checkBool.value =
-                            //     !controller.checkBool.value;
-                            // print(controller.checkBool.value);
-                            //TODO WHY VALUE CHANGE FOR ALL
                           },
                         ),
                       ),
@@ -125,12 +121,29 @@ class HotelReservationView extends GetView<HotelReservationController> {
                           title: DefaultText('اسم الخدمة : $serviceName'),
                           subtitle: DefaultText('سعر الخدمة : $servicePrice'),
                           activeColor: AppThemeColors.primaryColor,
-                          value: controller.checkBool.value,
+                          value: controller.services.contains(i),
                           onChanged: (value) {
-                            controller.checkBool.value =
-                                !controller.checkBool.value;
-                            print(controller.checkBool.value);
-                            //TODO WHY VALUE CHANGE FOR ALL
+                            if (value != null && value == true) {
+                              controller.services.add(i);
+                              var services = Services(
+                                  serviceId: controller
+                                      .hotelReservation!.services![i].serviceId,
+                                  servicePrice: controller.hotelReservation!
+                                      .services![i].servicePrice,
+                                  serviceName: controller.hotelReservation!
+                                      .services![i].serviceName);
+                              controller.selectedServices.add(services);
+                            } else {
+                              controller.services.remove(i);
+                              var services = Services(
+                                  serviceId: controller
+                                      .hotelReservation!.services![i].serviceId,
+                                  servicePrice: controller.hotelReservation!
+                                      .services![i].servicePrice,
+                                  serviceName: controller.hotelReservation!
+                                      .services![i].serviceName);
+                              controller.selectedServices.remove(services);
+                            }
                           },
                         ),
                       ),
