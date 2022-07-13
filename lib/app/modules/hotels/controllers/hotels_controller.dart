@@ -25,15 +25,22 @@ class HotelsController extends GetxController {
 
   getHotelsFromApi(int id) async {
     try {
+      print("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
       isDataLoading(true);
-      http.Response response = await http.get(
-          Uri.tryParse("$baseUrl/category_show_details/$id")!,
-          headers: {'Content-Type': 'application/json'});
+      http.Response response = await http
+          .get(Uri.parse("$baseUrl/category_show_details/$id"), headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      });
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         var result = jsonDecode(response.body);
+        print("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+
         destinationList = CategoryDestinations.fromJson(result);
         Get.toNamed(Routes.HOTELS);
+        print(result);
+        print(response.statusCode);
       } else {
         //error
         print("-------------------else -----------------------------");

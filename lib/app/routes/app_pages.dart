@@ -2,6 +2,10 @@ import 'package:get/get.dart';
 
 import '../modules/apartments/bindings/apartments_binding.dart';
 import '../modules/apartments/views/apartments_view.dart';
+import '../modules/appartment_reservation/bindings/appartment_reservation_binding.dart';
+import '../modules/appartment_reservation/views/appartment_reservation_view.dart';
+import '../modules/chalets_reservation/bindings/chalets_reservation_binding.dart';
+import '../modules/chalets_reservation/views/chalets_reservation_view.dart';
 import '../modules/change_password/bindings/change_password_binding.dart';
 import '../modules/change_password/views/change_password_view.dart';
 import '../modules/chats/bindings/chats_binding.dart';
@@ -18,6 +22,8 @@ import '../modules/favorites/bindings/favorites_binding.dart';
 import '../modules/favorites/views/favorites_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/hotel_reservation/bindings/hotel_reservation_binding.dart';
+import '../modules/hotel_reservation/views/hotel_reservation_view.dart';
 import '../modules/hotels/bindings/hotels_binding.dart';
 import '../modules/hotels/views/hotels_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -141,6 +147,21 @@ class AppPages {
       name: _Paths.RESORTS,
       page: () => ResortsView(),
       binding: ResortsBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOTEL_RESERVATION,
+      page: () => HotelReservationView(),
+      binding: HotelReservationBinding(),
+    ),
+    GetPage(
+      name: _Paths.APARTMENT_RESERVATION,
+      page: () => ApartmentReservationView(),
+      binding: ApartmentReservationBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHALETS_RESERVATION,
+      page: () => ChaletsReservationView(),
+      binding: ChaletsReservationBinding(),
     ),
   ];
 }

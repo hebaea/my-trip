@@ -17,6 +17,7 @@ dependencies:
   flutter_screenutil: ^5.5.3+2
   get_storage: ^2.0.3
   http: ^0.13.4
+  intl: ^0.17.0
   ##flutter_secure_storage: ^5.0.2   // secure storage
 dev_dependencies:
   flutter_lints: ^2.0.1

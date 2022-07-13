@@ -21,7 +21,7 @@ class FavoritesView extends GetView<FavoritesController> {
     print(controller.favoriteList?.destination);
     // print(controller.favoriteList!.destination!.isNotEmpty);
     return Scaffold(
-      body: controller.favoriteList!.destination != []
+      body: controller.favoriteList?.destination != []
           ? Container(
               padding: EdgeInsets.symmetric(horizontal: width * 0.04),
               child: Obx(
@@ -66,7 +66,8 @@ class FavoritesView extends GetView<FavoritesController> {
                                 },
                                 height: height,
                                 width: width,
-                                image: "assets/images/destination1.jpeg",
+                                image:
+                                    "${controller.favoriteList?.destination![i].destinationImg}",
                                 text: name,
                                 address: address,
                                 // "اسم المكان "

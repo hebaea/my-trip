@@ -30,20 +30,21 @@ class DestinationsController extends GetxController {
     try {
       isDataLoading(true);
       http.Response response = await http.get(
-          Uri.tryParse("$baseUrl/destination_index")!,
+          Uri.parse("$baseUrl/destination_index"),
           headers: {'Content-Type': 'application/json'});
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         var result = jsonDecode(response.body);
         destinationList = DestinationModel.fromJson(result);
         Get.toNamed(Routes.DESTINATIONS);
+        print(result);
       } else {
         //error
         print("-------------------else -----------------------------");
         return null;
       }
     } catch (e) {
-      print('error while getting data $e');
+      print('error while getting all destinations $e');
     } finally {
       isDataLoading(false);
     }

@@ -28,7 +28,7 @@ class DashboardView extends StatelessWidget {
               HomeView(),
               FavoritesView(),
               ReservationsView(),
-              ChatsView(),
+              // ChatsView(),
               ProfileView(),
             ],
           ),
@@ -48,8 +48,8 @@ class DashboardView extends StatelessWidget {
                 icon: const Icon(PhosphorIcons.heart), label: 'المفضلة'),
             _bottomNavigationBarItem(
                 icon: const Icon(PhosphorIcons.suitcase), label: 'حجوزاتي'),
-            _bottomNavigationBarItem(
-                icon: const Icon(PhosphorIcons.chats), label: 'الدردشات'),
+            // _bottomNavigationBarItem(
+            //     icon: const Icon(PhosphorIcons.chats), label: 'الدردشات'),
             _bottomNavigationBarItem(
                 icon: const Icon(PhosphorIcons.user), label: 'حسابي'),
           ],

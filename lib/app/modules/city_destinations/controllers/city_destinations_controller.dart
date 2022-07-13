@@ -26,12 +26,12 @@ class CityDestinationsController extends GetxController {
     try {
       isDataLoading(true);
       http.Response response = await http.get(
-          Uri.tryParse("$baseUrl/city_show_details/$id")!,
+          Uri.parse("$baseUrl/city_show_details/$id"),
           headers: {'Content-Type': 'application/json'});
       if (response.statusCode == 200 || response.statusCode == 201) {
         var result = jsonDecode(response.body);
         destinationList = CityShowDestinations.fromJson(result);
-        // Get.toNamed(Routes.CITY_DESTINATIONS);
+        Get.toNamed(Routes.CITY_DESTINATIONS);
       } else {
         //error
         print("-------------------else -----------------------------");

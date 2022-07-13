@@ -33,7 +33,7 @@ class FavoritesController extends GetxController {
     try {
       isDataLoading(true);
       http.Response response = await http.get(
-          Uri.tryParse("$baseUrl/favorite_show/$id")!,
+          Uri.parse("$baseUrl/favorite_show/$id"),
           headers: {'Content-Type': 'application/json'});
       if (response.statusCode == 200 || response.statusCode == 201) {
         var result = jsonDecode(response.body);

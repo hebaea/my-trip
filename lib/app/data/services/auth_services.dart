@@ -15,7 +15,10 @@ class AuthServices {
       {required name, required email, required password}) async {
     var response = await client.post(
       Uri.parse("$baseUrl/guest_register"),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': "application/json",
+      },
       body: jsonEncode(<dynamic, dynamic>{
         "guest_name": name,
         "guest_email": email,
@@ -90,7 +93,7 @@ class AuthServices {
       updateValidation = UpdateValidation.fromJson(result);
       return customSnackbar(
           "تعديل بيانات الحساب",
-          " ${updateValidation.guestName?.first} \n  ${updateValidation.guestEmail?.first} ",
+          " ${updateValidation.guestName?.first ?? ''} \n  ${updateValidation.guestEmail?.first ?? ''} ",
           "error");
     } else {
       MessageFromBackend? messageFromBackend;
@@ -111,7 +114,7 @@ class AuthServices {
       }),
     );
 
-    var result = await json.decode(json.encode(response.body));
+    var result = await json.decode(response.body);
     print(
         "------------------- state ${response.statusCode} ---------------------- ");
     print("------------------- res ${result} ---------------------- ");
@@ -120,6 +123,7 @@ class AuthServices {
       MessageFromBackend? messageFromBackend;
       var result = jsonDecode(response.body);
       messageFromBackend = MessageFromBackend.fromJson(result);
+
       return customSnackbar(
           "تعديل كلمة المرور", messageFromBackend.message, "success");
     } else {

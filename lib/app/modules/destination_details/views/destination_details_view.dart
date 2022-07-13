@@ -8,6 +8,9 @@ import 'package:my_trip/app/data/model/destination_model.dart';
 import 'package:my_trip/app/data/model/user_model.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
+import 'package:my_trip/app/modules/appartment_reservation/controllers/appartment_reservation_controller.dart';
+import 'package:my_trip/app/modules/chalets_reservation/controllers/chalets_reservation_controller.dart';
+import 'package:my_trip/app/modules/hotel_reservation/controllers/hotel_reservation_controller.dart';
 import '../controllers/destination_details_controller.dart';
 
 class DestinationDetailsView extends GetView<DestinationDetailsController> {
@@ -15,11 +18,17 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
   DestinationDetails? destinationDetails;
   Destination? destination;
   UserModel? user;
+  final apartmentReservationController =
+      Get.find<ApartmentReservationController>();
+  final hotelReservationController = Get.find<HotelReservationController>();
+  final chaletsReservationController = Get.find<ChaletsReservationController>();
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    int? destinationId = controller.destinationDetails?.destinationId;
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -27,13 +36,14 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
             children: [
               Container(
                 height: height / 2,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/images/travel-details.jpg"),
+                    image: NetworkImage(
+                        'https://mytrip.justhost.ly/${controller.destinationDetails?.destinationImg}'),
                     // <-- BACKGROUND IMAGE
                     fit: BoxFit.cover,
                   ),
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     bottomRight: Radius.circular(80),
                   ),
                 ),
@@ -46,12 +56,12 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                     children: [
                       ElevatedButton(
                         onPressed: () => Get.back(),
-                        child: const Icon(
-                          PhosphorIcons.arrow_right,
-                        ),
                         style: ElevatedButton.styleFrom(
                           shape: const CircleBorder(),
                           padding: const EdgeInsets.all(2),
+                        ),
+                        child: const Icon(
+                          PhosphorIcons.arrow_right,
                         ),
                       ),
                       Obx(
@@ -67,7 +77,7 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                                       "this is destination id ${controller.destinationDetails?.destinationId}");
 
                                   var guestId = storage.read('id');
-                                  print("this is guestId id ${guestId}");
+                                  print("this is guestId id $guestId");
                                   print(
                                       "this is isFavorite  ${controller.destinationDetails!.isFavorite}");
 
@@ -86,19 +96,19 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                                             .destinationDetails?.destinationId);
                                   }
                                 },
-                                child:
-                                    controller.destinationDetails!.isFavorite ==
-                                            1
-                                        ? Icon(
-                                            PhosphorIcons.heart_fill,
-                                            color: AppThemeColors.error500,
-                                          )
-                                        : Icon(
-                                            PhosphorIcons.heart_fill,
-                                          ),
                                 style: ElevatedButton.styleFrom(
                                   shape: const CircleBorder(),
                                 ),
+                                child:
+                                    controller.destinationDetails!.isFavorite ==
+                                            1
+                                        ? const Icon(
+                                            PhosphorIcons.heart_fill,
+                                            color: AppThemeColors.error500,
+                                          )
+                                        : const Icon(
+                                            PhosphorIcons.heart_fill,
+                                          ),
                               ),
                       ),
                     ],
@@ -171,7 +181,7 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                         SizedBox(width: width * 0.04),
                         ElevatedButton(
                           onPressed: () {
-                            // Get.toNamed();
+                            // Get.defaultDialog(title:'تقييم' );
                           },
                           child: const DefaultText(
                             'تواصل',
@@ -206,7 +216,26 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                       height: width * 0.02,
                     ),
                     SizedBox(height: width * 0.04),
-                    RoundedButton(text: 'إحجز', press: () {}),
+                    RoundedButton(
+                        text: 'إحجز',
+                        press: () {
+                          switch (controller.destinationDetails?.categoryId) {
+                            case (1):
+                              hotelReservationController.reservationShowHotel(
+                                  destinationId: destinationId);
+                              break;
+                            case (2):
+                              apartmentReservationController
+                                  .reservationShowApartment(
+                                      destinationId: destinationId);
+                              break;
+                            case (3):
+                              chaletsReservationController
+                                  .reservationShowChalet(
+                                      destinationId: destinationId);
+                              break;
+                          }
+                        }),
                     SizedBox(height: width * 0.02),
                   ],
                 ),

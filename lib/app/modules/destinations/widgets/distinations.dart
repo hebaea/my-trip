@@ -70,7 +70,8 @@ class Destinations extends GetView<DestinationsController> {
                           },
                           height: height,
                           width: width,
-                          image: "assets/images/destination1.jpeg",
+                          image:
+                              '${controller.destinationList!.destination![i].destinationImg}',
                           text: name,
                           address: address,
                           // "اسم المكان "
@@ -79,7 +80,7 @@ class Destinations extends GetView<DestinationsController> {
                       ],
                     );
                   },
-                  itemCount: controller.destinationList!.destination!.length,
+                  itemCount: controller.destinationList?.destination?.length,
                 ),
         ),
       ),

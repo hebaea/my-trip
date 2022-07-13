@@ -42,14 +42,12 @@ class DestinationDetailsController extends GetxController {
       http.Response response = await http.get(
         Uri.parse("$baseUrl/destination_details/$guestId/$id"),
         headers: {'Content-Type': 'application/json'},
-        // body: jsonEncode(<dynamic, int>{
-        //   "guest_id": guestId,
-        // }),
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         var result = jsonDecode(response.body);
         destinationDetails = DestinationDetails.fromJson(result);
         Get.toNamed(Routes.DESTINATION_DETAILS);
+        print(result);
       }
       {
         return null;
@@ -136,7 +134,7 @@ class DestinationDetailsController extends GetxController {
     }
   }
 
-  static Future unfavorite({
+  static Future unFavorite({
     required guestId,
     required destinationId,
   }) async {
@@ -189,7 +187,7 @@ class DestinationDetailsController extends GetxController {
     try {
       // isFavorite(true);
 
-      await unfavorite(guestId: guestId, destinationId: destinationId);
+      await unFavorite(guestId: guestId, destinationId: destinationId);
       print(
           "im here ------------------in UNfavorite-------------------------------------------------------");
       // print("isFavorite:");
