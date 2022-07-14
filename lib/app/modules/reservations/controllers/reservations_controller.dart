@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_trip/app/core/utils/baseurl.dart';
 import 'package:my_trip/app/core/utils/custom_snackbar.dart';
+import 'package:my_trip/app/data/model/hotel_reservation_details.dart';
 import 'package:my_trip/app/data/model/message_from_backend.dart';
 import 'package:my_trip/app/data/model/show_guest_reservations.dart';
 
@@ -12,6 +13,8 @@ class ReservationsController extends GetxController {
   final storage = GetStorage();
 
   ReservationShow? guestReservationList;
+  HotelReservationDetails? hotelReservationDetails;
+
   var isDataLoading = false.obs;
 
   @override
@@ -110,7 +113,45 @@ class ReservationsController extends GetxController {
     }
   }
 
-  getDetails() {
+  Future getReservationDetails({
+    required reservationId,
+  }) async {
+    print(
+        " ======reservationId====getReservationDetails====== in services $reservationId ");
+
+    var response = await client.post(
+      Uri.parse("$baseUrl/reservation_details/$reservationId"),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': "application/json"
+      },
+    );
+
+    print(
+        "------------------- state ${response.statusCode} ---------------------- ");
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print(
+          "im here -------------------------------------------------------------------------");
+
+      var result = jsonDecode(response.body);
+      hotelReservationDetails = HotelReservationDetails.fromJson(result);
+      //todo go to reservation details view
+    } else if (response.statusCode == 400) {}
+  }
+
+  getDetails(int? reservationId) async {
     print("getDetails");
+    print(" =====getDetails=========== $reservationId ");
+    isDataLoading(true);
+    try {
+      await getReservationDetails(reservationId: reservationId);
+      print(
+          "im here ------------------in deleteReservation-------------------------------------------------------");
+    } catch (e) {
+      print('$e');
+    } finally {
+      isDataLoading(false);
+    }
   }
 }

@@ -142,7 +142,12 @@ class ReservationsView extends GetView<ReservationsController> {
                                                 AppThemeColors.primaryPureWhite,
                                           ),
                                           onPressed: () {
-                                            controller.getDetails();
+                                            controller.getDetails(
+                                                controller
+                                                    .guestReservationList!
+                                                    .reservations![i]
+                                                    .reservationId
+                                            );
                                           },
                                         ),
                                       ],
