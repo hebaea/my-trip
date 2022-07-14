@@ -7,21 +7,21 @@ import 'package:my_trip/app/core/utils/custom_snackbar.dart';
 import 'package:my_trip/app/data/model/hotel_reservation_details.dart';
 import 'package:my_trip/app/data/model/message_from_backend.dart';
 import 'package:my_trip/app/data/model/show_guest_reservations.dart';
+import 'package:my_trip/app/routes/app_pages.dart';
 
 class ReservationsController extends GetxController {
   static var client = http.Client();
   final storage = GetStorage();
-
   ReservationShow? guestReservationList;
+  var guestList = <Reservations>[].obs;
   HotelReservationDetails? hotelReservationDetails;
-
   var isDataLoading = false.obs;
 
   @override
   void onInit() {
     var guestId = storage.read('id');
     print("this is guestId id ${guestId}");
-    getUserReservations(guestId: guestId);
+    //getUserReservations(guestId: guestId);
     super.onInit();
   }
 
@@ -33,8 +33,14 @@ class ReservationsController extends GetxController {
   @override
   void onClose() {}
 
-  Future getUserReservations({required guestId}) async {
+  get() async {
+    print("=============== HERE Get ======================");
+    await getUserReservations();
+  }
+
+  Future getUserReservations() async {
     try {
+      var guestId = storage.read('id');
       isDataLoading(true);
 
       var response = await client.get(
@@ -54,6 +60,8 @@ class ReservationsController extends GetxController {
       if (response.statusCode == 200 || response.statusCode == 201) {
         var result = jsonDecode(response.body);
         guestReservationList = ReservationShow.fromJson(result);
+        guestList.value =
+            guestReservationList?.reservations as List<Reservations>;
         print(guestReservationList);
       }
       {
@@ -66,7 +74,7 @@ class ReservationsController extends GetxController {
     }
   }
 
-  static Future deleteReservation({
+  Future deleteReservation({
     required reservationId,
   }) async {
     print(" ======reservationId========== in services $reservationId ");
@@ -84,7 +92,11 @@ class ReservationsController extends GetxController {
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       print(
-          "im here -------------------------------------------------------------------------");
+          "--reservations => ${guestList.value}------------------------------");
+      guestList
+          .removeWhere((element) => element.destinationId == reservationId);
+      print(
+          "--reservations => ${guestList.value}------------------------------");
 
       MessageFromBackend? messageFromBackend;
       var result = jsonDecode(response.body);
@@ -113,7 +125,7 @@ class ReservationsController extends GetxController {
     }
   }
 
-  Future getReservationDetails({
+  Future getHotelReservationDetails({
     required reservationId,
   }) async {
     print(
@@ -136,18 +148,18 @@ class ReservationsController extends GetxController {
 
       var result = jsonDecode(response.body);
       hotelReservationDetails = HotelReservationDetails.fromJson(result);
-      //todo go to reservation details view
+      Get.toNamed(Routes.HOTEL_RESERVATION_DETAILS);
     } else if (response.statusCode == 400) {}
   }
 
-  getDetails(int? reservationId) async {
-    print("getDetails");
-    print(" =====getDetails=========== $reservationId ");
+  getHotelDetails(int? reservationId) async {
+    print("getHotelDetails");
+    print(" =====getHotelDetails=========== $reservationId ");
     isDataLoading(true);
     try {
-      await getReservationDetails(reservationId: reservationId);
+      await getHotelReservationDetails(reservationId: reservationId);
       print(
-          "im here ------------------in deleteReservation-------------------------------------------------------");
+          "im here ------------------in getDetails----------------------------");
     } catch (e) {
       print('$e');
     } finally {

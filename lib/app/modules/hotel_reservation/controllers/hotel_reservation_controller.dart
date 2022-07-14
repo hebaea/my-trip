@@ -100,9 +100,9 @@ class HotelReservationController extends GetxController {
 
       int guestId = storage.read("id");
       String checkInDate =
-          DateFormat("dd-MM-yyyy").format(dateRange.value.start);
+          DateFormat("yyyy-MM-dd").format(dateRange.value.start);
       String checkOutDate =
-          DateFormat("dd-MM-yyyy").format(dateRange.value.end);
+          DateFormat("yyyy-MM-dd").format(dateRange.value.end);
 
       // List<Services>? services;
       // services = [];
