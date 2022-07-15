@@ -190,83 +190,98 @@ class ReservationsView extends GetView<ReservationsController> {
                                                     hotelReservationDetailsController
                                                         .hotelReservationDetails
                                                         ?.reservationableType);
-                                                const String room = "Room";
-                                                const String apartment =
-                                                    "Apartment";
-                                                const String chalet = "Chalet";
+                                                switch (
+                                                    hotelReservationDetailsController
+                                                        .hotelReservationDetails
+                                                        ?.reservationableType) {
+                                                  case (1):
+                                                    hotelReservationDetailsController
+                                                        .getHotelReservationDetails(
+                                                            controller
+                                                                .guestReservationList!
+                                                                .reservations![
+                                                                    i]
+                                                                .reservationId);
+                                                    break;
+                                                  case (2):
+                                                    apartmentReservationDetailsController
+                                                        .getApartmentReservationDetails(
+                                                            reservationId: controller
+                                                                .guestReservationList!
+                                                                .reservations![
+                                                                    i]
+                                                                .reservationId);
+                                                    break;
+                                                  case (3):
+                                                    chaletReservationDetailsController
+                                                        .getChaletReservationDetails(
+                                                      reservationId: controller
+                                                          .guestReservationList!
+                                                          .reservations![i]
+                                                          .reservationId,
+                                                    );
+                                                    break;
+                                                }
+                                                // const String room = "Room";
+                                                // const String apartment =
+                                                //     "Apartment";
+                                                // const String chalet = "Chalet";
                                                 var type =
                                                     hotelReservationDetailsController
                                                         .hotelReservationDetails
-                                                        ?.room!
-                                                        .first;
+                                                        ?.reservationableType;
                                                 print("this is type ");
                                                 print(type);
                                                 // switch
-                                                bool h = equalsIgnoreCase(
-                                                        hotelReservationDetailsController
-                                                            .hotelReservationDetails
-                                                            ?.reservationableType,
-                                                        room) ==
-                                                    true;
-                                                print(
-                                                    "$h +++++++++++ tis is h ");
+                                                // bool h = equalsIgnoreCase(
+                                                //         hotelReservationDetailsController
+                                                //             .hotelReservationDetails
+                                                //             ?.reservationableType,
+                                                //         room) ==
+                                                //     true;
+                                                // print(
+                                                //     "$h +++++++++++ tis is h ");
                                                 print(controller
                                                     .guestReservationList!
                                                     .reservations![i]
                                                     .reservationId);
-                                                if (
+                                                // if (
 
-                                                    // hotelReservationDetailsController
-                                                    //     .hotelReservationDetails
-                                                    //     ?.reservationableType
-                                                    equalsIgnoreCase(
-                                                            hotelReservationDetailsController
-                                                                .hotelReservationDetails
-                                                                ?.reservationableType,
-                                                            room) ==
-                                                        true) {
-                                                  // case (room):
-                                                  hotelReservationDetailsController
-                                                      .getHotelReservationDetails(
-                                                          controller
-                                                              .guestReservationList!
-                                                              .reservations![i]
-                                                              .reservationId);
-                                                } else if (equalsIgnoreCase(
-                                                        apartmentReservationDetailsController
-                                                            .apartmentReservationDetails
-                                                            ?.reservationableType,
-                                                        apartment) ==
-                                                    true) {
-                                                  // break;
-                                                  // case (apartment):
-                                                  apartmentReservationDetailsController
-                                                      .getApartmentReservationDetails(
-                                                    reservationId: controller
-                                                        .guestReservationList!
-                                                        .reservations![i]
-                                                        .reservationId,
-                                                  );
-                                                }
-                                                // break;
+                                                // hotelReservationDetailsController
+                                                //     .hotelReservationDetails
+                                                //     ?.reservationableType
+                                                // equalsIgnoreCase(
+                                                //         hotelReservationDetailsController
+                                                //             .hotelReservationDetails
+                                                //             ?.reservationableType,
+                                                //         room) ==
+                                                //     true) {
+                                                // case (room):
 
-                                                // case (chalet):
-                                                else if (equalsIgnoreCase(
-                                                        chaletReservationDetailsController
-                                                            .chaletReservationDetails
-                                                            ?.reservationableType,
-                                                        chalet) ==
-                                                    true) {
-                                                  chaletReservationDetailsController
-                                                      .getChaletReservationDetails(
-                                                    reservationId: controller
-                                                        .guestReservationList!
-                                                        .reservations![i]
-                                                        .reservationId,
-                                                  );
-                                                }
+                                                // } else if (equalsIgnoreCase(
+                                                //         apartmentReservationDetailsController
+                                                //             .apartmentReservationDetails
+                                                //             ?.reservationableType,
+                                                //         apartment) ==
+                                                //     true) {
                                                 // break;
+                                                // case (apartment):
+
+                                                // );
                                               }
+                                              // break;
+
+                                              // case (chalet):
+                                              // else if (equalsIgnoreCase(
+                                              //         chaletReservationDetailsController
+                                              //             .chaletReservationDetails
+                                              //             ?.reservationableType,
+                                              //         chalet) ==
+                                              //     true) {
+
+                                              // }
+                                              // break;
+                                              // }
                                               // },
                                               ),
                                         ],
