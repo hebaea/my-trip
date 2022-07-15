@@ -249,7 +249,6 @@ class LoginView extends GetView<LoginController> {
 //
 // import 'package:flutter/material.dart';
 // import 'package:flutterapp/Services/auth_services.dart';
-// import 'package:flutterapp/Services/globals.dart';
 // import 'package:flutterapp/rounded_button.dart';
 // import 'package:http/http.dart' as http;
 //

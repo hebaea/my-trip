@@ -4,10 +4,20 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
+import 'package:my_trip/app/modules/apartment_reservation_details/controllers/apartment_reservation_details_controller.dart';
+import 'package:my_trip/app/modules/chalet_reservation_details/controllers/chalet_reservation_details_controller.dart';
+import 'package:my_trip/app/modules/hotel_reservation_details/controllers/hotel_reservation_details_controller.dart';
 import '../controllers/reservations_controller.dart';
 
 class ReservationsView extends GetView<ReservationsController> {
-  const ReservationsView({Key? key}) : super(key: key);
+  ReservationsView({Key? key}) : super(key: key);
+  final apartmentReservationDetailsController =
+      Get.find<ApartmentReservationDetailsController>();
+
+  final hotelReservationDetailsController =
+      Get.find<HotelReservationDetailsController>();
+  final chaletReservationDetailsController =
+      Get.find<ChaletReservationDetailsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -108,30 +118,157 @@ class ReservationsView extends GetView<ReservationsController> {
                                             },
                                           ),
                                           ElevatedButton(
-                                            child: const DefaultText(
-                                              'تفاصيل',
-                                              color: AppThemeColors
-                                                  .primaryPureWhite,
-                                            ),
-                                            onPressed: () {
-                                              switch (controller
-                                                  .hotelReservationDetails
-                                                  ?.reservationableType) {
-                                                case ("Room"):
-                                                  controller.getHotelDetails(
-                                                      controller
-                                                          .guestReservationList!
-                                                          .reservations![i]
-                                                          .reservationId);
-                                                  break;
-                                                case ("Apartment"):
-                                                  break;
+                                              child: const DefaultText(
+                                                'تفاصيل',
+                                                color: AppThemeColors
+                                                    .primaryPureWhite,
+                                              ),
+                                              onPressed: () {
+                                                // bool equals(
+                                                //     String? string1,
+                                                //     String? string2) {
+                                                //   return string1 == string2;
+                                                // }
+                                                bool equalsIgnoreCase(
+                                                    String? string1,
+                                                    String? string2) {
+                                                  return string1
+                                                          ?.toLowerCase() ==
+                                                      string2?.toLowerCase();
+                                                }
 
-                                                case ("Chalet"):
-                                                  break;
+                                                //
+                                                // print(
+                                                // equalsIgnoreCase(
+                                                //     hotelReservationDetailsController
+                                                //         .hotelReservationDetails
+                                                //         ?.reservationableType,
+                                                //     "Room"));
+                                                // print(
+                                                //     hotelReservationDetailsController
+                                                //         .hotelReservationDetails
+                                                //         ?.reservationableType);
+                                                //
+                                                // if (equalsIgnoreCase(
+                                                //         hotelReservationDetailsController
+                                                //             .hotelReservationDetails
+                                                //             ?.reservationableType,
+                                                //         "Room") ==
+                                                //     true) {
+                                                //   hotelReservationDetailsController
+                                                //       .getHotelDetails(controller
+                                                //           .guestReservationList!
+                                                //           .reservations![i]
+                                                //           .reservationId);
+                                                // } else if (equalsIgnoreCase(
+                                                //         apartmentReservationDetailsController
+                                                //             .apartmentReservationDetails
+                                                //             ?.reservationableType,
+                                                //         "Apartment") ==
+                                                //     true) {
+                                                //   apartmentReservationDetailsController
+                                                //       .getApartmentDetails(
+                                                //           controller
+                                                //               .guestReservationList!
+                                                //               .reservations![i]
+                                                //               .reservationId);
+                                                // } else if (equalsIgnoreCase(
+                                                //         chaletReservationDetailsController
+                                                //             .chaletReservationDetails
+                                                //             ?.reservationableType,
+                                                //         "Chalet") ==
+                                                //     true) {
+                                                //   chaletReservationDetailsController
+                                                //       .getChaletDetails(controller
+                                                //           .guestReservationList!
+                                                //           .reservations![i]
+                                                //           .reservationId);
+                                                // }
+                                                print(
+                                                    "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnmmmmmmmmmmmmmmmmmmmmmmmmm");
+                                                print(
+                                                    hotelReservationDetailsController
+                                                        .hotelReservationDetails
+                                                        ?.reservationableType);
+                                                const String room = "Room";
+                                                const String apartment =
+                                                    "Apartment";
+                                                const String chalet = "Chalet";
+                                                var type =
+                                                    hotelReservationDetailsController
+                                                        .hotelReservationDetails
+                                                        ?.room!
+                                                        .first;
+                                                print("this is type ");
+                                                print(type);
+                                                // switch
+                                                bool h = equalsIgnoreCase(
+                                                        hotelReservationDetailsController
+                                                            .hotelReservationDetails
+                                                            ?.reservationableType,
+                                                        room) ==
+                                                    true;
+                                                print(
+                                                    "$h +++++++++++ tis is h ");
+                                                print(controller
+                                                    .guestReservationList!
+                                                    .reservations![i]
+                                                    .reservationId);
+                                                if (
+
+                                                    // hotelReservationDetailsController
+                                                    //     .hotelReservationDetails
+                                                    //     ?.reservationableType
+                                                    equalsIgnoreCase(
+                                                            hotelReservationDetailsController
+                                                                .hotelReservationDetails
+                                                                ?.reservationableType,
+                                                            room) ==
+                                                        true) {
+                                                  // case (room):
+                                                  hotelReservationDetailsController
+                                                      .getHotelReservationDetails(
+                                                          controller
+                                                              .guestReservationList!
+                                                              .reservations![i]
+                                                              .reservationId);
+                                                } else if (equalsIgnoreCase(
+                                                        apartmentReservationDetailsController
+                                                            .apartmentReservationDetails
+                                                            ?.reservationableType,
+                                                        apartment) ==
+                                                    true) {
+                                                  // break;
+                                                  // case (apartment):
+                                                  apartmentReservationDetailsController
+                                                      .getApartmentReservationDetails(
+                                                    reservationId: controller
+                                                        .guestReservationList!
+                                                        .reservations![i]
+                                                        .reservationId,
+                                                  );
+                                                }
+                                                // break;
+
+                                                // case (chalet):
+                                                else if (equalsIgnoreCase(
+                                                        chaletReservationDetailsController
+                                                            .chaletReservationDetails
+                                                            ?.reservationableType,
+                                                        chalet) ==
+                                                    true) {
+                                                  chaletReservationDetailsController
+                                                      .getChaletReservationDetails(
+                                                    reservationId: controller
+                                                        .guestReservationList!
+                                                        .reservations![i]
+                                                        .reservationId,
+                                                  );
+                                                }
+                                                // break;
                                               }
-                                            },
-                                          ),
+                                              // },
+                                              ),
                                         ],
                                       ),
                                     ])),
@@ -164,7 +301,7 @@ class ReservationsView extends GetView<ReservationsController> {
                       height: 3.h,
                     ),
                     const DefaultText(
-                      " اي كلام هنا اي كلام هنا اي كلام هنا اي كلام هنا اي كلام هنا اي كلام هنا ",
+                      "ستظهر الحجوزات الخاصة بك هنا بعد الحجز ",
                       color: AppThemeColors.grayPrimary400,
                       textAlign: TextAlign.center,
                     ),

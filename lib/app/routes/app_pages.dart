@@ -28,6 +28,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/hotel_reservation/bindings/hotel_reservation_binding.dart';
 import '../modules/hotel_reservation/views/hotel_reservation_view.dart';
+import '../modules/hotel_reservation_details/bindings/hotel_reservation_details_binding.dart';
+import '../modules/hotel_reservation_details/views/hotel_reservation_details_view.dart';
 import '../modules/hotels/bindings/hotels_binding.dart';
 import '../modules/hotels/views/hotels_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -38,8 +40,6 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
-import '../modules/reservation_details/bindings/reservation_details_binding.dart';
-import '../modules/reservation_details/views/reservation_details_view.dart';
 import '../modules/reservations/bindings/reservations_binding.dart';
 import '../modules/reservations/views/reservations_view.dart';
 import '../modules/resorts/bindings/resorts_binding.dart';
@@ -170,11 +170,6 @@ class AppPages {
       binding: ChaletsReservationBinding(),
     ),
     GetPage(
-      name: _Paths.HOTEL_RESERVATION_DETAILS,
-      page: () => ReservationDetailsView(),
-      binding: ReservationDetailsBinding(),
-    ),
-    GetPage(
       name: _Paths.APARTMENT_RESERVATION_DETAILS,
       page: () => ApartmentReservationDetailsView(),
       binding: ApartmentReservationDetailsBinding(),
@@ -183,6 +178,11 @@ class AppPages {
       name: _Paths.CHALET_RESERVATION_DETAILS,
       page: () => ChaletReservationDetailsView(),
       binding: ChaletReservationDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOTEL_RESERVATION_DETAILS,
+      page: () => HotelReservationDetailsView(),
+      binding: HotelReservationDetailsBinding(),
     ),
   ];
 }

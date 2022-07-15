@@ -4,17 +4,14 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_trip/app/core/utils/baseurl.dart';
 import 'package:my_trip/app/core/utils/custom_snackbar.dart';
-import 'package:my_trip/app/data/model/hotel_reservation_details.dart';
 import 'package:my_trip/app/data/model/message_from_backend.dart';
 import 'package:my_trip/app/data/model/show_guest_reservations.dart';
-import 'package:my_trip/app/routes/app_pages.dart';
 
 class ReservationsController extends GetxController {
   static var client = http.Client();
   final storage = GetStorage();
   ReservationShow? guestReservationList;
   var guestList = <Reservations>[].obs;
-  HotelReservationDetails? hotelReservationDetails;
   var isDataLoading = false.obs;
 
   @override
@@ -118,48 +115,6 @@ class ReservationsController extends GetxController {
       await deleteReservation(reservationId: reservationId);
       print(
           "im here ------------------in deleteReservation-------------------------------------------------------");
-    } catch (e) {
-      print('$e');
-    } finally {
-      isDataLoading(false);
-    }
-  }
-
-  Future getHotelReservationDetails({
-    required reservationId,
-  }) async {
-    print(
-        " ======reservationId====getReservationDetails====== in services $reservationId ");
-
-    var response = await client.post(
-      Uri.parse("$baseUrl/reservation_details/$reservationId"),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': "application/json"
-      },
-    );
-
-    print(
-        "------------------- state ${response.statusCode} ---------------------- ");
-
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      print(
-          "im here -------------------------------------------------------------------------");
-
-      var result = jsonDecode(response.body);
-      hotelReservationDetails = HotelReservationDetails.fromJson(result);
-      Get.toNamed(Routes.HOTEL_RESERVATION_DETAILS);
-    } else if (response.statusCode == 400) {}
-  }
-
-  getHotelDetails(int? reservationId) async {
-    print("getHotelDetails");
-    print(" =====getHotelDetails=========== $reservationId ");
-    isDataLoading(true);
-    try {
-      await getHotelReservationDetails(reservationId: reservationId);
-      print(
-          "im here ------------------in getDetails----------------------------");
     } catch (e) {
       print('$e');
     } finally {
