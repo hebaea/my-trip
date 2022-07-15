@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
@@ -54,7 +53,6 @@ class HotelReservationView extends GetView<HotelReservationController> {
                           title: DefaultText('نوع الغرفة : $roomType'),
                           subtitle: DefaultText('سعر الغرفة : $roomPrice'),
                           activeColor: AppThemeColors.primaryColor,
-                          // value: controller.checkBool.value,
                           value: controller.rooms.contains(i),
                           onChanged: (value) {
                             if (value != null && value == true) {
@@ -115,7 +113,7 @@ class HotelReservationView extends GetView<HotelReservationController> {
 
                   return Column(
                     children: [
-// TODO check if services is null ?
+                       // TODO check if services is null ?
                       Obx(
                         () => CheckboxListTile(
                           title: DefaultText('اسم الخدمة : $serviceName'),

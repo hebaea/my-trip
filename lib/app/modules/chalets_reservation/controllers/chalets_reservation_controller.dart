@@ -19,15 +19,21 @@ class ChaletsReservationController extends GetxController {
   var isDataLoading = false.obs;
   var checkBool = false.obs;
   final storage = GetStorage();
+  final Set chalets = <dynamic>{}.obs;
+  final Set services = <dynamic>{}.obs;
+
+  var selectedChalets = <Chalets>[].obs;
+  var selectedServices = <Services>[].obs;
+
   var dateRange = DateTimeRange(
     start: DateTime.now(),
     end: DateTime(
         DateTime.now().year, DateTime.now().month, DateTime.now().day + 6),
   ).obs;
 
-  changeVal(value) {
-    value = !value;
-  }
+  // changeVal(value) {
+  //   value = !value;
+  // }
 
   @override
   void onInit() {
@@ -91,53 +97,7 @@ class ChaletsReservationController extends GetxController {
     }
   }
 
-  chooseServices() async {
-    Get.bottomSheet(
-      Container(
-        color: AppThemeColors.primaryPureWhite,
-        child: ListView.builder(
-          itemBuilder: (ctx, i) {
-            String serviceName = "";
-            try {
-              serviceName = chaletReservation!.services![i].serviceName!;
-            } catch (e) {
-              serviceName = "";
-            }
-            int servicePrice = 0;
-            try {
-              servicePrice = chaletReservation!.services![i].servicePrice!;
-            } catch (e) {
-              servicePrice = 0;
-            }
-            return Column(
-              children: [
-                SizedBox(height: 20.h),
-                Obx(
-                  () => CheckboxListTile(
-                    title: DefaultText('اسم الخدمة : $serviceName'),
-                    subtitle: DefaultText('سعر الخدمة : $servicePrice'),
-                    activeColor: AppThemeColors.primaryColor,
-                    value: checkBool.value,
-                    onChanged: (value) {
-                      checkBool.value = !checkBool.value;
-                      print(checkBool.value);
-                      //TODO WHY VALUE CHANGE FOR ALL
-                    },
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Divider(),
-                ),
-                // SizedBox(height: 20.h),
-              ],
-            );
-          },
-          itemCount: chaletReservation?.services!.length,
-        ),
-      ),
-    );
-  }
+
 
   Future<MessageFromBackend?> makeChaletReservation(
       {required int? destinationId}) async {
@@ -146,20 +106,31 @@ class ChaletsReservationController extends GetxController {
 
       int guestId = storage.read("id");
       String checkInDate =
-          DateFormat("dd-MM-yyyy").format(dateRange.value.start);
+          DateFormat("yyyy-MM-dd").format(dateRange.value.start);
       String checkOutDate =
-          DateFormat("dd-MM-yyyy").format(dateRange.value.end);
+          DateFormat("yyyy-MM-dd").format(dateRange.value.end);
+      selectedChalets.forEach((element) {
+        print("----- selectedRooms price = ${element.chaletPrice} ");
+        print("----- selectedRooms id  = ${element.chaletId} ");
+      });
+      selectedServices.forEach((element) {
+        print("----- selectedServices price = ${element.servicePrice} ");
+        print("----- selectedServices id  = ${element.serviceId} ");
+      });
 
-      //TODO send services
-      //TODO send rooms
+      var a = jsonEncode(<String, dynamic>{
+        "guest_id": guestId,
+        "Checkin_date": checkInDate,
+        "Checkout_date": checkOutDate,
+        "services": selectedServices,
+        "rooms": selectedChalets
+      });
 
-      //TODO SELECTED SERVICE ID AND SELECTED SERVICE PRICE
-      //TODO SELECTED chalets ID AND chalets SERVICE PRICE
+      print("---------------- here --- ${a}");
+      print("---------------- destinationId --- ${destinationId}");
 
-      List<Services>? services;
-      services = [];
-      List<Chalets>? chalets;
-      chalets = [];
+
+
       final response = await http.post(
         Uri.parse("$baseUrl/reservation_create/$destinationId"),
         headers: <String, String>{
@@ -170,8 +141,8 @@ class ChaletsReservationController extends GetxController {
           "guest_id": guestId,
           "Checkin_date": checkInDate,
           "Checkout_date": checkOutDate,
-          "services": services,
-          "chalets": chalets
+          "services": selectedServices,
+          "chalets": selectedChalets
         }),
         // bodyData,
       );
@@ -196,4 +167,8 @@ class ChaletsReservationController extends GetxController {
     }
     return null;
   }
+
+  // chooseServices() async {
+  //
+  // }
 }

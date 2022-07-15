@@ -29,9 +29,9 @@ class HotelReservationController extends GetxController {
         DateTime.now().year, DateTime.now().month, DateTime.now().day + 6),
   ).obs;
 
-  changeVal(value) {
-    value = !value;
-  }
+  // changeVal(value) {
+  //   value = !value;
+  // }
 
   @override
   void onInit() {
