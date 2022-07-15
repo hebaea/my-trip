@@ -113,7 +113,7 @@ class HotelReservationView extends GetView<HotelReservationController> {
 
                   return Column(
                     children: [
-                       // TODO check if services is null ?
+                      // TODO check if services is null ?
                       Obx(
                         () => CheckboxListTile(
                           title: DefaultText('اسم الخدمة : $serviceName'),
@@ -164,11 +164,11 @@ class HotelReservationView extends GetView<HotelReservationController> {
             ),
             SizedBox(height: 20.h),
             Obx(() => DefaultText(
-                  'تاريخ بداية الحجز : ${DateFormat("dd-MM-yyyy").format(controller.dateRange.value.start)}',
+                  'تاريخ بداية الحجز : ${DateFormat("yyyy-MM-dd").format(controller.dateRange.value.start)}',
                 )),
             SizedBox(height: 20.h),
             Obx(() => DefaultText(
-                  'تاريخ نهاية الحجز : ${DateFormat("dd-MM-yyyy").format(controller.dateRange.value.end)}',
+                  'تاريخ نهاية الحجز : ${DateFormat("yyyy-MM-dd").format(controller.dateRange.value.end)}',
                 )),
             SizedBox(height: 20.h),
             Obx(() => controller.isDataLoading.value

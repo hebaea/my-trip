@@ -1,16 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
-import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/core/utils/baseurl.dart';
 import 'package:my_trip/app/core/utils/custom_snackbar.dart';
 import 'package:my_trip/app/data/model/chalet_reservation.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_trip/app/data/model/message_from_backend.dart';
-import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
 
 class ChaletsReservationController extends GetxController {
@@ -97,8 +94,6 @@ class ChaletsReservationController extends GetxController {
     }
   }
 
-
-
   Future<MessageFromBackend?> makeChaletReservation(
       {required int? destinationId}) async {
     try {
@@ -128,8 +123,6 @@ class ChaletsReservationController extends GetxController {
 
       print("---------------- here --- ${a}");
       print("---------------- destinationId --- ${destinationId}");
-
-
 
       final response = await http.post(
         Uri.parse("$baseUrl/reservation_create/$destinationId"),
@@ -168,7 +161,7 @@ class ChaletsReservationController extends GetxController {
     return null;
   }
 
-  // chooseServices() async {
-  //
-  // }
+// chooseServices() async {
+//
+// }
 }

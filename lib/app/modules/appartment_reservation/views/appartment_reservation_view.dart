@@ -62,12 +62,29 @@ class ApartmentReservationView extends GetView<ApartmentReservationController> {
                         title: DefaultText('اسم الخدمة : $serviceName'),
                         subtitle: DefaultText('سعر الخدمة : $servicePrice'),
                         activeColor: AppThemeColors.primaryColor,
-                        value: controller.checkBool.value,
+                        value: controller.services.contains(i),
                         onChanged: (value) {
-                          controller.checkBool.value =
-                              !controller.checkBool.value;
-                          print(controller.checkBool.value);
-                          //TODO WHY VALUE CHANGE FOR ALL
+                          if (value != null && value == true) {
+                            controller.services.add(i);
+                            var services = Services(
+                                serviceId: controller.apartmentReservation!
+                                    .services![i].serviceId,
+                                servicePrice: controller.apartmentReservation!
+                                    .services![i].servicePrice,
+                                serviceName: controller.apartmentReservation!
+                                    .services![i].serviceName);
+                            controller.selectedServices.add(services);
+                          } else {
+                            controller.services.remove(i);
+                            var services = Services(
+                                serviceId: controller.apartmentReservation!
+                                    .services![i].serviceId,
+                                servicePrice: controller.apartmentReservation!
+                                    .services![i].servicePrice,
+                                serviceName: controller.apartmentReservation!
+                                    .services![i].serviceName);
+                            controller.selectedServices.remove(services);
+                          }
                         },
                       ),
                     ),
@@ -91,20 +108,20 @@ class ApartmentReservationView extends GetView<ApartmentReservationController> {
           ),
           SizedBox(height: 20.h),
           Obx(() => DefaultText(
-                'تاريخ بداية الحجز : ${DateFormat("dd-MM-yyyy").format(controller.dateRange.value.start)}',
+                'تاريخ بداية الحجز : ${DateFormat("yyyy-MM-dd").format(controller.dateRange.value.start)}',
               )),
           SizedBox(height: 20.h),
           Obx(() => DefaultText(
-                'تاريخ نهاية الحجز : ${DateFormat("dd-MM-yyyy").format(controller.dateRange.value.end)}',
+                'تاريخ نهاية الحجز : ${DateFormat("yyyy-MM-dd").format(controller.dateRange.value.end)}',
               )),
           SizedBox(height: 20.h),
           Obx(() => controller.isDataLoading.value
               ? const CircularProgressIndicator()
               : RoundedButton(
                   press: () {
-                    String checkInDate = DateFormat("dd-MM-yyyy")
+                    String checkInDate = DateFormat("yyyy-MM-dd")
                         .format(controller.dateRange.value.start);
-                    String checkOutDate = DateFormat("dd-MM-yyyy")
+                    String checkOutDate = DateFormat("yyyy-MM-dd")
                         .format(controller.dateRange.value.end);
 
                     final storage = GetStorage();

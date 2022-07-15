@@ -17,15 +17,19 @@ class ApartmentReservationController extends GetxController {
   var isDataLoading = false.obs;
   var checkBool = false.obs;
   final storage = GetStorage();
+  final Set services = <dynamic>{}.obs;
+
+  var selectedServices = <Services>[].obs;
+
   var dateRange = DateTimeRange(
     start: DateTime.now(),
     end: DateTime(
         DateTime.now().year, DateTime.now().month, DateTime.now().day + 6),
   ).obs;
 
-  changeVal(value) {
-    value = !value;
-  }
+  // changeVal(value) {
+  //   value = !value;
+  // }
 
   @override
   void onInit() {
@@ -138,8 +142,8 @@ class ApartmentReservationController extends GetxController {
       //     apartmentReservation?.apartment?.first.apartmentPrice?.toDouble();
       // int apartmentId =
       //     apartmentReservation?.apartment?.first.apartmentId as int;
-      List<Services>? services;
-      services = [];
+      // List<Services>? services;
+      // services = [];
       //TODO SELECTED SERVICE ID AND SELECTED SERVICE PRICE
       // var bodyData = <String, dynamic>{};
       // bodyData['guest_id'] = '${guestId}';
@@ -148,6 +152,23 @@ class ApartmentReservationController extends GetxController {
       // bodyData['apartment_price'] = '${apartmentPrice}';
       // bodyData['apartment_id'] = '${apartmentId}';
       // bodyData['services'] = 'services';
+
+      selectedServices.forEach((element) {
+        print("----- selectedServices price = ${element.servicePrice} ");
+        print("----- selectedServices id  = ${element.serviceId} ");
+      });
+
+      var a = jsonEncode(<String, dynamic>{
+        "guest_id": guestId,
+        "Checkin_date": checkInDate,
+        "Checkout_date": checkOutDate,
+        "services": selectedServices,
+        "apartment_price": apartmentPrice
+      });
+
+      print("---------------- here --- ${a}");
+      print("---------------- destinationId --- ${destinationId}");
+
       print('+++++++++++++++++++++++++++++++++++');
       print(guestId);
       // print(bodyData);
@@ -156,7 +177,6 @@ class ApartmentReservationController extends GetxController {
         headers: {
           'Accept': "application/json",
           'Content-Type': 'application/json',
-
         },
         body: jsonEncode(<String, dynamic>{
           "guest_id": guestId,
@@ -164,10 +184,8 @@ class ApartmentReservationController extends GetxController {
           "Checkout_date": checkOutDate,
           "apartment_price": apartmentPrice,
           // "apartment_id": apartmentId,
-          "services": services,
+          "services": selectedServices,
         }),
-
-        // bodyData
       );
 
       var result = await json.decode(response.body);
