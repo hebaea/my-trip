@@ -48,6 +48,9 @@ class HotelReservationDetailsController extends GetxController {
 
         var result = jsonDecode(response.body);
         hotelReservationDetails = HotelReservationDetails.fromJson(result);
+        print("----hotelReservationDetails = ${hotelReservationDetails}--------");
+
+        //Todo check type here
         Get.toNamed(Routes.HOTEL_RESERVATION_DETAILS);
         print(result);
       }
