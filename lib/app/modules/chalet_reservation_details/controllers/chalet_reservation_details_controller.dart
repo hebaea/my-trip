@@ -47,6 +47,9 @@ class ChaletReservationDetailsController extends GetxController {
 
       var result = jsonDecode(response.body);
       chaletReservationDetails = ChaletReservationDetails.fromJson(result);
+
+      print(
+          "----------chaletReservationDetails ${chaletReservationDetails}-------------------------");
       Get.toNamed(Routes.CHALET_RESERVATION_DETAILS);
     } else if (response.statusCode == 400) {}
   }

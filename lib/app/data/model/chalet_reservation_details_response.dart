@@ -1,5 +1,5 @@
 class ChaletReservationDetails {
-  String? reservationableType;
+  int? reservationableType;
   List<Chalet>? chalet;
   List<Service>? service;
 

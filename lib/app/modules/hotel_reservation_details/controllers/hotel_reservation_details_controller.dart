@@ -6,11 +6,21 @@ import 'package:my_trip/app/data/model/hotel_reservation_details.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_trip/app/routes/app_pages.dart';
 
+import '../../apartment_reservation_details/controllers/apartment_reservation_details_controller.dart';
+import '../../chalet_reservation_details/controllers/chalet_reservation_details_controller.dart';
+import '../../reservations/controllers/reservations_controller.dart';
+
 class HotelReservationDetailsController extends GetxController {
   HotelReservationDetails? hotelReservationDetails;
   static var client = http.Client();
   final storage = GetStorage();
+  final apartmentReservationDetailsController =
+      Get.find<ApartmentReservationDetailsController>();
 
+  final controller = Get.find<ReservationsController>();
+
+  final chaletReservationDetailsController =
+      Get.find<ChaletReservationDetailsController>();
   var isDataLoading = false.obs;
 
   @override
@@ -26,7 +36,7 @@ class HotelReservationDetailsController extends GetxController {
   @override
   void onClose() {}
 
-  Future getHotelReservationDetails(reservationId) async {
+  Future getHotelReservationDetails(reservationId, i) async {
     print(
         " ======reservationId====getReservationDetails====== in services $reservationId ");
 
@@ -48,10 +58,28 @@ class HotelReservationDetailsController extends GetxController {
 
         var result = jsonDecode(response.body);
         hotelReservationDetails = HotelReservationDetails.fromJson(result);
-        print("----hotelReservationDetails = ${hotelReservationDetails}--------");
+        print(
+            "----hotelReservationDetails = ${hotelReservationDetails}--------");
 
         //Todo check type here
-        Get.toNamed(Routes.HOTEL_RESERVATION_DETAILS);
+        switch (hotelReservationDetails?.reservationableType) {
+          case (1):
+            Get.toNamed(Routes.HOTEL_RESERVATION_DETAILS);
+            break;
+          case (2):
+            apartmentReservationDetailsController
+                .getApartmentReservationDetails(
+                    reservationId: controller
+                        .guestReservationList!.reservations![i].reservationId);
+            break;
+          case (3):
+            chaletReservationDetailsController.getChaletReservationDetails(
+              reservationId: controller
+                  .guestReservationList!.reservations![i].reservationId,
+            );
+            break;
+        }
+
         print(result);
       }
       {
@@ -64,18 +92,18 @@ class HotelReservationDetailsController extends GetxController {
     }
   }
 
-  Future getHotelDetails(int? reservationId) async {
-    print("getHotelDetails");
-    print(" =====getHotelDetails=========== $reservationId ");
-    isDataLoading(true);
-    try {
-      await getHotelReservationDetails(reservationId);
-      print(
-          "im here ------------------in getDetails----------------------------");
-    } catch (e) {
-      print('$e');
-    } finally {
-      isDataLoading(false);
-    }
-  }
+// Future getHotelDetails(int? reservationId) async {
+//   print("getHotelDetails");
+//   print(" =====getHotelDetails=========== $reservationId ");
+//   isDataLoading(true);
+//   try {
+//     await getHotelReservationDetails(reservationId);
+//     print(
+//         "im here ------------------in getDetails----------------------------");
+//   } catch (e) {
+//     print('$e');
+//   } finally {
+//     isDataLoading(false);
+//   }
+// }
 }

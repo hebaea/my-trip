@@ -129,7 +129,8 @@ class ReservationsView extends GetView<ReservationsController> {
                                                         controller
                                                             .guestReservationList!
                                                             .reservations![i]
-                                                            .reservationId);
+                                                            .reservationId,
+                                                        i);
 
                                                 print(
                                                     "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnmmmmmmmmmmmmmmmmmmmmmmmmm");
@@ -137,38 +138,6 @@ class ReservationsView extends GetView<ReservationsController> {
                                                     hotelReservationDetailsController
                                                         .hotelReservationDetails
                                                         ?.reservationableType);
-                                                switch (
-                                                    hotelReservationDetailsController
-                                                        .hotelReservationDetails
-                                                        ?.reservationableType) {
-                                                  case (1):
-                                                    hotelReservationDetailsController
-                                                        .getHotelReservationDetails(
-                                                            controller
-                                                                .guestReservationList!
-                                                                .reservations![
-                                                                    i]
-                                                                .reservationId);
-                                                    break;
-                                                  case (2):
-                                                    apartmentReservationDetailsController
-                                                        .getApartmentReservationDetails(
-                                                            reservationId: controller
-                                                                .guestReservationList!
-                                                                .reservations![
-                                                                    i]
-                                                                .reservationId);
-                                                    break;
-                                                  case (3):
-                                                    chaletReservationDetailsController
-                                                        .getChaletReservationDetails(
-                                                      reservationId: controller
-                                                          .guestReservationList!
-                                                          .reservations![i]
-                                                          .reservationId,
-                                                    );
-                                                    break;
-                                                }
 
                                                 var type =
                                                     hotelReservationDetailsController

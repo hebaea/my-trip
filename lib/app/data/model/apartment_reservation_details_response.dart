@@ -1,5 +1,5 @@
 class ApartmentReservationDetails {
-  String? reservationableType;
+  int? reservationableType;
   Apartment? apartment;
   List<Service>? service;
 
