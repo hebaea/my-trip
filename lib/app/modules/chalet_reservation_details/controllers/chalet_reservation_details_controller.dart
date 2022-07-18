@@ -2,13 +2,12 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_trip/app/core/utils/baseurl.dart';
-import 'package:my_trip/app/data/model/apartment_reservation_details_response.dart';
 import 'package:my_trip/app/data/model/chalet_reservation_details_response.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
 
 class ChaletReservationDetailsController extends GetxController {
   static var client = http.Client();
-  ChaletReservationDetails? chaletReservationDetails;
+  ChaletReservationDetails? chaletReservationDetails; //this one
   var isDataLoading = false.obs;
 
   @override
@@ -49,7 +48,7 @@ class ChaletReservationDetailsController extends GetxController {
       chaletReservationDetails = ChaletReservationDetails.fromJson(result);
 
       print(
-          "----------chaletReservationDetails ${chaletReservationDetails}-------------------------");
+          "----------chaletReservationDetails $result-------------------------");
       Get.toNamed(Routes.CHALET_RESERVATION_DETAILS);
     } else if (response.statusCode == 400) {}
   }

@@ -82,44 +82,17 @@ class ApartmentReservationController extends GetxController {
     DateTimeRange? pickedDate = await showDateRangePicker(
       context: Get.context!,
       initialDateRange: dateRange.value,
-      // DateTimeRange(
-      // start: DateTime.now(),
-      // end: DateTime(2024, 11, 24),
-
-      // ),
-      firstDate:
-          // DateTime(
-          DateTime.now(),
-      // .year - 20
-      // ),
+      firstDate: DateTime.now(),
       lastDate: DateTime(DateTime.now().year + 20),
-      // initialDatePickerMode: DatePickerMode.day,
       initialEntryMode: DatePickerEntryMode.calendarOnly,
       helpText: 'إختر تاريخ الحجز',
-      // cancelText: 'إلغاء',
-      // confirmText: 'تأكيد',
       saveText: 'حفظ',
-      // errorFormatText: 'أدخل صيغة تاريخ صحيحة',
-      // errorInvalidText: 'أدخل صيغة تاريخ صحيحة ضمن نطاق التاريخ المسموح به',
-      // fieldLabelText: 'تاريخ الحجز',
-      // fieldHintText: 'السنة/اليوم/الشهر',
-      // selectableDayPredicate: disableDate
     );
     if (pickedDate != null && pickedDate != dateRange.value) {
       dateRange.value = pickedDate;
     }
   }
 
-// bool disableDate(DateTime day) {
-//   if ((day.isAfter(DateTime.now()
-//           .subtract(const Duration(days: 1))) // can select from today and on
-//       // &&
-//       // day.isBefore(DateTime.now().add(Duration(days: 5)))
-//       )) {
-//     return true;
-//   }
-//   return false;
-// }
   Future<MessageFromBackend?> makeApartmentReservation(
       {required destinationId,
       required guestId,
@@ -130,28 +103,6 @@ class ApartmentReservationController extends GetxController {
     try {
       isDataLoading(true);
       print("================== d  = ${destinationId} ================");
-
-      // int de = destinationId as int;
-      // int guestId = storage.read("id");
-      // String checkInDate =
-      //     DateFormat("dd-MM-yyyy").format(dateRange.value.start);
-      // String checkOutDate =
-      //     DateFormat("dd-MM-yyyy").format(dateRange.value.end);
-      //
-      // double? apartmentPrice =
-      //     apartmentReservation?.apartment?.first.apartmentPrice?.toDouble();
-      // int apartmentId =
-      //     apartmentReservation?.apartment?.first.apartmentId as int;
-      // List<Services>? services;
-      // services = [];
-      //TODO SELECTED SERVICE ID AND SELECTED SERVICE PRICE
-      // var bodyData = <String, dynamic>{};
-      // bodyData['guest_id'] = '${guestId}';
-      // bodyData['Checkin_date'] = '${checkInDate}';
-      // bodyData['Checkout_date'] = '${checkOutDate}';
-      // bodyData['apartment_price'] = '${apartmentPrice}';
-      // bodyData['apartment_id'] = '${apartmentId}';
-      // bodyData['services'] = 'services';
 
       selectedServices.forEach((element) {
         print("----- selectedServices price = ${element.servicePrice} ");
@@ -171,7 +122,6 @@ class ApartmentReservationController extends GetxController {
 
       print('+++++++++++++++++++++++++++++++++++');
       print(guestId);
-      // print(bodyData);
       var response = await client.post(
         Uri.parse("$baseUrl/reservation_create/$destinationId"),
         headers: {
@@ -183,7 +133,6 @@ class ApartmentReservationController extends GetxController {
           "Checkin_date": checkInDate,
           "Checkout_date": checkOutDate,
           "apartment_price": apartmentPrice,
-          // "apartment_id": apartmentId,
           "services": selectedServices,
         }),
       );
@@ -194,9 +143,6 @@ class ApartmentReservationController extends GetxController {
       print("------------------- res ${result} ---------------------- ");
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        // customSnackbar("الحجز", result, "success");
-        // apartmentReservation = ApartmentReservation.fromJson(result);
-        // Get.toNamed(Routes.APARTMENT_RESERVATION);
         MessageFromBackend? messageFromBackend;
         var result = jsonDecode(response.body);
         messageFromBackend = MessageFromBackend.fromJson(result);

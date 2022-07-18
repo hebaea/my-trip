@@ -23,7 +23,7 @@ class ChaletReservationDetails {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['reservationable_type'] = reservationableType;
     if (chalet != null) {
       data['chalet'] = chalet!.map((v) => v.toJson()).toList();

@@ -61,7 +61,6 @@ class HotelReservationDetailsController extends GetxController {
         print(
             "----hotelReservationDetails = ${hotelReservationDetails}--------");
 
-        //Todo check type here
         switch (hotelReservationDetails?.reservationableType) {
           case (1):
             Get.toNamed(Routes.HOTEL_RESERVATION_DETAILS);

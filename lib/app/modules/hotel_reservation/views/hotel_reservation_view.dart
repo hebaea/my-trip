@@ -90,87 +90,170 @@ class HotelReservationView extends GetView<HotelReservationController> {
                 itemCount: controller.hotelReservation?.rooms?.length,
               ),
             ),
-            const DefaultText('الخدمات المتوفرة :'),
-            SizedBox(
-              height: 250,
-              child: ListView.builder(
-                itemCount: controller.hotelReservation?.services?.length,
-                itemBuilder: (ctx, i) {
-                  String serviceName = "";
-                  try {
-                    serviceName =
-                        controller.hotelReservation!.services![i].serviceName!;
-                  } catch (e) {
-                    serviceName = "";
-                  }
-                  int servicePrice = 0;
-                  try {
-                    servicePrice =
-                        controller.hotelReservation!.services![i].servicePrice!;
-                  } catch (e) {
-                    servicePrice = 0;
-                  }
+            RoundedButton(
+              press: () async {
+                Get.bottomSheet(
+                  Container(
+                    color: AppThemeColors.primaryPureWhite,
+                    child: ListView.builder(
+                      itemBuilder: (ctx, i) {
+                        String serviceName = "";
+                        try {
+                          serviceName = controller
+                              .hotelReservation!.services![i].serviceName!;
+                        } catch (e) {
+                          serviceName = "";
+                        }
+                        int servicePrice = 0;
+                        try {
+                          servicePrice = controller
+                              .hotelReservation!.services![i].servicePrice!;
+                        } catch (e) {
+                          servicePrice = 0;
+                        }
 
-                  return Column(
-                    children: [
-                      // TODO check if services is null ?
-                      Obx(
-                        () => CheckboxListTile(
-                          title: DefaultText('اسم الخدمة : $serviceName'),
-                          subtitle: DefaultText('سعر الخدمة : $servicePrice'),
-                          activeColor: AppThemeColors.primaryColor,
-                          value: controller.services.contains(i),
-                          onChanged: (value) {
-                            if (value != null && value == true) {
-                              controller.services.add(i);
-                              var services = Services(
-                                  serviceId: controller
-                                      .hotelReservation!.services![i].serviceId,
-                                  servicePrice: controller.hotelReservation!
-                                      .services![i].servicePrice,
-                                  serviceName: controller.hotelReservation!
-                                      .services![i].serviceName);
-                              controller.selectedServices.add(services);
-                            } else {
-                              controller.services.remove(i);
-                              var services = Services(
-                                  serviceId: controller
-                                      .hotelReservation!.services![i].serviceId,
-                                  servicePrice: controller.hotelReservation!
-                                      .services![i].servicePrice,
-                                  serviceName: controller.hotelReservation!
-                                      .services![i].serviceName);
-                              controller.selectedServices.remove(services);
-                            }
-                          },
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Divider(),
-                      ),
-                      // SizedBox(height: 20.h),
-                    ],
-                  );
-                },
-              ),
+                        return Column(
+                          children: [
+                            SizedBox(height: 5.h),
+                            Obx(
+                              () => CheckboxListTile(
+                                title: DefaultText('اسم الخدمة : $serviceName'),
+                                subtitle:
+                                    DefaultText('سعر الخدمة : $servicePrice'),
+                                activeColor: AppThemeColors.primaryColor,
+                                value: controller.services.contains(i),
+                                onChanged: (value) {
+                                  if (value != null && value == true) {
+                                    controller.services.add(i);
+                                    var services = Services(
+                                        serviceId: controller.hotelReservation!
+                                            .services![i].serviceId,
+                                        servicePrice: controller
+                                            .hotelReservation!
+                                            .services![i]
+                                            .servicePrice,
+                                        serviceName: controller
+                                            .hotelReservation!
+                                            .services![i]
+                                            .serviceName);
+                                    controller.selectedServices.add(services);
+                                  } else {
+                                    controller.services.remove(i);
+                                    var services = Services(
+                                        serviceId: controller.hotelReservation!
+                                            .services![i].serviceId,
+                                        servicePrice: controller
+                                            .hotelReservation!
+                                            .services![i]
+                                            .servicePrice,
+                                        serviceName: controller
+                                            .hotelReservation!
+                                            .services![i]
+                                            .serviceName);
+                                    controller.selectedServices
+                                        .remove(services);
+                                  }
+                                },
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Divider(),
+                            ),
+                            // SizedBox(height: 20.h),
+                          ],
+                        );
+                      },
+                      itemCount: controller.hotelReservation?.services!.length,
+                    ),
+                  ),
+                );
+              },
+              text: 'اختر الخدمات',
             ),
-            SizedBox(height: 20.h),
+            // const DefaultText('الخدمات المتوفرة :'),
+            // SizedBox(
+            //   height: 250,
+            //   child: ListView.builder(
+            //     itemCount: controller.hotelReservation?.services?.length,
+            //     itemBuilder: (ctx, i) {
+            //       String serviceName = "";
+            //       try {
+            //         serviceName =
+            //             controller.hotelReservation!.services![i].serviceName!;
+            //       } catch (e) {
+            //         serviceName = "";
+            //       }
+            //       int servicePrice = 0;
+            //       try {
+            //         servicePrice =
+            //             controller.hotelReservation!.services![i].servicePrice!;
+            //       } catch (e) {
+            //         servicePrice = 0;
+            //       }
+            //
+            //       return Column(
+            //         children: [
+            //           Obx(
+            //             () => CheckboxListTile(
+            //               title: DefaultText('اسم الخدمة : $serviceName'),
+            //               subtitle: DefaultText('سعر الخدمة : $servicePrice'),
+            //               activeColor: AppThemeColors.primaryColor,
+            //               value: controller.services.contains(i),
+            //               onChanged: (value) {
+            //                 if (value != null && value == true) {
+            //                   controller.services.add(i);
+            //                   var services = Services(
+            //                       serviceId: controller
+            //                           .hotelReservation!.services![i].serviceId,
+            //                       servicePrice: controller.hotelReservation!
+            //                           .services![i].servicePrice,
+            //                       serviceName: controller.hotelReservation!
+            //                           .services![i].serviceName);
+            //                   controller.selectedServices.add(services);
+            //                 } else {
+            //                   controller.services.remove(i);
+            //                   var services = Services(
+            //                       serviceId: controller
+            //                           .hotelReservation!.services![i].serviceId,
+            //                       servicePrice: controller.hotelReservation!
+            //                           .services![i].servicePrice,
+            //                       serviceName: controller.hotelReservation!
+            //                           .services![i].serviceName);
+            //                   controller.selectedServices.remove(services);
+            //                 }
+            //               },
+            //             ),
+            //           ),
+            //           const Padding(
+            //             padding: EdgeInsets.symmetric(horizontal: 20),
+            //             child: Divider(),
+            //           ),
+            //           // SizedBox(height: 20.h),
+            //         ],
+            //       );
+            //     },
+            //   ),
+            // ),
+            SizedBox(height: 5.h),
             RoundedButton(
               press: () {
                 controller.chooseDateRangePicker();
               },
               text: 'إختر تاريخ الحجز',
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 5.h),
             Obx(() => DefaultText(
                   'تاريخ بداية الحجز : ${DateFormat("yyyy-MM-dd").format(controller.dateRange.value.start)}',
                 )),
-            SizedBox(height: 20.h),
+            SizedBox(height: 5.h),
             Obx(() => DefaultText(
                   'تاريخ نهاية الحجز : ${DateFormat("yyyy-MM-dd").format(controller.dateRange.value.end)}',
                 )),
-            SizedBox(height: 20.h),
+            SizedBox(height: 5.h),
+            DefaultText('total :'),
+            SizedBox(height: 5.h),
+
             Obx(() => controller.isDataLoading.value
                 ? const CircularProgressIndicator()
                 : RoundedButton(
@@ -187,4 +270,4 @@ class HotelReservationView extends GetView<HotelReservationController> {
     );
   }
 }
-//TODO make select services in deffrient screen with new button
+//TODO calculate total price
