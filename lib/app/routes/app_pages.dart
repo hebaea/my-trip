@@ -1,9 +1,13 @@
 import 'package:get/get.dart';
 
+import '../modules/apartment_reservation_details/bindings/apartment_reservation_details_binding.dart';
+import '../modules/apartment_reservation_details/views/apartment_reservation_details_view.dart';
 import '../modules/apartments/bindings/apartments_binding.dart';
 import '../modules/apartments/views/apartments_view.dart';
 import '../modules/appartment_reservation/bindings/appartment_reservation_binding.dart';
 import '../modules/appartment_reservation/views/appartment_reservation_view.dart';
+import '../modules/chalet_reservation_details/bindings/chalet_reservation_details_binding.dart';
+import '../modules/chalet_reservation_details/views/chalet_reservation_details_view.dart';
 import '../modules/chalets_reservation/bindings/chalets_reservation_binding.dart';
 import '../modules/chalets_reservation/views/chalets_reservation_view.dart';
 import '../modules/change_password/bindings/change_password_binding.dart';
@@ -24,6 +28,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/hotel_reservation/bindings/hotel_reservation_binding.dart';
 import '../modules/hotel_reservation/views/hotel_reservation_view.dart';
+import '../modules/hotel_reservation_details/bindings/hotel_reservation_details_binding.dart';
+import '../modules/hotel_reservation_details/views/hotel_reservation_details_view.dart';
 import '../modules/hotels/bindings/hotels_binding.dart';
 import '../modules/hotels/views/hotels_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -162,6 +168,21 @@ class AppPages {
       name: _Paths.CHALETS_RESERVATION,
       page: () => ChaletsReservationView(),
       binding: ChaletsReservationBinding(),
+    ),
+    GetPage(
+      name: _Paths.APARTMENT_RESERVATION_DETAILS,
+      page: () => ApartmentReservationDetailsView(),
+      binding: ApartmentReservationDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHALET_RESERVATION_DETAILS,
+      page: () => ChaletReservationDetailsView(),
+      binding: ChaletReservationDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOTEL_RESERVATION_DETAILS,
+      page: () => HotelReservationDetailsView(),
+      binding: HotelReservationDetailsBinding(),
     ),
   ];
 }

@@ -15,7 +15,6 @@ class HotelReservationController extends GetxController {
   HotelReservation? hotelReservation;
   var isDataLoading = false.obs;
 
-  // final Set rooms = Set().obs;
   final Set rooms = <dynamic>{}.obs;
   final Set services = <dynamic>{}.obs;
 
@@ -28,10 +27,6 @@ class HotelReservationController extends GetxController {
     end: DateTime(
         DateTime.now().year, DateTime.now().month, DateTime.now().day + 6),
   ).obs;
-
-  changeVal(value) {
-    value = !value;
-  }
 
   @override
   void onInit() {
@@ -100,14 +95,10 @@ class HotelReservationController extends GetxController {
 
       int guestId = storage.read("id");
       String checkInDate =
-          DateFormat("dd-MM-yyyy").format(dateRange.value.start);
+          DateFormat("yyyy-MM-dd").format(dateRange.value.start);
       String checkOutDate =
-          DateFormat("dd-MM-yyyy").format(dateRange.value.end);
+          DateFormat("yyyy-MM-dd").format(dateRange.value.end);
 
-      // List<Services>? services;
-      // services = [];
-      // List<Rooms>? rooms;
-      // rooms = [];
       selectedRooms.forEach((element) {
         print("----- selectedRooms price = ${element.roomPrice} ");
         print("----- selectedRooms id  = ${element.roomId} ");
@@ -141,7 +132,6 @@ class HotelReservationController extends GetxController {
           "services": selectedServices,
           "rooms": selectedRooms
         }),
-        // bodyData,
       );
 
       var result = await json.decode(response.body);

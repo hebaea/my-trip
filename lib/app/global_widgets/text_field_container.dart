@@ -4,10 +4,12 @@ import 'package:my_trip/app/core/theme/color_theme.dart';
 
 class TextFieldContainer extends StatelessWidget {
   final Widget child;
+  final Color color;
 
   const TextFieldContainer({
     Key? key,
     required this.child,
+    required this.color,
   }) : super(key: key);
 
   @override
@@ -18,7 +20,9 @@ class TextFieldContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       width: size.width * 0.8.w,
       decoration: BoxDecoration(
-        color: AppThemeColors.primaryLightColor,
+        color: color
+        // AppThemeColors.primaryLightColor
+        ,
         borderRadius: BorderRadius.circular(29),
       ),
       child: child,

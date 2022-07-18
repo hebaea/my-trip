@@ -10,6 +10,7 @@ import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/modules/appartment_reservation/controllers/appartment_reservation_controller.dart';
 import 'package:my_trip/app/modules/chalets_reservation/controllers/chalets_reservation_controller.dart';
+import 'package:my_trip/app/modules/favorites/controllers/favorites_controller.dart';
 import 'package:my_trip/app/modules/hotel_reservation/controllers/hotel_reservation_controller.dart';
 import '../controllers/destination_details_controller.dart';
 
@@ -22,6 +23,7 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
       Get.find<ApartmentReservationController>();
   final hotelReservationController = Get.find<HotelReservationController>();
   final chaletsReservationController = Get.find<ChaletsReservationController>();
+  final favoriteController = Get.find<FavoritesController>();
 
   @override
   Widget build(BuildContext context) {
@@ -71,26 +73,18 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                                 onPressed: () {
                                   final storage = GetStorage();
 
-                                  print(
-                                      "+++++++++++++++++++++++++++++++++++++++++++++");
-                                  print(
-                                      "this is destination id ${controller.destinationDetails?.destinationId}");
-
                                   var guestId = storage.read('id');
-                                  print("this is guestId id $guestId");
-                                  print(
-                                      "this is isFavorite  ${controller.destinationDetails!.isFavorite}");
 
                                   if (controller
                                           .destinationDetails!.isFavorite ==
                                       0) {
-                                    controller.makeFavorite(
+                                    favoriteController.makeFavorite(
                                       guestId,
                                       controller
                                           .destinationDetails?.destinationId,
                                     );
                                   } else {
-                                    controller.makeunFavorite(
+                                    favoriteController.makeunFavorite(
                                         guestId,
                                         controller
                                             .destinationDetails?.destinationId);
@@ -100,13 +94,20 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                                   shape: const CircleBorder(),
                                 ),
                                 child:
-                                    controller.destinationDetails!.isFavorite ==
-                                            1
-                                        ? const Icon(
+                                    // Obx(() => controller.isFavorite.value == 1
+                                    //     ? Icon(
+                                    //         PhosphorIcons.heart_fill,
+                                    //         color: AppThemeColors.error500,
+                                    //       )
+                                    //     : Icon(
+                                    //         PhosphorIcons.heart_fill,
+                                    //       ))
+                                    controller.isFavorite.value == 1
+                                        ? Icon(
                                             PhosphorIcons.heart_fill,
                                             color: AppThemeColors.error500,
                                           )
-                                        : const Icon(
+                                        : Icon(
                                             PhosphorIcons.heart_fill,
                                           ),
                               ),

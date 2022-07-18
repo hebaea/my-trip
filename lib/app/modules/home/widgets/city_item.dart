@@ -9,15 +9,8 @@ class CityItem extends StatelessWidget {
   final String? place;
   final Function()? onTap;
 
-  // final String? location;
-
   const CityItem(
-      {Key? key,
-      // this.location,
-      this.context,
-      this.place,
-      this.link,
-      required this.onTap})
+      {Key? key, this.context, this.place, this.link, required this.onTap})
       : super(key: key);
 
   @override
@@ -37,7 +30,10 @@ class CityItem extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.r),
                     image: DecorationImage(
-                        image: AssetImage((link!)), fit: BoxFit.cover)),
+                        image: NetworkImage(
+                          'https://mytrip.justhost.ly/$link',
+                        ),
+                        fit: BoxFit.cover)),
               ),
               Container(
                 width: 150.w,
@@ -67,13 +63,6 @@ class CityItem extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.only(right: 15.w, bottom: 20.h),
-                      // child: DefaultText(
-                      //   location,
-                      //   height: 1,
-                      //   color: AppThemeColors.primaryPureWhite,
-                      //   fontSize: 16.sp,
-                      //   fontWeight: FontWeight.w300,
-                      // ),
                     ),
                   ],
                 ),

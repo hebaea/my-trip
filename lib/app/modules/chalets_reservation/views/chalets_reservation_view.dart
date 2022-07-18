@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
+import 'package:my_trip/app/data/model/chalet_reservation.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/modules/destination_details/controllers/destination_details_controller.dart';
@@ -60,12 +61,29 @@ class ChaletsReservationView extends GetView<ChaletsReservationController> {
                               'موقع الشاليه : $chaletLocation  \n عدد الأشخاص $numberPeople'),
                           subtitle: DefaultText('سعر الشاليه : $chaletPrice'),
                           activeColor: AppThemeColors.primaryColor,
-                          value: controller.checkBool.value,
+                          value: controller.chalets.contains(i),
                           onChanged: (value) {
-                            controller.checkBool.value =
-                                !controller.checkBool.value;
-                            print(controller.checkBool.value);
-                            //TODO WHY VALUE CHANGE FOR ALL
+                            if (value != null && value == true) {
+                              controller.chalets.add(i);
+                              var chalets = Chalets(
+                                  chaletId: controller
+                                      .chaletReservation!.chalets![i].chaletId,
+                                  chaletLocation: controller.chaletReservation!
+                                      .chalets![i].chaletLocation,
+                                  chaletPrice: controller.chaletReservation!
+                                      .chalets![i].chaletPrice);
+                              controller.selectedChalets.add(chalets);
+                            } else {
+                              controller.chalets.remove(i);
+                              var chalets = Chalets(
+                                  chaletId: controller
+                                      .chaletReservation!.chalets![i].chaletId,
+                                  chaletLocation: controller.chaletReservation!
+                                      .chalets![i].chaletLocation,
+                                  chaletPrice: controller.chaletReservation!
+                                      .chalets![i].chaletPrice);
+                              controller.selectedChalets.remove(chalets);
+                            }
                           },
                         ),
                       ),
@@ -81,8 +99,84 @@ class ChaletsReservationView extends GetView<ChaletsReservationController> {
             ),
             SizedBox(height: 20.h),
             RoundedButton(
-              press: () {
-                controller.chooseServices();
+              press: () async {
+                // controller.chooseServices();
+                Get.bottomSheet(
+                  Container(
+                    color: AppThemeColors.primaryPureWhite,
+                    child: ListView.builder(
+                      itemBuilder: (ctx, i) {
+                        String serviceName = "";
+                        try {
+                          serviceName = controller
+                              .chaletReservation!.services![i].serviceName!;
+                        } catch (e) {
+                          serviceName = "";
+                        }
+                        int servicePrice = 0;
+                        try {
+                          servicePrice = controller
+                              .chaletReservation!.services![i].servicePrice!;
+                        } catch (e) {
+                          servicePrice = 0;
+                        }
+
+                        return Column(
+                          children: [
+                            SizedBox(height: 20.h),
+                            Obx(
+                              () => CheckboxListTile(
+                                title: DefaultText('اسم الخدمة : $serviceName'),
+                                subtitle:
+                                    DefaultText('سعر الخدمة : $servicePrice'),
+                                activeColor: AppThemeColors.primaryColor,
+                                value: controller.services.contains(i),
+                                onChanged: (value) {
+                                  if (value != null && value == true) {
+                                    controller.services.add(i);
+                                    var services = Services(
+                                        serviceId: controller.chaletReservation!
+                                            .services![i].serviceId,
+                                        servicePrice: controller
+                                            .chaletReservation!
+                                            .services![i]
+                                            .servicePrice,
+                                        serviceName: controller
+                                            .chaletReservation!
+                                            .services![i]
+                                            .serviceName);
+                                    controller.selectedServices.add(services);
+                                  } else {
+                                    controller.services.remove(i);
+                                    var services = Services(
+                                        serviceId: controller.chaletReservation!
+                                            .services![i].serviceId,
+                                        servicePrice: controller
+                                            .chaletReservation!
+                                            .services![i]
+                                            .servicePrice,
+                                        serviceName: controller
+                                            .chaletReservation!
+                                            .services![i]
+                                            .serviceName);
+                                    controller.selectedServices
+                                        .remove(services);
+                                  }
+                                },
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Divider(),
+                            ),
+                            // SizedBox(height: 20.h),
+                          ],
+                        );
+                      },
+                      itemCount: controller.chaletReservation?.services!.length,
+                    ),
+                  ),
+                );
               },
               text: 'اختر الخدمات',
             ),
@@ -95,11 +189,11 @@ class ChaletsReservationView extends GetView<ChaletsReservationController> {
             ),
             SizedBox(height: 20.h),
             Obx(() => DefaultText(
-                  'تاريخ بداية الحجز : ${DateFormat("dd-MM-yyyy").format(controller.dateRange.value.start)}',
+                  'تاريخ بداية الحجز : ${DateFormat("yyyy-MM-dd").format(controller.dateRange.value.start)}',
                 )),
             SizedBox(height: 20.h),
             Obx(() => DefaultText(
-                  'تاريخ نهاية الحجز : ${DateFormat("dd-MM-yyyy").format(controller.dateRange.value.end)}',
+                  'تاريخ نهاية الحجز : ${DateFormat("yyyy-MM-dd").format(controller.dateRange.value.end)}',
                 )),
             SizedBox(height: 20.h),
             Obx(() => controller.isDataLoading.value

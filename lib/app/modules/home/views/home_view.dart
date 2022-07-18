@@ -271,11 +271,16 @@ class HomeView extends GetView<HomeController> {
                             } catch (e) {
                               id = 0;
                             }
+                            String cityImg = '';
+                            try {
+                              cityImg = controller.cityList!.city[i].cityImg!;
+                            } catch (e) {
+                              cityImg = '';
+                            }
 
                             return CityItem(
                               context: context,
-                              link: "assets/cities.jpg",
-                              // location: "بلا , بلا",
+                              link: cityImg,
                               place: name,
                               onTap: () {
                                 cityController.getCityDestinations(id);

@@ -47,26 +47,30 @@ class ProfileView extends GetView<ProfileController> {
                 ),
               ),
               RoundedInputField(
-                  hintText: 'الاسم',
-                  controller: controller.nameController,
-                  icon: const Icon(PhosphorIcons.user,
-                      color: AppThemeColors.primaryColor),
-                  validator: (value) {
-                    RegExp regex = RegExp(r'^.{3,}$');
-                    if (value!.isEmpty) {
-                      return ("الإسم لا يمكن أن يكون فارغ");
-                    }
-                    if (!regex.hasMatch(value)) {
-                      return ("أدخل إسم صالح (علي الأقل 3 أحرف)");
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    controller.nameController.text = value!;
-                  },
-                  onChanged: (v) {}),
+                hintText: 'الاسم',
+                controller: controller.nameController,
+                icon: const Icon(PhosphorIcons.user,
+                    color: AppThemeColors.primaryColor),
+                validator: (value) {
+                  RegExp regex = RegExp(r'^.{3,}$');
+                  if (value!.isEmpty) {
+                    return ("الإسم لا يمكن أن يكون فارغ");
+                  }
+                  if (!regex.hasMatch(value)) {
+                    return ("أدخل إسم صالح (علي الأقل 3 أحرف)");
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  controller.nameController.text = value!;
+                },
+                onChanged: (v) {},
+                readOnly: false,
+              ),
               RoundedInputField(
+                  readOnly: true,
                   hintText: 'البريد الالكتروني',
+                  style: const TextStyle(color: AppThemeColors.grayPrimary300),
                   controller: controller.emailController,
                   validator: (value) {
                     // return controller.validateEmail(v!);

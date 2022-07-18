@@ -29,6 +29,7 @@ class HotelsView extends GetView<HotelsController> {
         //   ),
         //   centerTitle: true,
         // ),
+
         body: Container(
       padding: EdgeInsets.symmetric(horizontal: width * 0.04),
       child: controller.destinationList?.destination == null
@@ -40,6 +41,7 @@ class HotelsView extends GetView<HotelsController> {
                     )
                   : ListView.builder(
                       itemBuilder: (ctx, i) {
+                        print(controller.destinationList?.destination);
                         String name = "";
                         try {
                           name = controller
@@ -71,7 +73,6 @@ class HotelsView extends GetView<HotelsController> {
                               ontap: () {
                                 destinationDetailsController
                                     .getDestinationDetails(id!, guestId);
-
                               },
                               height: height,
                               width: width,

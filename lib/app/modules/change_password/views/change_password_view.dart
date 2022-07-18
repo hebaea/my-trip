@@ -34,14 +34,16 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
                   height: 20.h,
                 ),
                 RoundedInputField(
-                    controller: controller.passwordController,
-                    hintText: 'كلمة المرور الجديدة',
-                    onSaved: (value) {
-                      controller.passwordController.text = value!;
-                    },
-                    icon: const Icon(PhosphorIcons.lock,
-                        color: AppThemeColors.primaryColor),
-                    onChanged: (v) {}),
+                  controller: controller.passwordController,
+                  hintText: 'كلمة المرور الجديدة',
+                  onSaved: (value) {
+                    controller.passwordController.text = value!;
+                  },
+                  icon: const Icon(PhosphorIcons.lock,
+                      color: AppThemeColors.primaryColor),
+                  onChanged: (v) {},
+                  readOnly: false,
+                ),
                 RoundedButton(
                   text: 'حفظ',
                   press: () {
