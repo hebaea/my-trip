@@ -51,15 +51,12 @@ class LoginView extends GetView<LoginController> {
                     validator: (value) {
                       // return controller.validateEmail(v!);
                       if (value!.isEmpty) {
-
                         return ("رجاءً قم بإدخال بريدك الإلكتروني");
-
                       }
                       // reg expression for email validation
                       if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                           .hasMatch(value)) {
                         return ("رجاءً قم بإدخال بريد إلكتروني صحيح");
-
                       }
                       return null;
                     },
@@ -69,6 +66,7 @@ class LoginView extends GetView<LoginController> {
                     },
                     icon: const Icon(PhosphorIcons.envelope_simple,
                         color: AppThemeColors.primaryColor),
+                    readOnly: false,
                   ),
                   Obx(
                     () => RoundedPasswordField(
@@ -99,7 +97,6 @@ class LoginView extends GetView<LoginController> {
                         : const Text(''),
                   ),
                   SizedBox(height: size.height * 0.03.h),
-
                   AlreadyHaveAnAccountCheck(
                     press: () {
                       Get.toNamed(Routes.REGISTER);

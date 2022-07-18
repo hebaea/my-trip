@@ -78,7 +78,12 @@ class ReservationsView extends GetView<ReservationsController> {
                                     color: AppThemeColors.primaryLightColor,
                                     child: Column(children: [
                                       SizedBox(
-                                        height: 20.h,
+                                        height: 15.h,
+                                      ),
+                                      DefaultText(
+                                          ' الرقم التسلسلي للحجز : ${controller.guestList[i].reservationId}'),
+                                      SizedBox(
+                                        height: 15.h,
                                       ),
                                       ListTile(
                                         title: Column(

@@ -27,6 +27,7 @@ class RoundedPasswordField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
+      color: AppThemeColors.primaryLightColor,
       child: TextFormField(
         textInputAction: TextInputAction.done,
         validator: (value) {

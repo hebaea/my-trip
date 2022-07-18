@@ -65,6 +65,7 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (value) {},
                     icon: const Icon(PhosphorIcons.user,
                         color: AppThemeColors.primaryColor),
+                    readOnly: false,
                     // controller: name,
                   ),
                   RoundedInputField(
@@ -89,6 +90,7 @@ class RegisterView extends GetView<RegisterController> {
                       controller.emailController.text = v!;
                     },
                     onChanged: (value) {},
+                    readOnly: false,
                   ),
                   Obx(
                     () => RoundedPasswordField(

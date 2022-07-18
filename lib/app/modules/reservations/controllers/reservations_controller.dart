@@ -113,8 +113,7 @@ class ReservationsController extends GetxController {
     isDataLoading(true);
     try {
       await deleteReservation(reservationId: reservationId);
-      print(
-          "im here ------------------in deleteReservation-------------------------------------------------------");
+      get();
     } catch (e) {
       print('$e');
     } finally {

@@ -17,11 +17,10 @@ class FavoritesView extends GetView<FavoritesController> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    print("this is favorite list ");
-    print(controller.favoriteList?.destination);
-    // print(controller.favoriteList!.destination!.isNotEmpty);
+    controller.get();
+
     return Scaffold(
-      body: controller.favoriteList?.destination != []
+      body: controller.favoritesList.value != []
           ? Container(
               padding: EdgeInsets.symmetric(horizontal: width * 0.04),
               child: Obx(
@@ -67,7 +66,7 @@ class FavoritesView extends GetView<FavoritesController> {
                                 height: height,
                                 width: width,
                                 image:
-                                    "${controller.favoriteList?.destination![i].destinationImg}",
+                                    "${controller.favoritesList[i].destinationImg}",
                                 text: name,
                                 address: address,
                                 // "اسم المكان "
@@ -76,7 +75,7 @@ class FavoritesView extends GetView<FavoritesController> {
                             ],
                           );
                         },
-                        itemCount: controller.favoriteList?.destination?.length,
+                        itemCount: controller.favoritesList.length,
                       ),
               ),
             )
