@@ -35,8 +35,8 @@ class _SplashState extends State<Splash> {
           height: MediaQuery.of(context).size.height,
           child: Center(
             child: SizedBox(
-                width: 100,
-                height: 100,
+                width: 250,
+                height: 250,
                 child: Image.asset("assets/images/logo.png")),
           )),
     );
