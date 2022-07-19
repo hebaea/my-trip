@@ -31,8 +31,8 @@ class Destination {
   String? destinationAddress;
   String? destinationImg;
   bool? destinationStauts;
-  String? destinationEvaluation;
-  bool? destinationFavorite;
+  int? destinationEvaluation;
+  // bool? destinationFavorite;
 
   Destination({
     this.destinationId,
@@ -45,7 +45,7 @@ class Destination {
     this.destinationImg,
     this.destinationStauts,
     this.destinationEvaluation,
-    this.destinationFavorite,
+    // this.destinationFavorite,
   });
 
   Destination.fromJson(Map<String, dynamic> json) {
@@ -59,7 +59,7 @@ class Destination {
     destinationImg = json['destination_img'];
     destinationStauts = json['destination_stauts'];
     destinationEvaluation = json['destination_evaluation'];
-    destinationFavorite = json['destination_favorite'];
+    // destinationFavorite = json['destination_favorite'];
   }
 
   Map<String, dynamic> toJson() {
@@ -74,7 +74,7 @@ class Destination {
     data['destination_img'] = destinationImg;
     data['destination_stauts'] = destinationStauts;
     data['destination_evaluation'] = destinationEvaluation;
-    data['destination_favorite'] = destinationFavorite;
+    // data['destination_favorite'] = destinationFavorite;
     return data;
   }
 }

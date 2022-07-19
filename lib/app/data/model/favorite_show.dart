@@ -28,7 +28,7 @@ class Destination {
   int? categoryId;
   String? destinationAddress;
   String? destinationImg;
-  String? destinationEvaluation;
+  int? destinationEvaluation;
 
   Destination(
       {this.destinationId,

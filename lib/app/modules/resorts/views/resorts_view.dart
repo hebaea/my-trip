@@ -37,8 +37,8 @@ class ResortsView extends GetView<ResortsController> {
                       itemBuilder: (ctx, i) {
                         String name = "";
                         try {
-                          name = controller
-                              .destinationList!.destination![i].ownerName!;
+                          name = controller.destinationList!.destination![i]
+                              .destinationName!;
                         } catch (e) {
                           name = "";
                         }

@@ -59,7 +59,7 @@ class ReservationsController extends GetxController {
         guestReservationList = ReservationShow.fromJson(result);
         guestList.value =
             guestReservationList?.reservations as List<Reservations>;
-        print(guestReservationList);
+        //////////////////////////
       }
       {
         return null;

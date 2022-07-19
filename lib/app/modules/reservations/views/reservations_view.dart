@@ -26,7 +26,7 @@ class ReservationsView extends GetView<ReservationsController> {
     controller.get();
     return Obx(
       () => Scaffold(
-        body: controller.guestList.value != []
+        body: controller.guestList.value.isNotEmpty
             ? Container(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.04),
                 child: Obx(
@@ -122,40 +122,40 @@ class ReservationsView extends GetView<ReservationsController> {
                                                       .reservationId);
                                             },
                                           ),
-                                          ElevatedButton(
-                                              child: const DefaultText(
-                                                'تفاصيل',
-                                                color: AppThemeColors
-                                                    .primaryPureWhite,
-                                              ),
-                                              onPressed: () {
-                                                hotelReservationDetailsController
-                                                    .getHotelReservationDetails(
-                                                        controller
-                                                            .guestReservationList!
-                                                            .reservations![i]
-                                                            .reservationId,
-                                                        i);
-
-                                                print(
-                                                    "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnmmmmmmmmmmmmmmmmmmmmmmmmm");
-                                                print(
-                                                    hotelReservationDetailsController
-                                                        .hotelReservationDetails
-                                                        ?.reservationableType);
-
-                                                var type =
-                                                    hotelReservationDetailsController
-                                                        .hotelReservationDetails
-                                                        ?.reservationableType;
-                                                print("this is type ");
-                                                print(type);
-
-                                                print(controller
-                                                    .guestReservationList!
-                                                    .reservations![i]
-                                                    .reservationId);
-                                              }),
+                                          // ElevatedButton(
+                                          //     child: const DefaultText(
+                                          //       'تفاصيل',
+                                          //       color: AppThemeColors
+                                          //           .primaryPureWhite,
+                                          //     ),
+                                          //     onPressed: () {
+                                          //       hotelReservationDetailsController
+                                          //           .getHotelReservationDetails(
+                                          //               controller
+                                          //                   .guestReservationList!
+                                          //                   .reservations![i]
+                                          //                   .reservationId,
+                                          //               i);
+                                          //
+                                          //       print(
+                                          //           "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnmmmmmmmmmmmmmmmmmmmmmmmmm");
+                                          //       print(
+                                          //           hotelReservationDetailsController
+                                          //               .hotelReservationDetails
+                                          //               ?.reservationableType);
+                                          //
+                                          //       var type =
+                                          //           hotelReservationDetailsController
+                                          //               .hotelReservationDetails
+                                          //               ?.reservationableType;
+                                          //       print("this is type ");
+                                          //       print(type);
+                                          //
+                                          //       print(controller
+                                          //           .guestReservationList!
+                                          //           .reservations![i]
+                                          //           .reservationId);
+                                          //     }),
                                         ],
                                       ),
                                     ])),
@@ -167,32 +167,33 @@ class ReservationsView extends GetView<ReservationsController> {
                 ))
             : Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      "assets/images/empty_reservatins.svg",
-                      height: 100.h,
-                      width: 109.w,
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    DefaultText(
-                      "قائمة الحجوزات فارغة",
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    SizedBox(
-                      height: 3.h,
-                    ),
-                    const DefaultText(
-                      "ستظهر الحجوزات الخاصة بك هنا بعد الحجز ",
-                      color: AppThemeColors.grayPrimary400,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        "assets/images/empty_reservatins.svg",
+                        height: 100.h,
+                        width: 109.w,
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      DefaultText(
+                        "قائمة الحجوزات فارغة",
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      SizedBox(
+                        height: 3.h,
+                      ),
+                      const DefaultText(
+                        "ستظهر الحجوزات الخاصة بك هنا بعد الحجز ",
+                        color: AppThemeColors.grayPrimary400,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
               ),
       ),

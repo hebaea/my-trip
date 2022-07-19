@@ -23,19 +23,19 @@ class CityShowDestinations {
 
 class Destination {
   int? destinationId;
-  String? ownerName;
+  String? destinationName;
   int? hostId;
   int? categoryId;
   int? cityId;
   String? destinationAddress;
   String? destinationImg;
   bool? destinationStauts;
-  String? destinationEvaluation;
+  int? destinationEvaluation;
   bool? destinationFavorite;
 
   Destination({
     this.destinationId,
-    this.ownerName,
+    this.destinationName,
     this.hostId,
     this.categoryId,
     this.cityId,
@@ -48,7 +48,7 @@ class Destination {
 
   Destination.fromJson(Map<String, dynamic> json) {
     destinationId = json['destination_id'];
-    ownerName = json['owner_name'];
+    destinationName = json['destination_name'];
     hostId = json['host_id'];
     categoryId = json['category_id'];
     cityId = json['city_id'];
@@ -62,7 +62,7 @@ class Destination {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['destination_id'] = destinationId;
-    data['owner_name'] = ownerName;
+    data['destination_name'] = destinationName;
     data['host_id'] = hostId;
     data['category_id'] = categoryId;
     data['city_id'] = cityId;

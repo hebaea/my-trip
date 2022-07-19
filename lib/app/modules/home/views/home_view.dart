@@ -162,7 +162,7 @@ class HomeView extends GetView<HomeController> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     DefaultText(
-                      "", // الوجهات المميزة
+                      "الإعلانات",
                       fontSize: 20.sp,
                       fontWeight: FontWeight.bold,
                     ),

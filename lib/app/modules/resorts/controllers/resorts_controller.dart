@@ -27,14 +27,12 @@ class ResortsController extends GetxController {
     try {
       isDataLoading(true);
       http.Response response = await http.get(
-          Uri.tryParse("$baseUrl/category_show_details/$id")!,
+          Uri.parse("$baseUrl/category_show_details/$id"),
           headers: {'Content-Type': 'application/json'});
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         var result = jsonDecode(response.body);
         destinationList = CategoryDestinations.fromJson(result);
-        print("10*50");
-        print(destinationList?.destination?.first.categoryId);
         Get.toNamed(Routes.RESORTS);
       } else {
         //error

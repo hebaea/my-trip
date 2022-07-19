@@ -45,7 +45,8 @@ class HotelsView extends GetView<HotelsController> {
                         String name = "";
                         try {
                           name = controller
-                              .destinationList!.destination![i].ownerName!;
+                              .destinationList!.destination![i].destinationName!;
+                          print(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,$name");
                         } catch (e) {
                           name = "";
                         }
@@ -53,6 +54,7 @@ class HotelsView extends GetView<HotelsController> {
                         try {
                           address = controller.destinationList!.destination![i]
                               .destinationAddress!;
+                          print(address);
                         } catch (e) {
                           address = "";
                         }

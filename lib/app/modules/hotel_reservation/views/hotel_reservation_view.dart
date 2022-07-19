@@ -251,7 +251,7 @@ class HotelReservationView extends GetView<HotelReservationController> {
                   'تاريخ نهاية الحجز : ${DateFormat("yyyy-MM-dd").format(controller.dateRange.value.end)}',
                 )),
             SizedBox(height: 5.h),
-            DefaultText('total :'),
+            // DefaultText('total :'),
             SizedBox(height: 5.h),
 
             Obx(() => controller.isDataLoading.value

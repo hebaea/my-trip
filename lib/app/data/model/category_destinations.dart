@@ -23,19 +23,20 @@ class CategoryDestinations {
 
 class Destination {
   int? destinationId;
-  String? ownerName;
+  String? destinationName;
   int? hostId;
   int? categoryId;
   int? cityId;
   String? destinationAddress;
   String? destinationImg;
   bool? destinationStauts;
-  String? destinationEvaluation;
-  bool? destinationFavorite;
+  int? destinationEvaluation;
+
+  // bool? destinationFavorite;
 
   Destination({
     this.destinationId,
-    this.ownerName,
+    this.destinationName,
     this.hostId,
     this.categoryId,
     this.cityId,
@@ -43,12 +44,12 @@ class Destination {
     this.destinationImg,
     this.destinationStauts,
     this.destinationEvaluation,
-    this.destinationFavorite,
+    // this.destinationFavorite,
   });
 
   Destination.fromJson(Map<String, dynamic> json) {
     destinationId = json['destination_id'];
-    ownerName = json['owner_name'];
+    destinationName = json['destination_name'];
     hostId = json['host_id'];
     categoryId = json['category_id'];
     cityId = json['city_id'];
@@ -56,13 +57,13 @@ class Destination {
     destinationImg = json['destination_img'];
     destinationStauts = json['destination_stauts'];
     destinationEvaluation = json['destination_evaluation'];
-    destinationFavorite = json['destination_favorite'];
+    // destinationFavorite = json['destination_favorite'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['destination_id'] = destinationId;
-    data['owner_name'] = ownerName;
+    data['destination_name'] = destinationName;
     data['host_id'] = hostId;
     data['category_id'] = categoryId;
     data['city_id'] = cityId;
@@ -70,7 +71,7 @@ class Destination {
     data['destination_img'] = destinationImg;
     data['destination_stauts'] = destinationStauts;
     data['destination_evaluation'] = destinationEvaluation;
-    data['destination_favorite'] = destinationFavorite;
+    // data['destination_favorite'] = destinationFavorite;
     return data;
   }
 }
