@@ -26,6 +26,13 @@ class ReservationsView extends GetView<ReservationsController> {
     controller.get();
     return Obx(
       () => Scaffold(
+        appBar: AppBar(
+          title: const DefaultText(
+            'حجوزاتي',
+            color: AppThemeColors.primaryPureWhite,
+          ),
+          centerTitle: true,
+        ),
         body: controller.guestList.value.isNotEmpty
             ? Container(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.04),

@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/modules/destination_details/controllers/destination_details_controller.dart';
 import 'package:my_trip/app/modules/destinations/widgets/destination_list_tile.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
 import '../controllers/city_destinations_controller.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CityDestinationsView extends GetView<CityDestinationsController> {
   CityDestinationsView({Key? key}) : super(key: key);
@@ -23,8 +25,38 @@ class CityDestinationsView extends GetView<CityDestinationsController> {
         appBar: AppBar(),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-          child: controller.destinationList?.destination == []
-              ? const Center(child: DefaultText('لا وجهات لهذه المدينة'))
+          child: controller.destinationList!.destination!.isEmpty
+              ? Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          "assets/images/emptycity.svg",
+                          height: 100.h,
+                          width: 109.w,
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        DefaultText(
+                          "لا وجهات لهذه المدينة",
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        SizedBox(
+                          height: 3.h,
+                        ),
+                        const DefaultText(
+                          "عند إضافة وجهات ستظهر هنا",
+                          color: AppThemeColors.grayPrimary400,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                )
               : Obx(
                   () => controller.isDataLoading.value == true
                       ? const Center(

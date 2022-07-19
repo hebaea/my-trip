@@ -21,6 +21,13 @@ class FavoritesView extends GetView<FavoritesController> {
 
     return Obx(
       () => Scaffold(
+        appBar: AppBar(
+          title: const DefaultText(
+            'المفضلة',
+            color: AppThemeColors.primaryPureWhite,
+          ),
+          centerTitle: true,
+        ),
         body: controller.favoritesList.value.isNotEmpty
             ? Container(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.04),

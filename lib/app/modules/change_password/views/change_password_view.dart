@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
+import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
 
@@ -14,7 +15,13 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const DefaultText(
+          'تغيير كلمة المرور',
+          color: AppThemeColors.primaryPureWhite,
+        ),
+        centerTitle: true,
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Form(

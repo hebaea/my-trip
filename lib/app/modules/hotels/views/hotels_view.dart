@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/modules/destination_details/controllers/destination_details_controller.dart';
-import 'package:my_trip/app/modules/destinations/controllers/destinations_controller.dart';
 import 'package:my_trip/app/modules/destinations/widgets/destination_list_tile.dart';
-import 'package:my_trip/app/routes/app_pages.dart';
 
 import '../controllers/hotels_controller.dart';
 
@@ -22,18 +21,40 @@ class HotelsView extends GetView<HotelsController> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-        // appBar: AppBar(
-        //   title: const DefaultText(
-        //     'فنادق',
-        //     color: AppThemeColors.primaryPureWhite,
-        //   ),
-        //   centerTitle: true,
-        // ),
-
         body: Container(
       padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-      child: controller.destinationList?.destination == null
-          ? const Center(child: DefaultText('لا يوجد وجهات بعد'))
+      child: controller.destinationList!.destination!.isEmpty
+          ? Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      "assets/images/emptyhotels.svg",
+                      height: 100.h,
+                      width: 109.w,
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    DefaultText(
+                      "لا يوجد فنادق حتى الأن",
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    SizedBox(
+                      height: 3.h,
+                    ),
+                    const DefaultText(
+                      "عند إضافة فنادق ستظهر هنا",
+                      color: AppThemeColors.grayPrimary400,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            )
           : Obx(
               () => controller.isDataLoading.value
                   ? const Center(
@@ -44,8 +65,8 @@ class HotelsView extends GetView<HotelsController> {
                         print(controller.destinationList?.destination);
                         String name = "";
                         try {
-                          name = controller
-                              .destinationList!.destination![i].destinationName!;
+                          name = controller.destinationList!.destination![i]
+                              .destinationName!;
                           print(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,$name");
                         } catch (e) {
                           name = "";

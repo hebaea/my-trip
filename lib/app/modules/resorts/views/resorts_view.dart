@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/modules/destination_details/controllers/destination_details_controller.dart';
 import 'package:my_trip/app/modules/destinations/widgets/destination_list_tile.dart';
 import '../controllers/resorts_controller.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ResortsView extends GetView<ResortsController> {
   ResortsView({Key? key}) : super(key: key);
@@ -17,17 +19,40 @@ class ResortsView extends GetView<ResortsController> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-        // appBar: AppBar(
-        //   title: const DefaultText(
-        //     'منتجعات',
-        //     color: AppThemeColors.primaryPureWhite,
-        //   ),
-        //   centerTitle: true,
-        // ),
         body: Container(
       padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-      child: controller.destinationList?.destination == null
-          ? const Center(child: DefaultText('لا يوجد وجهات بعد'))
+      child: controller.destinationList!.destination!.isEmpty
+          ? Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      "assets/images/emptyresorts.svg",
+                      height: 100.h,
+                      width: 109.w,
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    DefaultText(
+                      "لا يوجد منتجعات حتى الأن",
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    SizedBox(
+                      height: 3.h,
+                    ),
+                    const DefaultText(
+                      "عند إضافة منتجعات ستظهر هنا",
+                      color: AppThemeColors.grayPrimary400,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            )
           : Obx(
               () => controller.isDataLoading.value
                   ? const Center(

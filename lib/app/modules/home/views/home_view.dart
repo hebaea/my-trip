@@ -27,6 +27,13 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const DefaultText(
+          'الصفحة الرئيسية',
+          color: AppThemeColors.primaryPureWhite,
+        ),
+        centerTitle: true,
+      ),
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: SingleChildScrollView(

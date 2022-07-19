@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -20,17 +21,40 @@ class ApartmentsView extends GetView<ApartmentsController> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-        // appBar: AppBar(
-        //   title: const DefaultText(
-        //     'شقق',
-        //     color: AppThemeColors.primaryPureWhite,
-        //   ),
-        //   centerTitle: true,
-        // ),
         body: Container(
       padding: EdgeInsets.symmetric(horizontal: width * 0.04),
-      child: controller.destinationList?.destination == null
-          ? const Center(child: DefaultText('لا يوجد وجهات بعد'))
+      child: controller.destinationList!.destination!.isEmpty
+          ? Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      "assets/images/emptyapartments.svg",
+                      height: 100.h,
+                      width: 109.w,
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    DefaultText(
+                      "لا يوجد شقق حتى الأن",
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    SizedBox(
+                      height: 3.h,
+                    ),
+                    const DefaultText(
+                      "عند إضافة شقق ستظهر هنا",
+                      color: AppThemeColors.grayPrimary400,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            )
           : Obx(
               () => controller.isDataLoading.value
                   ? const Center(
@@ -40,8 +64,8 @@ class ApartmentsView extends GetView<ApartmentsController> {
                       itemBuilder: (ctx, i) {
                         String name = "";
                         try {
-                          name = controller
-                              .destinationList!.destination![i].destinationName!;
+                          name = controller.destinationList!.destination![i]
+                              .destinationName!;
                         } catch (e) {
                           name = "";
                         }
