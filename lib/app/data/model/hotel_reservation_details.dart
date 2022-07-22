@@ -66,6 +66,7 @@ class Room {
 class Service {
   int? serviceReservationsId;
   int? serviceId;
+  String? serviceName;
   int? price;
 
   Service({this.serviceReservationsId, this.serviceId, this.price});
@@ -73,6 +74,7 @@ class Service {
   Service.fromJson(Map<String, dynamic> json) {
     serviceReservationsId = json['service_reservations_id'];
     serviceId = json['service_id'];
+    serviceName = json['service_name'];
     price = json['price'];
   }
 
@@ -80,6 +82,7 @@ class Service {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['service_reservations_id'] = serviceReservationsId;
     data['service_id'] = serviceId;
+    data['service_name'] = serviceName;
     data['price'] = price;
     return data;
   }

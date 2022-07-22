@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
+import 'package:my_trip/app/modules/chats/views/chatPage.dart..dart';
 import '../controllers/chats_controller.dart';
 
 class ChatsView extends GetView<ChatsController> {
@@ -12,36 +13,46 @@ class ChatsView extends GetView<ChatsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              "assets/images/empty_chats.svg",
-              height: 110.h,
-              width: 120.w,
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            DefaultText(
-              "سجل الدردشات الخاص بك فارغ",
-              fontSize: 16.sp,
-              fontWeight: FontWeight.bold,
-            ),
-            SizedBox(
-              height: 3.h,
-            ),
-            const DefaultText(
-              " اي كلام هنا اي كلام هنا اي كلام هنا اي كلام هنا اي كلام هنا اي كلام هنا ",
-              color: AppThemeColors.grayPrimary400,
-              textAlign: TextAlign.center,
-            ),
-          ],
+      appBar: AppBar(
+        title: const DefaultText(
+          'الدردشات',
+          color: AppThemeColors.primaryPureWhite,
         ),
+        centerTitle: true,
       ),
+      body: ChatPage(),
+
+      //////////////////////////////////////// empty state
+      // Padding(
+      //   padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     crossAxisAlignment: CrossAxisAlignment.center,
+      //     children: [
+      //       SvgPicture.asset(
+      //         "assets/images/empty_chats.svg",
+      //         height: 110.h,
+      //         width: 120.w,
+      //       ),
+      //       SizedBox(
+      //         height: 20.h,
+      //       ),
+      //       DefaultText(
+      //         "سجل الدردشات الخاص بك فارغ",
+      //         fontSize: 16.sp,
+      //         fontWeight: FontWeight.bold,
+      //       ),
+      //       SizedBox(
+      //         height: 3.h,
+      //       ),
+      //       const DefaultText(
+      //         "عند تواصلك مع أحد الوجهات ستكون المحادثات الخاصة بك موجودة هنا",
+      //         color: AppThemeColors.grayPrimary400,
+      //         textAlign: TextAlign.center,
+      //       ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }

@@ -34,19 +34,19 @@ class ApartmentReservationDetails {
 
 class Apartment {
   int? apartmentId;
-  String? apartmentName;
+  String? ownerName;
   int? apartmentPrice;
   int? apartmentStauts;
 
   Apartment(
       {this.apartmentId,
-      this.apartmentName,
+      this.ownerName,
       this.apartmentPrice,
       this.apartmentStauts});
 
   Apartment.fromJson(Map<String, dynamic> json) {
     apartmentId = json['apartment_id'];
-    apartmentName = json['apartment_name'];
+    ownerName = json['owner_name'];
     apartmentPrice = json['apartment_price'];
     apartmentStauts = json['apartment_stauts'];
   }
@@ -54,7 +54,7 @@ class Apartment {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['apartment_id'] = apartmentId;
-    data['apartment_name'] = apartmentName;
+    data['owner_name'] = ownerName;
     data['apartment_price'] = apartmentPrice;
     data['apartment_stauts'] = apartmentStauts;
     return data;
@@ -64,6 +64,7 @@ class Apartment {
 class Service {
   int? serviceReservationsId;
   int? serviceId;
+  String? serviceName;
   int? price;
 
   Service({this.serviceReservationsId, this.serviceId, this.price});
@@ -71,6 +72,7 @@ class Service {
   Service.fromJson(Map<String, dynamic> json) {
     serviceReservationsId = json['service_reservations_id'];
     serviceId = json['service_id'];
+    serviceName = json['service_name'];
     price = json['price'];
   }
 
@@ -78,6 +80,7 @@ class Service {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['service_reservations_id'] = serviceReservationsId;
     data['service_id'] = serviceId;
+    data['service_name'] = serviceName;
     data['price'] = price;
     return data;
   }

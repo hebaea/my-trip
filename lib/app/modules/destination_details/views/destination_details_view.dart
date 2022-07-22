@@ -71,7 +71,7 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                       ),
                       Obx(
                         () => controller.isDataLoading.value
-                            ? const Center(child: CircularProgressIndicator())
+                            ? const CircularProgressIndicator()
                             : ElevatedButton(
                                 onPressed: () {
                                   final storage = GetStorage();
