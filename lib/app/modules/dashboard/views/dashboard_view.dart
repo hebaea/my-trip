@@ -3,6 +3,7 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
+import 'package:my_trip/app/modules/chats/views/chats_view.dart';
 import 'package:my_trip/app/modules/city_destinations/controllers/city_destinations_controller.dart';
 import 'package:my_trip/app/modules/favorites/views/favorites_view.dart';
 import 'package:my_trip/app/modules/home/views/home_view.dart';
@@ -25,7 +26,7 @@ class DashboardView extends StatelessWidget {
               HomeView(),
               FavoritesView(),
               ReservationsView(),
-              // ChatsView(),
+               ChatsView(),
               ProfileView(),
             ],
           ),
@@ -45,8 +46,8 @@ class DashboardView extends StatelessWidget {
                 icon: const Icon(PhosphorIcons.heart), label: 'المفضلة'),
             _bottomNavigationBarItem(
                 icon: const Icon(PhosphorIcons.suitcase), label: 'حجوزاتي'),
-            // _bottomNavigationBarItem(
-            //     icon: const Icon(PhosphorIcons.chats), label: 'الدردشات'),
+            _bottomNavigationBarItem(
+                icon: const Icon(PhosphorIcons.chats), label: 'الدردشات'),
             _bottomNavigationBarItem(
                 icon: const Icon(PhosphorIcons.user), label: 'حسابي'),
           ],

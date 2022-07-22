@@ -12,6 +12,13 @@ class ChatsView extends GetView<ChatsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const DefaultText(
+          'الدردشات',
+          color: AppThemeColors.primaryPureWhite,
+        ),
+        centerTitle: true,
+      ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.0.w),
         child: Column(
@@ -35,7 +42,7 @@ class ChatsView extends GetView<ChatsController> {
               height: 3.h,
             ),
             const DefaultText(
-              " اي كلام هنا اي كلام هنا اي كلام هنا اي كلام هنا اي كلام هنا اي كلام هنا ",
+              "عند تواصلك مع أحد الوجهات ستكون المحادثات الخاصة بك موجودة هنا",
               color: AppThemeColors.grayPrimary400,
               textAlign: TextAlign.center,
             ),
