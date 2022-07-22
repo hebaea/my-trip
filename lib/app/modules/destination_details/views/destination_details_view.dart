@@ -24,6 +24,9 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
   final hotelReservationController = Get.find<HotelReservationController>();
   final chaletsReservationController = Get.find<ChaletsReservationController>();
   final favoriteController = Get.find<FavoritesController>();
+  final storage = GetStorage();
+
+  late var guestId = storage.read('id');
 
   @override
   Widget build(BuildContext context) {
@@ -173,24 +176,28 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                     DefaultText('${controller.destinationDetails?.hostPhone}'),
                     SizedBox(height: width * 0.02),
                     DefaultText('${controller.destinationDetails?.hostEmail}'),
-                    // Row(
-                    //   children: [
-                    //     SizedBox(width: width * 0.02),
-                    //     DefaultText('تقييم',
-                    //         color: AppThemeColors.grayPrimary400,
-                    //         fontSize: width * 0.04),
-                    //     SizedBox(width: width * 0.04),
-                    //     ElevatedButton(
-                    //       onPressed: () {
-                    //         // Get.defaultDialog(title:'تقييم' );
-                    //       },
-                    //       child: const DefaultText(
-                    //         'تقييم',
-                    //         color: Colors.white,
-                    //       ),
-                    //     )
-                    //   ],
-                    // ),
+                    Row(
+                      children: [
+                        SizedBox(width: width * 0.02),
+                        DefaultText('تقييم',
+                            color: AppThemeColors.grayPrimary400,
+                            fontSize: width * 0.04),
+                        SizedBox(width: width * 0.04),
+                        ElevatedButton(
+                          onPressed: () {
+                            // guestId,
+                            // controller.destinationDetails!.destinationId
+                            controller.rateDestination(guestId,
+                                controller.destinationDetails!.destinationId);
+                            // controller.doRateDestination(guestId, controller.destinationDetails!.destinationId);
+                          },
+                          child: const DefaultText(
+                            'تقييم',
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+                    ),
                   ],
                 ),
               ),

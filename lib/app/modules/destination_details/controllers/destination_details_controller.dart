@@ -1,18 +1,19 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/utils/baseurl.dart';
 import 'package:my_trip/app/core/utils/custom_snackbar.dart';
 import 'package:my_trip/app/data/model/destination_details.dart';
 import 'package:http/http.dart' as http;
-import 'package:my_trip/app/data/model/favorite_create.dart';
-import 'package:my_trip/app/data/model/favorite_validation.dart';
 import 'package:my_trip/app/data/model/message_from_backend.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
+import 'package:rating_dialog/rating_dialog.dart';
 
 class DestinationDetailsController extends GetxController {
   var isDataLoading = false.obs;
   DestinationDetails? destinationDetails;
   late var isFavorite = destinationDetails!.isFavorite.obs;
+  var rating = 0.obs;
 
   // CreateFavorite? createFavorite;
 
@@ -29,7 +30,7 @@ class DestinationDetailsController extends GetxController {
   @override
   void onClose() {}
 
-  getDestinationDetails(int id, int guestId) async {
+  getDestinationDetails(int? id, int? guestId) async {
     try {
       isDataLoading(true);
       http.Response response = await http.get(
@@ -47,6 +48,52 @@ class DestinationDetailsController extends GetxController {
       }
     } catch (e) {
       print('error while getting DESTINATION DETAILS DATA $e');
+    } finally {
+      isDataLoading(false);
+    }
+  }
+
+  rateDestination(int guestId, int? destinationId) {
+    Get.dialog(RatingDialog(
+      enableComment: false,
+      title: const Text('تقييم الوجهة'),
+      submitButtonText: 'تقييم',
+      onSubmitted: (response) {
+        rating.value = response.rating.toInt();
+        doRateDestination(guestId, destinationId);
+      },
+    ));
+  }
+
+  doRateDestination(int guestId, int? destinationId) async {
+    try {
+      isDataLoading(true);
+
+      http.Response response = await http.post(
+        Uri.parse("$baseUrl/destination_evaluation/$destinationId"),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': "application/json",
+        },
+        body: jsonEncode(
+            <dynamic, dynamic>{"guest_id": guestId, "rate": rating.value}),
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        MessageFromBackend? messageFromBackend;
+        var result = jsonDecode(response.body);
+        messageFromBackend = MessageFromBackend.fromJson(result);
+        return customSnackbar("تقييم", messageFromBackend.message, "success");
+      } else if (response.statusCode == 400) {
+        MessageFromBackend? messageFromBackend;
+        var result = jsonDecode(response.body);
+        messageFromBackend = MessageFromBackend.fromJson(result);
+        return customSnackbar("تقييم", messageFromBackend.message, "error");
+      }
+      {
+        return null;
+      }
+    } catch (e) {
+      print('error while rating $e');
     } finally {
       isDataLoading(false);
     }

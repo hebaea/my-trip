@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:my_trip/app/core/utils/baseurl.dart';
 import 'package:my_trip/app/core/utils/custom_snackbar.dart';
+import 'package:my_trip/app/data/model/change_password_validate.dart';
 import 'package:my_trip/app/data/model/message_from_backend.dart';
 import 'package:my_trip/app/data/model/update_validaion.dart';
 import 'package:my_trip/app/data/model/user_model.dart';
@@ -126,6 +127,12 @@ class AuthServices {
 
       return customSnackbar(
           "تعديل كلمة المرور", messageFromBackend.message, "success");
+    } else if (response.statusCode == 400) {
+      ChangePasswordValidate? changePasswordValidate;
+      var result = jsonDecode(response.body);
+      changePasswordValidate = ChangePasswordValidate.fromJson(result);
+      return customSnackbar("تعديل كلمة المرور",
+          changePasswordValidate.guestPassword!.first, "error");
     } else {
       MessageFromBackend? messageFromBackend;
       var result = jsonDecode(response.body);

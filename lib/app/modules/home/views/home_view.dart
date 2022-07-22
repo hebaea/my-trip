@@ -173,17 +173,17 @@ class HomeView extends GetView<HomeController> {
                       fontSize: 20.sp,
                       fontWeight: FontWeight.bold,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        destinationsController.getDestinationsFromApi();
-                      },
-                      child: DefaultText(
-                        "الكل",
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.bold,
-                        color: AppThemeColors.grayPrimary300,
-                      ),
-                    )
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     destinationsController.getDestinationsFromApi();
+                    //   },
+                    //   child: DefaultText(
+                    //     "الكل",
+                    //     fontSize: 20.sp,
+                    //     fontWeight: FontWeight.bold,
+                    //     color: AppThemeColors.grayPrimary300,
+                    //   ),
+                    // )
                   ],
                 ),
               ),

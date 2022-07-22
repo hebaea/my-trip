@@ -30,7 +30,7 @@ class Destination {
   String? destinationAddress;
   String? destinationImg;
   bool? destinationStauts;
-  int? destinationEvaluation;
+  double? destinationEvaluation;
 
   // bool? destinationFavorite;
 
