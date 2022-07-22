@@ -116,8 +116,42 @@ class ReservationsView extends GetView<ReservationsController> {
                                       ButtonBar(
                                         children: [
                                           ElevatedButton(
+                                              child: const DefaultText(
+                                                'تفاصيل الحجز',
+                                                color: AppThemeColors
+                                                    .primaryPureWhite,
+                                              ),
+                                              onPressed: () {
+                                                hotelReservationDetailsController
+                                                    .getHotelReservationDetails(
+                                                        controller
+                                                            .guestReservationList!
+                                                            .reservations![i]
+                                                            .reservationId,
+                                                        i);
+
+                                                print(
+                                                    "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnmmmmmmmmmmmmmmmmmmmmmmmmm");
+                                                print(
+                                                    hotelReservationDetailsController
+                                                        .hotelReservationDetails
+                                                        ?.reservationableType);
+
+                                                var type =
+                                                    hotelReservationDetailsController
+                                                        .hotelReservationDetails
+                                                        ?.reservationableType;
+                                                print("this is type ");
+                                                print(type);
+
+                                                print(controller
+                                                    .guestReservationList!
+                                                    .reservations![i]
+                                                    .reservationId);
+                                              }),
+                                          ElevatedButton(
                                             child: const DefaultText(
-                                              'حذف',
+                                              'إلغاء الحجز',
                                               color: AppThemeColors
                                                   .primaryPureWhite,
                                             ),
@@ -129,40 +163,6 @@ class ReservationsView extends GetView<ReservationsController> {
                                                       .reservationId);
                                             },
                                           ),
-                                          // ElevatedButton(
-                                          //     child: const DefaultText(
-                                          //       'تفاصيل',
-                                          //       color: AppThemeColors
-                                          //           .primaryPureWhite,
-                                          //     ),
-                                          //     onPressed: () {
-                                          //       hotelReservationDetailsController
-                                          //           .getHotelReservationDetails(
-                                          //               controller
-                                          //                   .guestReservationList!
-                                          //                   .reservations![i]
-                                          //                   .reservationId,
-                                          //               i);
-                                          //
-                                          //       print(
-                                          //           "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnmmmmmmmmmmmmmmmmmmmmmmmmm");
-                                          //       print(
-                                          //           hotelReservationDetailsController
-                                          //               .hotelReservationDetails
-                                          //               ?.reservationableType);
-                                          //
-                                          //       var type =
-                                          //           hotelReservationDetailsController
-                                          //               .hotelReservationDetails
-                                          //               ?.reservationableType;
-                                          //       print("this is type ");
-                                          //       print(type);
-                                          //
-                                          //       print(controller
-                                          //           .guestReservationList!
-                                          //           .reservations![i]
-                                          //           .reservationId);
-                                          //     }),
                                         ],
                                       ),
                                     ])),

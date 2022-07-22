@@ -44,7 +44,7 @@ class DestinationsController extends GetxController {
         return null;
       }
     } catch (e) {
-      print('error while getting all destinations $e');
+      print('====================error while getting all destinations $e');
     } finally {
       isDataLoading(false);
     }
