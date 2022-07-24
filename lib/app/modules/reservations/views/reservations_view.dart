@@ -98,6 +98,8 @@ class ReservationsView extends GetView<ReservationsController> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             DefaultText(
+                                                'اسم الوجهة : ${controller.guestList[i].destinationName}'),
+                                            DefaultText(
                                                 'تاريخ بداية الحجز : ${controller.guestList[i].checkinDate}'),
                                             DefaultText(
                                                 ' تاريخ نهاية الحجز : ${controller.guestList[i].checkoutDate}'),

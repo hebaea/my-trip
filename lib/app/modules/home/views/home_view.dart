@@ -204,8 +204,9 @@ class HomeView extends GetView<HomeController> {
                             int? id = 0;
                             try {
                               // id = destinationDetailsController.destinationList[i];
-                              id = destinationsController.destinationList!
-                                  .destination![i].destinationId;
+                              // id = destinationsController.destinationList!
+                              //     .destination![i].destinationId;
+                              id = controller.adsList!.ads![i].destinationId;
                             } catch (e) {
                               id = 0;
                             }

@@ -23,6 +23,7 @@ class ReservationShow {
 
 class Reservations {
   int? reservationId;
+  String? destinationName;
   int? guestId;
   int? destinationId;
   String? checkinDate;
@@ -32,6 +33,7 @@ class Reservations {
 
   Reservations(
       {this.reservationId,
+      this.destinationName,
       this.guestId,
       this.destinationId,
       this.checkinDate,
@@ -41,6 +43,7 @@ class Reservations {
 
   Reservations.fromJson(Map<String, dynamic> json) {
     reservationId = json['reservation_id'];
+    destinationName = json['destination_name'];
     guestId = json['guest_id'];
     destinationId = json['destination_id'];
     checkinDate = json['Checkin_date'];
@@ -52,6 +55,7 @@ class Reservations {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['reservation_id'] = reservationId;
+    data['destination_name'] = destinationName;
     data['guest_id'] = guestId;
     data['destination_id'] = destinationId;
     data['Checkin_date'] = checkinDate;
