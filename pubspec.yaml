@@ -19,6 +19,10 @@ dependencies:
   http: ^0.13.4
   intl: ^0.17.0
   rating_dialog: ^2.0.4
+  firebase_core: ^1.20.0
+  firebase_auth: ^3.5.1
+  firebase_messaging: ^12.0.1
+  cloud_firestore: ^3.4.1
   ##flutter_secure_storage: ^5.0.2   // secure storage
 dev_dependencies:
   flutter_lints: ^2.0.1
