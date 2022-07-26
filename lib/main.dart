@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           );
         },
         debugShowCheckedModeBanner: false,
-        useInheritedMediaQuery: true,
+        // useInheritedMediaQuery: true,
         title: "my trip",
         theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch().copyWith(
