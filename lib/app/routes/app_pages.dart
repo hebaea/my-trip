@@ -69,6 +69,7 @@ class AppPages {
       page: () => HomeView(),
       binding: HomeBinding(),
     ),
+
     GetPage(
       name: _Paths.LOGIN,
       page: () => LoginView(),

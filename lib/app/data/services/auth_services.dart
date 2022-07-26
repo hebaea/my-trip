@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_trip/app/core/utils/baseurl.dart';
 import 'package:my_trip/app/core/utils/custom_snackbar.dart';
@@ -42,6 +43,10 @@ class AuthServices {
   }
 
   static Future<UserModel?> login({required email, password}) async {
+    String? token = await FirebaseMessaging.instance.getToken();
+    print("================ HEre token =====================");
+    print(token);
+    print("================ HEre token =====================");
     var response = await client.post(
       Uri.parse("$baseUrl/guest_login"),
       headers: {'Content-Type': 'application/json'},

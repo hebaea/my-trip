@@ -23,6 +23,7 @@ dependencies:
   firebase_auth: ^3.5.1
   firebase_messaging: ^12.0.1
   cloud_firestore: ^3.4.1
+  flutter_local_notifications: ^6.1.0
   ##flutter_secure_storage: ^5.0.2   // secure storage
 dev_dependencies:
   flutter_lints: ^2.0.1
