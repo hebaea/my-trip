@@ -49,7 +49,7 @@ class ChaletsReservationController extends GetxController {
     try {
       isDataLoading(true);
 
-      var response = await http.post(
+      var response = await http.get(
         Uri.parse("$baseUrl/reservation_show/$destinationId"),
         headers: <String, String>{
           'Accept': "application/json",

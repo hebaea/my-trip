@@ -48,7 +48,7 @@ class ApartmentReservationController extends GetxController {
     try {
       isDataLoading(true);
 
-      var response = await client.post(
+      var response = await client.get(
         Uri.parse("$baseUrl/reservation_show/$destinationId"),
         headers: {
           'Content-Type': 'application/json',
