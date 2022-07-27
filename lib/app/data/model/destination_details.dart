@@ -8,7 +8,7 @@ class DestinationDetails {
   String? hostPhone;
   String? destinationAddress;
   String? destinationImg;
-  double? destinationEvaluation;
+  String? destinationEvaluation;
   int? isFavorite;
 
   DestinationDetails(

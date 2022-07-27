@@ -13,7 +13,7 @@ class DestinationDetailsController extends GetxController {
   var isDataLoading = false.obs;
   DestinationDetails? destinationDetails;
   late var isFavorite = destinationDetails!.isFavorite.obs;
-  var rating = 0.obs;
+  var rating = 0.0.obs;
 
   // CreateFavorite? createFavorite;
 
@@ -59,7 +59,7 @@ class DestinationDetailsController extends GetxController {
       title: const Text('تقييم الوجهة'),
       submitButtonText: 'تقييم',
       onSubmitted: (response) {
-        rating.value = response.rating.toInt();
+        rating.value = response.rating;
         doRateDestination(guestId, destinationId);
       },
     ));
