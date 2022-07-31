@@ -20,39 +20,40 @@ class ChatsView extends GetView<ChatsController> {
         ),
         centerTitle: true,
       ),
-      body: ChatPage(),
+      body:
+      // ChatPage(),
 
       //////////////////////////////////////// empty state
-      // Padding(
-      //   padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     crossAxisAlignment: CrossAxisAlignment.center,
-      //     children: [
-      //       SvgPicture.asset(
-      //         "assets/images/empty_chats.svg",
-      //         height: 110.h,
-      //         width: 120.w,
-      //       ),
-      //       SizedBox(
-      //         height: 20.h,
-      //       ),
-      //       DefaultText(
-      //         "سجل الدردشات الخاص بك فارغ",
-      //         fontSize: 16.sp,
-      //         fontWeight: FontWeight.bold,
-      //       ),
-      //       SizedBox(
-      //         height: 3.h,
-      //       ),
-      //       const DefaultText(
-      //         "عند تواصلك مع أحد الوجهات ستكون المحادثات الخاصة بك موجودة هنا",
-      //         color: AppThemeColors.grayPrimary400,
-      //         textAlign: TextAlign.center,
-      //       ),
-      //     ],
-      //   ),
-      // ),
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              "assets/images/empty_chats.svg",
+              height: 110.h,
+              width: 120.w,
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            DefaultText(
+              "سجل الدردشات الخاص بك فارغ",
+              fontSize: 16.sp,
+              fontWeight: FontWeight.bold,
+            ),
+            SizedBox(
+              height: 3.h,
+            ),
+            const DefaultText(
+              "عند تواصلك مع أحد الوجهات ستكون المحادثات الخاصة بك موجودة هنا",
+              color: AppThemeColors.grayPrimary400,
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
