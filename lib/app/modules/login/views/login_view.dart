@@ -56,7 +56,7 @@ class LoginView extends GetView<LoginController> {
                       // reg expression for email validation
                       if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                           .hasMatch(value)) {
-                        return ("رجاءً قم بإدخال بريد إلكتروني صحيح");
+                        return ("البريد الالكتروني أو كلمة المرور غير صحيحة 😔");
                       }
                       return null;
                     },

@@ -100,11 +100,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: showNotification,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: showNotification,
+      //   tooltip: 'Increment',
+      //   child: Icon(Icons.add),
+      // ),
     );
   }
 }

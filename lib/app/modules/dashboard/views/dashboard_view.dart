@@ -108,11 +108,11 @@ class DashboardView extends StatelessWidget {
         //     ],
         //   ),
         // ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: controller.showNotification,
-          tooltip: 'Increment',
-          child: Icon(Icons.add),
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: controller.showNotification,
+        //   tooltip: 'Increment',
+        //   child: Icon(Icons.add),
+        // ),
       );
     });
   }
