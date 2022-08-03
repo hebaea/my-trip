@@ -46,4 +46,27 @@ class ChatsController extends GetxController {
       isDataLoading(false);
     }
   }
+
+  showChat(int chatId) async {
+    try {
+      isDataLoading(true);
+
+      http.Response response = await http.get(
+        Uri.parse("$baseUrl/chat_show/$chatId"),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': "application/json",
+        },
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+      } else if (response.statusCode == 400) {}
+      {
+        return null;
+      }
+    } catch (e) {
+      print('error while get chat show $e');
+    } finally {
+      isDataLoading(false);
+    }
+  }
 }
