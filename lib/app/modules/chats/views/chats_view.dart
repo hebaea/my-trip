@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/modules/chats/views/chatPage.dart..dart';
+import 'package:my_trip/app/modules/chats/views/conversationList.dart';
 import '../controllers/chats_controller.dart';
 
 class ChatsView extends GetView<ChatsController> {
@@ -20,7 +21,32 @@ class ChatsView extends GetView<ChatsController> {
         ),
         centerTitle: true,
       ),
-      body: ChatPage(),
+      body:
+          // ChatPage()
+          SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            ListView.builder(
+              itemCount: controller.chatIndex?.chats!.length,
+              shrinkWrap: true,
+              padding: const EdgeInsets.only(top: 16),
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return ConversationList(
+                  // name: chatUsers[index].name,
+                  // messageText: chatUsers[index].messageText,
+                  // imageUrl: chatUsers[index].imageURL,
+                  // time: chatUsers[index].time,
+                  time: controller.chatIndex!.chats![index].createdAt,
+                  isMessageRead: (index == 0 || index == 3) ? true : false,
+                );
+              },
+            ),
+          ],
+        ),
+      ),
 
       //////////////////////////////////////// empty state
       // Padding(
