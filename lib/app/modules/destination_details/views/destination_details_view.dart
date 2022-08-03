@@ -225,26 +225,27 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                     ),
                     SizedBox(height: width * 0.04),
                     RoundedButton(
-                        text: 'إحجز',
-                        press: () {
-                          switch (controller.destinationDetails?.categoryId) {
-                            case (1):
-                              hotelReservationController.reservationShowHotel(
-                                  destinationId: destinationId);
-                              break;
-                            case (2):
-                              apartmentReservationController
-                                  .reservationShowApartment(
-                                      destinationId: destinationId);
-                              break;
-                            case (3):
-                              chaletsReservationController
-                                  .reservationShowChalet(
-                                      destinationId: destinationId);
-                              break;
-                          }
-                        }),
+                      text: 'إحجز',
+                      press: () {
+                        switch (controller.destinationDetails?.categoryId) {
+                          case (1):
+                            hotelReservationController.reservationShowHotel(
+                                destinationId: destinationId);
+                            break;
+                          case (2):
+                            apartmentReservationController
+                                .reservationShowApartment(
+                                    destinationId: destinationId);
+                            break;
+                          case (3):
+                            chaletsReservationController.reservationShowChalet(
+                                destinationId: destinationId);
+                            break;
+                        }
+                      },
+                    ),
                     SizedBox(height: width * 0.02),
+                    RoundedButton(text: 'تواصل معنا', press: () {}),
                   ],
                 ),
               ),

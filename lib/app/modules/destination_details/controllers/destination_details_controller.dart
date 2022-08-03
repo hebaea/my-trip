@@ -99,6 +99,34 @@ class DestinationDetailsController extends GetxController {
     }
   }
 
+  createChat(int guestId, int hostId, String text) async {
+    try {
+      isDataLoading(true);
+
+      http.Response response = await http.post(
+        Uri.parse("$baseUrl/chat_create"),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': "application/json",
+        },
+        body: jsonEncode(<dynamic, dynamic>{
+          "host_id": hostId,
+          "guest_id": guestId,
+          "text": text
+        }),
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+      } else if (response.statusCode == 400) {}
+      {
+        return null;
+      }
+    } catch (e) {
+      print('error while create chat $e');
+    } finally {
+      isDataLoading(false);
+    }
+  }
+
 // static var client = http.Client();
 //
 // static Future favorite({
