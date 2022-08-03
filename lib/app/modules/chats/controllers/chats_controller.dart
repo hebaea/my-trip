@@ -69,4 +69,28 @@ class ChatsController extends GetxController {
       isDataLoading(false);
     }
   }
+
+  createMessage(int chatId, String text) async {
+    try {
+      isDataLoading(true);
+
+      http.Response response = await http.post(
+        Uri.parse("$baseUrl/message_create"),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': "application/json",
+        },
+        body: jsonEncode(<dynamic, dynamic>{"chat_id": chatId, "text": text}),
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+      } else if (response.statusCode == 400) {}
+      {
+        return null;
+      }
+    } catch (e) {
+      print('error while create Message $e');
+    } finally {
+      isDataLoading(false);
+    }
+  }
 }
