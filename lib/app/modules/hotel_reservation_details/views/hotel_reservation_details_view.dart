@@ -92,18 +92,18 @@ class HotelReservationDetailsView
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
+                                                // DefaultText(
+                                                //     'destination Reservation Id $destinationReservationId'),
                                                 DefaultText(
-                                                    'destination Reservation Id $destinationReservationId'),
-                                                DefaultText(
-                                                    'reservation Id $reservationId'),
+                                                    'الرقم التسلسلي للحجز : $reservationId'),
                                               ],
                                             ),
                                             subtitle: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                DefaultText(
-                                                    'reservationable Id $reservationableId'),
+                                                // DefaultText(
+                                                //     'reservationable Id $reservationableId'),
                                                 DefaultText(
                                                     'سعر الغرفة : $chaletPrice'),
                                                 SizedBox(
