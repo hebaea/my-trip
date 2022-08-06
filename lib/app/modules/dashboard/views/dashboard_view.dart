@@ -26,7 +26,7 @@ class DashboardView extends StatelessWidget {
               HomeView(),
               FavoritesView(),
               ReservationsView(),
-               ChatsView(),
+              ChatsView(),
               ProfileView(),
             ],
           ),

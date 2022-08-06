@@ -4,7 +4,7 @@ import 'package:my_trip/app/modules/chats/views/chatDetailPage.dart';
 class ConversationList extends StatefulWidget {
   String? name;
   String? messageText;
-  String? imageUrl;
+  int? imageUrl;
   String? time;
   bool? isMessageRead;
 
@@ -38,10 +38,10 @@ class _ConversationListState extends State<ConversationList> {
             Expanded(
               child: Row(
                 children: [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(widget.imageUrl!),
-                    maxRadius: 30,
-                  ),
+                  // CircleAvatar(
+                  //   // backgroundImage: NetworkImage(widget.imageUrl!),
+                  //   maxRadius: 30,
+                  // ),
                   const SizedBox(
                     width: 16,
                   ),
@@ -52,7 +52,7 @@ class _ConversationListState extends State<ConversationList> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            widget.name!,
+                            "${widget.name}",
                             style: const TextStyle(fontSize: 16),
                           ),
                           const SizedBox(

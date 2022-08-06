@@ -12,6 +12,8 @@ import '../modules/chalets_reservation/bindings/chalets_reservation_binding.dart
 import '../modules/chalets_reservation/views/chalets_reservation_view.dart';
 import '../modules/change_password/bindings/change_password_binding.dart';
 import '../modules/change_password/views/change_password_view.dart';
+import '../modules/chat_details_page/bindings/chat_details_page_binding.dart';
+import '../modules/chat_details_page/views/chat_details_page_view.dart';
 import '../modules/chats/bindings/chats_binding.dart';
 import '../modules/chats/views/chats_view.dart';
 import '../modules/city_destinations/bindings/city_destinations_binding.dart';
@@ -69,7 +71,6 @@ class AppPages {
       page: () => HomeView(),
       binding: HomeBinding(),
     ),
-
     GetPage(
       name: _Paths.LOGIN,
       page: () => LoginView(),
@@ -184,6 +185,11 @@ class AppPages {
       name: _Paths.HOTEL_RESERVATION_DETAILS,
       page: () => HotelReservationDetailsView(),
       binding: HotelReservationDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHAT_DETAILS_PAGE,
+      page: () => ChatDetailsPageView(),
+      binding: ChatDetailsPageBinding(),
     ),
   ];
 }

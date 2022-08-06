@@ -29,6 +29,7 @@ abstract class Routes {
   static const APARTMENT_RESERVATION_DETAILS =
       _Paths.APARTMENT_RESERVATION_DETAILS;
   static const CHALET_RESERVATION_DETAILS = _Paths.CHALET_RESERVATION_DETAILS;
+  static const CHAT_DETAILS_PAGE = _Paths.CHAT_DETAILS_PAGE;
 }
 
 abstract class _Paths {
@@ -58,4 +59,5 @@ abstract class _Paths {
   static const HOTEL_RESERVATION_DETAILS = '/hotel-reservation-details';
   static const APARTMENT_RESERVATION_DETAILS = '/apartment-reservation-details';
   static const CHALET_RESERVATION_DETAILS = '/chalet-reservation-details';
+  static const CHAT_DETAILS_PAGE = '/chat-details-page';
 }

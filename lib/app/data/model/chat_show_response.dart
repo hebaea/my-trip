@@ -1,3 +1,5 @@
+import 'message_create_response.dart';
+
 class ChatShowResponse {
   Chat? chat;
 
@@ -22,7 +24,7 @@ class Chat {
   int? guestId;
   String? createdAt;
   String? updatedAt;
-  List<Messages>? messages;
+  List<MessageCreateResponse>? messages;
 
   Chat(
       {this.chatId,
@@ -39,9 +41,9 @@ class Chat {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     if (json['messages'] != null) {
-      messages = <Messages>[];
+      messages = <MessageCreateResponse>[];
       json['messages'].forEach((v) {
-        messages!.add(Messages.fromJson(v));
+        messages!.add(MessageCreateResponse.fromJson(v));
       });
     }
   }
