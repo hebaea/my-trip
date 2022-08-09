@@ -115,21 +115,21 @@ class Messages {
 class Destination {
   int? hostId;
   String? destinationName;
-  String? destinationEvaluation;
+  String? destinationImg;
 
-  Destination({this.hostId, this.destinationName, this.destinationEvaluation});
+  Destination({this.hostId, this.destinationName, this.destinationImg});
 
   Destination.fromJson(Map<String, dynamic> json) {
     hostId = json['host_id'];
     destinationName = json['destination_name'];
-    destinationEvaluation = json['destination_evaluation'];
+    destinationImg = json['destination_img'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['host_id'] = hostId;
     data['destination_name'] = destinationName;
-    data['destination_evaluation'] = destinationEvaluation;
+    data['destination_img'] = destinationImg;
     return data;
   }
 }

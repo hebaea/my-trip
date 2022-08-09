@@ -30,7 +30,7 @@ class AuthServices {
         "guest_name": name,
         "guest_email": email,
         "guest_password": password,
-        "token": token ?? ""
+        "fcm_token": token ?? ""
       }),
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -59,7 +59,7 @@ class AuthServices {
       body: jsonEncode(<String, String>{
         "guest_email": email,
         "guest_password": password,
-        "token": token ?? ""
+        "fcm_token": token ?? ""
       }),
     );
     if (response.statusCode == 200 || response.statusCode == 201) {

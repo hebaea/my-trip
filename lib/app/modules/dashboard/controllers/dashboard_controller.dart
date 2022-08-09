@@ -13,15 +13,32 @@ class DashboardController extends GetxController {
     update();
   }
 
+  void showNotification() {
+    flutterLocalNotificationsPlugin.show(
+      0,
+      "Testing 1",
+      "This is an Flutter Push Notification",
+      NotificationDetails(
+        android: AndroidNotificationDetails(
+            channel.id, channel.name, channel.description,
+            importance: Importance.high,
+            color: Colors.blue,
+            playSound: true,
+            icon: '@mipmap/ic_launcher'),
+      ),
+    );
+  }
+
   @override
   void onInit() {
     FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-      print("onMessage: $message");
+      print("onMessage: ${message.data.toString()}");
+      showNotification();
     });
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       print("onMessageOpenedApp: $message");
-
+      showNotification();
       if (message.data["navigation"] == "/your_route") {
         int _yourId = int.tryParse(message.data["id"]) ?? 0;
         //   Navigator.push(
@@ -33,22 +50,6 @@ class DashboardController extends GetxController {
         // });
       }
     });
-
-    void showNotification() {
-      flutterLocalNotificationsPlugin.show(
-        0,
-        "Testing 1",
-        "This is an Flutter Push Notification",
-        NotificationDetails(
-          android: AndroidNotificationDetails(
-              channel.id, channel.name, channel.description,
-              importance: Importance.high,
-              color: Colors.blue,
-              playSound: true,
-              icon: '@mipmap/ic_launcher'),
-        ),
-      );
-    }
 
     @override
     void onReady() {

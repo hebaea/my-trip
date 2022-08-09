@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:my_trip/app/modules/chats/views/chatDetailPage.dart';
+import 'package:my_trip/app/routes/app_pages.dart';
 
 class ConversationList extends StatefulWidget {
   String? name;
   String? messageText;
-  int? imageUrl;
+  String? imageUrl;
   String? time;
-  bool? isMessageRead;
 
-  ConversationList(
-      {Key? key,
-      @required this.name,
-      @required this.messageText,
-      @required this.imageUrl,
-      @required this.time,
-      @required this.isMessageRead})
-      : super(key: key);
+  // bool? isMessageRead;
+
+  ConversationList({
+    Key? key,
+    @required this.name,
+    @required this.messageText,
+    @required this.imageUrl,
+    @required this.time,
+    // @required this.isMessageRead
+  }) : super(key: key);
 
   @override
   _ConversationListState createState() => _ConversationListState();
@@ -26,9 +30,10 @@ class _ConversationListState extends State<ConversationList> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return ChatDetailPage();
-        }));
+        // Navigator.push(context, MaterialPageRoute(builder: (context) {
+        //   return ChatDetailPage();
+        // }));
+        Get.toNamed(Routes.CHAT_DETAILS_PAGE);
       },
       child: Container(
         padding:
@@ -38,10 +43,10 @@ class _ConversationListState extends State<ConversationList> {
             Expanded(
               child: Row(
                 children: [
-                  // CircleAvatar(
-                  //   // backgroundImage: NetworkImage(widget.imageUrl!),
-                  //   maxRadius: 30,
-                  // ),
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(widget.imageUrl!),
+                    maxRadius: 30,
+                  ),
                   const SizedBox(
                     width: 16,
                   ),
@@ -61,11 +66,12 @@ class _ConversationListState extends State<ConversationList> {
                           Text(
                             widget.messageText!,
                             style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.grey.shade600,
-                                fontWeight: widget.isMessageRead!
-                                    ? FontWeight.bold
-                                    : FontWeight.normal),
+                              fontSize: 13,
+                              color: Colors.grey.shade600,
+                              // fontWeight: widget.isMessageRead!
+                              //     ? FontWeight.bold
+                              //     : FontWeight.normal
+                            ),
                           ),
                         ],
                       ),
@@ -77,10 +83,11 @@ class _ConversationListState extends State<ConversationList> {
             Text(
               widget.time!,
               style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: widget.isMessageRead!
-                      ? FontWeight.bold
-                      : FontWeight.normal),
+                fontSize: 12,
+                // fontWeight: widget.isMessageRead!
+                //     ? FontWeight.bold
+                //     : FontWeight.normal
+              ),
             ),
           ],
         ),

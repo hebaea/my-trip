@@ -11,7 +11,6 @@ import '../controllers/chats_controller.dart';
 class ChatsView extends GetView<ChatsController> {
   const ChatsView({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     controller.get();
@@ -26,8 +25,8 @@ class ChatsView extends GetView<ChatsController> {
       body:
           // ChatPage()
           controller.chatsList.isNotEmpty
-              ? Obx(()=>
-                 SingleChildScrollView(
+              ? Obx(
+                  () => SingleChildScrollView(
                     physics: BouncingScrollPhysics(),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,21 +40,21 @@ class ChatsView extends GetView<ChatsController> {
                             return ConversationList(
                               // name: controller.chatsList[index].hostId,
                               // messageText: chatUsers[index].messageText,
-                              messageText: '' ,
-                              name: 'كورنثيا باب افريقيا',
-                              // controller.chatsList[index].hostId,//////////////////this one
-                              //  imageUrl: controller.chatsList[index].hostId,
-                               // time: chatUsers[index].time,
-                               time: controller.chatsList[index].createdAt,
-                              isMessageRead:
-                                  (index == 0 || index == 3) ? true : false,
+                              messageText: '',
+                              name: controller.chatsList[index].destinationName,
+                              imageUrl:
+                                  'https://mytrip.justhost.ly/${controller.chatsList[index].destinationImg}',
+                              // time: chatUsers[index].time,
+                              time: controller.chatsList[index].createdAt,
+                              // isMessageRead:
+                              //     (index == 0 || index == 3) ? true : false,
                             );
                           },
                         ),
                       ],
                     ),
                   ),
-              )
+                )
               : Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                   child: Column(

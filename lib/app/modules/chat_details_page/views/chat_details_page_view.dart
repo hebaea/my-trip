@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
-import 'package:my_trip/app/global_widgets/rounded_input_field.dart';
 import 'package:my_trip/app/modules/chats/controllers/chats_controller.dart';
-
 import '../controllers/chat_details_page_controller.dart';
 
 class ChatDetailsPageView extends GetView<ChatDetailsPageController> {
@@ -37,11 +34,12 @@ class ChatDetailsPageView extends GetView<ChatDetailsPageController> {
                 const SizedBox(
                   width: 2,
                 ),
-                // const CircleAvatar(
-                //   backgroundImage: NetworkImage(
-                //       "https://randomuser.me/api/portraits/men/5.jpg"),
-                //   maxRadius: 20,
-                // ),
+
+                CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      "https://mytrip.justhost.ly/${chatsController.chatShow?.chat!.destination?.destinationImg}"),
+                  maxRadius: 20,
+                ),
                 const SizedBox(
                   width: 12,
                 ),
@@ -51,8 +49,10 @@ class ChatDetailsPageView extends GetView<ChatDetailsPageController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      DefaultText("${chatsController.chatShow?.chat!.hostId}",
-                          fontSize: 16, fontWeight: FontWeight.w600),
+                      DefaultText(
+                          "${chatsController.chatShow?.chat!.destination?.destinationName}",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
                       // const Text(
                       //   "Kriss Benwat",
                       //   style: TextStyle(
