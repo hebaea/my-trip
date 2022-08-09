@@ -25,6 +25,7 @@ class Chat {
   String? createdAt;
   String? updatedAt;
   List<MessageCreateResponse>? messages;
+  Destination? destination;
 
   Chat(
       {this.chatId,
@@ -32,7 +33,8 @@ class Chat {
       this.guestId,
       this.createdAt,
       this.updatedAt,
-      this.messages});
+      this.messages,
+      this.destination});
 
   Chat.fromJson(Map<String, dynamic> json) {
     chatId = json['chat_id'];
@@ -42,10 +44,14 @@ class Chat {
     updatedAt = json['updated_at'];
     if (json['messages'] != null) {
       messages = <MessageCreateResponse>[];
+
       json['messages'].forEach((v) {
         messages!.add(MessageCreateResponse.fromJson(v));
       });
     }
+    destination = json['destination'] != null
+        ? Destination.fromJson(json['destination'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -57,6 +63,9 @@ class Chat {
     data['updated_at'] = updatedAt;
     if (messages != null) {
       data['messages'] = messages!.map((v) => v.toJson()).toList();
+    }
+    if (destination != null) {
+      data['destination'] = destination!.toJson();
     }
     return data;
   }
@@ -99,6 +108,28 @@ class Messages {
     data['text'] = text;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
+    return data;
+  }
+}
+
+class Destination {
+  int? hostId;
+  String? destinationName;
+  String? destinationEvaluation;
+
+  Destination({this.hostId, this.destinationName, this.destinationEvaluation});
+
+  Destination.fromJson(Map<String, dynamic> json) {
+    hostId = json['host_id'];
+    destinationName = json['destination_name'];
+    destinationEvaluation = json['destination_evaluation'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['host_id'] = hostId;
+    data['destination_name'] = destinationName;
+    data['destination_evaluation'] = destinationEvaluation;
     return data;
   }
 }

@@ -26,6 +26,8 @@ class Chats {
   int? hostId;
   int? guestId;
   String? createdAt;
+  String? destinationName;
+  String? destinationImg;
 
   Chats({this.chatId, this.hostId, this.guestId, this.createdAt});
 
@@ -34,6 +36,8 @@ class Chats {
     hostId = json['host_id'];
     guestId = json['guest_id'];
     createdAt = json['Created_at'];
+    destinationName = json['destination_name'];
+    destinationImg = json['destination_img'];
   }
 
   Map<String, dynamic> toJson() {
@@ -42,6 +46,8 @@ class Chats {
     data['host_id'] = hostId;
     data['guest_id'] = guestId;
     data['Created_at'] = createdAt;
+    data['destination_name'] = destinationName;
+    data['destination_img'] = destinationImg;
     return data;
   }
 }

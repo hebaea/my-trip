@@ -1,8 +1,8 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
-import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/modules/chats/views/chats_view.dart';
 import 'package:my_trip/app/modules/city_destinations/controllers/city_destinations_controller.dart';
 import 'package:my_trip/app/modules/favorites/views/favorites_view.dart';
@@ -10,6 +10,10 @@ import 'package:my_trip/app/modules/home/views/home_view.dart';
 import 'package:my_trip/app/modules/profile/views/profile_view.dart';
 import 'package:my_trip/app/modules/reservations/views/reservations_view.dart';
 import '../controllers/dashboard_controller.dart';
+
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print("onBackgroundMessage: $message");
+}
 
 class DashboardView extends StatelessWidget {
   DashboardView({Key? key}) : super(key: key);

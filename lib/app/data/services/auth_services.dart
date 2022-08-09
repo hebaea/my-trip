@@ -15,6 +15,11 @@ class AuthServices {
 
   static Future<UserModel?> register(
       {required name, required email, required password}) async {
+    String? token = await FirebaseMessaging.instance.getToken();
+    print("================ HEre token =====================");
+    print(token);
+    print("================ HEre token =====================");
+
     var response = await client.post(
       Uri.parse("$baseUrl/guest_register"),
       headers: {
@@ -24,7 +29,8 @@ class AuthServices {
       body: jsonEncode(<dynamic, dynamic>{
         "guest_name": name,
         "guest_email": email,
-        "guest_password": password
+        "guest_password": password,
+        "token": token ?? ""
       }),
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -50,8 +56,11 @@ class AuthServices {
     var response = await client.post(
       Uri.parse("$baseUrl/guest_login"),
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(
-          <String, String>{"guest_email": email, "guest_password": password}),
+      body: jsonEncode(<String, String>{
+        "guest_email": email,
+        "guest_password": password,
+        "token": token ?? ""
+      }),
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       var stringObject = response.body;

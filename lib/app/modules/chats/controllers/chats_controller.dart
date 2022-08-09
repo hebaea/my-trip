@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:my_trip/app/core/utils/baseurl.dart';
+import 'package:my_trip/app/core/utils/custom_snackbar.dart';
 import 'package:my_trip/app/data/model/chat_create_response.dart';
 import 'package:my_trip/app/data/model/chat_index_response.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_trip/app/data/model/chat_show_response.dart';
 import 'package:my_trip/app/data/model/message_create_response.dart';
+import 'package:my_trip/app/data/model/message_from_backend.dart';
 import 'package:my_trip/app/routes/app_pages.dart';
 
 class ChatsController extends GetxController {
@@ -51,7 +53,7 @@ class ChatsController extends GetxController {
           "guest_id": guestId,
         }),
       );
-      var result = await json.decode(response.body);
+      // var result = await json.decode(response.body);
       print(
           "----------------create chat--- state ${response.statusCode} ---------------------- ");
       print("------------------- res ${response.body} ---------------------- ");
@@ -68,6 +70,12 @@ class ChatsController extends GetxController {
         await showChat(chatCreate?.chat!.chatId);
 
         return chatCreate;
+      } else if (response.statusCode == 400) {
+        MessageFromBackend? messageFromBackend;
+        var result = jsonDecode(response.body);
+        messageFromBackend = MessageFromBackend.fromJson(result);
+        return customSnackbar(
+            "إنشاء محادثة", messageFromBackend.message, "error");
       } else {
         return null;
       }
@@ -152,10 +160,12 @@ class ChatsController extends GetxController {
       isDataLoading(false);
     }
   }
+
   get() async {
     print("=============== HERE Get ======================");
     await getChatIndex();
   }
+
   getChatIndex() async {
     try {
       var guestId = storage.read('id');
