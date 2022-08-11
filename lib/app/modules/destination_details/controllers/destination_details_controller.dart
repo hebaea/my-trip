@@ -13,7 +13,7 @@ import 'package:rating_dialog/rating_dialog.dart';
 class DestinationDetailsController extends GetxController {
   var isDataLoading = false.obs;
   DestinationDetails? destinationDetails;
-  late var isFavorite = destinationDetails!.isFavorite.obs;
+  late var isFavoriteLocal = destinationDetails!.isFavorite.obs;
   var rating = 0.obs;
 
   // CreateFavorite? createFavorite;
@@ -99,8 +99,6 @@ class DestinationDetailsController extends GetxController {
       isDataLoading(false);
     }
   }
-
-
 
 // static var client = http.Client();
 //

@@ -13,11 +13,11 @@ class DashboardController extends GetxController {
     update();
   }
 
-  void showNotification() {
+  void showNotification(String message) {
     flutterLocalNotificationsPlugin.show(
       0,
-      "Testing 1",
-      "This is an Flutter Push Notification",
+      "لديك رسالة جديدة",
+      message,
       NotificationDetails(
         android: AndroidNotificationDetails(
             channel.id, channel.name, channel.description,
@@ -34,11 +34,11 @@ class DashboardController extends GetxController {
     FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       print("onMessage: ${message.data.toString()}");
-      showNotification();
+      print("onMessage: ${message.data["message"]}");
+      showNotification(message.data["message"]);
     });
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       print("onMessageOpenedApp: $message");
-      showNotification();
       if (message.data["navigation"] == "/your_route") {
         int _yourId = int.tryParse(message.data["id"]) ?? 0;
         //   Navigator.push(

@@ -20,7 +20,7 @@ class ChatsController extends GetxController {
   var chatsList = <Chats>[].obs;
   var isDataLoading = false.obs;
   final storage = GetStorage();
-  ChatShowResponse? chatShow;
+  ChatShowResponse? chatsShow;
   var msgList = <MessageCreateResponse>[].obs;
 
   TextEditingController msgController = TextEditingController();
@@ -97,19 +97,19 @@ class ChatsController extends GetxController {
           'Accept': "application/json",
         },
       );
-      var result = await json.decode(response.body);
-      print(
-          "----------------SHOW chat--- state ${response.statusCode} ---------------------- ");
-      print("------------------- res ${result} ---------------------- ");
-      print("chatId $chatId");
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         //ChatShowResponse ? chatShow;
         var result = jsonDecode(response.body);
-        chatShow = ChatShowResponse.fromJson(result);
-
-        if (chatShow?.chat?.messages != null) {
-          var messages = chatShow?.chat?.messages?.toList();
+        chatsShow = ChatShowResponse.fromJson(result);
+        print(
+            "----------------------------------- HEre Message -----------------------");
+        print("------------result---------$result---------");
+        if (chatsShow?.chat?.messages != null) {
+          var messages = chatsShow?.chat?.messages?.toList();
+          msgList.clear();
+          print("messages ==================");
+          print(messages?.length);
           msgList.addAll(messages!);
         }
 
@@ -186,6 +186,7 @@ class ChatsController extends GetxController {
         var result = jsonDecode(response.body);
         chatIndex = ChatIndexResponse.fromJson(result);
         print("------ $result------------------");
+        chatsList.clear();
         chatsList.addAll(chatIndex!.chats!.toList());
       } else if (response.statusCode == 400) {}
       {

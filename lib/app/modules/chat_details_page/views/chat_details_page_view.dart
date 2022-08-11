@@ -10,7 +10,7 @@ class ChatDetailsPageView extends GetView<ChatDetailsPageController> {
 
   @override
   Widget build(BuildContext context) {
-    print("chatsController.chatShow = ${chatsController.chatShow}");
+    print("chatsController.chatShow = ${chatsController.chatsShow}");
     print("chatsController.createChat = ${chatsController.chatCreate}");
     return Scaffold(
       appBar: AppBar(
@@ -37,7 +37,7 @@ class ChatDetailsPageView extends GetView<ChatDetailsPageController> {
 
                 CircleAvatar(
                   backgroundImage: NetworkImage(
-                      "https://mytrip.justhost.ly/${chatsController.chatShow?.chat!.destination?.destinationImg}"),
+                      "https://mytrip.justhost.ly/${chatsController.chatsShow?.chat!.destination?.destinationImg}"),
                   maxRadius: 20,
                 ),
                 const SizedBox(
@@ -50,7 +50,7 @@ class ChatDetailsPageView extends GetView<ChatDetailsPageController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       DefaultText(
-                          "${chatsController.chatShow?.chat!.destination?.destinationName}",
+                          "${chatsController.chatsShow?.chat!.destination?.destinationName}",
                           fontSize: 16,
                           fontWeight: FontWeight.w600),
                       // const Text(
@@ -80,43 +80,46 @@ class ChatDetailsPageView extends GetView<ChatDetailsPageController> {
       ),
       body: Stack(
         children: <Widget>[
-          Obx(
-            () => ListView.builder(
-              itemCount: chatsController.msgList.length,
-              shrinkWrap: true,
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return Container(
-                    padding: const EdgeInsets.only(
-                        left: 16, right: 16, top: 10, bottom: 10),
-                    child: Align(
-                      alignment:
-                          (chatsController.msgList[index].message?.from ==
-                                  "Guest"
-                              ? Alignment.topLeft
-                              : Alignment.topRight),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color:
-                              (chatsController.msgList[index].message?.from ==
-                                      "Guest"
-                                  ? Colors.grey.shade200
-                                  : AppThemeColors.primaryLightColor),
-                        ),
-                        padding: const EdgeInsets.all(16),
-                        child: DefaultText(
-                            "${chatsController.msgList[index].message?.text}",
-                            fontSize: 15),
-                        // Text(
-                        //   controller.chatShow?.chat?.messages![index].text,
-                        //   style: const TextStyle(fontSize: 15),
-                        // ),
+          ListView.builder(
+            itemCount: chatsController.chatsShow?.chat!.messages!.length,
+            shrinkWrap: true,
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              print("--------------------- HERE All ---------------------");
+              print(
+                  "-------${chatsController.chatsShow?.chat!.messages!.length}--------");
+              print(
+                  "-------${chatsController.chatsShow?.chat!.messages![index].message?.chatId}--------");
+              return Container(
+                  padding: const EdgeInsets.only(
+                      left: 16, right: 16, top: 10, bottom: 10),
+                  child: Align(
+                    alignment: (chatsController.chatsShow?.chat!
+                                .messages![index].message?.from ==
+                            "Guest"
+                        ? Alignment.topLeft
+                        : Alignment.topRight),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: (chatsController.chatsShow?.chat!
+                                    .messages![index].message?.from ==
+                                "Guest"
+                            ? AppThemeColors.primaryLightColor
+                            : Colors.grey.shade200),
                       ),
-                    ));
-              },
-            ),
+                      padding: const EdgeInsets.all(16),
+                      child: DefaultText(
+                          "${chatsController.chatsShow?.chat!.messages![index].message?.text}",
+                          fontSize: 15),
+                      // Text(
+                      //   controller.chatShow?.chat?.messages![index].text,
+                      //   style: const TextStyle(fontSize: 15),
+                      // ),
+                    ),
+                  ));
+            },
           ),
           Align(
             alignment: Alignment.bottomLeft,
@@ -170,7 +173,7 @@ class ChatDetailsPageView extends GetView<ChatDetailsPageController> {
                   FloatingActionButton(
                     onPressed: () {
                       chatsController.createMessage(
-                          chatsController.chatCreate?.chat?.chatId);
+                          chatsController.chatsShow?.chat?.chatId);
                       print("controller.chatCreate?.chat!.chatId");
                       print(chatsController.chatCreate?.chat!.chatId);
                     },

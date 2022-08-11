@@ -9,10 +9,12 @@ import 'package:my_trip/app/modules/chats/views/conversationList.dart';
 import '../controllers/chats_controller.dart';
 
 class ChatsView extends GetView<ChatsController> {
-  const ChatsView({Key? key}) : super(key: key);
+  final chatController = Get.find<ChatsController>();
 
+   ChatsView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+
     controller.get();
     return Scaffold(
       appBar: AppBar(
@@ -37,9 +39,12 @@ class ChatsView extends GetView<ChatsController> {
                           padding: const EdgeInsets.only(top: 16),
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
+
                             return ConversationList(
+
                               // name: controller.chatsList[index].hostId,
                               // messageText: chatUsers[index].messageText,
+                              chatId: controller.chatsList[index].chatId,
                               messageText: '',
                               name: controller.chatsList[index].destinationName,
                               imageUrl:

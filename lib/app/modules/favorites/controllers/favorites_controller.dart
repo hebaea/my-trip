@@ -8,8 +8,10 @@ import 'package:my_trip/app/data/model/favorite_show.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_trip/app/data/model/favorite_validation.dart';
 import 'package:my_trip/app/data/model/message_from_backend.dart';
+import 'package:my_trip/app/modules/destination_details/controllers/destination_details_controller.dart';
 
 class FavoritesController extends GetxController {
+  final destinationdetails = Get.find<DestinationDetailsController>();
   FavoriteShow? favoriteList;
   var favoritesList = <Destination>[].obs;
   CreateFavorite? createFavorite;
@@ -68,7 +70,7 @@ class FavoritesController extends GetxController {
 
   static var client = http.Client();
 
-  static Future favorite({
+  Future favorite({
     required guestId,
     required destinationId,
   }) async {
@@ -93,6 +95,7 @@ class FavoritesController extends GetxController {
       MessageFromBackend? messageFromBackend;
       var result = jsonDecode(response.body);
       messageFromBackend = MessageFromBackend.fromJson(result);
+      destinationdetails!.isFavoriteLocal.value = 1;
       return customSnackbar("المفضلة", messageFromBackend.message, "success");
     } else if (response.statusCode == 400) {
       MessageFromBackend? messageFromBackend;
@@ -152,6 +155,8 @@ class FavoritesController extends GetxController {
           "--reservations => ${favoritesList.value}------------------------------");
       favoritesList
           .removeWhere((element) => element.destinationId == destinationId);
+      destinationdetails.isFavoriteLocal.value = 0;
+
       print(
           "--reservations => ${favoritesList.value}------------------------------");
       MessageFromBackend? messageFromBackend;

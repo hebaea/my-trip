@@ -81,9 +81,7 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
 
                                   var guestId = storage.read('id');
 
-                                  if (controller
-                                          .destinationDetails!.isFavorite ==
-                                      0) {
+                                  if (controller!.isFavoriteLocal.value == 0) {
                                     favoriteController.makeFavorite(
                                       guestId,
                                       controller
@@ -108,7 +106,7 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                                     //     : Icon(
                                     //         PhosphorIcons.heart_fill,
                                     //       ))
-                                    controller.isFavorite.value == 1
+                                    controller.isFavoriteLocal.value == 1
                                         ? Icon(
                                             PhosphorIcons.heart_fill,
                                             color: AppThemeColors.error500,
