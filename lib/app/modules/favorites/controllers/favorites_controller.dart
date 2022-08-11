@@ -95,7 +95,7 @@ class FavoritesController extends GetxController {
       MessageFromBackend? messageFromBackend;
       var result = jsonDecode(response.body);
       messageFromBackend = MessageFromBackend.fromJson(result);
-      destinationdetails!.isFavoriteLocal.value = 1;
+      destinationdetails.isFavoriteLocal.value = 1;
       return customSnackbar("المفضلة", messageFromBackend.message, "success");
     } else if (response.statusCode == 400) {
       MessageFromBackend? messageFromBackend;

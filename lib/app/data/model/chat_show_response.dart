@@ -1,4 +1,4 @@
-import 'message_create_response.dart';
+import 'package:my_trip/app/data/model/message_create_response.dart';
 
 class ChatShowResponse {
   Chat? chat;
@@ -24,7 +24,7 @@ class Chat {
   int? guestId;
   String? createdAt;
   String? updatedAt;
-  List<MessageCreateResponse>? messages;
+  List<Message>? messages;
   Destination? destination;
 
   Chat(
@@ -43,10 +43,9 @@ class Chat {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     if (json['messages'] != null) {
-      messages = <MessageCreateResponse>[];
-
+      messages = <Message>[];
       json['messages'].forEach((v) {
-        messages!.add(MessageCreateResponse.fromJson(v));
+        messages!.add(Message.fromJson(v));
       });
     }
     destination = json['destination'] != null
@@ -113,23 +112,58 @@ class Messages {
 }
 
 class Destination {
-  int? hostId;
+  int? destinationId;
   String? destinationName;
+  int? hostId;
+  int? categoryId;
+  int? cityId;
+  String? destinationAddress;
   String? destinationImg;
+  bool? destinationStauts;
+  String? createdAt;
+  String? updatedAt;
+  String? destinationEvaluation;
 
-  Destination({this.hostId, this.destinationName, this.destinationImg});
+  Destination(
+      {this.destinationId,
+      this.destinationName,
+      this.hostId,
+      this.categoryId,
+      this.cityId,
+      this.destinationAddress,
+      this.destinationImg,
+      this.destinationStauts,
+      this.createdAt,
+      this.updatedAt,
+      this.destinationEvaluation});
 
   Destination.fromJson(Map<String, dynamic> json) {
-    hostId = json['host_id'];
+    destinationId = json['destination_id'];
     destinationName = json['destination_name'];
+    hostId = json['host_id'];
+    categoryId = json['category_id'];
+    cityId = json['city_id'];
+    destinationAddress = json['destination_address'];
     destinationImg = json['destination_img'];
+    destinationStauts = json['destination_stauts'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    destinationEvaluation = json['destination_evaluation'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['host_id'] = hostId;
+    data['destination_id'] = destinationId;
     data['destination_name'] = destinationName;
+    data['host_id'] = hostId;
+    data['category_id'] = categoryId;
+    data['city_id'] = cityId;
+    data['destination_address'] = destinationAddress;
     data['destination_img'] = destinationImg;
+    data['destination_stauts'] = destinationStauts;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['destination_evaluation'] = destinationEvaluation;
     return data;
   }
 }

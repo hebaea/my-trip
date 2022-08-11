@@ -16,12 +16,16 @@ class ChatsController extends GetxController {
   ChatIndexResponse? chatIndex;
   ChatCreateResponse? chatCreate;
   MessageCreateResponse? messageCreate;
+  Message? message;
 
   var chatsList = <Chats>[].obs;
   var isDataLoading = false.obs;
   final storage = GetStorage();
   ChatShowResponse? chatsShow;
-  var msgList = <MessageCreateResponse>[].obs;
+
+  // var msgList = <MessageCreateResponse>[].obs;
+  Message? msg;
+  var msgLis = <Message>[].obs;
 
   TextEditingController msgController = TextEditingController();
 
@@ -107,10 +111,10 @@ class ChatsController extends GetxController {
         print("------------result---------$result---------");
         if (chatsShow?.chat?.messages != null) {
           var messages = chatsShow?.chat?.messages?.toList();
-          msgList.clear();
+          msgLis.clear();
           print("messages ==================");
           print(messages?.length);
-          msgList.addAll(messages!);
+          msgLis.addAll(messages!);
         }
 
         Get.toNamed(Routes.CHAT_DETAILS_PAGE);
@@ -148,8 +152,8 @@ class ChatsController extends GetxController {
         var result = jsonDecode(response.body);
         messageCreate = MessageCreateResponse.fromJson(result);
 
-        if (messageCreate != null) {
-          msgList.add(messageCreate!);
+        if (messageCreate?.message != null) {
+          msgLis.add(messageCreate!.message!);
         }
       } else {
         return null;

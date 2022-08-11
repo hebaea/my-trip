@@ -90,13 +90,13 @@ class ChatDetailsPageView extends GetView<ChatDetailsPageController> {
               print(
                   "-------${chatsController.chatsShow?.chat!.messages!.length}--------");
               print(
-                  "-------${chatsController.chatsShow?.chat!.messages![index].message?.chatId}--------");
+                  "-------${chatsController.chatsShow?.chat!.messages![index].chatId}--------");
               return Container(
                   padding: const EdgeInsets.only(
                       left: 16, right: 16, top: 10, bottom: 10),
                   child: Align(
                     alignment: (chatsController.chatsShow?.chat!
-                                .messages![index].message?.from ==
+                                .messages![index].from ==
                             "Guest"
                         ? Alignment.topLeft
                         : Alignment.topRight),
@@ -104,14 +104,14 @@ class ChatDetailsPageView extends GetView<ChatDetailsPageController> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: (chatsController.chatsShow?.chat!
-                                    .messages![index].message?.from ==
+                                    .messages![index].from ==
                                 "Guest"
                             ? AppThemeColors.primaryLightColor
                             : Colors.grey.shade200),
                       ),
                       padding: const EdgeInsets.all(16),
                       child: DefaultText(
-                          "${chatsController.chatsShow?.chat!.messages![index].message?.text}",
+                          "${chatsController.chatsShow?.chat!.messages![index].text}",
                           fontSize: 15),
                       // Text(
                       //   controller.chatShow?.chat?.messages![index].text,

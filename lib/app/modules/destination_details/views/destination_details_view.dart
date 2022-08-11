@@ -81,7 +81,7 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
 
                                   var guestId = storage.read('id');
 
-                                  if (controller!.isFavoriteLocal.value == 0) {
+                                  if (controller.isFavoriteLocal.value == 0) {
                                     favoriteController.makeFavorite(
                                       guestId,
                                       controller

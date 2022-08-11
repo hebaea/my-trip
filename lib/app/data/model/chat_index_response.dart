@@ -29,7 +29,13 @@ class Chats {
   String? destinationName;
   String? destinationImg;
 
-  Chats({this.chatId, this.hostId, this.guestId, this.createdAt});
+  Chats(
+      {this.chatId,
+      this.hostId,
+      this.guestId,
+      this.createdAt,
+      this.destinationName,
+      this.destinationImg});
 
   Chats.fromJson(Map<String, dynamic> json) {
     chatId = json['chat_id'];
