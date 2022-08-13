@@ -173,13 +173,13 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                         ),
                       ],
                     ),
-                    SizedBox(height: width * 0.02),
+                    SizedBox(height: width * 0),
                     DefaultText('${controller.destinationDetails?.hostPhone}'),
-                    SizedBox(height: width * 0.02),
+                    SizedBox(height: width * 0),
                     DefaultText('${controller.destinationDetails?.hostEmail}'),
                     Row(
                       children: [
-                        SizedBox(width: width * 0.02),
+                        SizedBox(width: width * 0),
                         DefaultText('تقييم',
                             color: AppThemeColors.grayPrimary400,
                             fontSize: width * 0.04),
@@ -210,19 +210,37 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    SizedBox(height: width * 0.04),
-                    DefaultText(
-                        "المدينة : ${controller.destinationDetails?.cityName}",
-                        fontSize: width * 0.06,
-                        fontWeight: FontWeight.w800,
-                        color: AppThemeColors.primaryPureBlack),
-                    SizedBox(height: width * 0.04),
+                    SizedBox(height: width * 0.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        DefaultText(
+                            "المدينة : ${controller.destinationDetails?.cityName}",
+                            fontSize: width * 0.06,
+                            fontWeight: FontWeight.w800,
+                            color: AppThemeColors.primaryPureBlack),
+                        ElevatedButton(
+                          onPressed: () {
+                            // guestId,
+                            // controller.destinationDetails!.destinationId
+                            controller.rateDestination(guestId,
+                                controller.destinationDetails!.destinationId);
+                            // controller.doRateDestination(guestId, controller.destinationDetails!.destinationId);
+                          },
+                          child: const DefaultText(
+                            'تواصل معنا',
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: width * 0.0),
                     DefaultText(
                         "التصنيف : ${controller.destinationDetails?.categoryName}",
                         color: AppThemeColors.primaryPureBlack,
                         fontSize: width * 0.035),
                     SizedBox(
-                      height: width * 0.02,
+                      height: width * 0.0,
                     ),
                     SizedBox(height: width * 0.04),
                     RoundedButton(
