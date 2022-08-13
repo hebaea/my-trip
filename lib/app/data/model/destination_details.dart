@@ -1,5 +1,6 @@
 class DestinationDetails {
   int? destinationId;
+  int? hostId;
   String? destinationName;
   int? categoryId;
   String? categoryName;
@@ -13,6 +14,7 @@ class DestinationDetails {
 
   DestinationDetails(
       {this.destinationId,
+      this.hostId,
       this.destinationName,
       this.categoryId,
       this.categoryName,
@@ -26,6 +28,7 @@ class DestinationDetails {
 
   DestinationDetails.fromJson(Map<String, dynamic> json) {
     destinationId = json['destination_id'];
+    hostId = json['host_id'];
     destinationName = json['destination_name'];
     categoryId = json['category_id'];
     categoryName = json['category_name'];
@@ -41,6 +44,7 @@ class DestinationDetails {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['destination_id'] = destinationId;
+    data['host_id'] = hostId;
     data['destination_name'] = destinationName;
     data['category_id'] = categoryId;
     data['category_name'] = categoryName;
