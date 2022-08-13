@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_trip/app/core/utils/baseurl.dart';
 import 'package:my_trip/app/core/utils/custom_snackbar.dart';
+import 'package:my_trip/app/data/model/chat_create_response.dart';
 import 'package:my_trip/app/data/model/destination_details.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_trip/app/data/model/message_from_backend.dart';
@@ -12,8 +13,10 @@ import 'package:rating_dialog/rating_dialog.dart';
 class DestinationDetailsController extends GetxController {
   var isDataLoading = false.obs;
   DestinationDetails? destinationDetails;
-  late var isFavorite = destinationDetails!.isFavorite.obs;
-  var rating = 0.0.obs;
+
+  late var isFavoriteLocal = destinationDetails!.isFavorite.obs;
+  var rating = 0.obs;
+
 
   // CreateFavorite? createFavorite;
 

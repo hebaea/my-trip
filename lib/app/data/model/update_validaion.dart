@@ -6,7 +6,7 @@ class UpdateValidation {
 
   UpdateValidation.fromJson(Map<String, dynamic> json) {
     guestName = json['guest_name'].cast<String>();
-    guestEmail = json['guest_email'].cast<String>();
+    guestEmail = json['guest_email'];
   }
 
   Map<String, dynamic> toJson() {

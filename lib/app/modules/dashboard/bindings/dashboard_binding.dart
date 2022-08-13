@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:my_trip/app/modules/apartment_reservation_details/controllers/apartment_reservation_details_controller.dart';
 import 'package:my_trip/app/modules/apartments/controllers/apartments_controller.dart';
 import 'package:my_trip/app/modules/chalet_reservation_details/controllers/chalet_reservation_details_controller.dart';
+import 'package:my_trip/app/modules/chats/controllers/chats_controller.dart';
 import 'package:my_trip/app/modules/city_destinations/controllers/city_destinations_controller.dart';
 import 'package:my_trip/app/modules/destination_details/controllers/destination_details_controller.dart';
 import 'package:my_trip/app/modules/destinations/controllers/destinations_controller.dart';
@@ -34,5 +35,6 @@ class DashboardBinding extends Bindings {
     Get.lazyPut(() => ApartmentReservationDetailsController(), fenix: true);
     Get.lazyPut(() => ChaletReservationDetailsController(), fenix: true);
     Get.lazyPut(() => HotelReservationDetailsController(), fenix: true);
+    Get.lazyPut(() => ChatsController(), fenix: true);
   }
 }

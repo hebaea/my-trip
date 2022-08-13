@@ -10,6 +10,7 @@ import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/global_widgets/rounded_button.dart';
 import 'package:my_trip/app/modules/appartment_reservation/controllers/appartment_reservation_controller.dart';
 import 'package:my_trip/app/modules/chalets_reservation/controllers/chalets_reservation_controller.dart';
+import 'package:my_trip/app/modules/chats/controllers/chats_controller.dart';
 import 'package:my_trip/app/modules/favorites/controllers/favorites_controller.dart';
 import 'package:my_trip/app/modules/hotel_reservation/controllers/hotel_reservation_controller.dart';
 import '../controllers/destination_details_controller.dart';
@@ -24,6 +25,8 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
   final hotelReservationController = Get.find<HotelReservationController>();
   final chaletsReservationController = Get.find<ChaletsReservationController>();
   final favoriteController = Get.find<FavoritesController>();
+  final chatsController = Get.find<ChatsController>();
+
   final storage = GetStorage();
 
   late var guestId = storage.read('id');
@@ -78,9 +81,7 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
 
                                   var guestId = storage.read('id');
 
-                                  if (controller
-                                          .destinationDetails!.isFavorite ==
-                                      0) {
+                                  if (controller.isFavoriteLocal.value == 0) {
                                     favoriteController.makeFavorite(
                                       guestId,
                                       controller
@@ -105,7 +106,7 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                                     //     : Icon(
                                     //         PhosphorIcons.heart_fill,
                                     //       ))
-                                    controller.isFavorite.value == 1
+                                    controller.isFavoriteLocal.value == 1
                                         ? Icon(
                                             PhosphorIcons.heart_fill,
                                             color: AppThemeColors.error500,
@@ -243,26 +244,32 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                     ),
                     SizedBox(height: width * 0.04),
                     RoundedButton(
-                        text: 'إحجز',
-                        press: () {
-                          switch (controller.destinationDetails?.categoryId) {
-                            case (1):
-                              hotelReservationController.reservationShowHotel(
-                                  destinationId: destinationId);
-                              break;
-                            case (2):
-                              apartmentReservationController
-                                  .reservationShowApartment(
-                                      destinationId: destinationId);
-                              break;
-                            case (3):
-                              chaletsReservationController
-                                  .reservationShowChalet(
-                                      destinationId: destinationId);
-                              break;
-                          }
-                        }),
+                      text: 'إحجز',
+                      press: () {
+                        switch (controller.destinationDetails?.categoryId) {
+                          case (1):
+                            hotelReservationController.reservationShowHotel(
+                                destinationId: destinationId);
+                            break;
+                          case (2):
+                            apartmentReservationController
+                                .reservationShowApartment(
+                                    destinationId: destinationId);
+                            break;
+                          case (3):
+                            chaletsReservationController.reservationShowChalet(
+                                destinationId: destinationId);
+                            break;
+                        }
+                      },
+                    ),
                     SizedBox(height: width * 0.02),
+                    RoundedButton(
+                        text: 'تواصل معنا',
+                        press: () {
+                          chatsController.createChat(
+                              guestId, controller.destinationDetails?.hostId);
+                        }),
                   ],
                 ),
               ),
