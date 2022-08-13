@@ -14,14 +14,14 @@ class ChatDetailsPageView extends GetView<ChatDetailsPageController> {
     print("chatsController.createChat = ${chatsController.chatCreate}");
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        automaticallyImplyLeading: false,
+        elevation: 1,
+        // automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         flexibleSpace: SafeArea(
           child: Container(
             padding: EdgeInsets.only(right: 16),
             child: Row(
-              children: <Widget>[
+              children: [
                 IconButton(
                   onPressed: () {
                     Navigator.pop(context);
@@ -45,28 +45,30 @@ class ChatDetailsPageView extends GetView<ChatDetailsPageController> {
                 ),
 
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      DefaultText(
-                          "${chatsController.chatsShow?.chat!.destination?.destinationName}",
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600),
-                      // const Text(
-                      //   "Kriss Benwat",
-                      //   style: TextStyle(
-                      //       fontSize: 16, fontWeight: FontWeight.w600),
-                      // ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      // Text(
-                      //   "Online",
-                      //   style: TextStyle(
-                      //       color: Colors.grey.shade600, fontSize: 13),
-                      // ),
-                    ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        DefaultText(
+                            "${chatsController.chatsShow?.chat!.destination?.destinationName}",
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600),
+                        // const Text(
+                        //   "Kriss Benwat",
+                        //   style: TextStyle(
+                        //       fontSize: 16, fontWeight: FontWeight.w600),
+                        // ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        // Text(
+                        //   "Online",
+                        //   style: TextStyle(
+                        //       color: Colors.grey.shade600, fontSize: 13),
+                        // ),
+                      ],
+                    ),
                   ),
                 ),
                 // Icon(
@@ -95,16 +97,16 @@ class ChatDetailsPageView extends GetView<ChatDetailsPageController> {
                   padding: const EdgeInsets.only(
                       left: 16, right: 16, top: 10, bottom: 10),
                   child: Align(
-                    alignment: (chatsController.chatsShow?.chat!
-                                .messages![index].from ==
+                    alignment: (chatsController
+                                .chatsShow?.chat!.messages![index].from ==
                             "Guest"
                         ? Alignment.topLeft
                         : Alignment.topRight),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: (chatsController.chatsShow?.chat!
-                                    .messages![index].from ==
+                        color: (chatsController
+                                    .chatsShow?.chat!.messages![index].from ==
                                 "Guest"
                             ? AppThemeColors.primaryLightColor
                             : Colors.grey.shade200),
