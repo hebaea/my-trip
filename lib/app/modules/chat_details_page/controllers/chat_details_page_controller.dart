@@ -6,7 +6,6 @@ import 'package:my_trip/app/core/utils/baseurl.dart';
 import 'package:my_trip/app/data/model/chat_show_response.dart';
 
 class ChatDetailsPageController extends GetxController {
-
   @override
   void onInit() {
     super.onInit();
@@ -19,6 +18,4 @@ class ChatDetailsPageController extends GetxController {
 
   @override
   void onClose() {}
-
-
 }

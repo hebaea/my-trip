@@ -25,7 +25,7 @@ class ChatsController extends GetxController {
 
   // var msgList = <MessageCreateResponse>[].obs;
   Message? msg;
-  var msgLis = <Message>[].obs;
+  var msgList = <Message>[].obs;
 
   TextEditingController msgController = TextEditingController();
 
@@ -111,10 +111,10 @@ class ChatsController extends GetxController {
         print("------------result---------$result---------");
         if (chatsShow?.chat?.messages != null) {
           var messages = chatsShow?.chat?.messages?.toList();
-          msgLis.clear();
+          msgList.clear();
           print("messages ==================");
           print(messages?.length);
-          msgLis.addAll(messages!);
+          msgList.addAll(messages!);
         }
 
         Get.toNamed(Routes.CHAT_DETAILS_PAGE);
@@ -153,8 +153,9 @@ class ChatsController extends GetxController {
         messageCreate = MessageCreateResponse.fromJson(result);
 
         if (messageCreate?.message != null) {
-          msgLis.add(messageCreate!.message!);
+          msgList.add(messageCreate!.message!);
         }
+        msgController.text = '';
       } else {
         return null;
       }

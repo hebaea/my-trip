@@ -62,7 +62,7 @@ class DestinationDetailsController extends GetxController {
       title: const Text('تقييم الوجهة'),
       submitButtonText: 'تقييم',
       onSubmitted: (response) {
-        rating.value = response.rating;
+        rating.value = response.rating.toInt();
         doRateDestination(guestId, destinationId);
       },
     ));

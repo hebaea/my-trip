@@ -186,11 +186,8 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                         SizedBox(width: width * 0.04),
                         ElevatedButton(
                           onPressed: () {
-                            // guestId,
-                            // controller.destinationDetails!.destinationId
                             controller.rateDestination(guestId,
                                 controller.destinationDetails!.destinationId);
-                            // controller.doRateDestination(guestId, controller.destinationDetails!.destinationId);
                           },
                           child: const DefaultText(
                             'تقييم',
@@ -221,11 +218,8 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                             color: AppThemeColors.primaryPureBlack),
                         ElevatedButton(
                           onPressed: () {
-                            // guestId,
-                            // controller.destinationDetails!.destinationId
-                            controller.rateDestination(guestId,
-                                controller.destinationDetails!.destinationId);
-                            // controller.doRateDestination(guestId, controller.destinationDetails!.destinationId);
+                            chatsController.createChat(
+                                guestId, controller.destinationDetails?.hostId);
                           },
                           child: const DefaultText(
                             'تواصل معنا',
@@ -264,12 +258,6 @@ class DestinationDetailsView extends GetView<DestinationDetailsController> {
                       },
                     ),
                     SizedBox(height: width * 0.02),
-                    RoundedButton(
-                        text: 'تواصل معنا',
-                        press: () {
-                          chatsController.createChat(
-                              guestId, controller.destinationDetails?.hostId);
-                        }),
                   ],
                 ),
               ),
