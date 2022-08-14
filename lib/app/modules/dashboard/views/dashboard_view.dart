@@ -11,9 +11,7 @@ import 'package:my_trip/app/modules/profile/views/profile_view.dart';
 import 'package:my_trip/app/modules/reservations/views/reservations_view.dart';
 import '../controllers/dashboard_controller.dart';
 
-Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  print("onBackgroundMessage: $message");
-}
+
 
 class DashboardView extends StatelessWidget {
   DashboardView({Key? key}) : super(key: key);

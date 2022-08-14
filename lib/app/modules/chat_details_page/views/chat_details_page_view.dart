@@ -3,15 +3,18 @@ import 'package:get/get.dart';
 import 'package:my_trip/app/core/theme/color_theme.dart';
 import 'package:my_trip/app/global_widgets/default_text.dart';
 import 'package:my_trip/app/modules/chats/controllers/chats_controller.dart';
+import 'package:my_trip/app/modules/dashboard/controllers/dashboard_controller.dart';
 import '../controllers/chat_details_page_controller.dart';
 
 class ChatDetailsPageView extends GetView<ChatDetailsPageController> {
   final chatsController = Get.find<ChatsController>();
+  final dashboardController = Get.find<DashboardController>();
 
   ChatDetailsPageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    dashboardController.chatId =chatsController.chatsShow?.chat!.chatId;
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
