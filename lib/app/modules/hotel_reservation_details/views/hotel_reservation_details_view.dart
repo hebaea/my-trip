@@ -15,7 +15,7 @@ class HotelReservationDetailsView
 
     return Scaffold(
         appBar: AppBar(
-          title: DefaultText(
+          title: const DefaultText(
             'تفاصيل الحجز',
             color: AppThemeColors.primaryPureWhite,
           ),
@@ -32,7 +32,7 @@ class HotelReservationDetailsView
                       : Column(
                           children: [
                             SizedBox(
-                              height: 250,
+                              height: 400.h,
                               child: ListView.builder(
                                 itemBuilder: (ctx, i) {
                                   int? destinationReservationId = 0;

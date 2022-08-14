@@ -32,7 +32,7 @@ class ChaletReservationDetailsView
                       : Column(
                           children: [
                             SizedBox(
-                              height: 250,
+                              height: 450.h,
                               child: ListView.builder(
                                 itemBuilder: (ctx, i) {
                                   int? destinationReservationId = 0;
@@ -92,20 +92,20 @@ class ChaletReservationDetailsView
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
+                                                // DefaultText(
+                                                //     'destination Reservation Id $destinationReservationId'),
                                                 DefaultText(
-                                                    'destination Reservation Id $destinationReservationId'),
-                                                DefaultText(
-                                                    'reservation Id $reservationId'),
+                                                    'الرقم التسلسلي للحجز : $reservationId'),
                                               ],
                                             ),
                                             subtitle: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
+                                                // DefaultText(
+                                                //     'reservationable Id $reservationableId'),
                                                 DefaultText(
-                                                    'reservationable Id $reservationableId'),
-                                                DefaultText(
-                                                    'chalet Price $chaletPrice'),
+                                                    'سعر الشاليه : $chaletPrice'),
                                                 SizedBox(
                                                   height: 100,
                                                   child: ListView.builder(
@@ -151,9 +151,9 @@ class ChaletReservationDetailsView
                                                                 .start,
                                                         children: [
                                                           DefaultText(
-                                                              'service Id $serviceId'),
+                                                              'اسم الخدمة : ${controller.chaletReservationDetails!.service![i].serviceName}'),
                                                           DefaultText(
-                                                              'service Price $servicePrice'),
+                                                              'سعر الخدمة : $servicePrice'),
                                                         ],
                                                       );
                                                     },
